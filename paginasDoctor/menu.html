@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/menu.css">
+
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo_content">
+      <div class="logo">
+        <div class="logo_name">Melical</div>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+      <li>
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Buscar...">
+        <span class="tooltip">Buscar</span>
+      </li>
+      <li>
+        <a href="#" class="link_nav">
+          <i class='bx bx-calendar bx-flip-horizontal'></i>
+          <span class="links_name">Cronograma</span>
+        </a>
+        <span class="tooltip">Cronograma</span>
+      </li>
+      <li>
+        <a href="#" class="link_nav">
+          <i class='bx bx-test-tube'></i>
+          <span class="links_name">Pedido de estudios</span>
+        </a>
+        <span class="tooltip">Pedido de estudios</span>
+      </li>
+      <li>
+        <a href="#" class="link_nav">
+          <i class='bx bx-clinic'></i>
+          <span class="links_name">Habitaciones</span>
+        </a>
+        <span class="tooltip">Habitaciones</span>
+      </li>
+      <li>
+        <a href="#" class="link_nav">
+          <i class='bx bx-search-alt-2'></i>
+          <span class="links_name">Búsqueda de pacientes</span>
+        </a>
+        <span class="tooltip">Búsqueda de pacientes</span>
+      </li>
+
+      <li>
+        <a href="#" class="link_nav">
+          <i class='bx bx-cog'></i>
+          <span class="links_name">Ajustes</span>
+        </a>
+        <span class="tooltip">Ajustes</span>
+      </li>
+    </ul>
+
+  </div>
+  </div>
+  <div class="content">
+    <div class="sidebar_secondary">
+      <div class="notification">
+        <i class='bx bxs-bell'></i>
+      </div>
+      <div class="profile_photo">
+        <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img link_nav">
+      </div>
+    </div>
+    <div id="contenedorPagina" class="contenedorPagina">
+
+    </div>
+  </div>
+
+
+  <script src="../js/menu.js"></script>
+</body>
+
+</html>
