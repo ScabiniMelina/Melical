@@ -4,7 +4,7 @@ let sidebar = document.querySelector(".sidebar");
 let searchBtn = document.querySelector(".bx-search");
 let links = document.querySelectorAll(".link_nav");
 let contenedor = document.getElementById("contenedorPagina");
-let paginasDoctor=["cronograma.html","pedidoEstudios.html","habitaciones.html", "busquedaPacientes.html","ajustes.html","perfil.html"];
+let paginasDoctor=["cronograma.html","pedidoEstudios.html","lugaresDisponibles.html","recursosDisponibles.html", "busquedaPacientes.html","ajustes.html","perfil.html"];
 
 console.log(links);
 btn.addEventListener("click", ()=>{
