@@ -1,8 +1,9 @@
 /* Google Font CDN Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 :root {
   --white-color: #fff;
+  --primary-color: #11101d;
+  --secondary-color: #1d1b31;
 }
 
 * {
@@ -252,3 +253,4 @@ ul {
   min-height: calc(100% - 55px);
   background:red;
 }
+
