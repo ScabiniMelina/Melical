@@ -4,72 +4,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <!-- <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Melical</title>
 </head>
 
 <body>
-    <div class="container pagina pt-4 position-relative">
-        <div class="row">
+    <div class="container pagina pt-4" id="busquedaPacientes">
+        <div class="">
+            <div class="row">
 
-            <div class="col">
-
-                <input type="text" class="form-control" placeholder="Buscar paciente por DNI ..." aria-label="Buscar paciente por DNI ..." aria-describedby="button-addon2">
-            </div>
-
-            <div class=" col-auto ps-0" aria-label="Basic example">
-                <button class="btn btn-dark" type="button"> <i class='bx bx-search'></i></button>
-                <button type="button" class="btn btn-dark"><i class='bx bx-slider-alt'></i></button>
-                <button type="button" class="btn btn-dark"><i class='bx bx-scan'></i></button>
-                <button type="button" class="btn btn-dark"><i class='bx bxs-face'></i></button>
+                <div class="col pe-0">
+    
+                    <input type="text" class="form-control" placeholder="Buscar paciente por DNI ..." aria-label="Buscar paciente por DNI ..." aria-describedby="button-addon2">
+                </div>
+    
+                <div class=" col-auto mr-4" aria-label="Basic example">
+                    <button class="btn btn-dark" id="buscar" type="button"> <i class='bx bx-search'></i></button>
+                    <button type="button" id="filtrar" class="btn btn-primary"><i class='bx bx-slider-alt'></i></button>
+                    <button type="button" id="buscarPorHuella" class="btn btn-primary"><i class='bx bx-scan'></i></button>
+                    <button type="button" id="buscarPorRostro" class="btn btn-primary"><i class='bx bxs-face'></i></button>
+                </div>
             </div>
 
 
 
         </div>
+        <div class="row m-auto">
 
-        <table class="table table-responsive  table-hover m-auto mt-4">
+            <table class="table table-responsive  table-hover m-auto mt-4 caption-top ">
+    
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Nombre</th>
+                        <th>Nombre</th>
+                        <th>Nombre</th>
+    
+                    </tr>
+                </thead>
+                <tbody class="table-light">
+    
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
 
-            <thead class="table-dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Nombre</th>
-                    <th>Nombre</th>
-                    <th>Nombre</th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td>juan</td>
-                    <td>juan</td>
-                    <td>juan</td>
-                    <td>juan</td>
-                </tr>
-                <tr>
-                    <td>Meli</td>
-                    <td>hola</td>
-                    <td>hola</td>
-                    <td>hola</td>
-                </tr>
-            </tbody>
-
-        </table>
-        
-        <div class="position-absolute">
-
-            <button class="btn btn-dark  position-absolute bottom-0 end-0 mb-3" type="button"><i class='bx bx-plus'></i></button>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                        <td>juan</td>
+                    </tr>
+                    <tr>
+                        <td>Meli</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                </tbody>
+    
+            </table>
         </div>
-        
+
+        <div class="position-relative">
+            <button class="btn btn-primary mb-3 me-3  position-fixed bottom-0 end-0" type="button"><i class='bx bx-plus'></i></button>
+        </div>
+
        
 
+        
+        
+        
+        
+        
     </div>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
-</body>
-
+  </body>
 </html>
