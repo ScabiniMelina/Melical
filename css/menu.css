@@ -2,8 +2,12 @@
 
 :root {
   --white-color: #fff;
-  --primary-color: #11101d;
-  --secondary-color: #1d1b31;
+  --dark-color:#212529;
+  --primary-color: #063f5a;
+  --secondary-color: #11222a;
+ 
+  /* --primary-color: #11101d;
+  --secondary-color: #1d1b31; */
 }
 
 * {
@@ -17,12 +21,15 @@ body {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  overflow: hidden;
+}
+
+.btn-primary{
+  background-color: var(--primary-color);
 }
 
 ::selection {
   color: var(--white-color);
-  background: #11101d;
+  background: var(--primary-color);
 }
 
 .sidebar {
@@ -31,7 +38,7 @@ body {
   left: 0;
   height: 100%;
   width: 78px;
-  background: #11101d;
+  background: var(--primary-color);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -135,7 +142,7 @@ body {
   border-radius: 12px;
   outline: none;
   border: none;
-  background: #1d1b31;
+  background: var(--secondary-color);
   padding-left: 50px;
   font-size: 18px;
   color: #fff;
@@ -165,7 +172,7 @@ body {
 }
 
 .sidebar ul li a:hover {
-  color: #11101d;
+  color: var(--primary-color);
   background: var(--white-color);
 }
 
@@ -213,6 +220,7 @@ body {
 }
 
 .sidebar_secondary {
+  background-color: var(--white-color);
   position: fixed;
   height: auto;
   width: inherit;
@@ -220,6 +228,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
 }
 
 .profile_img {
@@ -239,18 +248,45 @@ body {
 
 .contenedorPagina {
   width: 100%;
+  height: 100%;
   margin-top: 83px;
-
+  
 }
 
-
-
-ul {
-  padding: 0;
-}
 
 .pagina{
-  min-height: calc(100% - 55px);
-  background:red;
+  height: inherit;
 }
 
+.background-primary{
+  background: var(--primary-color);
+}
+
+.accordion-button:not(.collapsed){
+  background-color: var(--dark-color);
+  color:white
+}
+
+ .accordion-button:not(.collapsed)::after {
+  background-image: none;
+
+ }
+
+
+
+
+  /* Reset de estilos */
+  
+  .btn-primary , .btn-primary:focus {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+  }
+
+  .btn-primary:hover  {
+    background: var(--secondary-color);
+  }
+  
+  ul {
+    padding: 0;
+  }
