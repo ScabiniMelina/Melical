@@ -224,11 +224,7 @@ body {
   position: fixed;
   height: auto;
   width: inherit;
-  padding: .7em 1.5em;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
+ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
 }
 
 .profile_img {
@@ -241,8 +237,6 @@ body {
 
 .notification {
   color: var(--primary-color);
-  display: flex;
-  justify-content: center;
   margin-right: 0.5em;
 }
 
@@ -262,6 +256,7 @@ body {
   background: var(--primary-color);
 }
 
+
 .accordion-button:not(.collapsed){
   background-color: var(--dark-color);
   color:white
@@ -271,9 +266,6 @@ body {
   background-image: none;
 
  }
-
-
-
 
   /* Reset de estilos */
   
@@ -290,3 +282,63 @@ body {
   ul {
     padding: 0;
   }
+
+
+.btn-primary, .color-primary{
+  background-color: var(--primary-color);
+} 
+
+::selection {
+  color: var(--white-color);
+  background: var(--primary-color);
+}
+.position-relative .btn{
+  margin-bottom: 1rem;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .content, .sidebar.active~.content {
+    width: 100%;
+    left: 0;
+  }
+  
+.sidebar ,.sidebar.active{
+  position: fixed;
+  z-index: 900;
+  top: auto;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  padding: 0;
+  background: var(--primary-color);
+}
+
+.sidebar ul li .tooltip {
+  display: none;
+}
+.sidebar ul {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.sidebar ul li {
+  width: auto;
+}
+
+.sidebar ul li i {
+  height: auto;
+  font-size: 1.6rem;
+}
+.sidebar .links_name{
+  display: none;
+}
+
+.position-relative .btn{
+  margin-bottom: calc(60px + 1rem);
+}
+
+}

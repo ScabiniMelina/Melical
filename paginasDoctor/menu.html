@@ -6,67 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap CSS -->
   <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/menu.css">
+  <link rel="stylesheet" href="../css/estilos.css">
 
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-
-
-
-    <div class="sidebar">
-      <div class="logo_content ms-2">
+    <div class="sidebar py-md-3">
+      <div class="logo_content ms-2 d-none d-md-block">
         <div class="logo ">
-          <div class="logo_name fs-4">Melical</div>
+          <h1 class="logo_name fs-4" id="logo">Melical</h1>
         </div>
-        <i class='bx bx-menu' id="btn"></i>
+        <i class='bx bx-menu align-item-center' id="btn"></i>
       </div>
       <ul class="nav_list">
-        <li>
+        <li class="d-none d-md-block" >
           <i class='bx bx-search'></i>
-          <input type="text" placeholder="Buscar...">
+          <input type="text" placeholder="Buscar..."  id="buscar">
           <span class="tooltip">Buscar</span>
         </li>
         <li>
-          <a href="#" class="link_nav">
+          <a href="#" class="link_nav" id="cronograma">
             <i class='bx bx-calendar bx-flip-horizontal'></i>
             <span class="links_name">Cronograma</span>
           </a>
           <span class="tooltip">Cronograma</span>
         </li>
         <li>
-          <a href="#" class="link_nav">
+          <a href="#" class="link_nav" id="pedidoEstudios">
             <i class='bx bx-test-tube'></i>
             <span class="links_name">Pedido de estudios</span>
           </a>
           <span class="tooltip">Pedido de estudios</span>
         </li>
         <li>
-          <a href="#" class="link_nav">
+          <a href="#" class="link_nav" id="lugaresDisponibles">
             <i class='bx bx-clinic'></i>
-            <span class="links_name">Lugares disponibles</span>
+            <span class="links_name ">Lugares disponibles</span>
           </a>
           <span class="tooltip">Lugares disponibles</span>
         </li>
         <li>
-          <a href="#" class="link_nav">
+          <a href="#" class="link_nav" id="recursosDisponibles">
             <i class='bx bx-band-aid'></i>
             <span class="links_name">Recursos disponibles</span>
           </a>
           <span class="tooltip">Recursos disponibles</span>
         </li>
         <li>
-          <a href="#" class="link_nav">
+          <a href="#" class="link_nav" id="busquedaPacientes">
             <i class='bx bx-user-pin'></i>
-            <span class="links_name">Búsqueda de pacientes</span>
+            <span class="links_name ">Búsqueda de pacientes</span>
           </a>
-          <span class="tooltip">Búsqueda de pacientes</span>
+          <span class="tooltip ">Búsqueda de pacientes</span>
         </li>
 
-        <li>
-          <a href="#" class="link_nav">
+        <li class="d-none d-md-block">
+          <a href="#" class="link_nav" id="ajustes">
             <i class='bx bx-cog'></i>
             <span class="links_name">Ajustes</span>
           </a>
@@ -74,25 +71,35 @@
         </li>
       </ul>
     </div>
-
-
-  <div class="content ">
-    <div class="sidebar_secondary position-fixed">
-      <div class="notification">
-        <i class='bx bxs-bell fs-4'></i>
+  <div class="content">
+    <div class="row sidebar_secondary position-fixed justify-content-between align-items-center  m-0 px-3 py-2">
+      <div class="col-auto">
+        <h2 id="tituloSeccion" class="fs-5 tituloSeccion" >Inicio</h2>
       </div>
-      <div class="profile_photo">
-        <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img link_nav">
+      <div class="col-auto d-flex align-items-center ">
+        <div class="notification ">
+          <i class='bx bxs-bell fs-4'></i>
+        </div>
+        <div class="btn-group">
+            <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img link_nav  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button class="dropdown-item" id="perfil" type="button">Ver perfil</button></li>
+            <li><button class="dropdown-item d-block d-md-none" id="configuracion" type="button">Ajustes</button></li>
+            <li><button class="dropdown-item" id="cerrarSesion" type="button">Cerrar sesión</button></li>
+          </ul>
       </div>
+      </div>
+      
     </div>
-    <div id="contenedorPagina" class="contenedorPagina">
+    <div id="contenedorPagina" class="contenedorPagina bg-red">
 
     </div>
   </div>
 
 
   <!-- JavaScript Bundle with Popper -->
-  <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/menu.js"></script>
   <script src="../js/main.js"></script>
 
