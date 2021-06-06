@@ -221,10 +221,10 @@ body {
 
 .sidebar_secondary {
   background-color: var(--white-color);
-  position: fixed;
   height: auto;
   width: inherit;
- box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
+  z-index: 2000;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
 }
 
 .profile_img {
@@ -287,6 +287,10 @@ body {
 .btn-primary, .color-primary{
   background-color: var(--primary-color);
 } 
+
+.fuente-color-primary{
+  color: var(--primary-color);
+}
 
 ::selection {
   color: var(--white-color);
