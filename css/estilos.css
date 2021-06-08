@@ -300,6 +300,17 @@ body {
   margin-bottom: 1rem;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  color: #fff;
+  background-color: var(--primary-color);
+
+}
+.nav-link{
+  color:var(--dark-color)
+}
+.nav{
+  flex-wrap: nowrap;
+}
 
 @media only screen and (max-width: 767px) {
   .content, .sidebar.active~.content {
