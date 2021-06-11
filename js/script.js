@@ -1,7 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   activarFuncionesMenu();
-
+  // document.addEventListener("click",(e)=>{
+  //   console.log(e.target)
+  // })
   //sidebar
   document.getElementById("cronograma").addEventListener("click",()=>{
     mostrarSeccion("cronograma.html","Cronograma");
@@ -20,14 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   })
   
   document.getElementById("busquedaPacientes").addEventListener("click",()=>{
-    (async()=>{
-      await mostrarSeccion("busquedaPacientes.html","Buscar pacientes");
-      dataForm = await new FormData();
-      await dataForm.append("sql","SELECT * FROM persona");
-      const data = await ObtenerJson("../php/obtenerBd.php", dataForm);
-      await rellenarTablaPacientes(data);
-      await cargarBotonesBusquedaPacientes();
-    })()
+    
+    mostrarSeccion("busquedaPacientes.html","Buscar pacientes")
+    .then(()=>{
+      fetch(("../php/obtenerPacientes.php"),{method:"POST"})
+      .then(respuesta => respuesta.json())
+      .then( data => rellenarTablaPacientes(data))
+      .then(cargarBotonesBusquedaPacientes())
+    })
   })
   
   document.getElementById("ajustes").addEventListener("click",()=>{
@@ -43,32 +45,32 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   document.getElementById("cerrarSesion").addEventListener("click",()=>{
-    fetch("cerrarSesion.php")
-    .then(response => response.text())
-    .then(data =>  console.log = html);
+    // fetch("cerrarSesion.php")
+    // .then(response => response.text())
+    // .then(data =>  console.log = html);
   })
   
 })
 
 async function cargarBotonesBusquedaPacientes(){
-  console.log("cargarBusqueda")
   //Botones de Busquéda pacientes
   document.getElementById("btnFiltrar").addEventListener("click",()=>{
     (async()=>{
-      await mostrarSeccion("filtros.php","Filtrar");
-    })() 
+      await mostrarSeccion("filtros.php","Filtrar")
+      await activarFuncionesSeccionFiltros()
+    })()
   })
 
   document.getElementById("btnBuscar").addEventListener("click",()=>{
-    (async()=>{
-      await mostrarSeccion("busquedaPacientes.html","Buscar pacientes");
-      dataForm = await new FormData();
-      await dataForm.append("sql",`SELECT * FROM persona WHERE ID_DNI_PACIENTE = ${document.getElementById("inputBuscar")}`);
-      const data = await ObtenerJson("../php/obtenerBd.php", dataForm);
-      await console.log(data);
-      await rellenarTablaPacientes(data);
-      await cargarBotonesBusquedaPacientes();
-    })()
+   if(!isNaN(document.getElementById("inputBuscar").value)){
+      data = new FormData();
+      data.append('ID_DNI', document.getElementById("inputBuscar").value);
+      fetch("../php/obtenerPaciente.php",{
+        method:"POST", 
+        body:data })
+        .then(respuesta => respuesta.json())
+        .then( data => rellenarTablaPacientes(data));        
+    }
   })
   
   document.getElementById("btnBuscarPorHuella").addEventListener("click",()=>{
@@ -84,21 +86,19 @@ async function cargarBotonesBusquedaPacientes(){
   })
   
   
+  // Cambiar sql en el php
   //Abrir toda la info del paciente seleccionado
   document.getElementById("tablaPacientes").addEventListener("click",(e)=>{
-    (async()=>{
-      dataForm = await new FormData();
-      await dataForm.append("sql",`SELECT persona.ID_DNI_PERSONA, persona.nombre, persona.apellido, persona.fecha_nacimiento, persona.telefono, persona.email, persona.domicilio, persona.sexo, paciente.grupo_sanguineo, paciente.codigo_obra_social, paciente.numero_obra_social  FROM persona INNER JOIN paciente ON persona.ID_DNI_PERSONA = ${e.target.parentNode.dataset.id}`);
-      const data = await ObtenerJson("../php/obtenerBd.php", dataForm);
-      await mostrarSeccion("paciente.html","Paciente");
-      await rellenarFormDatosPaciente(data);
-    })()
-    
-  })
-  
-  
+    data = new FormData();
+    data.append('ID_DNI', e.target.parentNode.dataset.id);
+    fetch("../php/obtenerAntecedentesInfoGeneralHistoriaClinica.php",{
+        method:"POST", 
+        body:data})
+        .then(respuesta => respuesta.json())
+        .then(mostrarSeccion("paciente.html","Paciente"));
+      // await rellenarFormDatosPaciente(data);
+    })
 }
-
 
 async function activarFuncionesMenu(){
   const sidebar = document.querySelector(".sidebar");
@@ -126,33 +126,111 @@ async function mostrarSeccion(archivo,titulo){
 }
 
 const ObtenerJson = async(archivo,data)=>{
-  const respuesta = await fetch(archivo,
-  {
+  const respuesta = await fetch(archivo,{
     method: "POST",
     body: data
   });
-  const archivoJson = await respuesta.json();
-  return archivoJson;
+  return respuesta.json();
 }  
 
-const rellenarTablaPacientes = async (data)=>{
+ async function rellenarTablaPacientes(data){
+  console.log(data)
   const tablaPacientes = document.getElementById("tablaPacientes");
+  tablaPacientes.innerHTML="";
   const templateFila = document.getElementById("templateFila").content;
   const fragmento = document.createDocumentFragment();
   data.forEach(paciente => {
-      templateFila.querySelector(".fila").dataset.id = paciente.ID_DNI_PERSONA
-      templateFila.querySelector(".dni").textContent = paciente.ID_DNI_PERSONA
-      templateFila.querySelector(".nombre").textContent = paciente.nombre
-      templateFila.querySelector(".apellido").textContent = paciente.apellido
-      templateFila.querySelector(".fechaNacimiento").textContent = paciente.fecha_nacimiento
-      templateFila.querySelector(".sexo").textContent = paciente.sexo
-      const clon = templateFila.cloneNode(true)
-      fragmento.appendChild(clon)
-    })
-    tablaPacientes.appendChild(fragmento)
+    templateFila.querySelector(".fila").dataset.id = paciente.ID_DNI_;
+    templateFila.querySelector(".dni").textContent = paciente.ID_DNI;
+    templateFila.querySelector(".nombre").textContent = paciente.name;
+    templateFila.querySelector(".apellido").textContent = paciente.surname;
+    templateFila.querySelector(".fechaNacimiento").textContent = paciente.date_birth;
+    const clon = templateFila.cloneNode(true);
+    fragmento.appendChild(clon);
+  })
+  tablaPacientes.appendChild(fragmento);
 }
 
-const rellenarFormDatosPaciente = async (data)=>{
+async function rellenarFormDatosPaciente(data){
   console.log(data)  
 }
+
+async function activarFuncionesSeccionFiltros(){
+  document.querySelectorAll('.nav-link-datalist').forEach( navElement =>{
+    const container = document.querySelector(navElement.dataset.bsTarget);//Contenedor de las filasDatalist
+    obtenerOpcionesDatalist(navElement.dataset.table,navElement.dataset.columna_id,navElement.dataset.columna_lista)
+    .then(opciones =>crearFilaDatalist(navElement,container,opciones))
+  })
+
+  document.getElementById("obtenerBusquedaFiltrado").addEventListener("click",()=>{
+    data = new FormData();
+    // data.append('ID_DNI', document.getElementById("inputBuscar").value);
+    mostrarSeccion("busquedaPacientes.html","Buscar pacientes")
+    .then(()=>{
+      console.log("obtener filtrado de pacientes")
+    fetch("../php/obtenerPaciente.php",{
+      method:"POST", 
+      body:data })
+      .then(respuesta => respuesta.json())
+      .then( data => rellenarTablaPacientes(data))})
+  })
+}
+
+function crearFilaDatalist(navElement,container,data){
+  console.log(data);
+  const template = document.getElementById("containerDatalist").content;
+  const cantidadFilas = container.querySelectorAll(".fila").length
+  const fragment = document.createDocumentFragment();
+  let idFila = 0
+  // si el total de filas es distinto de 0 entonces averiguo cual es la key de la última fila
+  if(cantidadFilas!=0){
+    // a la última key le agregamos 1, esto lo hacemos así para no se creen keys repetidas
+    idFila = parseInt(container.querySelectorAll(".fila")[cantidadFilas-1].dataset.id) + 1
+  }
+  console.log(idFila)
+  template.querySelector(".row").dataset.id = idFila
+  template.querySelector("input").setAttribute("list",navElement.dataset.datalist + idFila);
+  // poner opciones
+  template.querySelector("datalist").innerHTML= data
+  template.querySelector("datalist").id = navElement.dataset.datalist + idFila
+  template.querySelector("datalist").className = navElement.dataset.datalist + idFila
+  fragment.appendChild(template.cloneNode(true))
+
+  fragment.querySelector("button").addEventListener("click",(e)=>{
+    if(e.currentTarget.querySelector("i").classList.contains("bx-minus")){
+      console.log(e.currentTarget)
+      container.removeChild(container.querySelector('.fila[data-id="'+ idFila +'"]'))
+    }
+      
+    if(e.currentTarget.querySelector("i").classList.contains("bx-plus")){
+      console.log("mas")
+      e.currentTarget.querySelector("i").classList.replace("bx-plus","bx-minus")
+      crearFilaDatalist(navElement,container,data)
+    }
+  })
+  container.appendChild(fragment)
+  console.log(navElement.dataset.bsTarget);
+  console.log(template);
+  console.log(container)
+  console.log(cantidadFilas)
+}
   
+async function obtenerOpcionesDatalist(tabla,columnaId,columnaLista){
+  tabla = "PERSONAL_INFORMATION"
+  columnaId = "ID_DNI";
+  columnaLista = "name";
+  let data = new FormData();
+  data.append("tabla",tabla);
+  data.append("columnaId",columnaId);
+  data.append("columnaLista",columnaLista);
+  let opciones="";
+  const respuesta = await fetch("../php/rellenarOpcionesDatalist.php",{
+    method:"POST",
+    body:data
+  })
+  const dataJson = await respuesta.json();
+  await dataJson.forEach((opcion) => {
+    opciones += '<option data-id="' + opcion[columnaId] + '" value="' + opcion[columnaLista] +'">' 	
+  })
+  return await opciones;
+} 

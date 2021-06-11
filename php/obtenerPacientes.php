@@ -1,8 +1,9 @@
 <?php
 header('Content-Type: application/json');
 include("conexion.php");
-$sql = $_POST["sql"];
+$sql = "SELECT * FROM PERSONAL_INFORMATION";
 $consultaSql = $conexion->query($sql);
-$resultado = mysqli_fetch_all($consultaSql,MYSQLI_ASSOC);
+$resultado = $consultaSql->fetch_all(MYSQLI_ASSOC);
+$conexion->close();
 echo json_encode($resultado);
 ?>
