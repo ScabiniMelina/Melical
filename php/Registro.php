@@ -1,11 +1,42 @@
- <!--   Esto va en el menu.js
+  <!--   Esto va en el menu.js
     document.getElementById("registro").addEventListener("click",()=>{
     fetch("Registro.php")
     .then(response => response.text())
     .then(data =>  console.log = html);
   }) -->
 
-  <!DOCTYPE html>
+  <!-- MELINA AYUDAAAAA
+
+  let  registro = document.getElementById('registro');
+let  R = document.getElementById('R');
+
+R.addEventListener('click',()=>{
+    //Agarra los datos de un formulario y los convierte en un objeto, name del input => valor que contiene el input 
+    const datosForm = new FormData(registro);
+    //Acceder al contenido del input que tiene el name dni
+    console.log(datosForm.get('dni'))
+    console.log(datosForm.get('nombre'))
+    console.log(datosForm.get('apellido'))
+    console.log(datosForm.get('direccion'))
+    console.log(datosForm.get('n'))
+    console.log(datosForm.get('fecha'))
+    console.log(datosForm.get('tel'))
+    console.log(datosForm.get('email'))
+    console.log(datosForm.get('contrasena'))
+    //Devuelve una promesa  que nos da  una respuesta
+    fetch('php/enviarBd.php',//Lugar a enviar los datos
+    {
+        method: 'POST', //Método a usar
+        body: datosForm, //Contenido a enviar
+    })
+    .then(respuesta => respuesta.text())
+    .then(data => alert(data))
+
+})
+
+-->
+
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -21,56 +52,85 @@
     </head>
 
     <body>
+        <div class="container">
+            <form action="" id="registro">
 
-<div class="container">
-<form action="" id="registro">
+                <label for="uname"><b>DNI:</b> </label>
+                <div>
+                    <input type="number" id="dni" name="dni" required >  
+                </div>
 
-    <div class="row">
-        <div class="col-12"><h3>Ingrese los datos solicitados a continuación:</h3></div>
-    </div>
+                <br>
 
+                <label for="uname"><b>Nombre:</b> </label>
+                <div>
+                    <input type="text" id="nombre" name="nombre" required pattern="[a-z]{1,30}" title="Debe ingresar letras en minuscula" >    
+                </div>
 
-    <div class="row">
-        <div class="col-12 col-sm-2"><input type="number" name="Dni" id="Dni" placeholder="Dni" required> </div>
-        <div class="col-12 col-sm-10"><input type="text" name="fechaNacimiento" id="fechaNacimiento" placeholder="fechaNacimiento" required> </div>
-    </div>
+                <br>
 
-    <div class="row">
-        <div class="col-12 col-sm-2"><input type="text" name="nombre" id="nombre" placeholder="nombre" required> </div>
-        <div class="col-12 col-sm-10"><input type="text" name="apellido" id="apellido" placeholder="apellido" required> </div>
-    </div>
+                <label for="uname"><b>Apellido:</b> </label>
+                <div>
+                    <input type="text" id="apellido" name="apellido" required pattern="[a-z]{1,30}" title="Debe ingresar letras en minuscula" >
+                </div>
 
-    <div class="row">
-        <div class="col-12 col-sm-2"><input type="text" name="direccion" id="direccion" placeholder="direccion" required> </div>
-        <div class="col-12 col-sm-10"><input type="number" name="n" id="n" placeholder="nº" required> </div>
-    </div>
+                <br>
 
-    <div class="row">
-        <div class="col-12 col-sm-2"><input type="text" name="correo" id="correo" placeholder="correo" required> </div>
-        <div class="col-12 col-sm-10"><input type="text" name="telefono" id="telefono" placeholder="telefono" required> </div>
-    </div>
+                <label for="uname"><b>Dirección:</b> </label>
+                <div>
+                    <input type="text" id="direccion" name="direccion" required pattern="[a-z]{1,30}" title="Debe ingresar letras en minuscula" > 
+                </div>
 
-    <div class="row">
-    <div class="col-12"><input type="password" name="contrasena" id="contrasena" placeholder="contraseña" required></div>
-    </div>
+                <br>
 
-    
+                <label for="uname"><b>Nº:</b> </label>
+                <div>
+                    <input type="number" id="n" name="n" required > 
+                </div>
 
-    </form>
+                <br>
 
-    <div class="row">
-        <div class="col-12 "><button id="RegistroButton"><a href="login.php">Registrarse</a></button> </div>
+                <label for="uname"><b>Fecha de Nacimiento:</b> </label>
+                <div>
+                    <input type="date" id="fecha" name="fecha" required  >  
+                </div>
 
-        <!-- Aca iria en envio de los datos a la base de datos -->
-    </div>
+                <br>
 
+                <label for="uname"><b>Teléfono:</b> </label>
+                <div>
+                    <input type="number" id="tel" name="tel" required  pattern="[0-9]" title="Debe ingresar caracteres numéricos">  
+                </div>
 
-    <div class="options"> 
-                    <p>¿Ya tienes cuenta?<span><a href="login.php">Ingrese aquí</a> </span></p>
-            </div>
+                <br>
 
-</div>
-      
+                <label for="uname"><b>Correo Electrónico:</b> </label>
+                <div>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <br>
+
+                <label for="uname"><b>Contraseña:</b> </label>
+                <div>
+                    <input type="password" id="contrasena" name="contrasena" required  pattern="[a-z]{6,20}" title="No cumple los parametros">
+                    <span class="validity"></span>
+                    <p>*La contraseña debe estar en minúsculas y tener entre 6 y 20 caracteres.</p>
+                </div>
+
+                <br>
+
+                <div>
+                    <button id="R">Registrarse</button>
+                    <!-- No se a que pagina se tiene que re direccionar -->
+                </div>
+
+                <p>¿Ya tienes cuenta?<span><a href="login.php">Ingrese aquí</a> </span></p>
+
+            </form>
+
+        </div>
+
     </body>
 
 </html>
