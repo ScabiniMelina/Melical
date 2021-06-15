@@ -10,19 +10,8 @@
 
 <body>
     <div class="container pagina pt-3 ">
-        <div class="row-12 pb-3 align-baseline ">
-            <button type="button" class="btn btn-dark rounded-pill py-0 mb-1">
-                COVID
-                <i class='bx bx-x-circle align-baseline ps-1'></i>
-            </button>
-            <button type="button" class="btn btn-dark rounded-pill py-0 mb-1">
-                Fiebre
-                <i class='bx bx-x-circle align-baseline ps-1'></i>
-            </button>
-            <button type="button" class="btn btn-dark rounded-pill py-0 mb-1">
-                Respirador
-                <i class='bx bx-x-circle align-baseline ps-1'></i>
-            </button>
+        <div class="row-12 pb-3 align-baseline" id="contenedorFiltros">
+            
         </div>
         <div class="row">
 
@@ -110,7 +99,7 @@
     <template id="containerDatalist">
         <div class="row pb-3 fila">
             <div class="col pe-0 ">
-                <input class="form-control form-control-sm" list="" placeholder="Buscar..">
+                <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
                 <datalist>
                     
                 </datalist>
@@ -119,6 +108,13 @@
                 <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
             </div>
         </div>
+    </template>
+    
+    <template id="opcionFiltro">
+        <button type="button" class="btn btn-dark rounded-pill py-0 mb-1">
+            <span></span>
+            <i class='bx bx-x-circle align-baseline ps-1'></i>
+        </button>
     </template>
 
 </body>
