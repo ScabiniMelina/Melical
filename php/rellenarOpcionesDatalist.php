@@ -3,10 +3,14 @@ header('Content-Type: application/json');
 include("conexion.php");
 $tabla = $_POST["tabla"];
 $columnaId = $_POST["columnaId"];
-$columnaList = $_POST["columnaLista"];
-$sql = "SELECT ". $columnaId ." , ". $columnaList . " FROM " . $tabla;
+$columnaLista = $_POST["columnaLista"];
+$sql = "SELECT ". $columnaId ." , ". $columnaLista . " FROM " . $tabla;
 $consultaSql = $conexion->query($sql);
-$resultado = $consultaSql->fetch_all(MYSQLI_ASSOC);
+if(!empty($consultaSql) AND mysqli_num_rows($consultaSql)>0){
+    $data = $consultaSql->fetch_all(MYSQLI_ASSOC);
+    echo json_encode($data);
+}else{
+    die(mysqli_error($conexion));    
+}
 $conexion->close();
-echo json_encode($resultado);
 ?>
