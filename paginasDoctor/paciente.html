@@ -28,69 +28,58 @@
         
           <form class="row g-3">
             <div class="col-6">
-              <label for="inputDni4" class="form-label form-label-sm">Dni</label>
-              <input type="text" class="form-control form-control-sm" id="inputDni4">
+              <label for="inputDniPaciente" class="form-label form-label-sm">Dni</label>
+              <input type="text" class="form-control form-control-sm" id="inputDniPaciente">
             </div>
             <div class="col-6">
-              <label for="inputCodigoPaciente" class="form-label form-label-sm">Código paciente</label>
-              <input type="text" class="form-control form-control-sm" disabled id="inputCodigoPaciente">
             </div>
             <div class="col-6">
-              <label for="inputNombre4" class="form-label form-label-sm">Nombre(s)</label>
-              <input type="text" class="form-control form-control-sm" id="inputNombre4">
+              <label for="inputNombrePaciente" class="form-label form-label-sm">Nombre</label>
+              <input type="text" class="form-control form-control-sm" id="inputNombrePaciente">
             </div>
             <div class="col-6">
-              <label for="inputApellido4" class="form-label form-label-sm">Apellido</label>
-              <input type="text" class="form-control form-control-sm" id="inputApellido4">
+              <label for="inputApellidoPaciente" class="form-label form-label-sm">Apellido</label>
+              <input type="text" class="form-control form-control-sm" id="inputApellidoPaciente">
             </div>
             <div class="col-6">
-              <label for="inputNacimiento" class="form-label form-label-sm">Nacimiento</label>
-              <input type="date" class="form-control form-control-sm" id="inputNacimiento" placeholder="Apartment, studio, or floor">
+              <label for="inputNacimientoPaciente" class="form-label form-label-sm">Nacimiento</label>
+              <input type="date" class="form-control form-control-sm" id="inputNacimientoPaciente">
             </div>
+            
             <div class="col-6">
-              <label for="inputState" class="form-label">Sexo</label>
-              <select id="inputState" class="form-select form-select-sm">
-                <option>Femenino</option>
-                <option>Masculino</option>
+              <label for="selectSexoPaciente" class="form-label">Sexo</label>
+              <select id="selectSexoPaciente" class="form-select form-select-sm">
+                <option value="vacio"></option>
+                <option value="0">Femenino</option>
+                <option value="1">Masculino</option>
               </select>
             </div>
             <div class="col-6">
-              <label for="inputTelefono" class="form-label">Teléfono</label>
-              <input type="text" class="form-control form-control-sm" id="inputTelefono">
+              <label for="inputTelefonoPaciente" class="form-label">Teléfono</label>
+              <input type="text" class="form-control form-control-sm" id="inputTelefonoPaciente">
             </div>
+
             <div class="col-6">
-              <label for="inputTelefonoMovil" class="form-label">Teléfono Móvil</label>
-              <input type="text" class="form-control form-control-sm" id="inputTelefonoMovil">
+              <label for="inputEmailPaciente" class="form-label">Email</label>
+              <input type="text" class="form-control form-control-sm" id="inputEmailPaciente">
             </div>
+
             <div class="col-6">
               <label for="inputLocalidad" class="form-label form-label-sm">Localidad</label>
               <select id="inputLocalidad" class="form-select form-select-sm">
                 <option></option>
-                <option></option>
               </select>
             </div>
             <div class="col-6">
-              <label for="inputCodigoPostal" class="form-label">Código postal</label>
-              <input type="text" class="form-control form-control-sm " disabled id="inputCodigoPostal">
+              
             </div>
             <div class="col-6">
-              <label for="inputDireccion" class="form-label">Dirección</label>
-              <input type="text" class="form-control form-control-sm" id="inputDireccion">
+              <label for="inputDireccionPaciente" class="form-label">Dirección</label>
+              <input type="text" class="form-control form-control-sm" id="inputDireccionPaciente">
             </div>
             <div class="col-6">
-              <label for="inputDireccionN" class="form-label form-label-sm">Nº</label>
-              <input type="number" class="form-control form-control-sm" id="inputDireccionN">
-            </div>
-            <div class="col-6">
-              <label for="inputObraSocial" class="form-label form-label-sm">Obra Social</label>
-              <select class="form-select form-select-sm" id="inputObraSocial">
-                <option></option>
-                <option></option>
-              </select>
-            </div>
-            <div class="col-6">
-              <label for="inputNumeroAfiliado" class="form-label form-label-sm">Nº Afiliado</label>
-              <input type="text" class="form-control form-control-sm" id="inputNumeroAfiliado">
+              <label for="inputDireccionNPaciente" class="form-label form-label-sm">Nº</label>
+              <input type="number" class="form-control form-control-sm" id="inputDireccionNPaciente">
             </div>
             
             <div class="col-12">
@@ -102,9 +91,22 @@
         <p>hola</p>
       </div>
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <p>antecedentes</p>
+        <div class="row">
+          <div class="col-6">
+            <label for="selectSangrePaciente" class="form-label">Sangre</label>
+            <select id="selectSangrePaciente" class="form-select form-select-sm">
+              <option value="vacio"></option>
+              <option value="0">O+</option>
+              <option value="1">A+</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="selectObraSocialPaciente" class="form-label form-label-sm">Religión</label>
+            <select class="form-select form-select-sm" id="selectObraSocialPaciente" data-tabla="PREPAID" data-columna_id="ID_PREPAID" data-columna_lista="name">
+            </select>
+          </div>
+        </div>
       </div>
-    
   </div>
    <!-- JavaScript Bundle with Popper -->
    <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
