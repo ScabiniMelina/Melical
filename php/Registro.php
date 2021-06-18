@@ -3,9 +3,7 @@
     $msg="";
 
     if(isset($_POST["boton"])){
-
         $msg="funciono";
-    
         include("conexion.php");
         $dni = $_POST['dni']; 
         $nombre = $_POST['nombre'];
@@ -17,14 +15,14 @@
         $email = $_POST['email'];
         $contrasena = $_POST['contrasena'];
 
-        $sql = "INSERT INTO PERSONAL_INFORMATION (ID_DNI,name,surname,date_birth,phone,email) VALUES ($dni,$nombre,$apellido,$fechaNacimieto,$telefono,$email)";
+        $sql = "INSERT INTO `PERSONAL_INFORMATION`(`ID_DNI`, `name`, `surname`, `date_birth`, `phone`) VALUES ($dni,$nombre,$apellido,$fechaNacimieto,$telefono)";
         if (mysqli_query($conexion , $sql)) {
             echo "Funciona";
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conexion );
+            echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
         }
         mysqli_close($conexion);
-        
+      
     }
 
 ?>
@@ -57,7 +55,7 @@
       <h1 class="display-3">Bienvenido a Melical Atention! </h1>
       <h4 class="text-muted fs-5 lead pt-1" >Completa el registro para crear tu cuenta.</h4>
       
-      <form class="row g-3 pb-3 pt-4" id="formularioRegistro">
+      <form class="row g-3 pb-3 pt-4" id="formularioRegistro" method="POST">
         <div class="col-6">
           <label for="inputDni4" class="form-label">Dni</label>
           <input type="number" name="dni" required  class="form-control">
@@ -67,12 +65,12 @@
         </div>
         <div class="col-6">
           <label for="inputDni4" class="form-label">Nombre</label>
-          <input type="text" class="form-control"  name="nombre" required pattern="[a-z]{1,30}" title="Debe ingresar letras" >
+          <input type="text" class="form-control"  name="nombre" required pattern="{1,30}" title="Debe ingresar letras" >
         </div>
         
         <div class="col-6">
           <label for="inputDni4" class="form-label">Apellido</label>
-          <input type="text" class="form-control" name="apellido" required pattern="[a-z]{1,30}" title="Debe ingresar letras" >
+          <input type="text" class="form-control" name="apellido" required pattern="{1,30}" title="Debe ingresar letras" >
         </div>
         
         <div class="col-6">
@@ -109,17 +107,13 @@
           </div>
         </div>
         
-      </form>
-      
-
-      <div class="col-12 pt-3">  
-        <form action=" " method="POST">   
-          <a href="login.html" class="btn btn-primary btn-lg text-align-center" id="botonRegistro"role="button" type="submit" name="boton" value="generar">Registrarse</a>
-        </form>
-          <div class="row mt-2">
-            <span> ¿Ya tienes cuenta?<a class="ps-2" type="button" href="login.html" style="text-decoration:none;"> Inicia sesión aquí</a></span> 
-          </div>
+        <div class="col-12 pt-3">  
+          <button class="btn btn-primary btn-lg text-align-center" id="botonRegistro"role="button" type="submit" name="boton" value="generar">Registrarse</button>
+            <div class="row mt-2">
+              <span> ¿Ya tienes cuenta?<a class="ps-2" type="button" href="login.html" style="text-decoration:none;"> Inicia sesión aquí</a></span> 
+            </div>
         </div>
+      </form>
     </div>
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 280" preserveAspectRatio="none"><path fill="#063f5a" fill-opacity="1" 
