@@ -92,7 +92,7 @@
 
         </div>
         <div class="position-relative">
-            <button class="btn btn-primary  me-3  position-fixed bottom-0 end-0" type="button" id="obtenerBusquedaFiltrado"><i class='bx bx-search'></i></button>
+            <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0" type="button" id="obtenerBusquedaFiltrado"><i class='bx bx-search'></i></button>
         </div>
     </div>
 

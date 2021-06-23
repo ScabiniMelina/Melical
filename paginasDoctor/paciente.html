@@ -10,20 +10,27 @@
   <title>Melical</title>
 </head>
 <body>
-  <div class="container pagina pt-4">
+  <div class="container pagina">
+    <div class="tabs-fixed">
+      <div class="card">
+        <div class="card-header p-0">
+          <ul class="nav nav-pills nav-tabs nav-fill card-header-pills" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active btn-sm" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Info General</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-sm" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historia clinica</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-sm" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Antecedentes</button>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <ul class="nav nav-pills nav-tabs mb-3 nav-fill" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active btn-sm" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Info General</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link btn-sm" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historia clinica</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link btn-sm" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Antecedentes</button>
-      </li>
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
+    </div>
+    
+    <div class="tab-content pb-2" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">  
         
           <form class="row g-3">
@@ -52,6 +59,7 @@
                 <option value="vacio"></option>
                 <option value="0">Femenino</option>
                 <option value="1">Masculino</option>
+                <option value="2">Otro</option>
               </select>
             </div>
             <div class="col-6">
@@ -91,23 +99,98 @@
         <p>hola</p>
       </div>
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <div class="row">
-          <div class="col-6">
-            <label for="selectSangrePaciente" class="form-label">Sangre</label>
-            <select id="selectSangrePaciente" class="form-select form-select-sm">
-              <option value="vacio"></option>
-              <option value="0">O+</option>
-              <option value="1">A+</option>
-            </select>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Información básica
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-6">
+                    <label for="selectSangrePaciente" class="form-label">Sangre</label>
+                    <select id="selectSangrePaciente" class="form-select form-select-sm">
+                      <option value="vacio"></option>
+                      <option value="0">O+</option>
+                      <option value="1">A+</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="selectObraSocialPaciente" class="form-label form-label-sm">Religión</label>
+                    <select class="form-select form-select-sm" id="selectObraSocialPaciente" data-tabla="PREPAID" data-columna_id="ID_PREPAID" data-columna_lista="name">
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-6">
-            <label for="selectObraSocialPaciente" class="form-label form-label-sm">Religión</label>
-            <select class="form-select form-select-sm" id="selectObraSocialPaciente" data-tabla="PREPAID" data-columna_id="ID_PREPAID" data-columna_lista="name">
-            </select>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Patológicas
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+              <div class="accordion-body">
+                <div class="row pb-2">
+                  <div class="col text-start">
+                    <p class="h6 fw-bold">Tabaquismo</p>
+                  </div>
+                  <div class="col align-self-end justify-content-end text-end pe-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label fw-bold" for="inlineRadio1">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label fw-bold" for="inlineRadio2">No</label>
+                    </div>
+                  </div>
+                  <div class="list-group comentarios pb-0 pt-1 mx-0 px-0">
+                    <a href="#" class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1 small">Pablo Suárez</h6>
+                        <small>14/4/2021 13:50</small>
+                      </div>
+                      <p class="mb-1 small text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+                    </a>
+                  </div>
+                  <div class="m-auto overflow-auto mt-3 mx-0 px-0">
+                    <button class="btn btn-primary btn-sm w-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Agregar nota</button>
+                    <div class="collapse" id="collapseExample">
+                      <div class="list-group comentarios pb-0 pt-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 small">Pablo Suárez</h6>
+                            <small>14/4/2021 13:50</small>
+                          </div>
+                          <p class="mb-1 small text-muted" contenteditable="true" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+                        </a>
+                      </div>
+                      <div class="col-auto pt-3">
+                        <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                No patológicas
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-  </div>
+       
    <!-- JavaScript Bundle with Popper -->
    <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
 </body>

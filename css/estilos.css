@@ -1,7 +1,8 @@
 /* Google Font CDN Link */
 
 :root {
-  --white-color: #fff;
+  --font-color: #fcfdfe;
+  --background-color:#d1dede;
   --dark-color:#212529;
   --primary-color: #063f5a;
   --secondary-color: #11222a;
@@ -21,35 +22,36 @@ body {
   position: relative;
   min-height: 100vh;
   width: 100%;
+  background-color: var(--background-color);
 }
 
 .btn-primary{
   background-color: var(--primary-color);
 }
 
-::selection {
-  color: var(--white-color);
+/* ::selection {
+  color: var(--font-color);
   background: var(--primary-color);
-}
+} */
 
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  width: 78px;
+  width: 77px;
   background: var(--primary-color);
   padding: 6px 14px;
-  z-index: 99;
+  z-index: 1500;
   transition: all 0.5s ease;
 }
 
 .sidebar.active {
-  width: 270px
+  width: 269px;
 }
 
 .sidebar .logo_content .logo {
-  color: var(--white-color);
+  color: var(--font-color);
   display: flex;
   height: 50px;
   width: 100%;
@@ -76,7 +78,7 @@ body {
 
 .sidebar #btn {
   position: absolute;
-  color: var(--white-color);
+  color: var(--font-color);
   top: 6px;
   left: 50%;
   font-size: 22px;
@@ -113,7 +115,7 @@ body {
   border-radius: 6px;
   height: 35px;
   width: 200px;
-  background: var(--white-color);
+  background: var(--font-color);
   line-height: 35px;
   text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -145,24 +147,24 @@ body {
   background: var(--secondary-color);
   padding-left: 50px;
   font-size: 18px;
-  color: #fff;
+  color: var(--font-color);
 }
 
 .sidebar ul li .bx-search {
   position: absolute;
   z-index: 99;
-  color: var(--white-color);
+  color: var(--font-color);
   font-size: 22px;
   transition: all 0.5 ease;
 }
 
 .sidebar ul li .bx-search:hover {
-  background: var(--white-color);
+  background: var(--font-color);
   color: #1d1b31;
 }
 
 .sidebar ul li a {
-  color: var(--white-color);
+  color: var(--font-color);
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -173,7 +175,7 @@ body {
 
 .sidebar ul li a:hover {
   color: var(--primary-color);
-  background: var(--white-color);
+  background: var(--font-color);
 }
 
 .sidebar ul li i {
@@ -202,10 +204,10 @@ body {
 
 .content {
   position: absolute;
-  height: 100%;
+  /* height: 100%; */
   width: calc(100% - 78px);
   left: 78px;
-  background: var(--white-color);
+  background: var(--background-color);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
   transition: all 0.5s ease;
 }
@@ -220,7 +222,7 @@ body {
 }
 
 .sidebar_secondary {
-  background-color: var(--white-color);
+  background-color: var(--background-color);
   height: auto;
   width: inherit;
   z-index: 2000;
@@ -243,10 +245,9 @@ body {
 .contenedorPagina {
   width: 100%;
   height: 100%;
-  margin-top: 83px;
-  
+  margin-top: 79px;
+  background-color: var(--background-color);
 }
-
 
 .pagina{
   height: inherit;
@@ -258,30 +259,29 @@ body {
 
 
 .accordion-button:not(.collapsed){
-  background-color: var(--dark-color);
-  color:white
+  background-color: var(--primary-color);
+  color: var(--font-color);
 }
 
- .accordion-button:not(.collapsed)::after {
+.accordion-button:not(.collapsed)::after {
   background-image: none;
-
- }
+}
 
   /* Reset de estilos */
   
-  .btn-primary , .btn-primary:focus {
-    color: #fff;
-    background-color: var(--primary-color);
-    border-color: var(--secondary-color);
-  }
+.btn-primary , .btn-primary:focus {
+  color: var(--font-color);
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
+}
 
-  .btn-primary:hover  {
-    background: var(--secondary-color);
-  }
-  
-  ul {
-    padding: 0;
-  }
+.btn-primary:hover  {
+  background: var(--secondary-color);
+}
+
+ul {
+  padding: 0;
+}
 
 
 .btn-primary, .color-primary{
@@ -293,7 +293,7 @@ body {
 }
 
 ::selection {
-  color: var(--white-color);
+  color: var(--font-color);
   background: var(--primary-color);
 }
 .position-relative .btn{
@@ -301,7 +301,7 @@ body {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-  color: #fff;
+  color:var(--font-color);
   background-color: var(--primary-color);
 
 }
@@ -312,48 +312,84 @@ body {
   flex-wrap: nowrap;
 }
 
+.form-check-input:checked {
+  background-color:var(--primary-color) ;
+  border-color:var(--primary-color);
+}
+
+.table-primary-color {
+  background-color: var(--primary-color);
+  color:var(--font-color);
+  border: none;
+}
+
+.container-table-overflow{
+  height: calc(100vh - 190px);
+}
+
+.thead-fixed{
+  position: sticky;
+  top: 0px;
+}
+
+.tabs-fixed{
+  position: sticky;
+  top: 71px;
+  padding: 1em 0;
+  z-index: 1100;
+  background: var(--background-color);
+}
+
+.comentarios .list-group-item {
+  background-color: #00000014;
+  border: 1px solid #00000074;
+}
+
 @media only screen and (max-width: 767px) {
   .content, .sidebar.active~.content {
     width: 100%;
     left: 0;
   }
   
-.sidebar ,.sidebar.active{
-  position: fixed;
-  z-index: 900;
-  top: auto;
-  bottom: 0;
-  height: auto;
-  width: 100%;
-  padding: 0;
-  background: var(--primary-color);
-}
+  .sidebar ,.sidebar.active{
+    position: fixed;
+    z-index: 900;
+    top: auto;
+    bottom: 0;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    background: var(--primary-color);
+  }
 
-.sidebar ul li .tooltip {
-  display: none;
-}
-.sidebar ul {
-  width: 100%;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
+  .sidebar ul li .tooltip {
+    display: none;
+  }
+  .sidebar ul {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 
-.sidebar ul li {
-  width: auto;
-}
+  .sidebar ul li {
+    width: auto;
+  }
 
-.sidebar ul li i {
-  height: auto;
-  font-size: 1.6rem;
-}
-.sidebar .links_name{
-  display: none;
-}
+  .sidebar ul li i {
+    height: auto;
+    font-size: 1.6rem;
+  }
+  .sidebar .links_name{
+    display: none;
+  }
 
-.position-relative .btn{
-  margin-bottom: calc(60px + 1rem);
-}
+  .position-relative .btn{
+    margin-bottom: calc(60px + 1rem);
+  }
 
+  .contenedorPagina {
+    margin-bottom: 60px;
+  }
 }

@@ -27,7 +27,7 @@
     <h4>Datos de ingreso</h4>
     <div class="card text-center mb-3">
       <div class="card-header">
-        <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active btn-sm" id="pills-infoGeneral-tab" data-bs-toggle="pill" data-bs-target="#pills-infoGeneral" role="tab" aria-controls="pills-infoGeneral" aria-selected="false">Info general</a>
           </li>
@@ -110,7 +110,37 @@
             </div>
         </div>
         <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-salas-tab" id="pills-salas">
-          <div class="row text-start">
+          <div class="col-auto text-start">
+            <button  data-bs-toggle="collapse" data-bs-target="#collapseAgregarSala" aria-expanded="false" aria-controls="collapseAgregarSala" class="btn btn-primary btn-sm" type="button">Agregar Salas</button>
+          </div>
+          <div class="row pb-3 fila align-items-end text-start collapse" id="collapseAgregarSala">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Sala</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+                  
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Sección</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+                  
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha ingreso</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
+            </div>
+            <div class="col col-6 pt-3">
+                <label for="inputFechaEgreso" class="form-label form-label-sm">Fecha de Egreso</label>
+                <input type="datetime-local" class="form-control form-control-sm" id="inputFechaEgreso">
+            </div>
+            <div class="col-auto pt-3">
+              <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+            </div>
+          </div>
+          <div class="text-start pt-3">
             <ol class="list-group list-group-numbered col">
               <li class="list-group-item align-items-start d-flex ">
                 <div class="col align-self">
@@ -140,33 +170,6 @@
               </li> 
             </ol>
           </div>
-          <div class="row pb-3 fila align-items-end text-start" id="agregarSala">
-            <div class="col col-sm-6 pt-3">
-              <label for="inputFechaIngreso" class="form-label form-label-sm">Sala</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
-              <datalist>
-                  
-              </datalist>
-            </div>
-            <div class="col col-sm-6 pt-3">
-              <label for="inputFechaIngreso" class="form-label form-label-sm">Sección</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
-              <datalist>
-                  
-              </datalist>
-            </div>
-            <div class="col pt-3">
-              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha ingreso</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
-            </div>
-            <div class="col pt-3">
-                <label for="inputFechaEgreso" class="form-label form-label-sm">Fecha de Egreso</label>
-                <input type="datetime-local" class="form-control form-control-sm" id="inputFechaEgreso">
-            </div>
-            <div class="col-auto pt-3 ps-0">
-              <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -174,7 +177,7 @@
     <h4>Motivo ingreso</h4>
     <div class="card text-center mb-3">
       <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
+        <ul class="nav nav-pills card-header-pills overflow-auto">
           <li class="nav-item">
             <a class="nav-link active btn-sm" id="pills-motivoIngreso-tab" data-bs-toggle="pill" data-bs-target="#pills-motivoIngreso" role="tab" aria-controls="pills-motivoIngreso" aria-selected="false">Motivo</a>
           </li>
@@ -190,14 +193,14 @@
         </ul>
       </div>
       <div class="tab-content" id="pills-tabContent2">
-        <div class="card-body tab-pane fade show active"  role="tabpanel" aria-labelledby="pills-motivoIngreso-tab" id="pills-motivoIngreso">
+        <div class="card-body tab-pane fade show active pt-0 "  role="tabpanel" aria-labelledby="pills-motivoIngreso-tab" id="pills-motivoIngreso">
          <div class="row text-start">
            <div class="col col-6 pt-3">
              <label for="inputFechaIngreso" class="form-label form-label-sm">Motivo</label>
-             <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
-             <datalist>
-               <option value="1">Control</option>
-               <option value="2">Detección de anomalías</option>
+             <input class="form-control form-control-sm inputDatalist" list="motivoIngreso" placeholder="Buscar..">
+             <datalist id="motivoIngreso">
+               <option value="Control"></option>
+               <option value="Detección de anomalías"></option>
              </datalist>
            </div>
            <div class="col col-6 pt-3">
@@ -208,45 +211,37 @@
              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
            </div>
            <div class="col col-12 pt-3">
-             <label for="inputFechaIngreso" class="form-label form-label-sm">Anomalias presentadas</label>
-             <div class="card card-body">
-                <p>
-                  <span class="badge btn-primary rounded-pill">Falla renal </span> <b class="ms-1 me-4">14-4-2021 14:40 </b>  
-                  <span class="badge btn-primary rounded-pill">Fiebre </span> <b class="ms-1 me-4">14-4-2021 14:40 </b> 
-                  <span class="badge btn-primary rounded-pill">Mocos </span> <b class="ms-1 me-4">14-4-2021 14:40 </b>
-                </p>
+             <h5 class="">Anomalias presentadas</h5>
+             <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <span class="fw-bold fs-6">Falla renal </span>
+                    <small class="text-muted">14-4-2021</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <span class="badge btn-primary rounded-pill">Sintoma</span>
+
+
+
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <span class="fw-bold fs-6">Fiebre </span>
+                    <small class="text-muted">14-4-2021</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <span class="badge btn-primary rounded-pill">Sintoma</span>
+
+                </a>
               </div>
            </div>
          </div>
         </div>
         <div class="card-body tab-pane fade"  role="tabpanel" aria-labelledby="pills-sintomaIngreso-tab" id="pills-sintomaIngreso">
-          <div class="text-start">
-            <ol class="list-group list-group-numbered col">
-              <li class="list-group-item align-items-start d-flex ">
-                <div class="col align-self">
-                  <div class="fw-bold"><span class=" pe-2">Fiebre</span></div>
-                  <span><b>Fecha:</b><span>
-                  <span class="badge btn-primary rounded-pill">14-5-2021 15:30</span>
-                </div>
-                <div class="col-auto ms-2 me-auto align-self-center ">
-                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
-                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
-                </div> 
-              </li>
-              <li class="list-group-item align-items-start d-flex ">
-                <div class="col align-self">
-                  <div class="fw-bold"><span class=" pe-2">Mocos</span></div>
-                  <span><b>Fecha:</b><span>
-                  <span class="badge btn-primary rounded-pill">14-5-2021 15:30</span>
-                </div>
-                <div class="col-auto ms-2 me-auto align-self-center">
-                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
-                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
-                </div> 
-              </li>
-            </ol>
+          <div class="col-auto text-start">
+            <button  data-bs-toggle="collapse" data-bs-target="#collapseAgregarSintomaMotivoIngreso" aria-expanded="false" aria-controls="collapseAgregarSintomaMotivoIngreso" class="btn btn-primary btn-sm" type="button">Agregar sintoma</button>
           </div>
-          <div class="row pb-3 fila align-items-end text-start" id="agregarSala">
+          <div class="row align-items-end text-start" id="collapseAgregarSintomaMotivoIngreso">
             <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Sintoma</label>
               <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
@@ -258,54 +253,164 @@
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
               <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
             </div>
-            <div class="col  pt-3">
+            <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <div class="col-auto pt-3 ps-0">
+            <div class="col-auto pt-3">
               <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
             </div>
           </div>
-          
-        </div>
-        <div class="card-body tab-pane fade"  role="tabpanel" aria-labelledby="pills-enfermedadIngreso-tab" id="pills-enfermedadIngreso">
-          <div class="row text-start">
+          <div class="text-start py-3">
             <ol class="list-group list-group-numbered col">
               <li class="list-group-item align-items-start d-flex ">
-                <div class="col align-self">
-                  <div class="fw-bold"><span class=" pe-2">Covid</span></div>
-                  <span><b>Fecha:</b><span>
-                  <span class="badge btn-primary rounded-pill">14-5-2021 15:30</span>
+                <div class="col">
+                    <h5 class="mb-1 fw-normal">Fiebre</h5>
+                    <p class="text-justify w-100 text-break mb-0">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facerasdfasdfa hkjhjkhio
+                    </p>
+                    <small class="text-muted">14/4/2021 13:50</small>
                 </div>
                 <div class="col-auto ms-2 me-auto align-self-center ">
                   <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
                   <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
                 </div> 
               </li>
-              <li class="list-group-item align-items-start d-flex">
-                <div class="col align-self">
-                  <div class="fw-bold"><span class=" pe-2">Neumonia</span></div>
-                  <span><b>Fecha:</b><span>
-                  <span class="badge btn-primary rounded-pill">14-5-2021 15:30</span>
+              <li class="list-group-item align-items-start d-flex ">
+                <div class="col">
+                    <h5 class="mb-1 fw-normal">Fiebre</h5>
+                    <p class="text-justify w-100 text-break mb-0">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facerasdfasdfa hkjhjkhio
+                    </p>
+                    <small class="text-muted">14/4/2021 13:50</small>
                 </div>
-                <div class="col-auto ms-2 me-auto align-self-center">
+                <div class="col-auto ms-2 me-auto align-self-center ">
                   <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
                   <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
                 </div> 
               </li>
+              
             </ol>
           </div>
-          <div class="row pb-3 fila align-items-end text-start" id="agregarSala">
-            <div class="col col-sm-6 pt-3">
+         
+          <div class="pb-3 align-items-end  text-start" >
+            <div class="card-footer">
+              <h5>Comentarios</h5>
+            </div>
+            <div class="list-group  mt-3">
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+                  <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <p class="mb-1">Some placeholder content in a paragraph.</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+                  <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <p class="mb-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+              </a>
+            </div>
+            <div class="col col-12 pt-3 pb-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Comentario</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <div class="col">
+              <label for="permisoVista">Permiso de vista</label>
+              <select id="permisoVista" class="form-control" name="">
+                <option>Grupo</option>
+                <option>Solo yo</option>
+              </select>
+            </div>
+            <div class="col-auto pt-3 ps-0">
+              <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body tab-pane fade"  role="tabpanel" aria-labelledby="pills-enfermedadIngreso-tab" id="pills-enfermedadIngreso">
+          <div class="text-start">
+            <ol class="list-group list-group-numbered col">
+              <li class="list-group-item align-items-start d-flex ">
+                <div class="col">
+                    <h5 class="mb-1 fw-normal">Fiebre</h5>
+                    <p class="text-justify w-100 text-break mb-0">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facerasdfasdfa hkjhjkhio
+                    </p>
+                    <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <div class="col-auto ms-2 me-auto align-self-center ">
+                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
+                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
+                </div> 
+              </li>
+              <li class="list-group-item align-items-start d-flex ">
+                <div class="col">
+                    <h5 class="mb-1 fw-normal">Fiebre</h5>
+                    <p class="text-justify w-100 text-break mb-0">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facerasdfasdfa hkjhjkhio
+                    </p>
+                    <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <div class="col-auto ms-2 me-auto align-self-center ">
+                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
+                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
+                </div> 
+              </li>
+              
+            </ol>
+          </div>
+          <div class="row pb-3 align-items-end text-start">
+            <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Enfermedad</label>
               <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
               <datalist>
                   
               </datalist>
             </div>
-            <div class="col pt-3">
+            <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
               <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="col-auto pt-3 ">
+              <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+            </div>
+          </div>
+          <div class="pb-3 align-items-end  text-start" >
+            <div class="card-footer">
+              <h5>Comentarios</h5>
+            </div>
+            <div class="list-group  mt-3">
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+                  <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <p class="mb-1">Some placeholder content in a paragraph.</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+                  <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <p class="mb-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+              </a>
+            </div>
+            <div class="col col-12 pt-3 pb-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Comentario</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <div class="col">
+              <label for="permisoVista">Permiso de vista</label>
+              <select id="permisoVista" class="form-control" name="">
+                <option>Grupo</option>
+                <option>Solo yo</option>
+              </select>
             </div>
             <div class="col-auto pt-3 ps-0">
               <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
@@ -313,32 +418,89 @@
           </div>
         </div>
         <div class="card-body tab-pane fade"  role="tabpanel" aria-labelledby="pills-complicacionIngreso-tab" id="pills-complicacionIngreso">
-          <div class="row text-start">
+          <div class="text-start">
             <ol class="list-group list-group-numbered col">
               <li class="list-group-item align-items-start d-flex ">
-                <div class="col align-self">
-                  <div class="fw-bold"><span class=" pe-2">Falla renal</span></div>
-                  <span><b>Fecha:</b><span>
-                  <span class="badge btn-primary rounded-pill">14-5-2021 15:30</span>
+                <div class="col">
+                    <h5 class="mb-1 fw-normal">Fiebre</h5>
+                    <p class="text-justify w-100 text-break mb-0">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facerasdfasdfa hkjhjkhio
+                    </p>
+                    <small class="text-muted">14/4/2021 13:50</small>
                 </div>
                 <div class="col-auto ms-2 me-auto align-self-center ">
                   <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
                   <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
                 </div> 
               </li>
+              <li class="list-group-item align-items-start d-flex ">
+                <div class="col">
+                    <h5 class="mb-1 fw-normal">Fiebre</h5>
+                    <p class="text-justify w-100 text-break mb-0">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facerasdfasdfa hkjhjkhio
+                    </p>
+                    <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <div class="col-auto ms-2 me-auto align-self-center ">
+                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-pencil'></i></button>
+                  <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bxs-trash-alt'></i></button>
+                </div> 
+              </li>
+              
             </ol>
           </div>
-          <div class="row pb-3 fila align-items-end text-start" id="agregarSala">
-            <div class="col col-sm-6 pt-3">
+          <div class="row pb-3 align-items-end text-start">
+            <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Complicacion</label>
               <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
               <datalist>
                   
               </datalist>
             </div>
-            <div class="col pt-3">
+            <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
               <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="col-auto pt-3 ">
+              <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+            </div>
+          </div>
+          <div class="pb-3 align-items-end  text-start" >
+            <div class="card-footer">
+              <h5>Comentarios</h5>
+            </div>
+            <div class="list-group  mt-3">
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+                  <small class="text-muted">14/4/2021 13:50</small>
+                </div>
+                <p class="mb-1">Some placeholder content in a paragraph.</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+                  <small class="text-muted">14/4/2021 13:50</small>
+
+                </div>
+                <p class="mb-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+                
+              </a>
+            </div>
+            <div class="col col-12 pt-3 pb-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Comentario</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <div class="col">
+              <label for="permisoVista">Permiso de vista</label>
+              <select id="permisoVista" class="form-control" name="">
+                <option>Grupo</option>
+                <option>Solo yo</option>
+              </select>
             </div>
             <div class="col-auto pt-3 ps-0">
               <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
@@ -350,9 +512,9 @@
     </div>
     
     <h4>Datos de la estadía hospitalaria</h4>
-    <div id="estanciaHospitalaria">
+    <div id="estanciaHospitalaria" class="mb-3">
 
-      <ul class="nav nav-pills card-header-pills  ms-1" id="pills-tabContent3" role="tablist">
+      <ul class="nav nav-pills card-header-pills  ms-1 overflow-auto" id="pills-tabContent3" role="tablist">
         <li class="nav-item">
           <a class="nav-link active btn-sm" id="pills-ordenPorCategoria-tab" data-bs-toggle="pill" data-bs-target="#pills-ordenPorCategoria" role="tab" aria-controls="pills-ordenPorCategoria" aria-selected="false">Orden por categoria</a>
         </li>
@@ -362,73 +524,165 @@
       </ul>
       <div class="tab-content" id="pills-tabContent3">
         <div class="card-body p-0 tab-pane fade show active"  role="tabpanel" aria-labelledby="pills-ordenPorCategoria-tab" id="pills-ordenPorCategoria">
-         
-      
           <div class="card">
             <div class="card-body">
               <h4>Observaciones</h4>
               <div class="card text-center mb-3">
                 <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills">
+                  <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tabContent4">
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Complicaciones</a>
+                      <a class="nav-link active btn-sm" id="pills-complicacionObservacion-tab" data-bs-toggle="pill" data-bs-target="#pills-complicacionObservacion" role="tab" aria-controls="pills-complicacionObservacion" aria-selected="false">Complicaciones</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active" href="#">Sintomas</a>
+                      <a class="nav-link btn-sm" id="pills-sintomaObservacion-tab" data-bs-toggle="pill" data-bs-target="#pills-sintomaObservacion" role="tab" aria-controls="pills-sintomaObservacion" aria-selected="false">Sintomas</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Enfermedades</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Light card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
-          
-              <h4>Medidas tomadas</h4>
-              <div class="card text-center mb-3">
-                <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#" tabindex="-1">Procedimiento</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">Farmacos</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Signos vitales</a>
+                      <a class="nav-link btn-sm" id="pills-enfermedadObservacion-tab" data-bs-toggle="pill" data-bs-target="#pills-enfermedadObservacion" role="tab" aria-controls="pills-enfermedadObservacion" aria-selected="false">Enfermedades</a>
                     </li>
                   </ul>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">Light card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="tab-content" id="pills-tabContent4">
+                  <div class="card-body p-0 tab-pane fade show active"  role="tabpanel" aria-labelledby="pills-complicacionObservacion-tab" id="pills-complicacionObservacion">
+                    <p>1</p>
+                  </div>
+                  <div class="card-body p-0 tab-pane fade"  role="tabpanel" aria-labelledby="pills-sintomaObservacion-tab" id="pills-sintomaObservacion">
+                    <p>2</p>
+                  </div>
+                  <div class="card-body p-0 tab-pane fade"  role="tabpanel" aria-labelledby="pills-enfermedadObservacion-tab" id="pills-enfermedadObservacion">
+                    <p>3</p>
+                  </div>
                 </div>
               </div>
-  
+              
+            <h4>Medidas tomadas</h4>
+            <div class="card text-center mb-3">
+              <div class="card-header">
+                <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tabContent5">
+                  <li class="nav-item">
+                    <a class="nav-link active btn-sm" id="pills-procedimientoMedidasTomadas-tab" data-bs-toggle="pill" data-bs-target="#pills-procedimientoMedidasTomadas" role="tab" aria-controls="pills-procedimientoMedidasTomadas" aria-selected="false">Procedimiento</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn-sm" id="pills-farmacoMedidasTomadas-tab" data-bs-toggle="pill" data-bs-target="#pills-farmacoMedidasTomadas" role="tab" aria-controls="pills-farmacoMedidasTomadas" aria-selected="false">Farmacos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn-sm" id="pills-signosVitalesMedidasTomadas-tab" data-bs-toggle="pill" data-bs-target="#pills-signosVitalesMedidasTomadas" role="tab" aria-controls="pills-signosVitalesMedidasTomadas" aria-selected="false">Signos vitales</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content" id="pills-tabContent5">
+                <div class="card-body p-0 tab-pane fade show active"  role="tabpanel" aria-labelledby="pills-procedimientoMedidasTomadas-tab" id="pills-procedimientoMedidasTomadas">
+                  <p>1</p>
+                </div>
+                <div class="card-body p-0 tab-pane fade"  role="tabpanel" aria-labelledby="pills-farmacoMedidasTomadas-tab" id="pills-farmacoMedidasTomadas">
+                  <p>2</p>
+                </div>
+                <div class="card-body p-0 tab-pane fade"  role="tabpanel" aria-labelledby="pills-signosVitalesMedidasTomadas-tab" id="pills-signosVitalesMedidasTomadas">
+                  <p>3</p>
+                </div>
+              </div>
             </div>
+              
           </div>
         </div>  
-        <div class="card-body p-0 tab-pane fade"  role="tabpanel" aria-labelledby="pills-ordenCronologico-tab" id="pills-ordenCronologico">
-          
+        </div>
+        <div class="card-body p-0 tab-pane fade mb-3"  role="tabpanel" aria-labelledby="pills-ordenCronologico-tab" id="pills-ordenCronologico">
           <div class="card">
             <div class="card-body"> 
-              <p>cronologico</p>
+              <div class="">
+                <div class="col-auto py-3">
+                  <button  data-bs-toggle="collapse" data-bs-target="#collapseAgregar" aria-expanded="false" aria-controls="collapseAgregar" class="btn btn-primary btn-sm" type="button">Agregar Anomalia</button>
+                </div>
+                <div  class=" row align-items-end text-start collapse" id="collapseAgregar">
+                  <div class="col col-6 ">
+                    <label for="inputFechaIngreso" class="form-label form-label-sm">Categoria</label>
+                    <select class="form-select form-select-sm" aria-label="Default select example">
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col col-6 ">
+                    <label for="inputFechaIngreso" class="form-label form-label-sm">Anomalia</label>
+                    <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+                    <datalist>
+                        
+                    </datalist>
+                  </div>
+                  <div class="col col-6 pt-3">
+                    <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+                    <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
+                  </div>
+                  <div class="col col-12  pt-3">
+                    <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                  <div class="col-auto py-3">
+                    <button class="btn btn-primary btn-sm" type="button"><i class='bx bx-plus'></i></button>
+                  </div>
+
+                </div>
+              
+              </div>
+              <div class="col col-12">
+                <h5 class="">Anomalias presentadas</h5>
+                <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <span class="fw-bold fs-6">Falla renal </span>
+                    <small class="text-muted">14-4-2021</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <span class="badge btn-primary rounded-pill">Enfermedad</span>
+                  
+                  </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <span class="fw-bold fs-6">Fiebre </span>
+                    <small class="text-muted">14-4-2021</small>
+                  </div>
+                  <p class="mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus dolorum nisi impedit neque quidem voluptates rerum laudantium minima dolor, natus inventore porro deserunt soluta quod adipisci laboriosam quo ad dolore?</p>
+                  <span class="badge btn-primary rounded-pill">Sintoma</span>
+                  </a>
+              </div>
+              
             </div>
           </div>
         </div>
-      </div>
+        </div>
+     </div>
     </div>
 
     <h4>Diágnostico</h4>
     <div class="card mb-3">
-      <div class=ordenCronologico
-            <a class="nav-link" href="#">Tratamientos</a>
+        <div class="card-header">
+          <ul class="nav nav-pills card-header-pills  ms-1 overflow-auto" id="pills-tabContent3" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active btn-sm" id="pills-ordenPorCategoria-tab" data-bs-toggle="pill" data-bs-target="#pills-ordenPorCategoria" role="tab" aria-controls="pills-ordenPorCategoria" aria-selected="false">Diagnostico</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn-sm" id="pills-ordenCronologico-tab" data-bs-toggle="pill" data-bs-target="#pills-ordenCronologico" role="tab" aria-controls="pills-ordenCronologico">Diagnosticos diferenciales</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Title</h5>
+          <p class="card-text">Content</p>
+        </div>
+    </div>
+
+    <h4>Indicaciones al alta</h4>
+    <div class="card text-center mb-3">
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills overflow-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Tratamientos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#" tabindex="-1">Interconsultas</a>
+            <a class="nav-link" href="#">Farmacos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">Interconsultas</a>
           </li>
         </ul>
       </div>
@@ -438,10 +692,11 @@
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
+
     <h4>Archivos complementarios</h4>
     <div class="card text-center mb-3">
       <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
+        <ul class="nav nav-pills card-header-pills overflow-auto">
           <li class="nav-item">
             <a class="nav-link active" href="#">Estudios</a>
           </li>
@@ -459,50 +714,9 @@
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
-  </div>
-    <!-- <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              Motivo de la consulta
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              Tratamientos
-            </button>
-          </h2>
-          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-              Farmacos
-            </button>
-          </h2>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Anotaciones 
-              </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-            </div>
-          </div>
-      </div> -->
-   <!-- JavaScript Bundle with Popper -->
-   <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+  
+   
+  <!-- JavaScript Bundle with Popper -->
+  <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
