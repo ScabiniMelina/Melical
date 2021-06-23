@@ -9,17 +9,17 @@ document.addEventListener("DOMContentLoaded",()=>{
   })
 })
 
-botonRegistro.addEventListener('click',()=>{
-  const datosForm = new FormData(formularioRegistro);
-  console.log(datosForm);
-    fetch('../php/registro.php',{
-        method: 'POST',
-        body: datosForm, 
-    })
-    .then(respuesta => respuesta.text())
-    .then(data => alert(data));
+// botonRegistro.addEventListener('click',()=>{
+//   const datosForm = new FormData(formularioRegistro);
+//   console.log(datosForm);
+//     fetch('../php/registro.php',{
+//         method: 'POST',
+//         body: datosForm, 
+//     })
+//     .then(respuesta => respuesta.text())
+//     .then(data => alert(data));
 
-})
+// })
 
 function mostrarPassword(){
   if(inputContrasena.type == "password"){
