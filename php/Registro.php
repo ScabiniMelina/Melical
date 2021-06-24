@@ -15,7 +15,7 @@
         $email = $_POST['email'];
         $contrasena = $_POST['contrasena'];
 
-        $sql = "INSERT INTO `PERSONAL_INFORMATION`(`ID_DNI`, `name`, `surname`, `date_birth`, `phone`) VALUES ($dni,$nombre,$apellido,$fechaNacimieto,$telefono)";
+        $sql = "INSERT INTO `PERSONAL_INFORMATION`(`ID_DNI`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
         if (mysqli_query($conexion , $sql)) {
             echo "Funciona";
         } else {
