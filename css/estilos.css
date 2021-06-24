@@ -327,6 +327,9 @@ ul {
   height: calc(100vh - 190px);
 }
 
+#pedidoEstudios .container-table-overflow{
+  height: calc(100vh - 232px);
+}
 .thead-fixed{
   position: sticky;
   top: 0px;
@@ -345,6 +348,13 @@ ul {
   border: 1px solid #00000074;
 }
 
+.img-opacity{
+  background: #00000081;
+  padding: 59px 0;
+}
+#listaAdjuntos .row .card{
+  min-width: 130px;
+}
 @media only screen and (max-width: 767px) {
   .content, .sidebar.active~.content {
     width: 100%;
