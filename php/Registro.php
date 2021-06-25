@@ -1,30 +1,29 @@
 <?php
 
-    $msg="";
+  $msg="";
 
-    if(isset($_POST["boton"])){
-        $msg="funciono";
-        include("conexion.php");
-        $dni = $_POST['dni']; 
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $fechaNacimieto = $_POST['fechaNacimiento'];
-        $direccion = $_POST['direccion'];
-        $direccionN = $_POST['direccionN'];
-        $telefono = $_POST['telefono'];
-        $email = $_POST['email'];
-        $contrasena = $_POST['contrasena'];
+  if(isset($_POST["boton"])){
+    $msg="funciono";
+    include("conexion.php");
+    $dni = $_POST['dni']; 
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $fechaNacimieto = $_POST['fechaNacimiento'];
+    $direccion = $_POST['direccion'];
+    $direccionN = $_POST['direccionN'];
+    $telefono = $_POST['telefono'];
+    $email = $_POST['email'];
+    $contrasena = $_POST['contrasena'];
 
-        $sql = "INSERT INTO `PERSONAL_INFORMATION`(`ID_DNI`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
-        if (mysqli_query($conexion , $sql)) {
-            echo "Funciona";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
-        }
-        mysqli_close($conexion);
-      
+    $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
+    if (mysqli_query($connection , $sql)) {
+        echo "Funciona";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($connection);
     }
-
+    mysqli_close($connection);
+  
+  }
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +93,6 @@
           <label for="inputDireccionN" class="form-label">Nº</label>
           <input type="number" class="form-control" name="direccionN">
         </div>
-        
         
         <div class="col-12 col-sm-6">
           <label for="inputDni4" class="form-label">Correo Eléctronico</label>
