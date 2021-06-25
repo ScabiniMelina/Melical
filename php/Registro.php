@@ -51,16 +51,16 @@
       d="M0,160L40,138.7C80,117,160,75,240,58.7C320,43,400,53,480,96C560,139,640,213,720,245.3C800,277,880,267,960,250.7C1040,235,1120,213,1200,218.7C1280,224,1360,256,1400,272L1440,288L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
     </path>
     </svg>
-    <div class="container ">
-      <h1 class="display-3">Bienvenido a Melical Atention! </h1>
-      <h4 class="text-muted fs-5 lead pt-1" >Completa el registro para crear tu cuenta.</h4>
+    <div class="container">
+      <h1 class="display-3 fuente-color-primary  mb-0">Bienvenido a Melical Atention! </h1>
+      <h4 class="text-muted fs-5 fw-lighter lead" >Completa el registro para crear tu cuenta.</h4>
       
       <form class="row g-3 pb-3 pt-4" id="formularioRegistro" method="POST">
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label for="inputDni4" class="form-label">Dni</label>
           <input type="number" name="dni" required  class="form-control">
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
         <label for="inputDni4" class="form-label">Número de Trámite</label>
         <input type="number" name="NumTramite" required  class="form-control">
         </div>
@@ -74,12 +74,12 @@
           <input type="text" class="form-control" name="apellido" required pattern="{1,30}" title="Debe ingresar letras" >
         </div>
         
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Fecha de nacimiento</label>
           <input type="date" class="form-control" name="fechaNacimiento">
         </div>
            
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Teléfono</label>
           <input type="text" class="form-control" name="telefono">
         </div>
@@ -96,11 +96,11 @@
         </div>
         
         
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label for="inputDni4" class="form-label">Correo Eléctronico</label>
           <input type="email" class="form-control"  name="email" required>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label class="form-label">Contraseña</label>
           <div class="d-flex h-auto">
             <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena">
@@ -109,7 +109,7 @@
         </div>
         
         <div class="col-12 pt-3">  
-          <button class="btn btn-primary btn-lg text-align-center" id="botonRegistro"role="button" type="submit" name="boton" value="generar">Registrarse</button>
+          <button class="btn btn-primary text-align-center" id="botonRegistro"role="button" type="submit" name="boton" value="generar">Registrarse</button>
             <div class="row mt-2">
               <span> ¿Ya tienes cuenta?<a class="ps-2" type="button" href="login.html" style="text-decoration:none;"> Inicia sesión aquí</a></span> 
             </div>

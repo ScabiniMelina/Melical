@@ -2,7 +2,7 @@
 
 :root {
   --font-color: #fcfdfe;
-  --background-color:#d1dede;
+  --background-color:#dee0e0;
   --dark-color:#212529;
   --primary-color: #063f5a;
   --secondary-color: #11222a;
@@ -292,10 +292,10 @@ ul {
   color: var(--primary-color);
 }
 
-::selection {
+/* ::selection {
   color: var(--font-color);
   background: var(--primary-color);
-}
+} */
 .position-relative .btn{
   margin-bottom: 1rem;
 }
@@ -352,9 +352,11 @@ ul {
   background: #00000081;
   padding: 59px 0;
 }
+
 #listaAdjuntos .row .card{
   min-width: 130px;
 }
+
 @media only screen and (max-width: 767px) {
   .content, .sidebar.active~.content {
     width: 100%;
