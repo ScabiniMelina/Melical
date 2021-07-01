@@ -27,78 +27,78 @@
           </ul>
         </div>
       </div>
-
     </div>
     
     <div class="tab-content pb-2" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">  
-        
-          <form class="row g-3">
-            <div class="col-6">
-              <label for="inputDniPaciente" class="form-label form-label-sm">Dni</label>
-              <input type="text" class="form-control form-control-sm" id="inputDniPaciente">
-            </div>
-            <div class="col-6">
-            </div>
-            <div class="col-6">
-              <label for="inputNombrePaciente" class="form-label form-label-sm">Nombre</label>
-              <input type="text" class="form-control form-control-sm" id="inputNombrePaciente">
-            </div>
-            <div class="col-6">
-              <label for="inputApellidoPaciente" class="form-label form-label-sm">Apellido</label>
-              <input type="text" class="form-control form-control-sm" id="inputApellidoPaciente">
-            </div>
-            <div class="col-6">
-              <label for="inputNacimientoPaciente" class="form-label form-label-sm">Nacimiento</label>
-              <input type="date" class="form-control form-control-sm" id="inputNacimientoPaciente">
-            </div>
-            
-            <div class="col-6">
-              <label for="selectSexoPaciente" class="form-label">Sexo</label>
-              <select id="selectSexoPaciente" class="form-select form-select-sm">
-                <option value="vacio"></option>
-                <option value="0">Femenino</option>
-                <option value="1">Masculino</option>
-                <option value="2">Otro</option>
-              </select>
-            </div>
-            <div class="col-6">
-              <label for="inputTelefonoPaciente" class="form-label">Teléfono</label>
-              <input type="text" class="form-control form-control-sm" id="inputTelefonoPaciente">
-            </div>
-
-            <div class="col-6">
-              <label for="inputEmailPaciente" class="form-label">Email</label>
-              <input type="text" class="form-control form-control-sm" id="inputEmailPaciente">
-            </div>
-
-            <div class="col-6">
-              <label for="inputLocalidad" class="form-label form-label-sm">Localidad</label>
-              <select id="inputLocalidad" class="form-select form-select-sm">
-                <option></option>
-              </select>
-            </div>
-            <div class="col-6">
-              
-            </div>
-            <div class="col-6">
-              <label for="inputDireccionPaciente" class="form-label">Dirección</label>
-              <input type="text" class="form-control form-control-sm" id="inputDireccionPaciente">
-            </div>
-            <div class="col-6">
-              <label for="inputDireccionNPaciente" class="form-label form-label-sm">Nº</label>
-              <input type="number" class="form-control form-control-sm" id="inputDireccionNPaciente">
-            </div>
-            
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
+         <div class="card">
+           <form class="row g-3 card-body sectionFormulary" id="patientGeneralInformationForm" data-name="generalInformation" data-id="">
+             <div class="col-6">
+               <label for="inputDniPaciente" class="form-label form-label-sm">Dni</label>
+               <input type="text" name="dniPatient" class="form-control form-control-sm" id="inputDniPaciente">
+             </div>
+             <div class="col-6">
+             </div>
+             <div class="col-6">
+               <label for="inputNombrePaciente" class="form-label form-label-sm">Nombre</label>
+               <input type="text" name="namePatient" class="form-control form-control-sm" id="inputNombrePaciente">
+             </div>
+             <div class="col-6">
+               <label for="inputApellidoPaciente" class="form-label form-label-sm">Apellido</label>
+               <input type="text" name="surnamePatient" class="form-control form-control-sm" id="inputApellidoPaciente">
+             </div>
+             <div class="col-6">
+               <label for="inputNacimientoPaciente" class="form-label form-label-sm">Nacimiento</label>
+               <input type="date" name="dateBirthPatient" class="form-control form-control-sm" id="inputNacimientoPaciente">
+             </div>
+             
+             <div class="col-6">
+               <label for="selectSexoPaciente" class="form-label">Sexo</label>
+               <select id="selectSexoPaciente" name="genderPatient" class="form-select form-select-sm">
+                 <option value="vacio"></option>
+                 <option value="0">Femenino</option>
+                 <option value="1">Masculino</option>
+                 <option value="2">Otro</option>
+               </select>
+             </div>
+             <div class="col-6">
+               <label for="inputTelefonoPaciente" class="form-label">Teléfono</label>
+               <input type="text" name="phonePatient" class="form-control form-control-sm" id="inputTelefonoPaciente">
+             </div>
+ 
+             <div class="col-6">
+               <label for="inputEmailPaciente" class="form-label">Email</label>
+               <input type="text" name="emailPatient" class="form-control form-control-sm" id="inputEmailPaciente">
+             </div>
+ 
+             <div class="col-6">
+               <label for="selectLocalidadPaciente" class="form-label form-label-sm">Localidad</label>
+               <select id="selectLocalidadPaciente"  name="locationPatient" class="form-select form-select-sm getSelectOption" data-file="getLocationList"  >
+                 <option></option>
+               </select>
+             </div>
+             <div class="col-6">
+               
+             </div>
+             <div class="col-6">
+               <label for="inputDireccionPaciente" class="form-label">Dirección</label>
+               <input type="text" name="addressPatient" class="form-control form-control-sm" id="inputDireccionPaciente">
+             </div>
+             <div class="col-6">
+               <label for="inputDireccionNPaciente" class="form-label form-label-sm">Nº</label>
+               <input type="number" name="addressNumberPatient" class="form-control form-control-sm" id="inputDireccionNPaciente">
+             </div>
+             
+             <div class="col-12">
+               <button  type="button" name="patient" class="btn btn-primary sectionButton" id="patientGeneralInformationButton" data-file="updateGeneralInformationPatient">Guardar cambios</button>
+             </div>
             </form>
           </div>
+        </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <p>hola</p>
       </div>
-      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+      <div class="tab-pane fade sectionFormulary" id="pills-contact"  data-name="antecedents" role="tabpanel" aria-labelledby="pills-contact-tab">
         <div class="accordion" id="accordionPanelsStayOpenExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -111,15 +111,15 @@
                 <div class="row">
                   <div class="col-6">
                     <label for="selectSangrePaciente" class="form-label">Sangre</label>
-                    <select id="selectSangrePaciente" class="form-select form-select-sm">
+                    <select id="selectSangrePaciente" class="form-select form-select-sm getSelectOption" data-file="getBloodTypeList"  >
                       <option value="vacio"></option>
                       <option value="0">O+</option>
                       <option value="1">A+</option>
                     </select>
                   </div>
                   <div class="col-6">
-                    <label for="selectObraSocialPaciente" class="form-label form-label-sm">Religión</label>
-                    <select class="form-select form-select-sm" id="selectObraSocialPaciente" data-tabla="PREPAID" data-columna_id="ID_PREPAID" data-columna_lista="name">
+                    <label for="selectReligionPatient" class="form-label form-label-sm">Religión</label>
+                    <select class="form-select form-select-sm getSelectOption" id="selectReligionPatient" data-file="getReligionList" >
                     </select>
                   </div>
                 </div>
@@ -170,12 +170,13 @@
                         </a>
                       </div>
                       <div class="col-auto pt-3">
-                        <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+                        <button  type="button" class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
                       </div>
                     </div>
                   </div>
               </div>
             </div>
+          </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingThree">
@@ -190,8 +191,13 @@
             </div>
           </div>
         </div>
-       
-   <!-- JavaScript Bundle with Popper -->
-   <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+        <div class="col-12 pt-3">
+          <button name="patient" class="btn btn-primary sectionButton" id="btnGuardarInfoGeneralPaciente">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

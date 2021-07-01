@@ -2,7 +2,7 @@
 
 :root {
   --font-color: #fcfdfe;
-  --background-color:#dee0e0;
+  --background-color:#f3f5f5;
   --dark-color:#212529;
   --primary-color: #063f5a;
   --secondary-color: #11222a;
@@ -42,7 +42,7 @@ body {
   width: 77px;
   background: var(--primary-color);
   padding: 6px 14px;
-  z-index: 1500;
+  z-index: 2000;
   transition: all 0.5s ease;
 }
 
@@ -257,6 +257,9 @@ body {
   background: var(--primary-color);
 }
 
+.background-bg-color{
+  background-color:var(--background-color);
+}
 
 .accordion-button:not(.collapsed){
   background-color: var(--primary-color);
@@ -330,16 +333,15 @@ ul {
 #pedidoEstudios .container-table-overflow{
   height: calc(100vh - 232px);
 }
-.thead-fixed{
+.thead-fixed,.tabs-fixed{
   position: sticky;
+  z-index: 1000;
   top: 0px;
+  padding: 1em 0;
 }
 
 .tabs-fixed{
-  position: sticky;
   top: 71px;
-  padding: 1em 0;
-  z-index: 1100;
   background: var(--background-color);
 }
 
@@ -365,7 +367,6 @@ ul {
   
   .sidebar ,.sidebar.active{
     position: fixed;
-    z-index: 900;
     top: auto;
     bottom: 0;
     height: auto;

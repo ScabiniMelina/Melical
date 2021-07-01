@@ -1,10 +1,12 @@
-
+// // const { Modal } = require("../bootstrap-5.0.1-dist/js/bootstrap");
+// const {Modal} = require("../bootstrap-5.0.1-dist/js/bootstrap.bundle")
+// let modified = false;
 document.addEventListener("DOMContentLoaded", () => {
-  activarFuncionesMenu();
-  // document.addEventListener("click",(e)=>{
+  // document.addEventListener("mouseover",(e)=>{
+  //   debugger
   //   console.log(e.target)
-  // let iconos = document.querySelectorAll("#contenedorFiltros i")
-  // console.log(iconos)
+  //   let iconos = document.querySelectorAll("#contenedorFiltros i")
+  //   console.log(iconos)
   // })
   //sidebar
   document.getElementById("cronograma").addEventListener("click",()=>{
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fetch(("../php/obtenerPacientes.php"),{method:"POST"})
       .then(respuesta => respuesta.json())
       .then( data => rellenarTablaPacientes(data))
-      .then(cargarBotonesBusquedaPacientes())
+      .then(()=>cargarBotonesBusquedaPacientes())
     })
   })
   
@@ -64,16 +66,15 @@ async function cargarBotonesBusquedaPacientes(){
   })
 
   document.getElementById("btnBuscar").addEventListener("click",()=>{
-   if(!isNaN(document.getElementById("inputBuscar").value)){
-      data = new FormData();
-      data.append('ID_DNI', document.getElementById("inputBuscar").value);
-      fetch("../php/obtenerPaciente.php",{
-        method:"POST", 
-        body:data })
-        .then(respuesta => respuesta.json())
-        .then( data => rellenarTablaPacientes(data));        
-    }
+    data = new FormData();
+    data.append('ID_DNI', document.getElementById("inputBuscar").value);
+    fetch("../php/obtenerPaciente.php",{
+      method:"POST", 
+      body:data })
+    .then(respuesta => respuesta.json())
+    .then( data => rellenarTablaPacientes(data));        
   })
+  
   
   document.getElementById("btnBuscarPorHuella").addEventListener("click",()=>{
     mostrarSeccion("buscarPorHuella.html","Buscar por huella");
@@ -84,24 +85,62 @@ async function cargarBotonesBusquedaPacientes(){
   })
 
   document.getElementById("agregarPaciente").addEventListener("click",()=>{
-    mostrarSeccion("paciente.html","Agregar paciente");
+    mostrarSeccion("paciente.html","Agregar paciente")
+    .then(()=>{
+      let GeneralInformationBtn = document.getElementById("patientGeneralInformationButton")
+      GeneralInformationBtn.innerHTML = 'Guardar';
+      GeneralInformationBtn.dataset.file ='setGeneralInformationPatient';
+      fillSelects()
+      .then(()=>{
+        document.getElementById("patientGeneralInformationButton").addEventListener("click",(e)=>{
+          console.log(e.target.innerHTML)
+          let patientGeneralInformationForm = document.getElementById("patientGeneralInformationForm")
+          let formData = new FormData(patientGeneralInformationForm);
+          if (e.target.dataset.file == 'updateGeneralInformationPatient'){
+            formData.append("idDniPatient",patientGeneralInformationForm.dataset.id) 
+          }
+          console.log(formData)
+          saveInformation(e.target, formData)
+          .then(()=>{
+            if(e.innerHTML == "Guardar"){
+              e.innerHTML = "Guardar cambios"
+              e.dataset.file = e.dataset.file.replace("set","update");; 
+            }
+          }
+
+          )
+        })
+      })
+    })
   })
-  
-  
   // Cambiar sql en el php
   //Abrir toda la info del paciente seleccionado
-  document.getElementById("tablaPacientes").addEventListener("click",(e)=>{
-    data = new FormData();
-    data.append('ID_DNI', e.target.parentNode.dataset.id);
-    console.log(e.target.parentNode)
-    console.log(e.target.parentNode.dataset.id)
-    mostrarSeccion("paciente.html","Paciente")
-    .then(fetch("../php/obtenerAntecedentesInfoGeneralHistoriaClinica.php",{
+  document.querySelectorAll("#tablaPacientes tr").forEach( tr =>{
+    console.log(tr)
+    tr.addEventListener("click",(e)=>{
+      console.log(e.currentTarget)
+      data = new FormData();
+      data.append('ID_DNI', e.currentTarget.dataset.id);
+      mostrarSeccion("paciente.html","Paciente")
+      .then(()=> fillSelects()  )
+      .then(()=> {
+        fetch("../php/getPatientInformation.php",{
         method:"POST", 
         body:data})
         .then(respuesta => respuesta.json())
-        .then(data => rellenarFormDatosPaciente(data)));
+        .then(data => rellenarFormDatosPaciente(data))
+        .then(()=>{
+          document.getElementById("patientGeneralInformationButton").addEventListener("click",(e)=>{
+            let patientGeneralInformationForm = document.getElementById("patientGeneralInformationForm");
+            let formData = new FormData(patientGeneralInformationForm);
+            formData.append("idDniPatient",patientGeneralInformationForm.dataset.id);
+            console.log(formData)
+            saveInformation(e.target, formData);
+          })
+        })
+      })
     })
+  })
 }
 
 async function activarFuncionesMenu(){
@@ -121,23 +160,25 @@ async function activarFuncionesMenu(){
 }
 
 async function mostrarSeccion(archivo,titulo){
-  const contenedorPagina = document.getElementById("contenedorPagina");
   const tituloSeccion = document.getElementById("tituloSeccion");
+  const contenedorPagina = document.getElementById("contenedorPagina");
   respuesta = await fetch(archivo)
   html = await respuesta.text();
   contenedorPagina.innerHTML = await html;
   tituloSeccion.innerHTML = await titulo;
+  await formularyChanges();
 }
 
- async function rellenarTablaPacientes(data){
+async function rellenarTablaPacientes(data){
   console.log(data)
   const tablaPacientes = document.getElementById("tablaPacientes");
   tablaPacientes.innerHTML="";
   const templateFila = document.getElementById("templateFila").content;
   const fragmento = document.createDocumentFragment();
+  console.log(data.length)
   data.forEach(paciente => {
     templateFila.querySelector(".fila").dataset.id = paciente.ID_DNI;
-    templateFila.querySelector(".dni").textContent = paciente.ID_DNI;
+    templateFila.querySelector(".dni").textContent = paciente.dni;
     templateFila.querySelector(".nombre").textContent = paciente.name;
     templateFila.querySelector(".apellido").textContent = paciente.surname;
     templateFila.querySelector(".fechaNacimiento").textContent = paciente.date_birth;
@@ -148,28 +189,21 @@ async function mostrarSeccion(archivo,titulo){
 }
 
 async function rellenarFormDatosPaciente(data){
-  const selectListObraSocial = document.getElementById("selectObraSocialPaciente")
-  console.log(selectListObraSocial.dataset)
-  obtenerOpcionesDatalist(selectListObraSocial.dataset.tabla,selectListObraSocial.dataset.columna_id,selectListObraSocial.dataset.columna_lista)
-  .then(opciones => {selectListObraSocial.innerHTML ='<option value="vacio" data-id="vacio"></option>'+opciones
-  console.log(data)
-  document.getElementById("inputDniPaciente").value = data[0].ID_DNI 
-  document.getElementById("inputCodigoPaciente").value = data[0].ID_PATIENT
+  console.log(document.getElementById("patientGeneralInformationForm"))
+  console.log(document.querySelector("#patientGeneralInformationForm").dataset.id)
+
+  document.getElementById("patientGeneralInformationForm").dataset.id = data[0].ID_DNI;
+  document.getElementById("inputDniPaciente").value = data[0].dni
   document.getElementById("inputNombrePaciente").value = data[0].name
   document.getElementById("inputApellidoPaciente").value = data[0].surname
   document.getElementById("inputNacimientoPaciente").value = data[0].date_birth
-  document.getElementById("selectSexoPaciente").value = (data[0].gender == 'F' || data[0].gender =='M') ? data[0].gender : "vacio";
+  document.getElementById("selectSexoPaciente").value = (data[0].gender < 3 ) ? data[0].gender : "vacio";
   document.getElementById("inputTelefonoPaciente").value = data[0].phone
-  // document.getElementById("selectLocalidadPaciente").textContent = data.
-  // document.getElementById("inputCodigoPostal").textContent = data.
-  // document.getElementById("inputDireccionPaciente").textContent = data.
-  // document.getElementById("inputNDireccionPaciente").textContent = data.
-  selectListObraSocial.value =  selectListObraSocial.querySelector("option[data-id='"+data[0].PK_ID_PREPAID+"']").value
-  document.getElementById("inputNumeroAfiliadoPaciente").value = data[0].prepaid_number
+  document.getElementById("selectLocalidadPaciente").value = data[0].location
+  document.getElementById("inputDireccionPaciente").value = data[0].address
+  // document.getElementById("inputNDireccionPaciente").value = data[0].
   document.getElementById("inputEmailPaciente").value = data[0].email
-
-
-  })
+  
 }
 
 async function activarFuncionesSeccionFiltros(){
@@ -178,7 +212,7 @@ async function activarFuncionesSeccionFiltros(){
     obtenerOpcionesDatalist(navElement.dataset.table,navElement.dataset.columna_id,navElement.dataset.columna_lista)
     .then(opciones =>crearFilaDatalist(navElement,container,opciones))
   })
- 
+
   document.getElementById("obtenerBusquedaFiltrado").addEventListener("click",()=>{
     data = new FormData();
     // data.append('ID_DNI', document.getElementById("inputBuscar").value);
@@ -268,22 +302,133 @@ function crearFilaDatalist(navElement,container,data){
 //   })
 // }
 
-async function obtenerOpcionesDatalist(tabla,columnaId,columnaLista){
-  // tabla = "PERSONAL_INFORMATION"
-  // columnaId = "ID_DNI";
-  // columnaLista = "name";
-  let data = new FormData();
-  data.append("tabla",tabla);
-  data.append("columnaId",columnaId);
-  data.append("columnaLista",columnaLista);
+// async function obtenerOpcionesDatalist(tabla,columnaId,columnaLista){
+//   // tabla = "PERSONAL_INFORMATION"
+//   // columnaId = "ID_DNI";
+//   // columnaLista = "name";
+//   console.log( tabla+" "+ columnaId+" "+ columnaLista)
+//   let data = new FormData();
+//   data.append("tabla",tabla);
+//   data.append("columnaId",columnaId);
+//   data.append("columnaLista",columnaLista);
+//   let opciones="";
+//   const respuesta = await fetch("../php/rellenarOpcionesDatalist.php",{
+//     method:"POST",
+//     body:data
+//   })
+//   const dataJson = await respuesta.json();
+//   await dataJson.forEach((opcion) => {
+//     opciones += '<option data-id="' + opcion[columnaId] + '" value="' + opcion[columnaLista] +'">'+ opcion[columnaLista] +'</option>' 	
+//   })
+//   return await opciones;
+// } 
+
+async function obtenerOpcionesList(file){
   let opciones="";
-  const respuesta = await fetch("../php/rellenarOpcionesDatalist.php",{
+  const respuesta = await fetch("../php/"+file+".php",{
     method:"POST",
-    body:data
   })
   const dataJson = await respuesta.json();
   await dataJson.forEach((opcion) => {
-    opciones += '<option data-id="' + opcion[columnaId] + '" value="' + opcion[columnaLista] +'">'+ opcion[columnaLista] +'</option>' 	
+    opciones += '<option data-id="' + opcion[0] + '" value="' + opcion[1] +'">'+ opcion[1] +'</option>' 	
   })
-  return await opciones;
+  return opciones;
 } 
+
+async function saveInformation(btn, data){
+ 
+  let file = btn.dataset.file; 
+  const response = await fetch("../php/"+file+".php",{
+    method:"POST",
+    body: data
+  })
+  const text = await response.text();
+  console.log(text);
+  
+}
+
+async function showModalSaveChanges(modified){
+  console.log("click")
+  console.log(modified)
+  window.addEventListener("beforeunload",(e)=>{
+    if(modified){
+      console.log("Esta saliendo del sitio")
+      showModal()
+      
+      function modalEvents(){
+
+        document.querySelector('#btn-exit').addEventListener("click",()=>{
+          e.returnValue = true;
+        })
+    
+        document.querySelector('#btn-cancel').addEventListener("click",()=>{
+          e.returnValue = false;
+        })
+        e.returnValue = false;
+
+      }
+        
+      
+      async function showModal(){
+        var modal = new bootstrap.Modal(document.getElementById('modal'), {
+          keyboard: false
+        })
+        console.log(modal)
+        await modal.show()
+        await modalEvents()
+      }
+      
+      // var confirmationMessage = "\o/";
+      // (e || window.event).returnValue = confirmationMessage;
+      // return confirmationMessage;   
+    }
+  })
+}
+
+async function formularyChanges(){
+  let modifiedSections = new Array();
+  let modified = false;
+  document.querySelectorAll(".sectionFormulary").forEach( sectionFormulary => {
+    console.log(modified)
+    console.log(sectionFormulary)
+    sectionFormulary.querySelectorAll('select, input').forEach(element => {
+      element.addEventListener('change',()=>{
+        modifiedSections[`${sectionFormulary.dataset.name}`] = true;  
+        showModalSaveChanges(getModified())
+        console.log(modifiedSections);
+        console.log(modified)
+      })
+    })
+    sectionFormulary.querySelector('.sectionButton').addEventListener("click", ()=>{
+      modifiedSections[`${sectionFormulary.dataset.name}`] = false;
+      getModified();
+    })
+  })
+
+  function getModified(){
+    modified = false;    
+    for (const modifiedSection in modifiedSections) {
+      if ( modifiedSections[modifiedSection] == true) {
+        modified = true;
+        console.log("modified "+modified);
+      }
+    }
+    return modified;
+  }
+}
+
+async function fillSelects(){
+  let selects = document.querySelectorAll(".getSelectOption") 
+  selects.forEach(select =>{
+    console.log(select)
+    console.log(select.dataset)
+    obtenerOpcionesList(select.dataset.file)
+    .then(options => {
+      console.log(options)
+      select.innerHTML = options})
+    })
+}
+
+async function activarBotonesSeccionPaciente(){
+  
+}
