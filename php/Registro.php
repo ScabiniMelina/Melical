@@ -15,6 +15,16 @@
     $email = $_POST['email'];
     $contrasena = $_POST['contrasena'];
 
+    // verificacion de que el email no se repite
+    $sql = "SELECT Email FROM PERSONAL_INFORMATION";
+    $RESULTADO = $connection->query($sql);
+
+    if($RESULTADO->num_rows > 0){
+
+    }
+
+    // agregar o modificar los datos faltantes de la base de datos en el insert
+
     $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
     if (mysqli_query($connection , $sql)) {
         echo "Funciona";
@@ -65,33 +75,33 @@
         </div>
         <div class="col-6">
           <label for="inputDni4" class="form-label">Nombre</label>
-          <input type="text" class="form-control"  name="nombre" required pattern="{1,30}" title="Debe ingresar letras" >
+          <input type="text" class="form-control"  name="nombre" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" >
         </div>
         
         <div class="col-6">
           <label for="inputDni4" class="form-label">Apellido</label>
-          <input type="text" class="form-control" name="apellido" required pattern="{1,30}" title="Debe ingresar letras" >
+          <input type="text" class="form-control" name="apellido" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" >
         </div>
         
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control" name="fechaNacimiento">
+          <input type="date" class="form-control" name="fechaNacimiento" required >
         </div>
            
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Teléfono</label>
-          <input type="text" class="form-control" name="telefono">
+          <input type="number" class="form-control" name="telefono" required>
         </div>
            
         
         <div class="col-6">
           <label for="inputDireccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" name="direccion">
+          <input type="text" class="form-control" name="direccion" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
         </div>
         
         <div class="col-6">
           <label for="inputDireccionN" class="form-label">Nº</label>
-          <input type="number" class="form-control" name="direccionN">
+          <input type="number" class="form-control" name="direccionN" required>
         </div>
         
         <div class="col-12 col-sm-6">
@@ -101,7 +111,7 @@
         <div class="col-12 col-sm-6">
           <label class="form-label">Contraseña</label>
           <div class="d-flex h-auto">
-            <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena">
+            <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena" required>
             <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
           </div>
         </div>
