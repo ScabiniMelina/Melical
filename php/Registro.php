@@ -13,63 +13,98 @@
     $telefono = $_POST['telefono'];
     $email = $_POST['email'];
     $contrasena = $_POST['contrasena'];
-    $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
-    if ($connection->query($sql)) {
-      echo "Funciona";
-    } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-    }
-    mysqli_close($connection);
 
+    $limiteCaracteres=30;
 
     if(!is_numeric($dni)){
-      $msg = "el dni no esnumerico";
+      $msg = "el dni invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
     }
 
-    if(!is_numeric($dni)){
-      $msg = "el dni no esnumerico";
+    if(!is_numeric($numTramite)){
+      $msg = "el numero de tramite invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
     }
 
-    $compracion=gettype($dni);
-    if($comparacion=="string"){
-      $compracion=gettype($numTramite);
-      if($comparacion=="integer"){
-        $compracion=gettype($nombre);
-        if($comparacion=="string"){
-          $compracion=gettype($apellido);
-          if($comparacion=="string"){
-            $compracion=gettype($fechaNacimieto);
-            if($comparacion=="string"){
-              $compracion=gettype($direccion);
-              if($comparacion=="string"){
-                $compracion=gettype($direccionN)
-                if($comparacion=="string"){
-                  $compracion=gettype($telefono);
-                  if($comparacion=="integer"){
-                    $compracion=gettype($email);
-                    if($comparacion=="string"){
-                      $compracion=gettype($contrasena);
-                      if($comparacion=="integer"){
-      
-                          // verificacion de que el email no se repite
-                          $sql = "SELECT Email FROM PERSONAL_INFORMATION WHERE  email= $email";
-                          $RESULTADO = $connection->query($sql);
+    if(!is_string($nombre)){
+      $msg = "el nombre es invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
+    }
 
-                          if($RESULTADO->num_rows > 0){
-                            echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
-                          }else{
+    if(!is_string($apellido)){
+      $msg = "el apellido es invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
+    }
 
-                                // agregar o modificar los datos faltantes de la base de datos en el insert
+    //fecha
 
-                          $sql = "INSERT INTO `PERSONAL_INFORMATION`('ID_DNI',`dni`,'tramit_nume', `name`, `surname`, `date_birth`, `phone`,'email', 'address','address_number','PK_ID_LOCATION ') VALUES ('$dni','$dni','$numTramite','$nombre','$apellido','$dni','$fechaNacimieto','$telefono','$email','$direccion','$direccionN','$dni')";
-                          if (mysqli_query($connection , $sql)) {
-                              echo "Funciona";
-                          } else {
-                              echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-                          }
-                          mysqli_close($connection);
+    if(!is_string($direccion)){
+      $msg = "el direccion es invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
+    }
 
-                          }
+    if(!is_numeric($direccionN)){
+      $msg = "el direccionN es invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
+    }
+
+    if(!is_numeric($telefono)){
+      $msg = "el telefono es invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
+    }
+
+    //email
+
+    if(!is_numeric($contrasena)){
+      $msg = "el contrasena es invalido";
+    }else{
+      if(mb_strlen($string)>$limiteCaracteres;){
+        $msg="A superado el limite de caracteres"
+      }
+    }
+
+
+
+       // verificacion de que el email no se repite
+       $sql = "SELECT Email FROM PERSONAL_INFORMATION WHERE  email= $email";
+       $RESULTADO = $connection->query($sql);
+
+       if($RESULTADO->num_rows > 0){
+         echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
+       }else{
+
+      // agregar o modificar los datos faltantes de la base de datos en el insert
+
+       $sql = "INSERT INTO `PERSONAL_INFORMATION`('ID_DNI',`dni`,'tramit_nume', `name`, `surname`, `date_birth`, `phone`,'email', 'address','address_number','PK_ID_LOCATION ') VALUES ('$dni','$dni','$numTramite','$nombre','$apellido','$fechaNacimieto','$telefono','$email','$direccion','$direccionN','$dni')";
+       if (mysqli_query($connection , $sql)) {
+           echo "Funciona";
+       } else {
+           echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+       }
+       mysqli_close($connection);
+
+       }
                      
   }
   echo `
@@ -117,7 +152,7 @@
           <input type="number" name="dni" required  class="form-control">
         </div>
         <div class="col-12 col-sm-6">
-        <label for="inputDni4" class="form-label">Número de Trámite</label>
+        <label for="inputDni4" class="form-label">Cuil</label>
         <input type="number" name="NumTramite" required  class="form-control">
         </div>
         <div class="col-6">
