@@ -6,6 +6,7 @@
     $msg="funciono";
     include("conexion.php");
     $dni = $_POST['dni']; 
+    $numTramite = $_POST['NumTramite']
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $fechaNacimieto = $_POST['fechaNacimiento'];
@@ -16,23 +17,25 @@
     $contrasena = $_POST['contrasena'];
 
     // verificacion de que el email no se repite
-    $sql = "SELECT Email FROM PERSONAL_INFORMATION";
+    $sql = "SELECT Email FROM PERSONAL_INFORMATION WHERE  email= $email";
     $RESULTADO = $connection->query($sql);
 
-    if($RESULTADO->num_rows > 0){
+    $comparacion =""
+    if($RESULTADO =!  $comparacion){
+      echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
+    }else{
 
-    }
+          // agregar o modificar los datos faltantes de la base de datos en el insert
 
-    // agregar o modificar los datos faltantes de la base de datos en el insert
-
-    $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
+    $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`,'tramit_nume', `name`, `surname`, `date_birth`, `phone`,'email', 'address') VALUES ('$dni','$numTramite','$nombre','$apellido','$fechaNacimieto','$telefono','$email','$contrasena')";
     if (mysqli_query($connection , $sql)) {
         echo "Funciona";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($connection);
     }
     mysqli_close($connection);
-  
+
+    }
   }
 ?>
 
