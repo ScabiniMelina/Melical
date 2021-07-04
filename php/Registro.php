@@ -22,6 +22,14 @@
     mysqli_close($connection);
 
 
+    if(!is_numeric($dni)){
+      $msg = "el dni no esnumerico";
+    }
+
+    if(!is_numeric($dni)){
+      $msg = "el dni no esnumerico";
+    }
+
     $compracion=gettype($dni);
     if($comparacion=="string"){
       $compracion=gettype($numTramite);
@@ -53,7 +61,7 @@
 
                                 // agregar o modificar los datos faltantes de la base de datos en el insert
 
-                          $sql = "INSERT INTO `PERSONAL_INFORMATION`('ID_DNI',`dni`,'tramit_nume', `name`, `surname`,'gender', `date_birth`, `phone`,'email', 'address','address_number','PK_ID_LOCATION ') VALUES ('$dni','$dni','$numTramite','$nombre','$apellido','$dni','$fechaNacimieto','$telefono','$email','$direccion','$direccionN','$dni')";
+                          $sql = "INSERT INTO `PERSONAL_INFORMATION`('ID_DNI',`dni`,'tramit_nume', `name`, `surname`, `date_birth`, `phone`,'email', 'address','address_number','PK_ID_LOCATION ') VALUES ('$dni','$dni','$numTramite','$nombre','$apellido','$dni','$fechaNacimieto','$telefono','$email','$direccion','$direccionN','$dni')";
                           if (mysqli_query($connection , $sql)) {
                               echo "Funciona";
                           } else {
@@ -62,17 +70,17 @@
                           mysqli_close($connection);
 
                           }
-                      }else{<div class="alert alert-danger" role="alert"> echo 'Ha ingresado mal los datos ingreselos nuevamente' </div>}
-                    }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-                  }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-                }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-              }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-            }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-          }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-        }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-      }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
-    }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+                     
   }
+  echo `
+    <div class="alert fade m-2 alert-dismissible fade show align-content-sm-between" data-id="0" role="alert">
+    <div class="d-flex">
+      <i class=' fs-3 pe-2 bx '></i>
+      <span>'$msg'</span>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  `;
 ?>
 
 <!DOCTYPE html>
