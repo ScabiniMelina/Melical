@@ -4,6 +4,7 @@
     $msg="funciono";
     include("connection.php");
     $dni = $_POST['dni']; 
+    $numTramite = $_POST['NumTramite']
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $fechaNacimieto = $_POST['fechaNacimiento'];
@@ -19,6 +20,58 @@
       echo "Error: " . $sql . "<br>" . mysqli_error($connection);
     }
     mysqli_close($connection);
+
+
+    $compracion=gettype($dni);
+    if($comparacion=="string"){
+      $compracion=gettype($numTramite);
+      if($comparacion=="integer"){
+        $compracion=gettype($nombre);
+        if($comparacion=="string"){
+          $compracion=gettype($apellido);
+          if($comparacion=="string"){
+            $compracion=gettype($fechaNacimieto);
+            if($comparacion=="string"){
+              $compracion=gettype($direccion);
+              if($comparacion=="string"){
+                $compracion=gettype($direccionN)
+                if($comparacion=="string"){
+                  $compracion=gettype($telefono);
+                  if($comparacion=="integer"){
+                    $compracion=gettype($email);
+                    if($comparacion=="string"){
+                      $compracion=gettype($contrasena);
+                      if($comparacion=="integer"){
+      
+                          // verificacion de que el email no se repite
+                          $sql = "SELECT Email FROM PERSONAL_INFORMATION WHERE  email= $email";
+                          $RESULTADO = $connection->query($sql);
+
+                          if($RESULTADO->num_rows > 0){
+                            echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
+                          }else{
+
+                                // agregar o modificar los datos faltantes de la base de datos en el insert
+
+                          $sql = "INSERT INTO `PERSONAL_INFORMATION`('ID_DNI',`dni`,'tramit_nume', `name`, `surname`,'gender', `date_birth`, `phone`,'email', 'address','address_number','PK_ID_LOCATION ') VALUES ('$dni','$dni','$numTramite','$nombre','$apellido','$dni','$fechaNacimieto','$telefono','$email','$direccion','$direccionN','$dni')";
+                          if (mysqli_query($connection , $sql)) {
+                              echo "Funciona";
+                          } else {
+                              echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+                          }
+                          mysqli_close($connection);
+
+                          }
+                      }else{<div class="alert alert-danger" role="alert"> echo 'Ha ingresado mal los datos ingreselos nuevamente' </div>}
+                    }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+                  }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+                }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+              }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+            }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+          }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+        }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+      }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+    }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
   }
 ?>
 
@@ -61,33 +114,33 @@
         </div>
         <div class="col-6">
           <label for="inputDni4" class="form-label">Nombre</label>
-          <input type="text" class="form-control"  name="nombre" required pattern="{1,30}" title="Debe ingresar letras" >
+          <input type="text" class="form-control"  name="nombre" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" >
         </div>
         
         <div class="col-6">
           <label for="inputDni4" class="form-label">Apellido</label>
-          <input type="text" class="form-control" name="apellido" required pattern="{1,30}" title="Debe ingresar letras" >
+          <input type="text" class="form-control" name="apellido" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" >
         </div>
         
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control" name="fechaNacimiento">
+          <input type="date" class="form-control" name="fechaNacimiento" required >
         </div>
            
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Teléfono</label>
-          <input type="text" class="form-control" name="telefono">
+          <input type="number" class="form-control" name="telefono" required>
         </div>
            
         
         <div class="col-6">
           <label for="inputDireccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" name="direccion">
+          <input type="text" class="form-control" name="direccion" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
         </div>
         
         <div class="col-6">
           <label for="inputDireccionN" class="form-label">Nº</label>
-          <input type="number" class="form-control" name="direccionN">
+          <input type="number" class="form-control" name="direccionN" required>
         </div>
         
         <div class="col-12 col-sm-6">
@@ -97,7 +150,7 @@
         <div class="col-12 col-sm-6">
           <label class="form-label">Contraseña</label>
           <div class="d-flex h-auto">
-            <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena">
+            <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena" required>
             <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
           </div>
         </div>
