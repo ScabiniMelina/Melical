@@ -16,26 +16,57 @@
     $email = $_POST['email'];
     $contrasena = $_POST['contrasena'];
 
-    // verificacion de que el email no se repite
-    $sql = "SELECT Email FROM PERSONAL_INFORMATION WHERE  email= $email";
-    $RESULTADO = $connection->query($sql);
 
-    $comparacion =""
-    if($RESULTADO =!  $comparacion){
-      echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
-    }else{
+    $compracion=gettype($dni);
+    if($comparacion=="string"){
+      $compracion=gettype($numTramite);
+      if($comparacion=="integer"){
+        $compracion=gettype($nombre);
+        if($comparacion=="string"){
+          $compracion=gettype($apellido);
+          if($comparacion=="string"){
+            $compracion=gettype($fechaNacimieto);
+            if($comparacion=="string"){
+              $compracion=gettype($direccion);
+              if($comparacion=="string"){
+                $compracion=gettype($direccionN)
+                if($comparacion=="string"){
+                  $compracion=gettype($telefono);
+                  if($comparacion=="integer"){
+                    $compracion=gettype($email);
+                    if($comparacion=="string"){
+                      $compracion=gettype($contrasena);
+                      if($comparacion=="integer"){
+      
+                          // verificacion de que el email no se repite
+                          $sql = "SELECT Email FROM PERSONAL_INFORMATION WHERE  email= $email";
+                          $RESULTADO = $connection->query($sql);
 
-          // agregar o modificar los datos faltantes de la base de datos en el insert
+                          if($RESULTADO->num_rows > 0){
+                            echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
+                          }else{
 
-    $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`,'tramit_nume', `name`, `surname`, `date_birth`, `phone`,'email', 'address') VALUES ('$dni','$numTramite','$nombre','$apellido','$fechaNacimieto','$telefono','$email','$contrasena')";
-    if (mysqli_query($connection , $sql)) {
-        echo "Funciona";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-    }
-    mysqli_close($connection);
+                                // agregar o modificar los datos faltantes de la base de datos en el insert
 
-    }
+                          $sql = "INSERT INTO `PERSONAL_INFORMATION`('ID_DNI',`dni`,'tramit_nume', `name`, `surname`,'gender', `date_birth`, `phone`,'email', 'address','address_number','PK_ID_LOCATION ') VALUES ('$dni','$dni','$numTramite','$nombre','$apellido','$dni','$fechaNacimieto','$telefono','$email','$direccion','$direccionN','$dni')";
+                          if (mysqli_query($connection , $sql)) {
+                              echo "Funciona";
+                          } else {
+                              echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+                          }
+                          mysqli_close($connection);
+
+                          }
+                      }else{<div class="alert alert-danger" role="alert"> echo 'Ha ingresado mal los datos ingreselos nuevamente' </div>}
+                    }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+                  }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+                }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+              }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+            }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+          }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+        }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+      }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
+    }else{echo 'Ha ingresado mal los datos ingreselos nuevamente'}
   }
 ?>
 
