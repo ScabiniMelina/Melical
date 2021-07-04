@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include("conexion.php");
+include("connection.php");
 $dni = $_POST["ID_DNI"];
 $sql = "SELECT * FROM PERSONAL_INFORMATION WHERE";
 if(is_numeric($dni)){

@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include("conexion.php");
+include("connection.php");
 $sql = "SELECT * FROM PERSONAL_INFORMATION";
 $consultaSql = $connection->query($sql);
 $data = $consultaSql->fetch_all(MYSQLI_ASSOC);

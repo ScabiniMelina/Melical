@@ -1,10 +1,8 @@
 <?php
-
   $msg="";
-
   if(isset($_POST["boton"])){
     $msg="funciono";
-    include("conexion.php");
+    include("connection.php");
     $dni = $_POST['dni']; 
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -14,15 +12,13 @@
     $telefono = $_POST['telefono'];
     $email = $_POST['email'];
     $contrasena = $_POST['contrasena'];
-
     $sql = "INSERT INTO `PERSONAL_INFORMATION`(`dni`, `name`, `surname`, `date_birth`, `phone`) VALUES ('$dni','$nombre','$apellido','$fechaNacimieto','$telefono')";
-    if (mysqli_query($connection , $sql)) {
-        echo "Funciona";
+    if ($connection->query($sql)) {
+      echo "Funciona";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+      echo "Error: " . $sql . "<br>" . mysqli_error($connection);
     }
     mysqli_close($connection);
-  
   }
 ?>
 
