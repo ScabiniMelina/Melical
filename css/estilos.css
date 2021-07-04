@@ -42,7 +42,7 @@ body {
   width: 77px;
   background: var(--primary-color);
   padding: 6px 14px;
-  z-index: 2000;
+  z-index: 1000;
   transition: all 0.5s ease;
 }
 
@@ -225,7 +225,7 @@ body {
   background-color: var(--background-color);
   height: auto;
   width: inherit;
-  z-index: 2000;
+  z-index: 1000;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
 }
 
@@ -335,13 +335,13 @@ ul {
 }
 .thead-fixed,.tabs-fixed{
   position: sticky;
-  z-index: 1000;
+  z-index: 900;
   top: 0px;
   padding: 1em 0;
 }
 
 .tabs-fixed{
-  top: 71px;
+  top: 69px;
   background: var(--background-color);
 }
 
@@ -357,6 +357,10 @@ ul {
 
 #listaAdjuntos .row .card{
   min-width: 130px;
+}
+
+#alertContainer{
+  z-index:1000 ;
 }
 
 @media only screen and (max-width: 767px) {
