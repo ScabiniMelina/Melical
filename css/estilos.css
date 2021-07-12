@@ -360,7 +360,11 @@ ul {
 }
 
 #alertContainer{
+  width:calc(100% - 1em);
   z-index:1000 ;
+  position: absolute;
+  top:0;
+  margin:auto;
 }
 
 @media only screen and (max-width: 767px) {
