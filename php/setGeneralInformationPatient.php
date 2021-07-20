@@ -13,6 +13,7 @@
   $location = $_POST['patientLocation'];
   $date = date('YmdHis');
   echo $date;
+  
   $idDni = md5($date);
   echo $idDni;
   $sql = "INSERT INTO `PERSONAL_INFORMATION`(`ID_DNI`,`tramit_nume`,`dni`, `name`, `surname`, `gender`, `date_birth`, `phone`, `email`, `address`,`address_number`,`PK_ID_LOCATION`) VALUES ('$idDni','$cuil','$dni','$name','$surname','$gender','$dateBirth','$phone','$email','$address','$addressNumber','$location')";

@@ -8,8 +8,8 @@ if(is_numeric($dni)){
 }else{
     $sql .=" name LIKE '%$dni%' OR surname LIKE '%$dni%'";
 }
-$consultaSql = $connection->query($sql);
-$data = $consultaSql->fetch_all(MYSQLI_ASSOC);
+$$query = $connection->query($sql);
+$data = $$query->fetch_all(MYSQLI_ASSOC);
 echo json_encode($data);
 $connection->close();
 ?>

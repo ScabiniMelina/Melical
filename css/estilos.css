@@ -199,7 +199,8 @@ body {
 .sidebar.active .links_name {
   transition: 0s;
   opacity: 1;
-  pointer-events: auto
+  pointer-events: auto;
+  transition: all 0.5s ease;
 }
 
 .content {
@@ -270,8 +271,9 @@ body {
   background-image: none;
 }
 
-  /* Reset de estilos */
+/* Reset de estilos */
   
+
 .btn-primary , .btn-primary:focus {
   color: var(--font-color);
   background-color: var(--primary-color);
@@ -366,8 +368,23 @@ ul {
   top:0;
   margin:auto;
 }
+#logoSection{
+  animation: fadeIn ease 4s;
+  
+  
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
 
 @media only screen and (max-width: 767px) {
+  #logoSection .spinner-border{
+    width: 1.2em;
+    height: 1.2em;
+  }
+
   .content, .sidebar.active~.content {
     width: 100%;
     left: 0;

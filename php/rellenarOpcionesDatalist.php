@@ -5,8 +5,8 @@ $tabla = $_POST["tabla"];
 $columnaId = $_POST["columnaId"];
 $columnaLista = $_POST["columnaLista"];
 $sql = "SELECT ". $columnaId ." , ". $columnaLista . " FROM " . $tabla;
-$consultaSql = $connection->query($sql);
-$data = $consultaSql->fetch_all(MYSQLI_ASSOC);
+$$query = $connection->query($sql);
+$data = $$query->fetch_all(MYSQLI_ASSOC);
 echo json_encode($data);
 $connection->close();
 ?>

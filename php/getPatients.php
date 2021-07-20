@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: application/json');
 include("connection.php");
-$sql = "SELECT  ID_BLOOD_TYPE, type FROM  BLOOD_TYPE";
+$sql = "SELECT * FROM PERSONAL_INFORMATION";
 $$query = $connection->query($sql);
-$data = $$query->fetch_all(MYSQLI_NUM);
+$data = $$query->fetch_all(MYSQLI_ASSOC);
 echo json_encode($data);
 $connection->close();
 ?>

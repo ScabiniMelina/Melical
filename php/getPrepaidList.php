@@ -2,8 +2,8 @@
 header('Content-Type: application/json');
 include("connection.php");
 $sql = "SELECT  ID_PREPAID, name FROM  PREPAID";
-$consultaSql = $connection->query($sql);
-$data = $consultaSql->fetch_all(MYSQLI_NUM);
+$$query = $connection->query($sql);
+$data = $$query->fetch_all(MYSQLI_NUM);
 echo json_encode($data);
 $connection->close();
 ?>

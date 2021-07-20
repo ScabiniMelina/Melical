@@ -21,10 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("busquedaPacientes").addEventListener("click", () => {
     showSection("busquedaPacientes.html", "Buscar pacientes")
       .then(() => {
-        fetch("../php/obtenerPacientes.php")
-          .then(respuesta => respuesta.json())
-          .then(data => fillPatientTable(data))
-          .then(() => loadPatientSearchButtons())
+        getInformation("getPatients")
+        .then(data => fillPatientTable(data))
+        .then(() => loadPatientSearchButtons())
       })
   })
 
@@ -56,7 +55,7 @@ async function loadPatientSearchButtons() {
   document.getElementById("btnBuscar").addEventListener("click", () => {
     formData = new FormData();
     formData.append('ID_DNI', document.getElementById("inputBuscar").value);
-    getInformation("obtenerPaciente", formData)
+    getInformation("getPatient", formData)
     .then(data => fillPatientTable(data));
   })
 
@@ -288,16 +287,16 @@ async function showModalSaveChanges(modified) {
     showModal(e);
   })
 
-  function modalEvents(e) {
-    e.preventDefault();
-    document.querySelector('#btn-exit').addEventListener("click", () => {
-      e.returnValue = true;
-    })
+  // function modalEvents(e) {
+  //   e.preventDefault();
+  //   document.querySelector('#btn-exit').addEventListener("click", () => {
+  //     e.returnValue = true;
+  //   })
 
-    document.querySelector('#btn-cancel').addEventListener("click", () => {
-      e.returnValue = false;
-    })
-  }
+  //   document.querySelector('#btn-cancel').addEventListener("click", () => {
+  //     e.returnValue = false;
+  //   })
+  // }
 
   async function showModal(e) {
     if (modified) {
@@ -485,6 +484,6 @@ async function addAlert(type, msg){
     if(alert){
       container.removeChild(alert);
     }
-  },3000)
+  },2500)
 }
   

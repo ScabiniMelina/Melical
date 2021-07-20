@@ -4,7 +4,7 @@
     $msg="funciono";
     include("connection.php");
     $dni = $_POST['dni']; 
-    $numTramite = $_POST['NumTramite']
+    $numTramite = $_POST['NumTramite'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $fechaNacimieto = $_POST['fechaNacimiento'];
@@ -19,32 +19,32 @@
     if(!is_numeric($dni)){
       $msg = "el dni invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
     if(!is_numeric($numTramite)){
       $msg = "el numero de tramite invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
     if(!is_string($nombre)){
       $msg = "el nombre es invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
     if(!is_string($apellido)){
       $msg = "el apellido es invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
@@ -53,24 +53,24 @@
     if(!is_string($direccion)){
       $msg = "el direccion es invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
     if(!is_numeric($direccionN)){
       $msg = "el direccionN es invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
     if(!is_numeric($telefono)){
       $msg = "el telefono es invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
@@ -79,8 +79,8 @@
     if(!is_numeric($contrasena)){
       $msg = "el contrasena es invalido";
     }else{
-      if(mb_strlen($string)>$limiteCaracteres;){
-        $msg="A superado el limite de caracteres"
+      if(mb_strlen($string)>$limiteCaracteres){
+        $msg="A superado el limite de caracteres";
       }
     }
 
@@ -91,7 +91,7 @@
        $RESULTADO = $connection->query($sql);
 
        if($RESULTADO->num_rows > 0){
-         echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton' 
+         echo 'Ha isgresado un email ya prexsistente, modifiquelo y presione nuevamente el boton'; 
        }else{
 
       // agregar o modificar los datos faltantes de la base de datos en el insert

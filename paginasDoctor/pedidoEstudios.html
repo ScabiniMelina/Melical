@@ -11,33 +11,41 @@
 
 <body>
     <div class="container pagina" id="pedidoEstudios">
-        <div class="row m-0">
-            <div class="col col-6  pb-2 px-0">
-              <input id="inputBuscar" type="text" class="form-control" placeholder="Buscar por DNI, Nombre" aria-describedby="button-addon2">
-            </div>
-            <div class="col col-6 pe-0">
-              <input id="inputBuscar" type="date" class="form-control" placeholder="Fecha de pedido" aria-describedby="button-addon2">
-            </div>
-            <div class="col px-0">
-              <select class="form-select" aria-label="Default select example">
-                <option class="">Estado del Estudio</option>
-                <option value="1">En espera</option>
-                <option value="2">En proceso</option>
-                <option value="3">Finalizado</option>
-              </select>
-            </div>
-            <div class="col  ">
-              <select class="form-select" aria-label="Default select example">
-                <option class="">Estudio</option>
-                <option value="1">Radiografía</option>
-                <option value="2">Tomografía</option>
-                <option value="3">Extracción de sangre</option>
-              </select>
-            </div>
-            <div class=" col-auto mr-4 p-0" aria-label="Basic example">
-                <button class="btn btn-primary" id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
-            </div>
+      <div class="row pb-2 g-2">
+        
+        <div class="col col-6 ">
+          <label>Tipo</label>
+          <select class="form-select" aria-label="Default select example">
+            <option class="">Estudio</option>
+            <option value="1">Radiografía</option>
+            <option value="2">Tomografía</option>
+            <option value="3">Extracción de sangre</option>
+          </select>
         </div>
+        <div class="col col-6 ">
+            <label>Estado</label>
+            <select class="form-select" aria-label="Default select example">
+              <option class="">Estado del Estudio</option>
+              <option value="1">En espera</option>
+              <option value="2">En proceso</option>
+              <option value="3">Finalizado</option>
+            </select>
+        </div>
+        <div class="col col-6">
+          <label>Fecha de pedido</label>
+          <input id="inputBuscar" type="date" class="form-control" placeholder="Fecha de pedido" aria-describedby="button-addon2"> 
+      </div> 
+        <div class=" col-6 d-flex align-self-end "> 
+
+            <div class="w-100">
+              <input id="inputBuscar" type="text" class="form-control" placeholder="Buscar por DNI, Nombre" aria-describedby="button-addon2">
+            </div>   
+            <div class="col-auto ps-2" >
+                  <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
+            </div>
+          </div>
+    </div>
+       
     
         <div class="overflow-auto mt-2 container-table-overflow">
         
