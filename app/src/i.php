@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['user'])) {
+  // header("location: ./view/pages/authentication/login.html");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -45,35 +51,35 @@
         <span class="tooltip">Buscar</span>
       </li>
       <li>
-        <a href="#/cronograma" class="link_nav" id="cronograma" data-callBack="schedule" data-file="schedule/schedule" data-title="Cronograma">
+        <a href="#/cronograma" class="link_nav" data-callback="loadScheduleSection" data-file="schedule/schedule" data-title="Cronograma">
           <i class='bx bx-calendar bx-flip-horizontal'></i>
           <span class="links_name">Cronograma</span>
         </a>
         <span class="tooltip">Cronograma</span>
       </li>
       <li>
-        <a href="#/pedidoEstudios" class="link_nav" id="pedidoEstudios" data-callBack="schedule" data-file="" data-title="">
+        <a href="#/pedidoEstudios" class="link_nav" data-callback="loadStudySection" data-file="study/studySearch" data-title="Estudios pedidos">
           <i class='bx bx-test-tube'></i>
           <span class="links_name">Estudios pedidos</span>
         </a>
         <span class="tooltip">Estudios pedidos</span>
       </li>
       <li>
-        <a href="#/lugaresDisponibles" class="link_nav" id="lugaresDisponibles" data-callBack="schedule" data-file="" data-title="">
+        <a href="#/lugaresDisponibles" class="link_nav" data-callBack="loadRoomsSection" data-file="room/roomSearch" data-title="Lugares disponibles">
           <i class='bx bx-clinic'></i>
           <span class="links_name ">Lugares disponibles</span>
         </a>
         <span class="tooltip">Lugares disponibles</span>
       </li>
       <li>
-        <a href="#/recursosDisponibles" class="link_nav" id="recursosDisponibles" data-callBack="schedule" data-file="" data-title="">
+        <a href="#/recursosDisponibles" class="link_nav" data-callBack="loadResourcesSection" data-file="resources\resourcesSearch" data-title="Recursos disponibles">
           <i class='bx bx-band-aid'></i>
           <span class="links_name">Recursos disponibles</span>
         </a>
         <span class="tooltip">Recursos disponibles</span>
       </li>
       <li>
-        <a href="#/busquedaPacientes" class="link_nav" id="busquedaPacientes" data-callBack="hola" data-file="" data-title="">
+        <a href="#/busquedaPacientes" class="link_nav" data-callback="loadPatientsSection" data-file="patient/patientSearch" data-title="Busqueda de pacientes">
           <i class='bx bx-user-pin'></i>
           <span class="links_name ">Búsqueda de pacientes</span>
         </a>
@@ -81,7 +87,7 @@
       </li>
 
       <li class="d-none d-md-block">
-        <a href="#/ajustes" class="link_nav" id="ajustes" data-callBack="schedule" data-file="" data-title="">
+        <a href="#/ajustes" class="link_nav" data-callback="loadSettingsSection" data-file="setting/settings" data-title="Ajustes">
           <i class='bx bx-cog'></i>
           <span class="links_name">Ajustes</span>
         </a>
@@ -100,17 +106,17 @@
           <i class='bx bxs-bell fs-4'></i>
         </div>
         <div class="btn-group">
-          <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img link_nav  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <button class="dropdown-item" id="perfil" type="button">Ver perfil</button>
+            <li class="link_nav" data-callback="loadProfileSection" data-file="setting/profile" data-title="Perfil">
+              <button class="dropdown-item" type="button">Ver perfil</button>
+            </li>
+            <li class="link_nav" data-callback="loadSettingsSection" data-file="setting/settings" data-title="Ajustes">
+              <button class="dropdown-item d-block d-md-none" type="button">Ajustes</button>
             </li>
             <li>
-              <button class="dropdown-item d-block d-md-none" id="configuracion" type="button">Ajustes</button>
-            </li>
-            <li>
-              <button class="dropdown-item" id="cerrarSesion" type="button">Cerrar sesión</button>
+              <button class="dropdown-item" id="btnLogout" type="button">Cerrar sesión</button>
             </li>
           </ul>
         </div>

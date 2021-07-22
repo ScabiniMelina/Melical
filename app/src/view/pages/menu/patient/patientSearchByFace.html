@@ -1,57 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Boxicons CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Melical</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melical</title>
 </head>
-
 <body>
-    <div class="container pagina" id="busquedaPacientes">
-        <div class="row ">
-            <div class="col pe-0">
-                <input id="inputBuscar" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido" aria-label="Buscar paciente por DNI ..." aria-describedby="button-addon2">
-            </div>
-            <div class=" col-auto ps-1" aria-label="Basic example">
-                <button class="btn btn-primary" id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
-                <button type="button" id="btnFiltrar" class="btn btn-primary"><i class='bx bx-slider-alt'></i></button>
-                <button type="button" id="btnBuscarPorHuella" class="btn btn-primary"><i class='bx bx-scan'></i></button>
-                <button type="button" id="btnBuscarPorRostro" class="btn btn-primary"><i class='bx bxs-face'></i></button>
-            </div>
-        </div>
-    
-        <div class="overflow-auto mt-2 container-table-overflow">
-        
-            <table class="table table-responsive table-hover m-auto caption-top text-center">
-                    <thead class="table-primary-color thead-fixed">
-                        <tr>
-                            <th>DNI</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Nacimiento</th>
-                        </tr>
-                    </thead>
-                
-                <tbody class="table-light" id="tablaPacientes">
-                    
-                </tbody>
-                
-            </table>
-        </div>
-        <div class="position-relative">
-            <button  class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0" type="button" id="agregarPaciente"><i class='bx bx-plus'></i></button>
-        </div>    
-    </div>
-    <template id="tableRowTemplate">
-        <tr class="tableRow">
-            <td class="dni"></td>
-            <td class="name"></td>
-            <td class="surname"></td>
-            <td class="dateBirth"></td>
-        </tr>
-    </template>
-  </body>
+  
+</body>
 </html>

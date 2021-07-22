@@ -1,23 +1,6 @@
 console.log("hola")
 document.addEventListener("DOMContentLoaded", () => {
-  activateMenuFunctions();
-
-  //sidebar
-  document.getElementById("cronograma").addEventListener("click", () => {
-    showSection("cronograma.html", "Cronograma");
-  })
-
-  document.getElementById("pedidoEstudios").addEventListener("click", () => {
-    showSection("pedidoEstudios.html", "Pedido de estudios");
-  })
-
-  document.getElementById("lugaresDisponibles").addEventListener("click", () => {
-    showSection("lugaresDisponibles.html", "Lugares disponibles");
-  })
-
-  document.getElementById("recursosDisponibles").addEventListener("click", () => {
-    showSection("recursosDisponibles.html", "Recusos disponibles");
-  })
+  
 
   document.getElementById("busquedaPacientes").addEventListener("click", () => {
     showSection("busquedaPacientes.html", "Buscar pacientes")
@@ -28,21 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
   })
 
-  document.getElementById("ajustes").addEventListener("click", () => {
-    showSection("ajustes.html", "Ajustes");
-  })
-
-  document.getElementById("configuracion").addEventListener("click", () => {
-    showSection("ajustes.html", "Configuración");
-  })
-
-  document.getElementById("perfil").addEventListener("click", () => {
-    showSection("perfil.html", "Perfil");
-  })
-
-  document.getElementById("cerrarSesion").addEventListener("click", () => {
-    fetch("logout.php");
-  })
+  
 
 })
 
@@ -101,21 +70,6 @@ async function loadPatientSearchButtons() {
   })
 }
 
-async function activateMenuFunctions() {
-  const sidebar = document.querySelector(".sidebar");
-  document.getElementById("btn").addEventListener("click", () => {
-    sidebar.classList.toggle("active");
-    if (btn.classList.contains("bx-menu")) {
-      btn.classList.replace("bx-menu", "bx-menu-alt-right");
-    } else {
-      btn.classList.replace("bx-menu-alt-right", "bx-menu");
-    }
-  })
-
-  document.querySelector(".bx-search").addEventListener("click", () => {
-    sidebar.classList.toggle("active");
-  })
-}
 
 
 
