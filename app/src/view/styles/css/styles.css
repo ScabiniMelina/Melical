@@ -243,7 +243,7 @@ body {
   margin-right: 0.5em;
 }
 
-.contenedorPagina {
+.pageContent {
   width: 100%;
   height: 100%;
   margin-top: 79px;
@@ -427,7 +427,7 @@ ul {
     margin-bottom: calc(60px + 1rem);
   }
 
-  .contenedorPagina {
+  .pageContent {
     margin-bottom: 60px;
   }
 }

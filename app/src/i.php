@@ -4,18 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/estilos.css">
 
-  <!-- Boxicons CDN Link -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <?php include('./view/modules/header.php'); ?>
+
 </head>
 
 <body>
-  <!-- Modal -->
-  <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <!-- Modal
+  <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header py-3">
@@ -31,14 +27,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
   <div class="sidebar py-md-3">
+
     <div class="logo_content ms-2 d-none d-md-block">
       <div class="logo ">
         <h1 class="logo_name fs-4" id="logo">Melical</h1>
       </div>
       <i class='bx bx-menu align-item-center' id="btn"></i>
     </div>
+
     <ul class="nav_list">
       <li class="d-none d-md-block">
         <i class='bx bx-search'></i>
@@ -46,35 +45,35 @@
         <span class="tooltip">Buscar</span>
       </li>
       <li>
-        <a href="#/cronograma" class="link_nav" id="cronograma">
+        <a href="#/cronograma" class="link_nav" id="cronograma" data-callBack="schedule" data-file="schedule/schedule" data-title="Cronograma">
           <i class='bx bx-calendar bx-flip-horizontal'></i>
           <span class="links_name">Cronograma</span>
         </a>
         <span class="tooltip">Cronograma</span>
       </li>
       <li>
-        <a href="#/pedidoEstudios" class="link_nav" id="pedidoEstudios">
+        <a href="#/pedidoEstudios" class="link_nav" id="pedidoEstudios" data-callBack="schedule" data-file="" data-title="">
           <i class='bx bx-test-tube'></i>
-          <span class="links_name">Pedido de estudios</span>
+          <span class="links_name">Estudios pedidos</span>
         </a>
-        <span class="tooltip">Pedido de estudios</span>
+        <span class="tooltip">Estudios pedidos</span>
       </li>
       <li>
-        <a href="#/lugaresDisponibles" class="link_nav" id="lugaresDisponibles">
+        <a href="#/lugaresDisponibles" class="link_nav" id="lugaresDisponibles" data-callBack="schedule" data-file="" data-title="">
           <i class='bx bx-clinic'></i>
           <span class="links_name ">Lugares disponibles</span>
         </a>
         <span class="tooltip">Lugares disponibles</span>
       </li>
       <li>
-        <a href="#/recursosDisponibles" class="link_nav" id="recursosDisponibles">
+        <a href="#/recursosDisponibles" class="link_nav" id="recursosDisponibles" data-callBack="schedule" data-file="" data-title="">
           <i class='bx bx-band-aid'></i>
           <span class="links_name">Recursos disponibles</span>
         </a>
         <span class="tooltip">Recursos disponibles</span>
       </li>
       <li>
-        <a href="#/busquedaPacientes" class="link_nav" id="busquedaPacientes">
+        <a href="#/busquedaPacientes" class="link_nav" id="busquedaPacientes" data-callBack="hola" data-file="" data-title="">
           <i class='bx bx-user-pin'></i>
           <span class="links_name ">Búsqueda de pacientes</span>
         </a>
@@ -82,7 +81,7 @@
       </li>
 
       <li class="d-none d-md-block">
-        <a href="#/ajustes" class="link_nav" id="ajustes">
+        <a href="#/ajustes" class="link_nav" id="ajustes" data-callBack="schedule" data-file="" data-title="">
           <i class='bx bx-cog'></i>
           <span class="links_name">Ajustes</span>
         </a>
@@ -90,10 +89,11 @@
       </li>
     </ul>
   </div>
+
   <div class="content">
-    <div class="row sidebar_secondary position-fixed justify-content-between align-items-center  m-0 px-0 py-2 px-lg-1">
+    <div class="row sidebar_secondary position-fixed justify-content-between align-items-center m-0 px-0 py-2 px-lg-1">
       <div class="col-auto">
-        <h2 id="tituloSeccion" class="fs-5 tituloSeccion">Inicio</h2>
+        <h2 id="sectionTitle" class="fs-5 tituloSeccion">Inicio</h2>
       </div>
       <div class="col-auto d-flex align-items-center ">
         <div class="notification ">
@@ -103,22 +103,32 @@
           <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img link_nav  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><button class="dropdown-item" id="perfil" type="button">Ver perfil</button></li>
-            <li><button class="dropdown-item d-block d-md-none" id="configuracion" type="button">Ajustes</button></li>
-            <li><button class="dropdown-item" id="cerrarSesion" type="button">Cerrar sesión</button></li>
+            <li>
+              <button class="dropdown-item" id="perfil" type="button">Ver perfil</button>
+            </li>
+            <li>
+              <button class="dropdown-item d-block d-md-none" id="configuracion" type="button">Ajustes</button>
+            </li>
+            <li>
+              <button class="dropdown-item" id="cerrarSesion" type="button">Cerrar sesión</button>
+            </li>
           </ul>
         </div>
       </div>
-
     </div>
-    <div class="contenedorPagina" >
-      
-      <div id="contenedorPagina">
+
+    <div class="pageContent">
+
+      <div id="pageContainer">
+
       </div>
+
       <div id="alertContainer" class="m-2">
+
       </div>
     </div>
   </div>
+
   <template id="alertTemplate">
     <div class="alert fade alert-dismissible fade show align-content-sm-between position-absolute w-100 mb-2" data-id="0" role="alert">
       <div class="d-flex">
@@ -129,10 +139,7 @@
     </div>
   </template>
 
-  <!-- JavaScript Bundle with Popper -->
-  <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/script.js"></script>
-  <script src="../js/ajustes.js"></script>
+  <?php include('./view/modules/footer.php'); ?>
 
 </body>
 

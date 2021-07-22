@@ -1,3 +1,4 @@
+console.log("hola")
 document.addEventListener("DOMContentLoaded", () => {
   activateMenuFunctions();
 
@@ -116,18 +117,7 @@ async function activateMenuFunctions() {
   })
 }
 
-async function showSection(file, title) {
-  const sectionTitle = document.getElementById("tituloSeccion");
-  const container = document.getElementById("contenedorPagina");
-  document.getElementById('alertContainer').innerHTML = "";
-  response = await fetch(file)
-  html = await response.text();
-  container.innerHTML = await html;
-  sectionTitle.innerHTML = await title;
-  await formularyChanges();
 
-  addAlert("error", "titulo");
-}
 
 //asigne ls  
 async function fillPatientTable(data) {
@@ -261,25 +251,7 @@ async function getListOptions(file) {
   return options;
 }
 
-async function setInformation(btn, data) {
 
-  let file = btn.dataset.file;
-  const response = await fetch("../php/" + file + ".php", {
-    method: "POST",
-    body: data
-  })
-  const text = await response.text();
-  console.log(text);
-
-}
-
-async function getInformation(file, data){
-  const response = await fetch("../php/" + file + ".php", {
-    method: "POST",
-    body: data
-  })
-  return await response.json();
-}
 
 async function showModalSaveChanges(modified) {
   console.log(modified);
@@ -365,29 +337,6 @@ async function fillSelects() {
 async function setDefaultButtonAction(btn){
   btn.innerHTML = 'Guardar';
   btn.dataset.file =  btn.dataset.file.replace("update", "set");
-}
-
-async function saveOrUpdateInformation(btn, form ,idName){
-  //Guarda Y/o actualiza la información de una sección en la que se agrega un nuevo valor en la bd
-  btn.addEventListener("click", (e) => {
-    console.log(form)
-    console.log(btn)
-    console.log(idName)
-    console.log(e.target.innerHTML)
-    
-    let formData = new FormData(form);
-    if (e.target.dataset.file.includes("update")) {
-      formData.append(idName, form.dataset.id)
-    }
-    console.log(formData)
-    setInformation(e.target, formData)
-    .then(() => {
-      if (e.innerHTML == "Guardar") {
-        e.innerHTML = "Guardar cambios"
-        e.dataset.file = e.dataset.file.replace("set", "update");
-      }
-    })
- })
 }
 
 // async function fillAntecedentsAcordion() {
