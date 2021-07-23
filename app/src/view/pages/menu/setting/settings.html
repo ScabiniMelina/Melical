@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+      <div class="row gutters-sm">
+        <div class="col-md-4 d-none d-md-block">
+          <div class="card">
+            <div class="card-body">
+              <nav class="nav flex-column nav-pills nav-gap-y-1">
+                <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>  <span>Configuración de la cuenta</span>
+                </a>
+                <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>  <span>Seguridad y ayuda  </span>
+                </a>
+                <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>  <span>Notificaciones  </span>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header border-bottom mb-3 d-flex d-md-none">
+              <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
+                <li class="nav-item">
+                  <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#account" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body tab-content">
+              <div class="tab-pane active" id="account">
+                <h6>CONFIGURACIÓN DE LA CUENTA</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Nombre de usuario" >
+                    <small id="usernameHelp" class="form-text text-muted"></small>
+                    
+                  </div>
+                  <div class="form-group pt-2">
+                    <label for="fullName">Nombre completo</label>
+                    <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Nombre de usuario">
+                  </div>
+                  <div class="form-group pt-2">
+                    <label for="bio">Info</label>
+                    <textarea class="form-control autosize" id="bio" placeholder="Información de doctor" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;"></textarea>
+                  </div>
+                  <div class="form-group pt-2">
+                    <label for="location">Lugar de trabajo</label>
+                    <input type="text" class="form-control" id="location" placeholder="Nombre de centro de salud">
+                  </div>
+                  <div class=" row">
+                    <div class="col pt-3">
+                      <button type="button" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-group">
+                    <label class="d-block text-danger">Borra tu cuenta</label>
+                    <p class="text-muted font-size-sm">Una vez que hayas eliminado tu cuenta, el resultado será permanente.</p>
+                  </div>
+                  <button class="btn btn-danger" type="button">Eliminar cuenta</button>
+                </form>
+              </div>
+              <div class="tab-pane" id="security">
+                <h6>CONFIGURACIÓN DE LA CUENTA</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block">Cambiar contraseña</label>
+                    <input type="text" class="form-control mt-1" placeholder="Nueva contraseña">
+                    <input type="text" class="form-control mt-1" placeholder="Confirmar la contraseña">
+                  </div>
+                   <div class=" row">
+                    <div class="col pt-3">
+                      <button type="button" class="btn btn-primary btn-sm">Confirmar cambio de contraseña</button>
+                    </div>
+                  </div>
+                </form>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block">Cambiar correo electrónico</label>
+                    <input type="text" class="form-control mt-1" placeholder="Nuevo correo electrónico">
+                    <input type="text" class="form-control mt-1" placeholder="Confirmar correo electrónico">
+                    <div class=" row">
+                      <div class="col pt-3">
+                        <button type="button" class="btn btn-primary btn-sm">Confirmar cambio de correo electrónico</button>
+                      </div>
+                  </div>
+                  </div>
+                </form>
+                <hr>
+                <form>
+                  <div class="form-group mb-0">
+                    <label class="d-block">Inicios de sesión</label>
+                    <p class="font-size-sm text-secondary">Esta es la lista de dispositivos que han iniciado sesión con tu cuenta. Elimina cualquier sesión que no reconozcas.</p>
+                    <ul class="list-group list-group-sm">
+                      <li class="list-group-item has-icon">
+                        <div>
+                          <h6 class="mb-0">Manuel Alberti 190.24.335.55</h6>
+                          <small class="text-muted">Sesión actual iniciada en Argentina</small>
+                        </div>
+                        <button class="btn btn-light btn-sm ml-auto" type="button">Ver más</button>
+                      </li>
+                    </ul>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane" id="notification">
+                <h6>CONFIGURACIÓN DE NOTIFICACIONES</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block mb-0">Alertas de seguridad</label>
+                    <div class="small text-muted mb-3">Recibe alertas de seguridad por correo electrónico</div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+                      <label class="custom-control-label" for="customCheck1">Alerta de vulnerabilidad de la cuenta</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
+                      <label class="custom-control-label" for="customCheck2">Inicio de sesión desde ubicación desconocida</label>
+                    </div>
+                  </div>
+                  <div class="form-group mb-0 pt-2">
+                    <label class="d-block pb-1">Notificaciones personalizadas</label>
+                    <ul class="list-group list-group-sm">
+                      <li class="list-group-item has-icon">
+                        Comentarios
+                          <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                          <label class="custom-control-label" for="customSwitch1"></label>
+                      </li>
+                      <li class="list-group-item has-icon">
+                        Actualizaciones              
+                          <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                          <label class="custom-control-label" for="customSwitch2"></label>
+
+                      </li>
+                      <li class="list-group-item has-icon">
+                        Recordatorios
+                        
+                          <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                          <label class="custom-control-label" for="customSwitch3"></label>
+                       
+                      </li>
+                      <li class="list-group-item has-icon">
+                        Cronograma
+                      
+                          <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                         <label class="custom-control-label" for="customSwitch4"></label>
+                      
+                      </li>
+                    </ul>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
+</script>
+</body>
+</html>

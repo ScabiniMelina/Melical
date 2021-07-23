@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+  <title>Melical</title>
+</head>
+<body>
+   <!-- Modal -->
+   <div class="modal fade" id="commentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nueva nota medica</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+       <div class="modal-body py-2">
+        
+        <form class="mb-3" id="commentForm">
+          <label for="message-text" class="col-form-label">Nota:</label>
+          <textarea class="form-control" name="comment" id="message-text"></textarea>
+        </form>
+       </div>
+       <div class="modal-footer py-1">
+         <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"  id="btn-cancelComment" >Cancelar</button>
+         <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+       </div>
+     </div>
+   </div>
+ </div>
+  <div class="container pagina">
+    <div class="tabs-fixed">
+      <div class="card">
+          <ul class="nav nav-pills nav-fill card-header-pills" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active btn-sm" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Info General</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-sm" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historia clinica</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-sm" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Antecedentes</button>
+            </li>
+          </ul>
+      </div>
+    </div>
+    
+    <div class="tab-content pb-2" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">  
+         <div class="card">
+           <form class="row g-3 card-body sectionFormulary" id="patientGeneralInformationFormulary" data-name="generalInformation" data-id="">
+             <div class="col-6">
+               <label class="form-label form-label-sm">Dni</label>
+               <input type="text" name="patientDni" class="form-control form-control-sm" >
+             </div>
+             <div class="col-6">
+              <label class="form-label form-label-sm">Cuil</label>
+              <input type="text" name="patientCuil" class="form-control form-control-sm" >
+             </div>
+             <div class="col-6">
+               <label  class="form-label form-label-sm">Nombre</label>
+               <input type="text" name="patientName" class="form-control form-control-sm" >
+             </div>
+             <div class="col-6">
+               <label class="form-label form-label-sm">Apellido</label>
+               <input type="text" name="patientSurname" class="form-control form-control-sm">
+             </div>
+             <div class="col-6">
+               <label class="form-label form-label-sm">Nacimiento</label>
+               <input type="date" name="patientDateBirth" class="form-control form-control-sm" >
+             </div>
+             
+             <div class="col-6">
+               <label class="form-label">Sexo</label>
+               <select  name="patientGender" class="form-select form-select-sm">
+                 <option value="vacio"></option>
+                 <option value="0">Femenino</option>
+                 <option value="1">Masculino</option>
+                 <option value="2">Otro</option>
+               </select>
+             </div>
+             <div class="col-6">
+               <label class="form-label">Teléfono</label>
+               <input type="text" name="patientPhone" class="form-control form-control-sm">
+             </div>
+ 
+             <div class="col-6">
+               <label class="form-label">Email</label>
+               <input type="text" name="patientEmail" class="form-control form-control-sm">
+             </div>
+             
+             <div class="col-6">
+               <label class="form-label">Dirección</label>
+               <input type="text" name="patientAddress" class="form-control form-control-sm" >
+             </div>
+             <div class="col-6">
+               <label  class="form-label form-label-sm">Nº</label>
+               <input type="number" name="patientAddressNumber" class="form-control form-control-sm" >
+             </div>
+             
+             <div class="col-6">
+              <label class="form-label form-label-sm">Localidad</label>
+              <select id="selectLocalidadPaciente"  name="patientLocation" class="form-select form-select-sm getSelectOption" data-file="getLocationList"  >
+              </select>
+            </div>
+             <div class="col-12">
+               <button  type="button" class="btn btn-primary sectionButton" id="patientGeneralInformationButton" data-file="updateGeneralInformationPatient">Guardar cambios</button>
+             </div>
+            </form>
+          </div>
+        </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <p>hola</p>
+      </div>
+      <div class="tab-pane fade " id="pills-contact"  data-name="antecedents" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="accordion" id="antecedentsAccordion">
+          <div class="accordion-item sectionFormulary" >
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Información básica
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <form class="row "  id="patientReligionBloodFormulary">
+                  <div class="col-6">
+                    <label  class="form-label">Sangre</label>
+                    <select class="form-select form-select-sm getSelectOption" name="patientBlood" data-file="getBloodTypeList"  >
+                     
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label  class="form-label form-label-sm">Religión</label>
+                    <select class="form-select form-select-sm getSelectOption" name="patientReligion" data-file="getReligionList" >
+                    </select>
+                  </div>
+                  <div class="col-12 pt-3">
+                   <button  type="button" class="btn btn-primary sectionButton"  id="patientReligionBloodButton"  data-file="updateBloodReligionPatient">Guardar cambios</button>
+                 </div>
+                  </div>
+                </form>
+                
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Patológicas
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-collapseTwo">
+              <div class="accordion-body">
+                <!-- <div class="row pb-2">
+                  <div class="col text-start">
+                    <p class="h6 fw-bold">Tabaquismo</p>
+                  </div>
+                  <div class="col align-self-end justify-content-end text-end pe-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label fw-bold" for="inlineRadio1">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label fw-bold" for="inlineRadio2">No</label>
+                    </div>
+                  </div>
+                  <div class="list-group comentarios pb-0 pt-1 mx-0 px-0">
+                    <a href="#" class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1 small">Pablo Suárez</h6>
+                        <small>14/4/2021 13:50</small>
+                      </div>
+                      <p class="mb-1 small text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+                    </a>
+                  </div>
+                  <div class="m-auto overflow-auto mt-3 mx-0 px-0">
+                    <button class="btn btn-primary btn-sm w-auto" type="button"  data-bs-toggle="modal"  data-bs-target="#commentModal">Agregar nota</button>
+                    <div class="collapse" id="collapseExample">
+                      <div class="list-group comentarios pb-0 pt-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 small">Pablo Suárez</h6>
+                            <small>14/4/2021 13:50</small>
+                          </div>
+                          <p class="mb-1 small text-muted" contenteditable="true" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+                        </a>
+                      </div>
+                      <div class="col-auto pt-3">
+                        <button  type="button" class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                No patológicas
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <template id="accordionItem">
+    <div class="accordion-item"> /*poner una key*/
+      <h2 class="accordion-header" id="panelsStayOpen-heading" > /*Concatenar al id number*/
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse" aria-expanded="false" aria-controls="panelsStayOpen-collapse"> /*concatenar al data-bs-target, aria-controls  un numero */
+          Patológicas /*querySelector(.accordion-button)*/
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapse" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading"> /*concatenar al ariaa-labelledbdy, id un numero*/
+        <div class="accordion-body">
+          
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="antecedentItem">
+    <div class="row pb-2" key=""> /
+      <div class="col text-start">
+        <p class="h6 fw-bold">Tabaquismo</p> 
+      </div>
+      <div class="col align-self-end justify-content-end text-end pe-0">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label fw-bold">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="si">
+            Sí
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label fw-bold"> 
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="no">
+            No
+          </label>
+        </div>
+      </div>
+      <div class="list-group comentarios pb-0 pt-1 mx-0 px-0">
+        <button class="btn btn-primary btn-sm w-auto" type="button"  data-bs-toggle="modal"  data-bs-target="#commentModal">Agregar nota</button>
+      </div>
+      
+    </div>
+  </template>
+
+  <template id="coment">
+    <a href="#" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h6 class="mb-1 small">Pablo Suárez</h6>
+        <small>14/4/2021 13:50</small>
+      </div>
+      <p class="mb-1 small text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+    </a>
+  </template>
+
+  <!-- <template id="addComent">
+    <div class="m-auto overflow-auto mt-3 mx-0 px-0">
+      <button class="btn btn-primary btn-sm w-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Agregar nota</button>
+      <div class="collapse" id="collapseExample">
+        <div class="list-group comentarios pb-0 pt-3">
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-1 small">Pablo Suárez</h6>
+              <small>14/4/2021 13:50</small>
+            </div>
+            <p class="mb-1 small text-muted" contenteditable="true" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+          </a>
+        </div>
+        <div class="col-auto pt-3">
+          <button  type="button" class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
+        </div>
+      </div>
+    </div> -->
+  </template>
+
+ 
+</body>
+</html>
