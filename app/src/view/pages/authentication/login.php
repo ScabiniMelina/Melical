@@ -2,8 +2,7 @@
 <html>
 
 <head>
-  <title></title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +12,9 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="../../styles/css/styles.css">
+
+  <!-- ICON -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -37,6 +39,7 @@
               <label for="inputDni4" class="form-label">CUIL</label>
               <input type="number" name="número de trámite" required class="form-control">
             </div>
+
             <div class="col-12">
               <label class="form-label">Contraseña</label>
               <div class="d-flex h-auto">
@@ -84,7 +87,7 @@
 
     </div>
   </div>
-  <script src="../js/registro.js"></script>
+  <script src="../../../controller/passwordButton.js"></script>
 
 </body>
 

@@ -2,7 +2,7 @@
 $msg = "";
 if (isset($_POST["boton"])) {
   $msg = "funciono";
-  include("connection.php");
+  include("./../connection.php");
   $dni = $_POST['dni'];
   $numTramite = $_POST['NumTramite'];
   $nombre = $_POST['nombre'];
@@ -120,7 +120,7 @@ echo `
 <html>
 
 <head>
-  <title></title>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -131,8 +131,8 @@ echo `
   <!-- CSS -->
   <link rel="stylesheet" href="../../styles/css/styles.css">
 
-  <!-- icons CDN Link -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- ICON -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -213,7 +213,7 @@ echo `
       320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
     </svg>
   </div>
-  <script src="../js/registro.js"></script>
+  <script src="../../../controller/passwordButton.js"></script>
 </body>
 
 </html>
