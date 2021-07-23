@@ -63,6 +63,7 @@
             </div>
         </div>
 
+        <!-- 
           <ol class="list-group col">
               <li class="list-group-item align-items-start d-flex ">
                   <div class="col">
@@ -81,6 +82,45 @@
                   </div>
               </li>
             </ol>
+       -->
+
+       <div class="overflow-auto mt-2 container-table-overflow">
+
+        <table class="table table-responsive table-hover m-auto caption-top text-center">
+  
+          <thead class="table-primary-color thead-fixed">
+            <tr>
+              <th>Sección</th>
+              <th>Piso</th>
+              <th>Estado</th>
+              <th>Dni</th>
+              <th>Apellido</th>
+            </tr>
+          </thead>
+
+          <tbody class="table-light loadTable" data-file="Rooms">
+  
+          </tbody>
+  
+        </table>
+      </div>
+      <div class="position-relative">
+        <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0" type="button" id="agregarPaciente"><i
+            class='bx bx-plus'></i></button>
+      </div>
+    </div>
+    <template id="tableRowTemplate">
+      <tr class="tableRow">
+        <td name="seccion"></td>
+        <td name="piso"></td>
+        <td name="estado"></td>
+        <td name="dni"></td>
+        <td name="apellido"></td>
+      </tr>
+    </template>
+   
+    <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
+
   </div>
 
 
