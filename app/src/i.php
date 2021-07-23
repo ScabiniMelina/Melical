@@ -1,5 +1,6 @@
 <?php
 if (!isset($_SESSION['user'])) {
+  //TODO: DES-COMENTAR CUANDO LA PAGINA FUNCIONE
   // header("location: ./view/pages/authentication/login.html");
 }
 ?>
@@ -10,8 +11,26 @@ if (!isset($_SESSION['user'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TODO: MEJORAR EL META DESCRIPTION CAMBIAR MANIFESET.JSON -->
+  <meta name="description" content="Bienvenid@s a Melical, una aplicación que te será util para hacer historias clínicas, realizar estadísticas en base a estas y hacer un control de los recursos disponibles.">
+  <!-- Color de la barra de redirección -->
+  <meta name="theme-color" content="#063f5a">
+  <!-- Le dice a los dispositivos móviles que se adapta para este tipo de pantallas -->
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- TODO: PONER EL ICONO DE LA APP -->
+  <link rel="shortcut icon" type="image/png" href="./view/assets/svg/1.svg">
+  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
+  <link rel="apple-touch-icon" href="./view/pages/entrance/brand.html">
+  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
+  <link rel="apple-touch-startup-image" href="./view/pages/entrance/brand.html">
+  <!-- Pantalla que carga antes de que lo haga la app -->
+  <link rel="manifest" href="./manifest.json">
 
   <?php include('./view/modules/header.php'); ?>
+  <title>Melical</title>
 
 </head>
 

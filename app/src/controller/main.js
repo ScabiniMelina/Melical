@@ -1,9 +1,11 @@
 import {loadSection,databaseOperation} from "./helpers/fetchRequest.js";
 import { activateMenuFunctions} from "./menu.js";
+import {activateServiceWorker} from "./sw.js"
 
 console.log("main");
 document.addEventListener("DOMContentLoaded", () => {
 
+  activateServiceWorker();
   activateMenuFunctions();
 
   //Recorro todo los items del menu y cuando le hago click a uno de ellos, hace la peticion del html correspondiente y ejecuta una función especifica de la sección.

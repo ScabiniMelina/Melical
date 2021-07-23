@@ -1,0 +1,12 @@
+{
+    "name": "Melical",
+    "short_name": "Melical",
+    "description": "Bienvenid @s a Melical, una aplicación que te será util para hacer historias clínicas, realizar estadísticas en base a estas y hacer un control de los recursos disponibles.",
+    "background_color": "#063f5a",
+    "theme_color": "#063f5a",
+    "orientation": "portrait",
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest",
+    "scope": "./",
+    "lang": "es-MX"
+}
