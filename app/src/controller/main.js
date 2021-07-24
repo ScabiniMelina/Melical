@@ -1,8 +1,9 @@
 import {loadSection,databaseOperation} from "./helpers/fetchRequest.js";
 import { activateMenuFunctions} from "./menu.js";
-import {activateServiceWorker} from "./sw.js"
+import {activateServiceWorker} from "./sw.js";
+import {fillTable,fillSelects} from "./helpers/fillTemplates.js";
 
-console.log("main");
+
 document.addEventListener("DOMContentLoaded", () => {
 
   activateServiceWorker();
@@ -16,13 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
       let sectionTitle =  e.currentTarget.dataset.title;
       let sectionFile =  e.currentTarget.dataset.file;
       loadSection(`./view/pages/menu/${sectionFile}.html`,sectionTitle)
-      .then(searchFunction(functionName,functionList))
+      .then(()=>{
+        loadTable()
+        fillSelects()
+      })
+      .then(()=>searchFunction(functionName,functionList))
     })
   })
   
+  //Cerrar sesión
   document.getElementById("btnLogout").addEventListener("click", () => fetch("../model/logout.php"))
-
-
 })
 
 //Función que busca en una lista de funciones la función a ejecutar
@@ -35,6 +39,18 @@ function searchFunction(functionName , functionList){
   }
 }
 
+//TODO: PONER EN  EL TBODY DE TODAS LAS TABLAS DE TODAS LAS SECCIONES  LA CLASE loadTable junto con el data-file correspondiente, CREAR EL ARCHIVO PHP QUE TRAE LA DATA
+//Carga los datos de una tabla que pertenece a una sección 
+async function loadTable(){
+  const tbody = document.querySelector(".loadTable")
+  if(tbody){
+    const file = tbody.dataset.file
+    const data = await databaseOperation("get",file)
+    await fillTable(data,tbody)
+  }
+}
+
+//Funciones que ejecuta cada sección cuando se carga 
 async function loadScheduleSection(){
   console.log("cronograma");
 }

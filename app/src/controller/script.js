@@ -74,39 +74,8 @@ async function loadPatientSearchButtons() {
 
 
 //asigne ls  
-async function fillPatientTable(data) {
-  console.log(data)
-  const container = document.getElementById("tablaPacientes");
-  container.innerHTML = "";
-  const tpl = document.getElementById("tableRowTemplate").content;
-  const fragment = document.createDocumentFragment();
-  data.forEach(patient => {
-    tpl.querySelector(".tableRow").dataset.id = patient.ID_DNI;
-    tpl.querySelector(".dni").textContent = patient.dni;
-    tpl.querySelector(".name").textContent = patient.name;
-    tpl.querySelector(".surname").textContent = patient.surname;
-    tpl.querySelector(".dateBirth").textContent = patient.date_birth;
-    const clone = tpl.cloneNode(true);
-    fragment.appendChild(clone);
-  })
-  container.appendChild(fragment);
-}
 
-async function fillPatientDataForm(data) {
-  let form  = document.getElementById("patientGeneralInformationFormulary")
-  form.dataset.id = data[0].ID_DNI;
-  form.querySelector('[name = "patientDni"]').value = data[0].dni
-  form.querySelector('[name = "patientName"]').value = data[0].name
-  form.querySelector('[name = "patientSurname"]').value = data[0].surname
-  form.querySelector('[name = "patientDateBirth"]').value = data[0].date_birth
-  form.querySelector('[name = "patientGender"]').value = (data[0].gender < 3) ? data[0].gender : "vacio";
-  form.querySelector('[name = "patientPhone"]').value = data[0].phone
-  form.querySelector('[name = "patientLocation"]').value = data[0].location
-  form.querySelector('[name = "patientAddress"]').value = data[0].address
-  form.querySelector('[name = "patientAddressNumber"]').value = data[0].address_number
-  form.querySelector('[name = "patientEmail"]').value = data[0].email
-  form.querySelector('[name = "patientCuil"]').value = data[0].cuil
-}
+
 
 async function activateFilterFunctions() {
   document.querySelectorAll('.nav-link-datalist').forEach(navElement => {
@@ -193,17 +162,7 @@ function createRowDatalist(navElement, container, data) {
   container.appendChild(fragment)
 }
 
-async function getListOptions(file) {
-  let options = "";
-  const response = await fetch("../php/" + file + ".php", {
-    method: "POST",
-  })
-  const json = await response.json();
-  await json.forEach((option) => {
-    options += '<option data-id="' + option[0] + '" value="' + option[0] + '">' + option[1] + '</option>'
-  })
-  return options;
-}
+
 
 
 
@@ -275,17 +234,6 @@ async function formularyChanges() {
   }
 }
 
-async function fillSelects() {
-  let selects = document.querySelectorAll(".getSelectOption")
-  selects.forEach(select => {
-    console.log(select.dataset)
-    getListOptions(select.dataset.file)
-      .then(options => {
-        console.log(options)
-        select.innerHTML = options
-      })
-  })
-}
 
 
 async function setDefaultButtonAction(btn){

@@ -59,17 +59,19 @@ export async function loadSection(file, title) {
   catch(error){
     console.log("error "+error);
   }
-  // //await formularyChanges();
+  //await formularyChanges();
 }
 
 //Sirve para obtener, insertar, actualizar o eliminar datos de la bd
 export async function databaseOperation(method,file,dataForm){
+  let config = {method: method}
+  if(typeof dataForm !== 'undefined'){
+    config = {method: method ,body: dataForm}
+  }
+  method = method.toLowerCase();
   try{
-    const response = await fetch("./model/"+method+"/" + file + ".php", {
-      method: method,
-      body: dataForm
-    })
-    return await response.json;
+    const response = await fetch("./model/"+method+"/"+method + file + ".php", config)
+    return await response.json();
   }catch(error){
     console.log("error "+error);
   }
