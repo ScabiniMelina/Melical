@@ -8,14 +8,13 @@
 
 <body>
     <div class="container pagina">
-        <div class="row ">
-
+        <form  enctype="multipart/form-data" method="get" class="row searchFormulary">
             <div class="col pe-0">
-                <input id="inputBuscar" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido" aria-label="Buscar paciente por DNI ..." aria-describedby="button-addon2">
+                <input name="id" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido">
             </div>
-
+            
             <div class=" col-auto ps-1" aria-label="Basic example">
-                <button class="btn btn-primary" id="btnBuscar" type="button"> 
+                <button class="btn btn-primary searchButton"  type="submit" data-file="PatientBySearch"> 
                     <i class='bx bx-search'></i>
                 </button>
                 <button type="button" id="btnFiltrar" class="btn btn-primary">
@@ -29,7 +28,7 @@
                 </button>
             </div>
 
-        </div>
+        </form>
     
         <div class="overflow-auto mt-2 container-table-overflow">
         
@@ -56,7 +55,7 @@
         </div>    
     </div>
     <template id="tableRowTemplate">
-        <tr class="tableRow">
+        <tr class="tableRow" data-file="patient/patient.html" data-title="Paciente">
             <td name="dni"></td>
             <td name="name"></td>
             <td name="surname"></td>

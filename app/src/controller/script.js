@@ -1,32 +1,8 @@
-console.log("hola")
-document.addEventListener("DOMContentLoaded", () => {
-  
-
-  document.getElementById("busquedaPacientes").addEventListener("click", () => {
-    showSection("busquedaPacientes.html", "Buscar pacientes")
-      .then(() => {
-        getInformation("getPatients")
-        .then(data => fillPatientTable(data))
-        .then(() => loadPatientSearchButtons())
-      })
-  })
-
-  
-
-})
-
 async function loadPatientSearchButtons() {
 
   document.getElementById("btnFiltrar").addEventListener("click", () => {
     showSection("filtros.php", "Filtrar")
-    .then(()=>activateFilterFunctions())
-  })
-
-  document.getElementById("btnBuscar").addEventListener("click", () => {
-    formData = new FormData();
-    formData.append('ID_DNI', document.getElementById("inputBuscar").value);
-    getInformation("getPatient", formData)
-    .then(data => fillPatientTable(data));
+      .then(() => activateFilterFunctions())
   })
 
   document.getElementById("btnBuscarPorHuella").addEventListener("click", () => {
@@ -40,13 +16,13 @@ async function loadPatientSearchButtons() {
   document.getElementById("agregarPaciente").addEventListener("click", () => {
     showSection("paciente.html", "Agregar paciente")
       .then(() => {
-        setDefaultButtonAction( document.getElementById("patientGeneralInformationButton"))
-        setDefaultButtonAction( document.getElementById("patientReligionBloodButton"))
+        setDefaultButtonAction(document.getElementById("patientGeneralInformationButton"))
+        setDefaultButtonAction(document.getElementById("patientReligionBloodButton"))
         fillSelects()
-        .then(() => {
-          saveOrUpdateInformation(document.getElementById("patientGeneralInformationButton"),  document.getElementById("patientGeneralInformationFormulary"),"patientIdDni")
-          saveOrUpdateInformation( document.getElementById("patientReligionBloodButton"),  document.getElementById("patientReligionBloodFormulary") ,"patientIdDni")
-        })
+          .then(() => {
+            saveOrUpdateInformation(document.getElementById("patientGeneralInformationButton"), document.getElementById("patientGeneralInformationFormulary"), "patientIdDni")
+            saveOrUpdateInformation(document.getElementById("patientReligionBloodButton"), document.getElementById("patientReligionBloodFormulary"), "patientIdDni")
+          })
       })
   })
 
@@ -57,15 +33,15 @@ async function loadPatientSearchButtons() {
       formData = new FormData();
       formData.append('ID_DNI', e.currentTarget.dataset.id);
       showSection("paciente.html", "Paciente")
-      .then(() => fillSelects())
-      .then(() => {
-        getInformation('getPatientInformation',formData)
-        .then(data => fillPatientDataForm(data))
+        .then(() => fillSelects())
         .then(() => {
-          saveOrUpdateInformation(document.getElementById("patientGeneralInformationButton"),  document.getElementById("patientGeneralInformationFormulary"),"patientIdDni")
-          saveOrUpdateInformation( document.getElementById("patientReligionBloodButton"),  document.getElementById("patientReligionBloodFormulary") ,"patientIdDni")
+          getInformation('getPatientInformation', formData)
+            .then(data => fillPatientDataForm(data))
+            .then(() => {
+              saveOrUpdateInformation(document.getElementById("patientGeneralInformationButton"), document.getElementById("patientGeneralInformationFormulary"), "patientIdDni")
+              saveOrUpdateInformation(document.getElementById("patientReligionBloodButton"), document.getElementById("patientReligionBloodFormulary"), "patientIdDni")
+            })
         })
-      })
     })
   })
 }
@@ -81,7 +57,7 @@ async function activateFilterFunctions() {
   document.querySelectorAll('.nav-link-datalist').forEach(navElement => {
     const container = document.querySelector(navElement.dataset.bsTarget); //Contenedor de las filasDatalist
     obtenerOpcionesDatalist(navElement.dataset.table, navElement.dataset.columna_id, navElement.dataset.columna_lista)
-    .then(opciones => createRowDatalist(navElement, container, opciones))
+      .then(opciones => createRowDatalist(navElement, container, opciones))
   })
 
   document.getElementById("obtenerBusquedaFiltrado").addEventListener("click", () => {
@@ -108,7 +84,7 @@ function createRowDatalist(navElement, container, data) {
   const badgeContainer = document.getElementById("contenedorFiltros");
   let idRow = 0;
   if (rowsNumber != 0) {
-    idRow = parseInt(container.querySelectorAll(".fila")[rowsNumber- 1].dataset.id) + 1;
+    idRow = parseInt(container.querySelectorAll(".fila")[rowsNumber - 1].dataset.id) + 1;
   }
   tpl.querySelector(".row").dataset.id = idRow;
   // poner opciones en el datalist
@@ -120,7 +96,7 @@ function createRowDatalist(navElement, container, data) {
 
   fragment.querySelector('.inputDatalist').addEventListener("change", (e) => {
     validSelection = false;
-    container.querySelectorAll('.fila[data-id="' + idRow + '"] option').forEach( option => { 
+    container.querySelectorAll('.fila[data-id="' + idRow + '"] option').forEach(option => {
       let badge = badgeContainer.querySelector('button[data-id="' + navElement.dataset.datalist + idRow + '"]');
       if (e.target.value == option.value) {
         if (badge) {
@@ -135,7 +111,7 @@ function createRowDatalist(navElement, container, data) {
         }
         validSelection = true;
       }
-      if ( badge && validSelection == false) {
+      if (badge && validSelection == false) {
         badgeContainer.removeChild(badge)
         console.log("invalida")
       }
@@ -215,7 +191,7 @@ async function formularyChanges() {
     })
     console.log(sectionFormulary)
     console.log(sectionFormulary.querySelector('.sectionButton'))
-    
+
     sectionFormulary.querySelector('.sectionButton').addEventListener("click", () => {
       modifiedSections[`${sectionFormulary.dataset.name}`] = false;
       getModified();
@@ -236,9 +212,9 @@ async function formularyChanges() {
 
 
 
-async function setDefaultButtonAction(btn){
+async function setDefaultButtonAction(btn) {
   btn.innerHTML = 'Guardar';
-  btn.dataset.file =  btn.dataset.file.replace("update", "set");
+  btn.dataset.file = btn.dataset.file.replace("update", "set");
 }
 
 // async function fillAntecedentsAcordion() {
@@ -257,7 +233,7 @@ async function setDefaultButtonAction(btn){
 //       templateAccordionItem.querySelector("button").setAttribute("aria-controls", "#panelsStayOpen-collapse" + antecedentType.;
 //       templateAccordionItem.querySelector("accordion-collapse").id = "panelsStayOpen-collapse" + antecedentType.;
 //       templateAccordionItem.querySelector("accordion-collapse").setAttribute("aria-labelledby", "panelsStayOpen-heading" + antecedentType.;
-      
+
 //       dataAntecedentsubtypeList = {"idAntecedentType": ''};
 //       fetch("../php/getAntecedentSubtypeList.php", {
 //         method: "POST",
@@ -272,7 +248,7 @@ async function setDefaultButtonAction(btn){
 //           templateAntecedentItem.querySelector('.row').setAttribute("key", antecedentTypeItem.) 
 //         })
 //         const clonAntecedentItem = templateAntecedentItem.cloneNode(true);
-          
+
 //         dataCommentList = {"idAntecedentType": ''};
 //         fetch("../php/getAntecedentSubtypeList.php", {
 //           method: "POST",
@@ -297,44 +273,56 @@ async function setDefaultButtonAction(btn){
 //       })
 
 //     }) 
-      
+
 //       const clon = templateAccordionItem.cloneNode(true);
 //       fragmentAccordionItem.appendChild(clon); 
 //       tablaPacientes.appendChild(fragmentAccordionItem);
 //     })
 //   }
 
-  // const tpl = document.querySelector("#tpl-equipos-row")
-  // const clon = tpl.content.cloneNode(true)
+// const tpl = document.querySelector("#tpl-equipos-row")
+// const clon = tpl.content.cloneNode(true)
 
-  // document.getElementById('btn-saveCommet').addEventListener("click",()=>{
-  //   let commentForm = document.getElementById('commentForm');
-  //   let formData = new FormData(commentForm);
-  //   fetch("../php/getAntecedentsList.php",{
-  //     method: "POST",
-  //     body: formData
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => console.log())
-  // })
+// document.getElementById('btn-saveCommet').addEventListener("click",()=>{
+//   let commentForm = document.getElementById('commentForm');
+//   let formData = new FormData(commentForm);
+//   fetch("../php/getAntecedentsList.php",{
+//     method: "POST",
+//     body: formData
+//   })
+//   .then(response => response.json())
+//   .then(data => console.log())
+// })
 
-async function addAlert(type, msg){
+async function addAlert(type, msg) {
   container = document.getElementById('alertContainer')
-  alertTypes ={'success':{'icon':'bxs-check-circle','color':'alert-success'}, 'info' : {'icon':'bxs-info-circle','color':'alert-primary'}, 'error' :{'icon':'bxs-error','color':'alert-danger'}};
+  alertTypes = {
+    'success': {
+      'icon': 'bxs-check-circle',
+      'color': 'alert-success'
+    },
+    'info': {
+      'icon': 'bxs-info-circle',
+      'color': 'alert-primary'
+    },
+    'error': {
+      'icon': 'bxs-error',
+      'color': 'alert-danger'
+    }
+  };
   const tpl = document.getElementById("alertTemplate").content;
   console.log(tpl.querySelector('.alert').dataset.id);
   let alertId = parseInt(tpl.querySelector('.alert').dataset.id) + 1;
   tpl.querySelector('.alert').classList.add(alertTypes[type]['color'])
-  tpl.querySelector('.alert').dataset.id = alertId ;
+  tpl.querySelector('.alert').dataset.id = alertId;
   tpl.querySelector('i').classList.add(alertTypes[type]['icon'])
   tpl.querySelector('span').textContent = msg
   const clone = tpl.cloneNode(true)
   container.appendChild(clone);
-  setTimeout(()=>{
-    let  alert = container.querySelector('.alert[data-id="' + alertId + '"] ');
-    if(alert){
+  setTimeout(() => {
+    let alert = container.querySelector('.alert[data-id="' + alertId + '"] ');
+    if (alert) {
       container.removeChild(alert);
     }
-  },2500)
+  }, 2500)
 }
-  
