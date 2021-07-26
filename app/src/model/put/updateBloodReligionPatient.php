@@ -1,5 +1,5 @@
 <?php
-  include("connection.php");
+  include("./../connection.php");
   $idDni = $_POST['patientIdDni']; 
   $religion = $_POST['patientReligion'];
   $blood= $_POST['$patientBlood'];
@@ -12,4 +12,3 @@
   $id_dni = mysqli_insert_id($connection);
   echo $id_dni;
   $connection->close();
-?>

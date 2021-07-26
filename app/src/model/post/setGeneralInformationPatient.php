@@ -1,5 +1,5 @@
 <?php
-  include("connection.php");
+  include("./../connection.php");
   $cuil = $_POST['patientCuil'];
   $dni = $_POST['patientDni']; 
   $name = $_POST['patientName'];
@@ -28,4 +28,3 @@
 
   json_encode($json);
   $connection->close();
-?>

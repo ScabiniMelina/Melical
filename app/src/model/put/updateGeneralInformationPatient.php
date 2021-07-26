@@ -1,5 +1,5 @@
 <?php
-  include("connection.php");
+  include("./../connection.php");
   $cuil = $_POST['patientCuil'];
   $dni = $_POST['patientDni']; 
   $name = $_POST['patientName'];
@@ -19,4 +19,3 @@
     echo "Error: " . $sql . "<br>" . mysqli_error($connection);
   }
   $connection->close();
-?>

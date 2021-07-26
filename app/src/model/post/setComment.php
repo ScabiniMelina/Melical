@@ -1,5 +1,5 @@
 <?php
-  include("connection.php");
+  include("./../connection.php");
   $comment = $_POST['comment']; 
   if(isset($_POST['permission'])){
     $permission = $_POST['permission'];    
@@ -16,4 +16,3 @@
     echo "Error: " . $sql . "<br>" . mysqli_error($connection);
   }
   $connection->close();
-?>

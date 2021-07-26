@@ -1,5 +1,5 @@
 <?php
-  include("connection.php");
+  include("./../connection.php");
   $antecedents = $_POST['antecedent']; 
   if(!empty($antecedents)){
     $antecedents = explode(",",$antecedents);
@@ -18,4 +18,3 @@
   }
   
   $connection->close();
-?>
