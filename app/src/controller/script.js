@@ -176,40 +176,6 @@ async function showModalSaveChanges(modified) {
 
 }
 
-async function formularyChanges() {
-  let modifiedSections = new Array();
-  let modified = false;
-  document.querySelectorAll(".sectionFormulary").forEach(sectionFormulary => {
-    console.log(modified)
-    sectionFormulary.querySelectorAll('select, input').forEach(element => {
-      element.addEventListener('change', () => {
-        modifiedSections[`${sectionFormulary.dataset.name}`] = true;
-        showModalSaveChanges(getModified())
-        console.log(modifiedSections);
-        console.log(modified)
-      })
-    })
-    console.log(sectionFormulary)
-    console.log(sectionFormulary.querySelector('.sectionButton'))
-
-    sectionFormulary.querySelector('.sectionButton').addEventListener("click", () => {
-      modifiedSections[`${sectionFormulary.dataset.name}`] = false;
-      getModified();
-    })
-  })
-
-  function getModified() {
-    modified = false;
-    for (const modifiedSection in modifiedSections) {
-      if (modifiedSections[modifiedSection] == true) {
-        modified = true;
-        console.log("modified " + modified);
-      }
-    }
-    return modified;
-  }
-}
-
 
 
 async function setDefaultButtonAction(btn) {

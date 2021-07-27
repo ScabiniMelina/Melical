@@ -42,3 +42,29 @@
 
 
 
+
+
+
+
+
+
+// let functionList = [loadProfileSection];
+
+// let functionName = element.dataset.callback
+// .then(()=>searchFunction(functionName,functionList))
+
+// async function loadProfileSection(){
+//   console.log("Profile");
+// }
+
+
+
+//Función que busca en una lista de funciones la función a ejecutar
+function searchFunction(functionName, functionList) {
+  for (let functionItem of functionList) {
+    if (functionItem.name == functionName) {
+      functionItem();
+      break;
+    }
+  }
+}

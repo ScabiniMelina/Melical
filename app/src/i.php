@@ -135,7 +135,7 @@ if (!isset($_SESSION['user'])) {
               <button class="dropdown-item d-block d-md-none" type="button">Ajustes</button>
             </li>
             <li>
-              <button class="dropdown-item link_nav" id="btnLogout" data-file="logout.php" type="button">Cerrar sesión</button>
+              <button class="dropdown-item" id="btnLogout" type="button">Cerrar sesión</button>
             </li>
           </ul>
         </div>

@@ -58,7 +58,7 @@ export async function fillForm(searchId) {
             const file = formularies[0].dataset.file;
             const dataForm = new FormData();
             dataForm.append("id", searchId);
-            databaseOperation("get", file, dataForm)
+            const data = await databaseOperation("get", file, dataForm)
             formularies.forEach(form => {
                 inputs = form.querySelectorAll("input , select");
                 inputs.forEach(input => {
