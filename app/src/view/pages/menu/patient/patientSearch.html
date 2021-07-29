@@ -13,17 +13,17 @@
                 <input name="id" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido">
             </div>
             
-            <div class=" col-auto ps-1" aria-label="Basic example">
-                <button class="btn btn-primary searchButton"  type="submit" data-file="PatientBySearch"> 
+            <div class=" col-auto ps-1">
+                <button class="btn btn-primary"  type="submit" data-file="PatientBySearch"> 
                     <i class='bx bx-search'></i>
                 </button>
-                <button type="button" id="btnFiltrar" class="btn btn-primary">
+                <button type="button" data-title="Filtrar" data-file="patient/patientSearchFilter.php" class="btn btn-primary changeSectionButton">
                     <i class='bx bx-slider-alt'></i>
                 </button>
-                <button type="button" id="btnBuscarPorHuella" class="btn btn-primary">
+                <button type="button" data-title="Buscar por huella" data-file="patient/patientSearchByFingerprint.html" class="btn btn-primary changeSectionButton">
                     <i class='bx bx-scan'></i>
                 </button>
-                <button type="button" id="btnBuscarPorRostro" class="btn btn-primary">
+                <button type="button" data-title="Buscar por rostro" data-file="patient/patientSearchByFace.html" class="btn btn-primary changeSectionButton">
                     <i class='bx bxs-face'></i>
                 </button>
             </div>
@@ -51,7 +51,7 @@
             </table>
         </div>
         <div class="position-relative">
-            <button  class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 addButton" data-title="Paciente" data-file="patient/patient.html" type="button" id="agregarPaciente"><i class='bx bx-plus'></i></button>
+            <button  class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton" data-title="Paciente" data-file="patient/patient.html" type="button" id="agregarPaciente"><i class='bx bx-plus'></i></button>
         </div>    
     </div>
     <template id="tableRowTemplate">

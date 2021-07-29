@@ -61,28 +61,28 @@
           <form class="row g-3 card-body fillForm" data-file="PatientInformation" data-id="">
             <div class="col-6">
               <label class="form-label form-label-sm">Dni</label>
-              <input type="text" name="patientDni" class="form-control form-control-sm">
+              <input type="text" name="dni" class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Cuil</label>
-              <input type="text" name="patientCuil" class="form-control form-control-sm">
+              <input type="text" name="tramitNumber" class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Nombre</label>
-              <input type="text" name="patientName" class="form-control form-control-sm">
+              <input type="text" name="name" class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Apellido</label>
-              <input type="text" name="patientSurname" class="form-control form-control-sm">
+              <input type="text" name="surname" class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Nacimiento</label>
-              <input type="date" name="patientDateBirth" class="form-control form-control-sm">
+              <input type="date" name="dateBirth" class="form-control form-control-sm">
             </div>
 
             <div class="col-6">
               <label class="form-label">Sexo</label>
-              <select name="patientGender" class="form-select form-select-sm">
+              <select name="gender" class="form-select form-select-sm">
                 <option value="vacio"></option>
                 <option value="0">Femenino</option>
                 <option value="1">Masculino</option>
@@ -91,27 +91,27 @@
             </div>
             <div class="col-6">
               <label class="form-label">Teléfono</label>
-              <input type="text" name="patientPhone" class="form-control form-control-sm">
+              <input type="text" name="phone" class="form-control form-control-sm">
             </div>
 
             <div class="col-6">
               <label class="form-label">Email</label>
-              <input type="text" name="patientEmail" class="form-control form-control-sm">
+              <input type="text" name="email" class="form-control form-control-sm">
             </div>
 
             <div class="col-6">
               <label class="form-label">Dirección</label>
-              <input type="text" name="patientAddress" class="form-control form-control-sm">
+              <input type="text" name="address" class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Nº</label>
-              <input type="number" name="patientAddressNumber" class="form-control form-control-sm">
+              <input type="number" name="addressNumber" class="form-control form-control-sm">
             </div>
 
             <div class="col-6">
               <label class="form-label form-label-sm">Localidad</label>
-              <select id="selectLocalidadPaciente" name="patientLocation"
-                class="form-select form-select-sm getSelectOption" data-file="getLocationList">
+              <select id="selectLocalidadPaciente" name="location"
+                class="form-select form-select-sm getSelectOption" data-file="LocationList">
               </select>
             </div>
             <div class="col-12">
@@ -141,15 +141,15 @@
                 <form class="row fillForm" >
                   <div class="col-6">
                     <label class="form-label">Sangre</label>
-                    <select class="form-select form-select-sm getSelectOption" name="patientBlood"
-                      data-file="getBloodTypeList">
+                    <select class="form-select form-select-sm getSelectOption" name="blood"
+                      data-file="BloodTypeList">
 
                     </select>
                   </div>
                   <div class="col-6">
                     <label class="form-label form-label-sm">Religión</label>
-                    <select class="form-select form-select-sm getSelectOption" name="patientReligion"
-                      data-file="getReligionList">
+                    <select class="form-select form-select-sm getSelectOption" name="religion"
+                      data-file="ReligionList">
                     </select>
                   </div>
                   <div class="col-12 pt-3">

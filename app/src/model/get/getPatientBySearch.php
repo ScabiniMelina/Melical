@@ -10,5 +10,6 @@ if (is_numeric($id)) {
 }
 $query = $connection->query($sql);
 $data = $query->fetch_all(MYSQLI_ASSOC);
-echo json_encode($data);
+$msg = ['type' => 'error', 'text' => 'Mensaje de prueba'];
+sendQueryMsgId($data, $msg, null);
 $connection->close();

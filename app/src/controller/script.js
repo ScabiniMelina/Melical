@@ -178,10 +178,7 @@ async function showModalSaveChanges(modified) {
 
 
 
-async function setDefaultButtonAction(btn) {
-  btn.innerHTML = 'Guardar';
-  btn.dataset.file = btn.dataset.file.replace("update", "set");
-}
+
 
 // async function fillAntecedentsAcordion() {
 //   fetch("../php/getAntecedentsList.php")
@@ -259,36 +256,3 @@ async function setDefaultButtonAction(btn) {
 //   .then(response => response.json())
 //   .then(data => console.log())
 // })
-
-async function addAlert(type, msg) {
-  container = document.getElementById('alertContainer')
-  alertTypes = {
-    'success': {
-      'icon': 'bxs-check-circle',
-      'color': 'alert-success'
-    },
-    'info': {
-      'icon': 'bxs-info-circle',
-      'color': 'alert-primary'
-    },
-    'error': {
-      'icon': 'bxs-error',
-      'color': 'alert-danger'
-    }
-  };
-  const tpl = document.getElementById("alertTemplate").content;
-  console.log(tpl.querySelector('.alert').dataset.id);
-  let alertId = parseInt(tpl.querySelector('.alert').dataset.id) + 1;
-  tpl.querySelector('.alert').classList.add(alertTypes[type]['color'])
-  tpl.querySelector('.alert').dataset.id = alertId;
-  tpl.querySelector('i').classList.add(alertTypes[type]['icon'])
-  tpl.querySelector('span').textContent = msg
-  const clone = tpl.cloneNode(true)
-  container.appendChild(clone);
-  setTimeout(() => {
-    let alert = container.querySelector('.alert[data-id="' + alertId + '"] ');
-    if (alert) {
-      container.removeChild(alert);
-    }
-  }, 2500)
-}

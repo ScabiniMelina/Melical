@@ -2,6 +2,43 @@ import {
     databaseOperation
 } from "./fetchRequest.js";
 
+async function addAlert(msg) {
+    const type = msg['type'];
+    const text = msg['text'];
+    const container = document.getElementById('alertContainer');
+    const alertTypes = {
+        'success': {
+            'icon': 'bxs-check-circle',
+            'color': 'alert-success'
+        },
+        'info': {
+            'icon': 'bxs-info-circle',
+            'color': 'alert-primary'
+        },
+        'error': {
+            'icon': 'bxs-error',
+            'color': 'alert-danger'
+        }
+    };
+    const tpl = document.getElementById("alertTemplate").content;
+    console.log(tpl);
+    let clone = tpl.cloneNode(true);
+    console.log(clone);
+    let alertId = parseInt(tpl.querySelector('.alert').dataset.id) + 1;
+    tpl.querySelector('.alert').dataset.id = alertId;
+    clone.querySelector('.alert').classList.add(alertTypes[type]['color'])
+    clone.querySelector('i').classList.add(alertTypes[type]['icon'])
+    clone.querySelector('span').textContent = text
+    container.appendChild(clone);
+    setTimeout(() => {
+        const alertNode = container.querySelector('.alert[data-id="' + alertId + '"] ');
+        if (alertNode) {
+            const alert = new bootstrap.Alert(alertNode)
+            alert.close()
+        }
+    }, 2500)
+}
+
 
 //Esta función llena una tabla con los datos obtenidos de la bd
 //TODO PONER EN CADA TABLA DE LAS DISTINTAS SECCIONES LO SIGUIENTE: en el html que contiene la tabla hay que poner como id del template tableRowTemplate, el tr tiene que tener la clase tableRow y cada td(celda) tiene que tener un name que indique cual es la columna del registro que se tiene que insertar en ella EJEMPLO en patientSearch.html, getPatientBySearch.php. 
@@ -13,36 +50,40 @@ export async function fillTable(data, container) {
         container.innerHTML = "";
         const tpl = document.getElementById("tableRowTemplate").content;
         const fragment = document.createDocumentFragment();
-        data.forEach(element => {
-            tpl.querySelector(".tableRow").dataset.id = element.ID;
+        const databaseInformation = Object.entries(data.db);
+        for (const [key, data] of databaseInformation) {
+            tpl.querySelector(".tableRow").dataset.id = data.ID;
             tpl.querySelectorAll("td").forEach(cell => {
                 let columnTable = cell.getAttribute("name");
-                cell.textContent = element[columnTable];
+                cell.textContent = data[columnTable];
             })
             const clone = tpl.cloneNode(true);
             fragment.appendChild(clone);
-        })
+        }
         container.appendChild(fragment);
+        addAlert(data['msg']);
     } catch (error) {
         console.log("error " + error);
     }
 }
 
-//TODO: PONERLE A TODOS LOS SELECTS DE TODAS LAS DISTINTAS SECIONES  LA CLASE getSelectOption y el data-file correspondiente al php que trae los datos, sino existe ese archivo hay que crearlo,y en la sentencia sql del php se tiene que pedir como primer columna el id de la tabla y como segunda el nombre de la  opcion. EJEMPLO en resourceSearch.html
+//TODO: PONERLE A TODOS LOS SELECTS DE TODAS LAS DISTINTAS SECIONES  LA CLASE getSelectOption y un data-default="Todos", si ves que lo necesita,también el data-file correspondiente al php que trae los datos, sino existe ese archivo hay que crearlo,y en la sentencia sql del php se tiene que pedir como primer columna el id de la tabla y como segunda el nombre de la  opcion. EJEMPLO en resourceSearch.html
 //Rellena las opciones de todos los selects de una sección 
 export async function fillSelects() {
     try {
         const selects = document.querySelectorAll(".getSelectOption");
         selects.forEach(select => {
-            let options = "";
             const file = select.dataset.file;
-            databaseOperation("get", file)
-                .then((data) => {
-                    data.forEach(option => {
-                        options += '<option data-id="' + option[0] + '" value="' + option[0] + '">' + option[1] + '</option>';
-                    })
-                    select.innerHTML = options;
+            let defaultOption = (select.dataset.default === undefined) ? " " : select.dataset.default;
+            let options = "";
+            options += '<option data-id="default" value="default">' + defaultOption + '</option>';
+            databaseOperation("get", file).then((data) => {
+                data.forEach(option => {
+                    options += '<option data-id="' + option[0] + '" value="' + option[0] + '">' + option[1] + '</option>';
                 })
+                select.innerHTML = options;
+                select.options[0].selected = true;
+            })
         })
     } catch (error) {
         console.log("error " + error);
@@ -54,40 +95,32 @@ export async function fillSelects() {
 export async function fillForm(searchId) {
     try {
         const formularies = document.querySelectorAll(".fillForm");
-        if (formularies[0]) {
-            const file = formularies[0].dataset.file;
-            const dataForm = new FormData();
-            dataForm.append("id", searchId);
-            const data = await databaseOperation("get", file, dataForm)
-            formularies.forEach(form => {
-                inputs = form.querySelectorAll("input , select");
+        const dataForm = new FormData();
+        dataForm.append("id", searchId);
+        formularies.forEach(form => {
+            const file = form.dataset.file;
+            form.dataset.id = searchId;
+            if (typeof file === "undefined") {
+                throw ("No hay archivo para buscar la data");
+            }
+            databaseOperation("get", file, dataForm).then((data) => {
+                const inputs = form.querySelectorAll("input");
+                const selects = form.querySelectorAll("select");
                 inputs.forEach(input => {
-                    let columnTable = input.getAttribute("name");
-                    input.value = data[0][columnTable];
+                    const columnTable = input.getAttribute("name");
+                    input.value = data['db'][0][columnTable];
+                })
+                selects.forEach(select => {
+                    const columnTable = select.getAttribute("name");
+                    const selectedOption = data['db'][0][columnTable];
+                    select.options[selectedOption].selected = true;
                 })
             })
-        }
+        })
     } catch (error) {
         console.log("error " + error);
     }
-
 }
-
-// async function fillPatientDataForm(data) {
-//   let form  = document.getElementById("patientGeneralInformationFormulary")
-//   form.dataset.id = data[0].ID_DNI;
-//   form.querySelector('[name = "patientDni"]').value = data[0].dni
-//   form.querySelector('[name = "patientName"]').value = data[0].name
-//   form.querySelector('[name = "patientSurname"]').value = data[0].surname
-//   form.querySelector('[name = "patientDateBirth"]').value = data[0].date_birth
-//   form.querySelector('[name = "patientGender"]').value = (data[0].gender < 3) ? data[0].gender : "vacio";
-//   form.querySelector('[name = "patientPhone"]').value = data[0].phone
-//   form.querySelector('[name = "patientLocation"]').value = data[0].location
-//   form.querySelector('[name = "patientAddress"]').value = data[0].address
-//   form.querySelector('[name = "patientAddressNumber"]').value = data[0].address_number
-//   form.querySelector('[name = "patientEmail"]').value = data[0].email
-//   form.querySelector('[name = "patientCuil"]').value = data[0].cuil
-// }
 
 //Guarda Y/o actualiza la información de una sección en la que se agrega un nuevo valor en la bd
 // async function saveOrUpdateInformation(btn, form, idName) {

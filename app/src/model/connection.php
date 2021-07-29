@@ -12,10 +12,16 @@ $connection = new mysqli($hostName, $user, $pass, $db);
 if ($connection->connect_errno) {
     echo "Error al conectarse a la base de datos";
 }
-// Devuelve un la información obtenida de la base de datos en formato js 
-// function getJsonFromDatabase($sql, $connection)
-// {
-//     $query = $connection->query($sql);
-//     $data = $query->fetch_all(MYSQLI_ASSOC);
-//     echo json_encode($data);
-// }
+
+function sendQueryMsgId($databaseInformation, $msg, $newElementID){
+    if (isset($databaseInformation)) {
+        $elementsToSend = ['db' => $databaseInformation];
+    }
+    if (isset($msg)) {
+        $elementsToSend += ['msg' => $msg];
+    }
+    if (isset($newElementID)) {
+        $elementsToSend += ['id' => $newElementID];
+    }
+    echo json_encode($elementsToSend, JSON_FORCE_OBJECT);
+}

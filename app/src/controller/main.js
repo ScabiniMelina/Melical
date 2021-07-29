@@ -1,9 +1,4 @@
 import {
-  loadSection,
-  databaseOperation
-} from "./helpers/fetchRequest.js";
-
-import {
   activateMenuFunctions
 } from "./menu.js";
 
@@ -12,10 +7,9 @@ import {
 } from "./sw.js";
 
 import {
-  fillTable,
-  fillSelects,
-  fillForm,
-} from "./helpers/fillTemplates.js";
+  changeSection,
+  searchTableInformation,
+} from "./helpers/interfaceChanges.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   activateServiceWorker();
@@ -23,25 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", (e) => {
 
-    //Botón link del menu: funciona
+    //Botón items del menu 
     if (e.target.matches(".link_nav , .link_nav *")) {
-      console.log("menu")
       changeSection(e.target.closest(".link_nav"))
     }
 
-    //Fila de las tablas
+    //Filas de las tablas
     if (e.target.matches(".tableRow , .tableRow *")) {
-      console.log("fila")
       changeSection(e.target.closest(".tableRow"));
     }
 
-    /*Botón agregar elemento en sección*/
-    if (e.target.matches(".addButton , .addButton *")) {
+    //Botón cambiar de seccion(btn más, btn filtros, btn reconocimiento facial y dactilar)
+    if (e.target.matches(".changeSectionButton , .changeSectionButton *")) {
       console.log("agregar")
-      changeSection(e.target.closest(".addButton"));
+      changeSection(e.target.closest(".changeSectionButton"));
     }
-
-
 
     //Botón Cerrar sesión
     if (e.target.matches("#btnLogout, #btnLogout *")) {
@@ -51,70 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   document.addEventListener("keydown", (e) => {
+
     //Cambios en los inputs
     console.log("key")
+
   })
 
   document.addEventListener("submit", (e) => {
+
+    //Botón buscar de la sección principal donde hay tablas 
     if (e.target.matches(".searchFormulary")) {
       searchTableInformation(e);
     }
+
   })
 
 });
 
-//TODO: PONER EN  EL TBODY DE TODAS LAS TABLAS DE TODAS LAS SECCIONES  LA CLASE loadTable junto con el data-file correspondiente, CREAR EL ARCHIVO PHP QUE TRAE LA DATA
-//Carga los datos de una tabla que pertenece a una sección
-async function loadTable() {
-  try {
-    const tbody = document.querySelector(".loadTable");
-    if (tbody) {
-      const file = tbody.dataset.file;
-      const data = await databaseOperation("get", file);
-      await fillTable(data, tbody);
-    }
-  } catch (error) {
-    console.log("error " + error);
-  }
-}
-
-//TODO: HACER QUE FUNCIONEN TODOS LOS BOTONES DE BUSQUEDA DE TODAS LAS SECCIONES QUE TENGAN UNA TABLA, HACIENDO LO SIGUIENTE:
-//los datos a recolectar para la búsqueda tienen que estar en un formulario que tengan la clase searchFormulary y el botón de búsqueda tiene que tener un data-file que trae la info correspondiente del .php,este botón también tiene que tener la clase .searchButton, también hay que crear el archivo php que trae la info de la base de datos  uno por cada sección
-async function searchTableInformation(e) {
-  try {
-    e.preventDefault();
-    const searchFormulary = e.target;
-    const tbody = document.querySelector(".loadTable");
-    const searchButton = e.submitter;
-    const file = searchButton.dataset.file;
-    const dataForm = new FormData(searchFormulary);
-    console.log(dataForm.get("id"));
-    databaseOperation("get", file, dataForm).then((data) =>
-      fillTable(data, tbody)
-    );
-  } catch (error) {
-    console.log("error " + error);
-  }
-}
 
 
-//Se cambia la interfaz poniendo la sección que corresponde y cambiando el titulo, se llenan todos los selects con opciones, se cargan las tablas y se activa la busqueda dentro de la tabla
-//TODO: DETECTA CLICK EN LOS BOTONES DE MENU,LAS FILAS DE LAS TABLAS,Y LOS OTROS BOTONES
-async function changeSection(element) {
-  console.log("xhangeSection")
-  let path = "./view/pages/menu/";
-  let sectionTitle = element.dataset.title;
-  let sectionFile = element.dataset.file;
-  let searchId = element.dataset.id;
-  loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
-    loadTable();
-    // activateSearchButton();
-    fillSelects();
-    if (searchId) {
-      fillForm(searchId);
-    }
-  })
-}
 
 async function fillMainSection() {
   loadTable();
@@ -125,7 +70,6 @@ async function fillSecondarySection(searId) {
   fillSelects();
   fillForm(searchId);
 }
-
 
 async function formularyChanges() {
   let modifiedSections = new Array();

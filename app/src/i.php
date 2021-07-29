@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['user'])) {
   //TODO: DES-COMENTAR CUANDO LA PAGINA FUNCIONE
-  // header("location: ./view/pages/authentication/login.html");
+  // header("location: ./view/pages/authentication/login.php");
 }
 ?>
 
@@ -128,7 +128,7 @@ if (!isset($_SESSION['user'])) {
           <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li class="link_nav" data-callback="loadProfileSection" data-file="setting/profile.html" data-title="Perfil">
+            <li class="changeSectionButton" data-callback="loadProfileSection" data-file="setting/profile.html" data-title="Perfil">
               <button class="dropdown-item" type="button">Ver perfil</button>
             </li>
             <li class="link_nav" data-callback="loadSettingsSection" data-file="setting/settings.html" data-title="Ajustes">
