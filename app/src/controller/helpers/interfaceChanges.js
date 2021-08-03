@@ -5,7 +5,8 @@ import {
 import {
     fillSelects,
     fillForm,
-    fillTable
+    fillTable,
+    addAlert
 } from "./fillTemplates.js";
 
 /*
@@ -39,7 +40,7 @@ export async function changeSection(element) {
     let sectionTitle = element.dataset.title;
     let sectionFile = element.dataset.file;
     let searchId = element.dataset.id;
-    loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
+    await loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
         loadTable();
         fillSelects();
         if (searchId) {
@@ -72,10 +73,9 @@ async function loadTable() {
 
 
 //TODO: HACER QUE FUNCIONEN TODOS LOS BOTONES DE BUSQUEDA DE TODAS LAS SECCIONES QUE TENGAN UNA TABLA, HACIENDO LO SIGUIENTE:
-//los datos a recolectar para la búsqueda tienen que estar en un formulario que tengan la clase searchFormulary y el botón de búsqueda tiene que tener un data-file que trae la info correspondiente del .php,este botón también tiene que tener la clase .searchButton, también hay que crear el archivo php que trae la info de la base de datos  uno por cada sección
+//los datos a recolectar para la búsqueda tienen que estar en un formulario que tengan la clase searchFormulary y el botón de búsqueda tiene que tener un data-file que trae la info correspondiente del .php,este botón también tiene que tener la clase .searchButton, ejemplo en getPatientSearch.php, patientSearch.html  
 export async function searchTableInformation(e) {
     try {
-        e.preventDefault();
         const searchFormulary = e.target;
         const tbody = document.querySelector(".loadTable");
         const searchButton = e.submitter;
@@ -88,4 +88,44 @@ export async function searchTableInformation(e) {
     } catch (error) {
         console.log("error " + error);
     }
+}
+
+//Cambia la acción de todos los botones guardar a actualizar
+export async function changeSaveButtonsAction() {
+    let buttons = document.querySelectorAll(".postInformation");
+    buttons.forEach(btn => {
+        changeSaveButtonAction(btn)
+    })
+}
+
+//Cambia la accion del boton guardar a actualizar
+export async function changeSaveButtonAction(btn) {
+    if (btn.innerHTML === "Guardar") {
+        btn.innerHTML = "Actualizar";
+        btn.classList.replace("postInformation", "putInformation")
+        // btn.dataset.method = "put";
+    }
+}
+
+export async function updateFormInformation(e) {
+    const btn = e.submitter;
+    // const method = btn.dataset.method;
+    const file = btn.dataset.file;
+    const form = e.target;
+    const formData = new FormData(form)
+    formData.append("id", form.dataset.id)
+    const data = await databaseOperation("put", file, formData)
+    addAlert(data['msg']);
+}
+
+export async function saveFormInformation(e) {
+    const btn = e.submitter;
+    // const method = btn.dataset.method;
+    const file = btn.dataset.file;
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = await databaseOperation("post", file, formData);
+    form.dataset.id = data['id'];
+    addAlert(data['msg']);
+    await changeSaveButtonAction(btn);
 }

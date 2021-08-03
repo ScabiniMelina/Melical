@@ -2,7 +2,7 @@ import {
     databaseOperation
 } from "./fetchRequest.js";
 
-async function addAlert(msg) {
+export async function addAlert(msg) {
     const type = msg['type'];
     const text = msg['text'];
     const container = document.getElementById('alertContainer');
@@ -22,19 +22,19 @@ async function addAlert(msg) {
     };
     const tpl = document.getElementById("alertTemplate").content;
     console.log(tpl);
+    let alertId = parseInt(tpl.querySelector('.alert').dataset.id);
     let clone = tpl.cloneNode(true);
     console.log(clone);
-    let alertId = parseInt(tpl.querySelector('.alert').dataset.id) + 1;
-    tpl.querySelector('.alert').dataset.id = alertId;
+    tpl.querySelector('.alert').dataset.id = alertId + 1;
     clone.querySelector('.alert').classList.add(alertTypes[type]['color'])
     clone.querySelector('i').classList.add(alertTypes[type]['icon'])
     clone.querySelector('span').textContent = text
     container.appendChild(clone);
     setTimeout(() => {
-        const alertNode = container.querySelector('.alert[data-id="' + alertId + '"] ');
+        const alertNode = container.querySelector('.alert[data-id="' + alertId + '"]');
         if (alertNode) {
             const alert = new bootstrap.Alert(alertNode)
-            alert.close()
+            alert.close();
         }
     }, 2500)
 }
@@ -42,6 +42,7 @@ async function addAlert(msg) {
 
 //Esta función llena una tabla con los datos obtenidos de la bd
 //TODO PONER EN CADA TABLA DE LAS DISTINTAS SECCIONES LO SIGUIENTE: en el html que contiene la tabla hay que poner como id del template tableRowTemplate, el tr tiene que tener la clase tableRow y cada td(celda) tiene que tener un name que indique cual es la columna del registro que se tiene que insertar en ella EJEMPLO en patientSearch.html, getPatientBySearch.php. 
+//TODO: MELI HACER EL SQL PARA LLENAR LAS TABLAS DE CADA SECCIÓN,
 export async function fillTable(data, container) {
     try {
         if (typeof data === "undefined") {

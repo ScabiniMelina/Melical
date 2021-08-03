@@ -7,12 +7,16 @@ export async function databaseOperation(method, file, dataForm) {
     if (method == 'post' || method == 'delete' || method == 'put' || method == 'get') {
       config.method = method;
       if (typeof dataForm !== 'undefined') {
-        if (method == 'get') {
+        if (method == 'get' || method == 'delete' || method == 'put') {
           urlVariables = '?';
           for (let [key, value] of dataForm.entries()) {
             urlVariables += `${key}=${value}&`;
           }
           urlVariables = urlVariables.slice(0, -1);
+          if (method == 'put') {
+            config.body = urlVariables.slice(1);
+            urlVariables = '';
+          }
         } else {
           config.body = dataForm;
         }

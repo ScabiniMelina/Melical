@@ -1,214 +1,221 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-<!-- BARRA MENU -->
-  <div class="container text-align-center">
-    <div class="thead-fixed">
-      <div class="card">
-        <div class="card-header p-0">
-          <ul class="nav nav-pills nav-tabs nav-fill card-header-pills" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active btn-sm" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Habitaciones</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link btn-sm" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Consultorio</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link btn-sm" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Quirófano</button>
-            </li>
-          </ul>
+  <!-- BARRA MENU -->
+
+
+  <div class="container pagina" id="lugaresDisponibles">
+    <div class="row pb-2 g-2">
+
+      <div class="col col-6">
+        <label>Areás</label>
+        <select id="form-select" class="form-select form-select-m">
+          <option value="default"></option>
+          <option value="0">Habitaciones</option>
+          <option value="1">Consultorios</option>
+          <option value="2">Quirófanos</option>
+        </select>
+      </div>
+
+      <div class="col col-6 ">
+        <label>Sección</label>
+        <select class="form-select getSelectOption" data-file="SectionList">
+          <option value="vacio"></option>
+          <option value="0">Área Neonatología</option>
+          <option value="1">Área Infantil</option>
+          <option value="2">Unidad de Cuidados Intensivos (UCI)</option>
+          <option value="3">Área Geriátrica</option>
+        </select>
+      </div>
+      <div class="col col-6 ">
+        <label>Piso</label>
+        <select class="form-select getSelectOption" data-file="FloorList">
+          <option value="vacio"></option>
+          <option value="0">Planta Baja</option>
+          <option value="1">Piso 1</option>
+          <option value="2">Piso 2</option>
+          <option value="3">Piso 3</option>
+        </select>
+      </div>
+      <div class="col col-6">
+        <label>Estado</label>
+        <select id="selectAreaMedica" class="form-select form-select-m">
+          <option value="vacio"></option>
+          <option value="0">Ocupado</option>
+          <option value="1">Disponible</option>
+        </select>
+      </div>
+      <div class=" col-12 d-flex align-self-end ">
+        <div class="col">
+
+          <label>Estado</label>
+
+          <input id="inputBuscar" type="text" class="form-control" aria-describedby="button-addon2">
+        </div>
+        <div class="col-auto align-self-end ps-2">
+
+          <button class="btn btn-primary" id="btnBuscar" type="button">
+            <i class='bx bx-search'></i>
+          </button>
         </div>
       </div>
     </div>
-<div class="tab-content pb-2 pt-2" id="pills-tabContent">
-  <!-- HABITACIONES -------------------------------------------->  
-      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">  
-                                  <!-- BÚSQUEDA ----->
-          <div class="row pb-2">
-            <div class="col pe-0">
-                <label>Sección</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                      <option value="vacio">-</option>
-                      <option value="0">Área Neonatología</option>
-                      <option value="1">Área Infantil</option>
-                      <option value="2">Unidad de Cuidados Intensivos (UCI)</option>
-                      <option value="3">Área Geriátrica</option>
-                 </select>
-            </div> 
-            <div class="col pe-0">
-              <label>Piso</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                     <option value="vacio">-</option>
-                     <option value="0">Planta Baja</option>
-                     <option value="1">Piso 1</option>
-                     <option value="2">Piso 2</option>
-                     <option value="3">Piso 3</option>
-                 </select>
+    <!-- <ol class="list-group col">
+          <li class="list-group-item align-items-start d-flex ">
+            <div class="col">
+              <h5 class="mb-1 fw-normal"> Habitación 15 </h5>
+              <p class="text-justify w-100 text-break mb-0">
+                Piso 2 - Camilla 52
+                <span class="badge btn-primary rounded-pill">Área Infantil</span>
+              </p>
+              <small class="text-muted">Persona a cargo: Enfermero Miguel Jackson
+              </small>
             </div>
-            <div class="col pe-0">
-              <label>Estado</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                     <option value="vacio">-</option>
-                     <option value="0">Ocupado</option>
-                     <option value="1">Disponible</option>
-                 </select>
+            <div class="col-auto ms-2 me-auto align-self-center ">
+              <button class="btn btn-primary btn-sm btn-datalist" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseAgregarSala" aria-expanded="false" aria-controls="collapseAgregarSala">
+                <i class='bx bx-plus'></i>
+              </button>
             </div>
-            <div class=" col-auto mr-4 pt-4" aria-label="Basic example">
-                <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
-            </div>
-        </div>
+          </li>
+          </ol>
+          -->
 
-        <!-- 
-          <ol class="list-group col">
-              <li class="list-group-item align-items-start d-flex ">
-                  <div class="col">
-                    <h5 class="mb-1 fw-normal"> Habitación 15 </h5>
-                      <p class="text-justify w-100 text-break mb-0">
-                              Piso 2 - Camilla 52 
-                          <span class="badge btn-primary rounded-pill">Área Infantil</span> 
-                      </p>
-                      <small class="text-muted">Persona a cargo: Enfermero Miguel Jackson 
-                      </small>
-                  </div>
-                  <div class="col-auto ms-2 me-auto align-self-center ">
-                      <button class="btn btn-primary btn-sm btn-datalist" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAgregarSala" aria-expanded="false" aria-controls="collapseAgregarSala">
-                          <i class='bx bx-plus' ></i>
-                      </button>
-                  </div>
-              </li>
-            </ol>
-       -->
+    <div class="overflow-auto mt-2 container-table-overflow">
 
-       <div class="overflow-auto mt-2 container-table-overflow">
+      <table class="table table-responsive table-hover m-auto caption-top text-center">
 
-        <table class="table table-responsive table-hover m-auto caption-top text-center">
-  
-          <thead class="table-primary-color thead-fixed">
-            <tr>
-              <th>Sección</th>
-              <th>Piso</th>
-              <th>Estado</th>
-              <th>Dni</th>
-              <th>Apellido</th>
-            </tr>
-          </thead>
+        <thead class="table-primary-color thead-fixed">
+          <tr>
+            <th>Sección</th>
+            <th>Piso</th>
+            <th>Estado</th>
+            <th>Dni</th>
+            <th>Apellido</th>
+          </tr>
+        </thead>
 
-          <tbody class="table-light loadTable" data-file="Rooms">
-  
-          </tbody>
-  
-        </table>
-      </div>
-      <div class="position-relative">
-        <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0" type="button" id="agregarPaciente"><i
-            class='bx bx-plus'></i></button>
-      </div>
+        <tbody class="table-light loadTable" data-file="Rooms">
+
+        </tbody>
+
+      </table>
     </div>
-    <template id="tableRowTemplate">
-      <tr class="tableRow">
-        <td name="seccion"></td>
-        <td name="piso"></td>
-        <td name="estado"></td>
-        <td name="dni"></td>
-        <td name="apellido"></td>
-      </tr>
-    </template>
-   
-    <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
+    <div class="position-relative">
+      <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0" type="button" id="agregarPaciente"><i
+          class='bx bx-plus'></i></button>
+    </div>
+  </div>
+  <template id="tableRowTemplate">
+    <tr class="tableRow">
+      <td name="seccion"></td>
+      <td name="piso"></td>
+      <td name="estado"></td>
+      <td name="dni"></td>
+      <td name="apellido"></td>
+    </tr>
+  </template>
+
+  <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
 
   </div>
 
 
-<!-- AREA MEDICA ---------------------------->
-      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-          <!-- BÚSQUEDA ----->
-        <div class="row pb2">
-            <div class="col pe-0">
-                <label>Sección</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                      <option value="vacio">-</option>
-                      <option value="0">Cardiología</option>
-                      <option value="1">Dermatología</option>
-                      <option value="2">Hematología</option>
-                      <option value="3">Ginecología y Obstetricia</option>
-                      <option value="4">Nefrología</option>
-                      <option value="5">Pediatría/Neonatología</option>
-                      <option value="6">Oftamología</option>
-                      <option value="7">Oncología</option>
-                      <option value="8">Urgencias</option>
-                 </select>
-            </div> 
-            <div class="col pe-0">
-              <label>Estado</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                     <option value="vacio">-</option>
-                     <option value="0">En consulta</option>
-                     <option value="1">Disponible</option>
-                 </select>
-            </div>
-            <div class=" col-auto mr-4 pt-4" aria-label="Basic example">
-                <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
-            </div>
-        </div>
-          <div class="row mb-3 pt-2">
-            <ol class="list-group col">
-              <li class="list-group-item align-items-start d-flex ">
-                  <div class="col">
-                    <h5 class="mb-1 fw-normal"> Consultorio 5 </h5>
-                      <p class="text-justify w-100 text-break mb-0">
-                              Piso 2 - Dr. Rodrigez Alberto
-                          <span class="badge btn-primary rounded-pill">Hematología</span> 
-                      </p>
-                      <small class="text-muted">Horario de atención: 14hs - 19:30hs
-                      </small>
-                  </div>
-                  <div class="col-auto ms-2 me-auto align-self-center ">
-                      <button class="btn btn-primary btn-sm btn-datalist" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAgregarSala" aria-expanded="false" aria-controls="collapseAgregarSala">
-                          <i class='bx bx-plus' ></i>
-                      </button>
-                  </div>
-              </li>
-            </ol>
+  <!-- AREA MEDICA ---------------------------->
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <!-- BÚSQUEDA ----->
+    <div class="row pb2">
+      <div class="col pe-0">
+        <label>Sección</label>
+        <select id="selectAreaMedica" class="form-select form-select-m">
+          <option value="vacio"></option>
+          <option value="0">Cardiología</option>
+          <option value="1">Dermatología</option>
+          <option value="2">Hematología</option>
+          <option value="3">Ginecología y Obstetricia</option>
+          <option value="4">Nefrología</option>
+          <option value="5">Pediatría/Neonatología</option>
+          <option value="6">Oftamología</option>
+          <option value="7">Oncología</option>
+          <option value="8">Urgencias</option>
+        </select>
+      </div>
+      <div class="col pe-0">
+        <label>Estado</label>
+        <select id="selectAreaMedica" class="form-select form-select-m">
+          <option value="vacio"></option>
+          <option value="0">En consulta</option>
+          <option value="1">Disponible</option>
+        </select>
+      </div>
+      <div class=" col-auto mr-4 pt-4" aria-label="Basic example">
+        <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
+      </div>
+    </div>
+    <div class="row mb-3 pt-2">
+      <ol class="list-group col">
+        <li class="list-group-item align-items-start d-flex ">
+          <div class="col">
+            <h5 class="mb-1 fw-normal"> Consultorio 5 </h5>
+            <p class="text-justify w-100 text-break mb-0">
+              Piso 2 - Dr. Rodrigez Alberto
+              <span class="badge btn-primary rounded-pill">Hematología</span>
+            </p>
+            <small class="text-muted">Horario de atención: 14hs - 19:30hs
+            </small>
           </div>
-      </div>
+          <div class="col-auto ms-2 me-auto align-self-center ">
+            <button class="btn btn-primary btn-sm btn-datalist" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseAgregarSala" aria-expanded="false" aria-controls="collapseAgregarSala">
+              <i class='bx bx-plus'></i>
+            </button>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
 
 
-<!-- AREA QUIRURGICA ------------------------------------------->
-      <div class="tab-pane fade pt-1" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <div class="row pb2">
-            <div class="col pe-0">
-                <label>Sección</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                      <option value="vacio">-</option>
-                      <option value="0">Área de pre-anestesia</option>
-                      <option value="1">Área de recuperación</option>
-                      <option value="2">Cirugía General y Digestiva</option>
-                      <option value="3">Cirugía Ortopédica y Traumatología</option>
-                 </select>
-            </div> 
-            <div class="col pe-0">
-              <label>Estado</label>
-                 <select id="selectAreaMedica" class="form-select form-select-m"> 
-                     <option value="vacio">-</option>
-                     <option value="0">En espera</option>
-                     <option value="1">En proceso</option>
-                     <option value="2">Finalizada</option>
-                 </select>
-            </div>
-            <div class=" col-auto mr-4 pt-4" aria-label="Basic example">
-                <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
-            </div>
-        </div>
+  <!-- AREA QUIRURGICA ------------------------------------------->
+  <div class="tab-pane fade pt-1" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+    <div class="row pb2">
+      <div class="col pe-0">
+        <label>Sección</label>
+        <select id="selectAreaMedica" class="form-select form-select-m">
+          <option value="vacio"></option>
+          <option value="0">Área de pre-anestesia</option>
+          <option value="1">Área de recuperación</option>
+          <option value="2">Cirugía General y Digestiva</option>
+          <option value="3">Cirugía Ortopédica y Traumatología</option>
+        </select>
       </div>
-</div>
-</div>
-       
-   <!-- JavaScript Bundle with Popper -->
+      <div class="col pe-0">
+        <label>Estado</label>
+        <select id="selectAreaMedica" class="form-select form-select-m">
+          <option value="vacio"></option>
+          <option value="0">En espera</option>
+          <option value="1">En proceso</option>
+          <option value="2">Finalizada</option>
+        </select>
+      </div>
+      <div class=" col-auto mr-4 pt-4" aria-label="Basic example">
+        <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- JavaScript Bundle with Popper -->
   <script src="../bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/script.js"></script></body>
+  <script src="../js/script.js"></script>
+</body>
+
 </html>

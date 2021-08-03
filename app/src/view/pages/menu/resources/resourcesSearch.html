@@ -12,64 +12,22 @@
     <div class="row pb-2 g-2">
       <div class="col col-6">
         <label>Sección</label>
-        <select  class="form-select form-select-m getSelectOption" data-file="LocationList">
-          <option value="vacio"></option>
-          <option value="vacio">Todas las Secciones</option>
-          <option value="0">Área Neonatología</option>
-          <option value="1">Área Infantil</option>
-          <option value="2">Unidad de Cuidados Intensivos (UCI)</option>
-          <option value="3">Área Geriátrica</option>
-          <option value="4">Área Kinesiología</option>
+        <select class="form-select form-select-m getSelectOption" data-file="SectionList" data-default="Todos">
+
         </select>
       </div>
       <div class="col col-6 ">
         <label>Piso</label>
-        <select  class="form-select form-select-m getSelectOption" data-file="LocationList">
-          <option value="vacio"></option>
-          <option value="vacio">Todos los Pisos</option>
-          <option value="0">Planta Baja</option>
-          <option value="1">Piso 1</option>
-          <option value="2">Piso 2</option>
-          <option value="3">Piso 3</option>
+        <select class="form-select form-select-m getSelectOption" data-file="FloorList" data-default="Todos">
         </select>
       </div>
       <div class="col col-6 ">
         <label>Tipo de suministro</label>
-        <select  class="form-select form-select-m getSelectOption" data-file="LocationList" data-default="Todos">
+        <select class="form-select form-select-m getSelectOption" data-file="SuppliesList" data-default="Todos">
           <option value="vacio"></option>
           <option value="0">Todos los Suministros</option>
           <option value="1">Agentes de Diagnóstico</option>
-          <option value="2">Antisépticos y Desinfectantes</option>
-          <option value="3">Bisturís y Similares</option>
-          <option value="4">Electrocauterio</option>
-          <option value="5">Equipo Médico</option>
-          <option value="6">Gases Medicinales</option>
-          <option value="7">Geles</option>
-          <option value="8">Material de Anestesia</option>
-          <option value="9">Material de Bioseguridad</option>
-          <option value="10">Material de Cirugía Cardiovascular</option>
-          <option value="11">Material de Curación</option>
-          <option value="12">Material de Endoscopia Intervecionista</option>
-          <option value="13">Material de Laparoscopia, Toracospia y Endoscopia</option>
-          <option value="14">Material de Neurocirugía</option>
-          <option value="15">Material de Rayos "X" e Imágenes</option>
-          <option value="16">Material de Sutura</option>
-          <option value="17">Material de Terapia Respiratoria</option>
-          <option value="18">Material de Urología</option>
-          <option value="19">Material Descartable</option>
-          <option value="20">Material Nefrológico</option>
-          <option value="21">Material Odontológico</option>
-          <option value="22">Material Oftamológico</option>
-          <option value="23">Material para Esterilización
-          </option>
-          <option value="24">Material para Estomas</option>
-          <option value="25">Material Quirúrgico</option>
-          <option value="26">Misceláneos</option>
-          <option value="27">Monitoreo Electrónico</option>
-          <option value="28">Órtesis</option>
-          <option value="29">Productos Higiénicos</option>
-          <option value="30">Prótesis</option>
-          <option value="31">Sistemas de Suplementación de Oxígeno</option>
+
         </select>
       </div>
       <div class=" col-6 d-flex align-self-end ">
@@ -96,7 +54,7 @@
             <th>Piso</th>
           </tr>
         </thead>
- 
+
         <tbody class="table-light loadTable" data-file="Resources">
 
         </tbody>
@@ -117,7 +75,7 @@
       <td name="piso"></td>
     </tr>
   </template>
- 
+
   <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
 </body>
 

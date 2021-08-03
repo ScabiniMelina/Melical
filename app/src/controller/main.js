@@ -8,7 +8,10 @@ import {
 
 import {
   changeSection,
+  changeSaveButtonsAction,
   searchTableInformation,
+  saveFormInformation,
+  updateFormInformation
 } from "./helpers/interfaceChanges.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,7 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Filas de las tablas
     if (e.target.matches(".tableRow , .tableRow *")) {
-      changeSection(e.target.closest(".tableRow"));
+      changeSection(e.target.closest(".tableRow"))
+        .then(() => changeSaveButtonsAction());
     }
 
     //Botón cambiar de seccion(btn más, btn filtros, btn reconocimiento facial y dactilar)
@@ -48,10 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   document.addEventListener("submit", (e) => {
-
+    e.preventDefault();
     //Botón buscar de la sección principal donde hay tablas 
     if (e.target.matches(".searchFormulary")) {
       searchTableInformation(e);
+    }
+
+    //Botón guardar información
+    if (e.submitter.matches(".postInformation")) {
+      saveFormInformation(e);
+    }
+
+    //Botón actualizar información
+    if (e.submitter.matches(".putInformation")) {
+      updateFormInformation(e);
     }
 
   })
@@ -66,6 +80,7 @@ async function fillMainSection() {
   fillSelects();
 
 }
+
 async function fillSecondarySection(searId) {
   fillSelects();
   fillForm(searchId);
@@ -75,7 +90,7 @@ async function formularyChanges() {
   let modifiedSections = new Array();
   let modified = false;
   document.querySelectorAll(".sectionFormulary").forEach(sectionFormulary => {
-    console.log(modified)
+    console.log(modified);
     sectionFormulary.querySelectorAll('select, input').forEach(element => {
       element.addEventListener('change', () => {
         modifiedSections[`${sectionFormulary.dataset.name}`] = true;
