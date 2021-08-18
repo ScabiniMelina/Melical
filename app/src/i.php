@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['user'])) {
   //TODO: DES-COMENTAR CUANDO LA PAGINA FUNCIONE
-  // header("location: ./view/pages/authentication/login.php");
+  // header("location: ./view/pages/authentication/login.html");
 }
 ?>
 
@@ -20,16 +20,26 @@ if (!isset($_SESSION['user'])) {
   <meta name="HandheldFriendly" content="true">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- TODO: PONER EL ICONO DE LA APP -->
-  <link rel="shortcut icon" type="image/png" href="./view/assets/svg/1.svg">
-  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
-  <link rel="apple-touch-icon" href="./view/pages/entrance/brand.html">
-  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
-  <link rel="apple-touch-startup-image" href="./view/pages/entrance/brand.html">
-  <!-- Pantalla que carga antes de que lo haga la app -->
-  <link rel="manifest" href="./manifest.json">
-
   <?php include('./view/modules/header.php'); ?>
+  
+  <!-- TODO: PONER EL ICONO DE LA APP -->
+  <link rel="shortcut icon" sizes="48x48" type="image/png" href="./view/assets/img/">
+  <link rel="shortcut icon" sizes="128x128" type="image/png" href="./view/assets/img">
+  <link rel="shortcut icon" sizes="512x512" type="image/png" href="./view/assets/img/maskable_icon_x512.png">
+
+  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
+  <link rel="apple-touch-icon" sizes="48x48" href="./view/assets/img/">
+  <link rel="apple-touch-icon" sizes="128x128" href="./view/assets/img/maskable_icon_x128.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="./view/assets/img/maskable_icon_x512.png">
+
+  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
+  <link rel="apple-touch-startup-image" sizes="48x48" href="./view/assets/img/">
+  <link rel="apple-touch-startup-image" sizes="128x128" href="./view/assets/img/maskable_icon_x128.png">
+  <link rel="apple-touch-startup-image" sizes="512x512" href="./view/assets/img/maskable_icon_x512.png">
+
+  <link rel="manifest" href="manifest.json">
+
+  
   <title>Melical</title>
 
 </head>
@@ -165,7 +175,6 @@ if (!isset($_SESSION['user'])) {
   </template>
 
   <?php include('./view/modules/footer.php'); ?>
-
 </body>
 
 </html>
