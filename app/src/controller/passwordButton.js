@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   showPasswordButton.addEventListener("click", () => {
     mostrarPassword()
   })
+
+
+  // const loginInput = document.getElementById("id_login");
+  // showPasswordButton.addEventListener("click", () => {
+  //   mostrarPassword()
+
 })
 
 function mostrarPassword() {

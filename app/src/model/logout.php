@@ -1,3 +1,3 @@
 <?php
-header("location: ../view/pages/authentication/login.php");
+header("location: ./i.php");
 // echo "cerrarSesion";

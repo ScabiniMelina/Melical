@@ -1,6 +1,5 @@
-//Pregunta si el serviceworker existe en el objeto navigator, para validar si el navegador soporta service worker
-
 function activateServiceWorker() {
+  //Pregunta si el serviceworker existe en el objeto navigator, para validar si el navegador soporta service worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
       .then(response => console.log('Registro de SW exitoso', response))
@@ -12,7 +11,7 @@ activateServiceWorker();
 
 const CACHE_NAME = 'v1_melical';
 const urlsToCache = [
-  //TODO: PONER LOS ARCHIVOS QUE SE TIENEN QUE CACHEAR
+  //TODO: MELI PONER LOS ARCHIVOS QUE SE TIENEN QUE CACHEAR
   // './',
   // 'https://fonts.googleapis.com/css?family=Raleway:400,700',
   // './img/ProgramadorFitness.png',

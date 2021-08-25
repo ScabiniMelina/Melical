@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['user'])) {
-  //TODO: DES-COMENTAR CUANDO LA PAGINA FUNCIONE
+  //TODO: MELI DES-COMENTAR CUANDO LA PAGINA FUNCIONE
   // header("location: ./view/pages/authentication/login.html");
 }
 ?>
@@ -11,7 +11,6 @@ if (!isset($_SESSION['user'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- TODO: MEJORAR EL META DESCRIPTION CAMBIAR MANIFESET.JSON -->
   <meta name="description" content="Bienvenid@s a Melical, una aplicación que te será util para hacer historias clínicas, realizar estadísticas en base a estas y hacer un control de los recursos disponibles.">
   <!-- Color de la barra de redirección -->
   <meta name="theme-color" content="#063f5a">
@@ -22,17 +21,15 @@ if (!isset($_SESSION['user'])) {
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <?php include('./view/modules/header.php'); ?>
   
-  <!-- TODO: PONER EL ICONO DE LA APP -->
+  <!--ICONO DE LA APP -->
   <link rel="shortcut icon" sizes="48x48" type="image/png" href="./view/assets/img/">
   <link rel="shortcut icon" sizes="128x128" type="image/png" href="./view/assets/img">
   <link rel="shortcut icon" sizes="512x512" type="image/png" href="./view/assets/img/maskable_icon_x512.png">
 
-  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
+  <!-- IMAGEN DEL ICONO DE LA APP PARA IOS -->
   <link rel="apple-touch-icon" sizes="48x48" href="./view/assets/img/">
   <link rel="apple-touch-icon" sizes="128x128" href="./view/assets/img/maskable_icon_x128.png">
   <link rel="apple-touch-icon" sizes="512x512" href="./view/assets/img/maskable_icon_x512.png">
-
-  <!-- TODO: PONER IMAGEN DEL ICONO DE LA APP -->
   <link rel="apple-touch-startup-image" sizes="48x48" href="./view/assets/img/">
   <link rel="apple-touch-startup-image" sizes="128x128" href="./view/assets/img/maskable_icon_x128.png">
   <link rel="apple-touch-startup-image" sizes="512x512" href="./view/assets/img/maskable_icon_x512.png">

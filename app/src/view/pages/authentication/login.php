@@ -58,8 +58,8 @@
                 </div>
               </div>
               <div class="col-12 justify-self-center text-sm-start">
-                <a href="#" class="btn btn-primary mt-3 text-align-center text-nowrap text-sm-center" id="botonRegistro" role="button">Iniciar sesión</a>
-
+                  <input type="button" class="btn btn-primary mt-3 text-align-center text-nowrap text-sm-center" id="id_click" name="buton"  placeholder="Iniciar sesión">
+              
               </div>
             </div>
           </form>
@@ -88,6 +88,31 @@
     </div>
   </div>
   <script src="../../../controller/passwordButton.js"></script>
+ <?php 
+	$username=$_POST['dni'];
+	$password=$_POST['password'];
+	//$red=mysqli_connect('mattprofe.com.ar', '3700', '3700','3700');
+	include("conexion.php");
+$q="SELECT * FROM USER INNER JOIN PERSONAL_INFORMATION ON PERSONAL_INFORMATION.ID_DNI=USER.PK_ID_DNI WHERE PERSONAL_INFORMATION.dni=" .$username." AND USER.password=".$password. "";
+	$result=mysqli_query($conexion,$q);
+	if(mysqli_num_rows($result)==1){
+//echo"<h1>usuario valida medico/medico</h1>";
+   header('Location:http://melical.escuelarobertoarlt.com.ar/public_html/meliScabiniDesarrollo/app/src/i.php#/recursosDisponibles');
+
+}
+		else{
+	    printf("<script type='text/javascript'>alert('Error'); </script>"); 
+     
+//printf("<script type='text/javascript'>alert('Error'); </script>");
+//echo "<h1>error</h1>";
+}
+		
+		mysqli_close($conexion);
+?>
+
+    
+    
+</script>
 
 </body>
 

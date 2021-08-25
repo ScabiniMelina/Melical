@@ -68,3 +68,39 @@ function searchFunction(functionName, functionList) {
     }
   }
 }
+
+// if (e.target.matches('.datalistGrouping select, select.filterInput')) {
+			// 	const select = e.target;
+			// 	const datalistGrouping = select.closest('.datalistGrouping');
+			// 	if (datalistGrouping) {
+			// 		badgeId = datalistGrouping.dataset.id;
+			// 		elementToDelete = datalistGrouping;
+			// 	} else {
+			// 		elementToDelete = select;
+			// 		badgeId = select.dataset.id;
+			// 	}
+			// 	badgeOption = select.options[select.selectedIndex].text;
+			// }
+
+			// if (e.target.matches('input.filterInput')) {
+			// 	const input = e.target;
+			// 	badgeId = input.dataset.id;
+			// 	badgeOption = input.value;
+			// 	elementToDelete = input;
+			// }
+
+
+
+			// if (elementToDelete.matches('input')) {
+	// 	const input = elementToDelete.closest('input');
+	// 	input.value = '';
+	// }
+
+	// if (elementToDelete.querySelector('select')) {
+	// 	//Si hay solo un select no lo elimina porque no se podría agregar uno nuevo
+	// 	const select = elementToDelete.querySelector('select') || elementToDelete;
+	// 	select.options[0].selected = true;
+	// 	if (container.children.length > 1) {
+	// 		container.removeChild(elementToDelete);
+	// 	}
+	// }

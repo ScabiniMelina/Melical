@@ -1,5 +1,5 @@
 <?php
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 include("./../connection.php");
 $id = $_GET["id"];
 $sql = "SELECT ID_DNI AS ID, dni, name, surname, date_birth AS dateBirth FROM PERSONAL_INFORMATION WHERE";
