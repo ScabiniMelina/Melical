@@ -91,15 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function modifyBadge(badgeId, badgeOption, elementToDelete) {
+	//Si hay un badge ya existente modifica el valor, sino crea uno nuevo, también detecta si no hay una opción valida para poner como texto del badge y elimina ese badge si hay un o ya existente
 	const badge = document.querySelector('.badgeElement[data-id="' + badgeId + '"]');
-	if (badge) {
-		//Si hay badge modifica el valor existente sino crea uno nuevo
-		badge.querySelector('span').textContent = badgeOption;
-		if (badgeOption == '') {
-			removeBadge(elementToDelete, badgeId);
-		}
+	if (badgeOption == '') {
+		if (badge) removeBadge(elementToDelete, badgeId, false);
 	} else {
-		addBadge(badgeOption, badgeId);
+		if (badge) {
+			badge.querySelector('span').textContent = badgeOption;
+		} else {
+			addBadge(badgeOption, badgeId);
+		}
 	}
 }
 
@@ -111,6 +112,18 @@ function getElementsToDoAnOperationOnTheBadge(e) {
 		elementToDelete.querySelector('select') || elementToDelete.querySelector('input') || elementToDelete;
 	if (element.matches('select')) {
 		badgeOption = element.options[element.selectedIndex].text;
+		const containerDatalistGroupings = element.closest('.tab-pane');
+		if (containerDatalistGroupings) {
+			const selectsFromSection = containerDatalistGroupings.querySelectorAll('select');
+			let duplicateValue = 0;
+			selectsFromSection.forEach((select) => {
+				if (select.options[select.selectedIndex].text == badgeOption) duplicateValue += 1;
+			});
+			if (duplicateValue > 1) {
+				badgeOption = '';
+				element.options[0].selected = true;
+			}
+		}
 	}
 
 	if (element.matches('input')) {

@@ -154,7 +154,7 @@ export async function saveFormInformation(e) {
 
 //-------------------- CAMBIOS EN LA SECCIÓN FILTROS--------------------------
 
-export function removeBadge(elementToDelete, idToDelete) {
+export function removeBadge(elementToDelete, idToDelete, orderToDeleteElement = true) {
 	const container = elementToDelete.parentNode;
 	const badgeContainer = document.getElementById('badgeContainer');
 	const badgeToDelete = badgeContainer.querySelector('.badgeElement[data-id="' + idToDelete + '"]');
@@ -162,7 +162,7 @@ export function removeBadge(elementToDelete, idToDelete) {
 		elementToDelete.querySelector('select') || elementToDelete.querySelector('input') || elementToDelete;
 	if (element.matches('select')) {
 		element.options[0].selected = true;
-		if (container.children.length > 1 && idToDelete >= 5) {
+		if (container.children.length > 1 && idToDelete >= 5 && orderToDeleteElement) {
 			container.removeChild(elementToDelete);
 		}
 	}
