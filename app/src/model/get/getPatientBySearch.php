@@ -1,15 +1,21 @@
 <?php
-header('Content-Type: application/json');
 include("./../connection.php");
 $id = $_GET["id"];
 $sql = "SELECT ID_DNI AS ID, dni, name, surname, date_birth AS dateBirth FROM PERSONAL_INFORMATION WHERE";
-if (is_numeric($id)) {
-    $sql .= " dni LIKE '%$id%' ";
-} else {
-    $sql .= " name LIKE '%$id%' OR surname LIKE '%$id%'";
+if(isset($id)){
+    $parameters =  array($id);
+    if (is_numeric($id)) {
+        $sql .= " dni LIKE ?";
+        $typeOfParameters = "i";
+        $parameters = array("%$id%");
+    } else {
+        $sql .= " name LIKE ? OR surname LIKE ?";
+        $typeOfParameters = "ss";
+        $parameters = array("%$id%","%$id%");
+
+    }
 }
-$query = $connection->query($sql);
-$data = $query->fetch_all(MYSQLI_ASSOC);
+$result = getPreparedStatement($sql,$typeOfParameters, $parameters);
+$data = getResultOfPreparedStatement($result);
 $msg = ['type' => 'error', 'text' => 'Mensaje de prueba'];
-sendQueryMsgId($data, $msg, null);
-$connection->close();
+sendJson($data, $msg, null,null);

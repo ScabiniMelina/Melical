@@ -1,7 +1,8 @@
 <?php
+  //TODO: ALEX HACER QUE NO SE CREE U PACIENTE QUE YA SE CARGO PREVIAMENTE;
   include("./../connection.php");
   $_PUT = getPutRequestParameters();
-  $id =$_PUT['id'];
+  $id = $_PUT['id'];
   $dni = $_PUT['dni']; 
   $cuil = $_PUT['tramitNumber'];
   $name = $_PUT['name'];
@@ -23,26 +24,7 @@
   }
 
   $sql = "UPDATE PERSONAL_INFORMATION SET dni = ?, tramit_nume= ? , name= ? , surname= ?, gender = ? , date_birth = ? , phone = ? , email = ? , address = ? , address_number = ? , PK_ID_LOCATION = ? WHERE ID_DNI = ? ";
-  
-  /* crear una sentencia preparada */
-  if ($stmt = $connection->prepare($sql)) {
-    $stmt->bind_param("iissssissiis",$dni,$cuil,$name,$surname,$gender,$dateBirth,$phone,$email,$address,$addressNumber,$location,$id);
-  
-    if (!$stmt->execute()) {
-      echo "Falló la ejecución: " . $stmt->error;
-    }
-
-    if ($stmt->error) {
-      echo "Error stmt:" . $stmt->error;
-    }
-
-    if($connection->affected_rows > 0){
-      $msg = ['type'=>'success','text'=>'Se actualizó con éxito'];
-    }else{
-      $msg = ['type'=>'error','text'=>'No se actualizó'];
-    }
-
-    $stmt->close();
-  }
-  sendQueryMsgId(null, $msg, null);
-  $connection->close();
+  $typeOfParameters = "iissisissiis";
+  $parameters = array($dni,$cuil,$name,$surname,$gender,$dateBirth,$phone,$email,$address,$addressNumber,$location,$id);
+  $result= getPreparedStatement($sql,$typeOfParameters, $parameters);
+  sendJson(null, $msg, null, null);

@@ -1,9 +1,7 @@
 <?php
-header('Content-Type: application/json');
 include("./../connection.php");
-$sql = "SELECT resource FROM RESOURCE";
-$query = $connection->query($sql);
-$data = $query->fetch_all(MYSQLI_ASSOC);
+$sql = "SELECT 	ID_RESOURCE , resource FROM RESOURCE";
+$result = getPreparedStatement($sql,null, null);
+$data =  getResultOfPreparedStatement($result); 
 $msg = ['type'=>'success','text'=>'todoCorrecto'];
-sendQueryMsgId($data,$msg,null);
-$connection->close();
+sendJson($data,$msg,null,null);

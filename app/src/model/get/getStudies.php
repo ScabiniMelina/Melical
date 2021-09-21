@@ -1,9 +1,6 @@
 <?php
-header('Content-Type: application/json');
 include("./../connection.php");
 $sql = "SELECT dni, surname FROM PERSONAL_INFORMATION";
-$query = $connection->query($sql);
-$data = $query->fetch_all(MYSQLI_ASSOC);
+$data = query($sql);
 $msg = ['type'=>'success','text'=>'todoCorrecto'];
-sendQueryMsgId($data,$msg,null);
-$connection->close();
+sendJson($data,$msg,null,null);

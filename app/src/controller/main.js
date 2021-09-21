@@ -3,6 +3,7 @@ import { activateMenuFunctions } from './menu.js';
 import {
 	changeSection,
 	changeSaveButtonsAction,
+	searchDatabaseInformation,
 	searchTableInformation,
 	saveFormInformation,
 	updateFormInformation,
@@ -87,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		//Botón actualizar información
 		if (e.submitter.matches('.putInformation')) updateFormInformation(e);
+
+		//Botón buscar de la sección de filtros
+		if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
 	});
 });
 

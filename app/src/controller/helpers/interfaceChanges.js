@@ -94,16 +94,23 @@ async function loadTable() {
 		console.log('error ' + error);
 	}
 }
+export async function searchDatabaseInformation(e) {
+	const searchFormulary = e.target;
+	const searchButton = e.submitter;
+	const file = searchButton.dataset.file;
+	const dataForm = new FormData(searchFormulary);
+	databaseOperation('get', file, dataForm).then((data) => console.log(data));
+}
 
 //TODO: ALEX HACER QUE FUNCIONEN TODOS LOS BOTONES DE BUSQUEDA DE TODAS LAS SECCIONES QUE TENGAN UNA TABLA, HACIENDO LO SIGUIENTE: los datos a recolectar para la búsqueda tienen que estar en un formulario que tengan la clase .searchFormulary y el botón de búsqueda tiene que tener un data-file que busca la info correspondiente del .php, este botón también tiene que tener la clase .searchButton, EJEMPLO en getPatientSearch.php, patientSearch.html
 export async function searchTableInformation(e) {
 	//busca información y la coloca en una tabla
 	try {
 		const searchFormulary = e.target;
-		const tbody = document.querySelector('.loadTable');
 		const searchButton = e.submitter;
 		const file = searchButton.dataset.file;
 		const dataForm = new FormData(searchFormulary);
+		const tbody = document.querySelector('.loadTable');
 		console.log(dataForm.get('id'));
 		databaseOperation('get', file, dataForm).then((data) => fillTable(data, tbody));
 	} catch (error) {
@@ -197,10 +204,13 @@ export async function addDatalistGrouping(container) {
 		const fragment = document.createDocumentFragment();
 		const rowId = parseInt(tpl.querySelector('.datalistGrouping').dataset.id) + 1;
 		const selectType = container.dataset.condition;
+		const selectName = container.dataset.name;
 		const file = container.dataset.file;
 		tpl.querySelector('.datalistGrouping').dataset.id = rowId;
 		//Se enlaza la fila con las opciones del datalist con el input que busca las opciones
 		tpl.querySelector('select').id = 'list' + rowId;
+		tpl.querySelector('select').name = selectName;
+
 		// tpl.querySelector("input").setAttribute("list", "list" + rowId);
 		// tpl.querySelector("datalist").className = navElement.dataset.datalist + rowId;
 		fragment.appendChild(tpl.cloneNode(true));

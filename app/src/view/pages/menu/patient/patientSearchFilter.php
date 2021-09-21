@@ -11,7 +11,7 @@
 <body>
     <div class="container pagina pt-3 ">
         <div class="row-12 pb-3 align-baseline" id="badgeContainer">
-          
+
         </div>
         <ul class="nav nav-pills nav-tabs mb-3 card-header-pills card m-0 p-0 d-flex w-100 flex-wrap  flex-row nav-justified" id="pills-tab-seccion" role="tablist">
             <li class="nav-item text-sm-center" role="presentation">
@@ -45,45 +45,45 @@
                 <button class="nav-link nav-link-datalist btn-sm addDatalistGroupingFromFilterMenu" id="pills-sectorHabitacion-tab" data-bs-toggle="pill" data-bs-target="#pills-sectorHabitacion" type="button" role="tab" aria-controls="pills-sectorHabitacion" aria-selected="false">Área</button>
             </li>
         </ul>
-        <div class="tab-content card p-2" id="containerFilterElements">
+        <form class="searchPatientsByFilter tab-content card p-2" id="containerFilterElements">
 
             <div class="tab-pane fade show active" id="pills-fecha" role="tabpanel" aria-labelledby="pills-fecha-tab">
                 <div class="row">
                     <div class="col-12 col-lg-6 pb-3">
                         <label class="form-label form-label-sm">Inicio de internación</label>
-                        <input type="datetime-local" class="form-control form-control-sm filterInput" data-id="0">
+                        <input type="datetime-local" class="form-control form-control-sm filterInput" data-id="0" name="startOfHospitalization">
                     </div>
                     <!-- TODO: MELI COMPROBAR EN EL PHP QUE ESTA FECHA SEA MAYOR A LA DE INICO Y TIRAR UNA ALERTA -->
                     <div class="col-12 col-lg-6 pb-3 ">
                         <label class="form-label form-label-sm">Fin de internación</label>
-                        <input type="datetime-local" class="form-control form-control-sm filterInput" data-id="1" >
+                        <input type="datetime-local" class="form-control form-control-sm filterInput" data-id="1" name="endOfHospitalization">
                     </div>
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-enfermedad" role="tabpanel" aria-labelledby="pills-enfermedad-tab" data-condition="enfermedad" data-file="MedicalCareTypeDetailList">
+            <div class="tab-pane fade" id="pills-enfermedad" role="tabpanel" aria-labelledby="pills-enfermedad-tab" data-condition="enfermedad" data-file="MedicalCareTypeDetailList" data-name="enfermedad[]">
 
             </div>
 
-            <div class="tab-pane fade" id="pills-complicacion" role="tabpanel" aria-labelledby="pills-complicacion-tab" data-condition="complicacion" data-file="MedicalCareTypeDetailList">
+            <div class="tab-pane fade" id="pills-complicacion" role="tabpanel" aria-labelledby="pills-complicacion-tab" data-condition="complicacion" data-file="MedicalCareTypeDetailList" data-name="conplicacion[]">
 
 
             </div>
-            <div class="tab-pane fade" id="pills-tratamiento" role="tabpanel" aria-labelledby="pills-tratamiento-tab" data-condition="tratamiento" data-file="MedicalCareTypeDetailList">
+            <div class="tab-pane fade" id="pills-tratamiento" role="tabpanel" aria-labelledby="pills-tratamiento-tab" data-condition="tratamiento" data-file="MedicalCareTypeDetailList" data-name="tratamiento[]">
 
             </div>
-            <div class="tab-pane fade" id="pills-estudio" role="tabpanel" aria-labelledby="pills-estudio-tab" data-condition="estudio" data-file="MedicalCareTypeDetailList">
+            <div class="tab-pane fade" id="pills-estudio" role="tabpanel" aria-labelledby="pills-estudio-tab" data-condition="estudio" data-file="MedicalCareTypeDetailList" data-name="estudio[]">
 
             </div>
-            <div class="tab-pane fade" id="pills-antecedente" role="tabpanel" aria-labelledby="pills-antecedente-tab" data-condition="antecedente" data-file="MedicalCareTypeDetailList">
-
-            </div>
-
-            <div class="tab-pane fade" id="pills-sintoma" role="tabpanel" aria-labelledby="pills-sintoma-tab" data-condition="sintoma" data-file="MedicalCareTypeDetailList">
+            <div class="tab-pane fade" id="pills-antecedente" role="tabpanel" aria-labelledby="pills-antecedente-tab" data-condition="antecedente" data-file="MedicalCareTypeDetailList" data-name="antecedente[]">
 
             </div>
 
-            <div class="tab-pane fade" id="pills-farmaco" role="tabpanel" aria-labelledby="pills-farmaco-tab" data-condition="farmaco" data-file="MedicalCareTypeDetailList">
+            <div class="tab-pane fade" id="pills-sintoma" role="tabpanel" aria-labelledby="pills-sintoma-tab" data-condition="sintoma" data-file="MedicalCareTypeDetailList" data-name="sintoma[]">
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-farmaco" role="tabpanel" aria-labelledby="pills-farmaco-tab" data-condition="farmaco" data-file="MedicalCareTypeDetailList" data-name="farmaco[]">
 
             </div>
             <div class="tab-pane fade" id="pills-datoPersonal" role="tabpanel" aria-labelledby="pills-datoPersonal-tab">
@@ -100,19 +100,21 @@
                     <label class="form-label">Edad</label>
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control form-control-sm filterInput" placeholder="Mayor a"  data-id="3">
+                        <input type="text" class="form-control form-control-sm filterInput"  name="minimumAge"placeholder="Mayor a" data-id="3">
 
-                        <input type="text" class="form-control form-control-sm filterInput" placeholder="Menor a" data-id="4">
+                        <input type="text" class="form-control form-control-sm filterInput" name="maximumAge" placeholder="Menor a" data-id="4">
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="pills-sectorHabitacion" role="tabpanel" aria-labelledby="pills-sectorHabitacion-tab" data-file="HospitalSectorsList">
+            <div class="tab-pane fade" id="pills-sectorHabitacion" role="tabpanel" aria-labelledby="pills-sectorHabitacion-tab" data-file="HospitalSectorsList" data-name="habitacion[]">
 
             </div>
-        </div>
-        <div class="position-relative">
-            <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0" type="button" id="obtenerBusquedaFiltrado"><i class='bx bx-search'></i></button>
-        </div>
+            <div class="position-relative">
+                <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0" type="submit" data-file="PatientByFilter">
+                    <i class='bx bx-search'></i>
+                </button>
+            </div>
+        </form>
     </div>
 
     <template id="datalistTemplate">
