@@ -18,4 +18,4 @@ if(isset($id)){
 $result = getPreparedStatement($sql,$typeOfParameters, $parameters);
 $data = getResultOfPreparedStatement($result);
 $msg = ['type' => 'error', 'text' => 'Mensaje de prueba'];
-sendJson($data, $msg, null,null);
+sendJson($data, $msg, null,null,null);

@@ -24,4 +24,4 @@
   $typeOfParameters = "siissssissii";
   $parameters = array( $id,$dni,$cuil,$name,$surname,$gender,$dateBirth,$phone,$email,$address,$addressNumber,$location);  
   $result = getPreparedStatement($sql,$typeOfParameters, $parameters);
-  sendJson(null,$msg,$id,null);
+  sendJson(null,$msg,$id,null,null);

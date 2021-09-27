@@ -6,4 +6,4 @@ $parameters =  array($id);
 $typeOfParameters = "s";
 $result = getPreparedStatement($sql,$typeOfParameters, $parameters);
 $data = getResultOfPreparedStatement($result);
-sendJson($data, null, null, null);
+sendJson($data, null, null, null,null);

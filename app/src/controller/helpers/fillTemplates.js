@@ -1,5 +1,9 @@
-import { databaseOperation } from './fetchRequest.js';
-import { addAlert } from './interfaceChanges.js';
+import {
+	databaseOperation
+} from './fetchRequest.js';
+import {
+	addAlert
+} from './interfaceChanges.js';
 
 //TODO:ALEX PONER EN CADA TABLA DE LAS DISTINTAS SECCIONES LO SIGUIENTE: en el html que contiene la tabla hay que poner como id del template tableRowTemplate, el tr tiene que tener la clase tableRow y cada td(celda) tiene que tener un name que indique cual es la columna del registro que se tiene que insertar en ella, EJEMPLO php.También hay qye hacer el sql para esto
 export async function fillTable(data, container) {
@@ -12,7 +16,7 @@ export async function fillTable(data, container) {
 		const tpl = document.getElementById('tableRowTemplate').content;
 		const fragment = document.createDocumentFragment();
 		const databaseInformation = Object.entries(data.db);
-		for (const [ key, data ] of databaseInformation) {
+		for (const [key, data] of databaseInformation) {
 			tpl.querySelector('.tableRow').dataset.id = data.ID;
 			tpl.querySelectorAll('td').forEach((cell) => {
 				let columnTable = cell.getAttribute('name');
@@ -22,10 +26,67 @@ export async function fillTable(data, container) {
 			fragment.appendChild(clone);
 		}
 		container.appendChild(fragment);
+		const amountOfPages = data.amountOfPages || document.querySelector('#pagerContainer').dataset.pages;
+		if (amountOfPages > 1 && databaseInformation.length > 0) {
+			fillPager(data.amountOfPages, data.currentPage);
+		}
 		addAlert(data['msg']);
 	} catch (error) {
 		console.log('error ' + error);
 	}
+}
+
+//Crea el paginador de una tabla
+function fillPager(amountOfPages, currentPage) {
+	const container = document.getElementById('pagerContainer');
+	const tpl = document.getElementById('pagerItemTemplate').content;
+	const fragment = document.createDocumentFragment();
+	const amountOfPagesToShow = 5;
+	const [initialItemToShow, finalItemToShow] = getConfigToCreatePager(amountOfPagesToShow, currentPage, amountOfPages, container);
+
+	for (let i = initialItemToShow; i <= finalItemToShow; i++) {
+		tpl.querySelector("a").innerHTML = i;
+		tpl.querySelector(".page-item").dataset.id = i;
+		const clone = tpl.cloneNode(true);
+		fragment.appendChild(clone);
+	}
+	container.appendChild(fragment);
+
+	const previousItem = container.querySelector('.page-item .active');
+	if (previousItem) {
+		previousItem.classList.remove(".active")
+	}
+	const currentItem = container.querySelector('.page-item[data-id="' + currentPage + '"]');
+	currentItem.classList.add("active");
+}
+
+function getConfigToCreatePager(amountOfPagesToShow, currentPage, amountOfPages, container) {
+	const numberOfElementsOnTheSide = Math.floor(amountOfPagesToShow / 2);
+	let initialItemToShow = currentPage - numberOfElementsOnTheSide;
+	let finalItemToShow = parseInt(currentPage) + numberOfElementsOnTheSide;
+	if (amountOfPages) container.dataset.pages = amountOfPages;
+	amountOfPages = container.dataset.pages;
+	container.innerHTML = "";
+	if (initialItemToShow <= 0) {
+		initialItemToShow = 1;
+		while (finalItemToShow < amountOfPagesToShow && finalItemToShow < amountOfPages) {
+			finalItemToShow++
+		}
+	}
+	if (finalItemToShow > amountOfPages) {
+		finalItemToShow = amountOfPages;
+		while (initialItemToShow > 1 && initialItemToShow > (amountOfPages - amountOfPagesToShow - 1)) {
+			initialItemToShow--;
+		}
+		if (finalItemToShow < 1) {
+			finalItemToShow = 1
+		}
+	}
+	return [
+		initialItemToShow,
+		finalItemToShow
+	];
+
 }
 
 //TODO: ALEX PONERLE A TODOS LOS SELECTS DE TODAS LAS DISTINTAS SECCIONES: la clase getSelectOption y un data-default="Todos", si ves que lo necesita,también el data-file correspondiente al php que trae los datos, sino existe ese archivo hay que crearlo,y en la sentencia sql del php se tiene que pedir como primer columna el id de la tabla y como segunda el nombre de la  opcion. EJEMPLO en resourceSearch.html
@@ -88,7 +149,10 @@ export async function fillForm(searchId) {
 				selects.forEach((select) => {
 					const columnTable = select.getAttribute('name');
 					const selectedOption = data['db'][0][columnTable];
-					select.options[selectedOption].selected = true;
+					if (selectedOption !== null) {
+						select.options[selectedOption].selected = true;
+
+					}
 				});
 			});
 		});

@@ -1,6 +1,13 @@
-import { databaseOperation } from './fetchRequest.js';
+import {
+	databaseOperation
+} from './fetchRequest.js';
 
-import { fillSelects, fillForm, fillTable, fillSelect } from './fillTemplates.js';
+import {
+	fillSelects,
+	fillForm,
+	fillTable,
+	fillSelect
+} from './fillTemplates.js';
 
 //-------------------- CAMBIOS UTILES GLOBALMENTE EN CUALQUIER SECCIÓN--------------------------
 
@@ -81,19 +88,25 @@ export async function changeSection(element) {
 //-------------------- CAMBIOS EN LAS TABLAS--------------------------
 
 //TODO: ALEX PONER EN  EL TBODY DE TODAS LAS TABLAS DE TODAS LAS SECCIONES  LA CLASE loadTable junto con el data-file correspondiente, CREAR EL ARCHIVO PHP QUE TRAE LA DATA
-async function loadTable() {
+export async function loadTable(selectedPagerItem = null) {
 	//Carga los datos de una tabla que pertenece a una sección
 	try {
 		const tbody = document.querySelector('.loadTable');
+		const dataForm = new FormData();
+		if (selectedPagerItem) {
+			dataForm.append("pageNumber", selectedPagerItem);
+		}
+
 		if (tbody) {
 			const file = tbody.dataset.file;
-			const data = await databaseOperation('get', file);
+			const data = await databaseOperation('get', file, dataForm);
 			await fillTable(data, tbody);
 		}
 	} catch (error) {
 		console.log('error ' + error);
 	}
 }
+
 export async function searchDatabaseInformation(e) {
 	const searchFormulary = e.target;
 	const searchButton = e.submitter;

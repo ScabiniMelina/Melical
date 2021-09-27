@@ -94,7 +94,7 @@ function getMessageFromOperationResultToDatabase($connection){
 }
 
 //Retorna el resultado obtenido de una consulta sql y/o un mensaje y/o un id del nuevo elemento insertado en la base de datos y/o una cantidad de paginas para el paginador;
-function sendJson($databaseInformation, $msg, $newElementID, $amountOfPages)
+function sendJson($databaseInformation, $msg, $newElementID, $amountOfPages,$currentPage)
 {
     $elementsToSend = [];
     if (isset($databaseInformation)) {
@@ -108,6 +108,9 @@ function sendJson($databaseInformation, $msg, $newElementID, $amountOfPages)
     }
     if(isset($amountOfPages)){
         $elementsToSend['amountOfPages'] = $amountOfPages;
+    }
+    if(isset($currentPage)){
+        $elementsToSend['currentPage'] = $currentPage;
     }
     echo json_encode($elementsToSend, JSON_FORCE_OBJECT);
 }
@@ -147,13 +150,16 @@ function getPutRequestParameters()
 //         return $parameters;
 //     }
 // }
-
-function getPaginationConfig($numberOfResultsToShow ){
+function getCurrentPage(){
     $currentPage = 1;
-    //Si existe el limite para especificar la cantidad de paginas, significa que existe el paginador y no hay que saber la cantidad de filas para poder crearlo nuevamente     
     if(isset($_GET['pageNumber'])){
         $currentPage = $_GET['pageNumber'];
     }
+    //Si existe el limite para especificar la cantidad de paginas, significa que existe el paginador y no hay que saber la cantidad de filas para poder crearlo nuevamente     
+    return $currentPage;
+}
+
+function getPaginationConfig($numberOfResultsToShow, $currentPage ){
     $finalLimit =  $currentPage * $numberOfResultsToShow;
     $initialLimit = $finalLimit - $numberOfResultsToShow;
     return $initialLimit;

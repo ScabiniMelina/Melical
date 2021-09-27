@@ -8,30 +8,33 @@
 
 <body>
     <div class="container pagina">
-        <form  enctype="multipart/form-data" method="get" class="row searchFormulary">
+        <form enctype="multipart/form-data" method="get" class="row searchFormulary">
             <div class="col pe-0">
                 <input name="id" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido">
             </div>
-            
+
             <div class=" col-auto ps-1">
-                <button class="btn btn-primary"  type="submit" data-file="PatientBySearch"> 
+                <button class="btn btn-primary" type="submit" data-file="PatientBySearch">
                     <i class='bx bx-search'></i>
                 </button>
-                <button type="button" data-title="Filtrar" data-file="patient/patientSearchFilter.php" class="btn btn-primary changeSectionButton">
+                <button type="button" data-title="Filtrar" data-file="patient/patientSearchFilter.php"
+                    class="btn btn-primary changeSectionButton">
                     <i class='bx bx-slider-alt'></i>
                 </button>
-                <button type="button" data-title="Buscar por huella" data-file="patient/patientSearchByFingerprint.html" class="btn btn-primary changeSectionButton">
+                <button type="button" data-title="Buscar por huella" data-file="patient/patientSearchByFingerprint.html"
+                    class="btn btn-primary changeSectionButton">
                     <i class='bx bx-scan'></i>
                 </button>
-                <button type="button" data-title="Buscar por rostro" data-file="patient/patientSearchByFace.html" class="btn btn-primary changeSectionButton">
+                <button type="button" data-title="Buscar por rostro" data-file="patient/patientSearchByFace.html"
+                    class="btn btn-primary changeSectionButton">
                     <i class='bx bxs-face'></i>
                 </button>
             </div>
 
         </form>
-    
+
         <div class="overflow-auto mt-2 container-table-overflow">
-        
+
             <table class="table table-responsive table-hover m-auto caption-top text-center">
 
                 <thead class="table-primary-color thead-fixed">
@@ -45,14 +48,36 @@
 
                 <!-- PONER LA CLASE loadTable Y UN DATA FILE CON EL ARCHIVO CORRESPONDIENTE -->
                 <tbody class="table-light loadTable" data-file="Patients">
-                    
                 </tbody>
-                
             </table>
         </div>
+
+        <nav>
+            <ul class="pagination justify-content-center" id="pagerContainer">
+                <!-- <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li> -->
+            </ul>
+        </nav>
+
+        <template id="pagerItemTemplate">
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+        </template>
         <div class="position-relative">
-            <button  class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton" data-title="Paciente" data-file="patient/patient.html" type="button" id="agregarPaciente"><i class='bx bx-plus'></i></button>
-        </div>    
+            <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
+                data-title="Paciente" data-file="patient/patient.html" type="button" id="agregarPaciente"><i
+                    class='bx bx-plus'></i></button>
+        </div>
     </div>
     <template id="tableRowTemplate">
         <tr class="tableRow" data-file="patient/patient.html" data-title="Paciente">
@@ -62,5 +87,6 @@
             <td name="dateBirth"></td>
         </tr>
     </template>
-  </body>
+</body>
+
 </html>

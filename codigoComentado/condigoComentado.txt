@@ -6,47 +6,6 @@
   // })
 
 
-  
-// function eliminarFiltroBadge(){
-
-//   document.querySelectorAll("i").forEach(icono=>{
-
-//     console.log(icono)
-//     icono.addEventListener("click",(e)=>{
-//       console.log(e.target)
-
-//   })
-//   })
-// }
-
-// async function obtenerOpcionesDatalist(tabla,columnaId,columnaLista){
-//   // tabla = "PERSONAL_INFORMATION"
-//   // columnaId = "ID_DNI";
-//   // columnaLista = "name";
-//   console.log( tabla+" "+ columnaId+" "+ columnaLista)
-//   let data = new FormData();
-//   data.append("tabla",tabla);
-//   data.append("columnaId",columnaId);
-//   data.append("columnaLista",columnaLista);
-//   let opciones="";
-//   const respuesta = await fetch("../php/rellenarOpcionesDatalist.php",{
-//     method:"POST",
-//     body:data
-//   })
-//   const dataJson = await respuesta.json();
-//   await dataJson.forEach((opcion) => {
-//     opciones += '<option data-id="' + opcion[columnaId] + '" value="' + opcion[columnaLista] +'">'+ opcion[columnaLista] +'</option>' 	
-//   })
-//   return await opciones;
-// } 
-
-
-
-
-
-
-
-
 
 // let functionList = [loadProfileSection];
 
@@ -68,39 +27,23 @@ function searchFunction(functionName, functionList) {
     }
   }
 }
-
-// if (e.target.matches('.datalistGrouping select, select.filterInput')) {
-			// 	const select = e.target;
-			// 	const datalistGrouping = select.closest('.datalistGrouping');
-			// 	if (datalistGrouping) {
-			// 		badgeId = datalistGrouping.dataset.id;
-			// 		elementToDelete = datalistGrouping;
-			// 	} else {
-			// 		elementToDelete = select;
-			// 		badgeId = select.dataset.id;
-			// 	}
-			// 	badgeOption = select.options[select.selectedIndex].text;
-			// }
-
-			// if (e.target.matches('input.filterInput')) {
-			// 	const input = e.target;
-			// 	badgeId = input.dataset.id;
-			// 	badgeOption = input.value;
-			// 	elementToDelete = input;
-			// }
-
-
-
-			// if (elementToDelete.matches('input')) {
-	// 	const input = elementToDelete.closest('input');
-	// 	input.value = '';
+	
+		if (initialItemToShow <= 0) {
+		let amountToAdd = initialItemToShow * (-1) + 1;
+		initialItemToShow = amountToAdd;
+		let finalItemToShow;
+		// do {
+		// 	finalItemToShow += 1;
+		// 	amountToAdd--;
+		// } while (amountOfPages > finalItemToShow || amountToAdd > 0);
+	}
+	// if (finalItemToShow > amountOfPages) {
+	// 	let amountToAdd = finalItemToShow - amountOfPages - 1;
+	// 	finalItemToShow -= amountToAdd + 1;
+	// 	let initialItemToShow;
+	// 	do {
+	// 		initialItemToShow += 1;
+	// 		amountToAdd--;
+	// 	} while (initialItemToShow > 1 || amountToAdd > 0);
 	// }
 
-	// if (elementToDelete.querySelector('select')) {
-	// 	//Si hay solo un select no lo elimina porque no se podría agregar uno nuevo
-	// 	const select = elementToDelete.querySelector('select') || elementToDelete;
-	// 	select.options[0].selected = true;
-	// 	if (container.children.length > 1) {
-	// 		container.removeChild(elementToDelete);
-	// 	}
-	// }

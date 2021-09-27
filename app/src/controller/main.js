@@ -1,4 +1,6 @@
-import { activateMenuFunctions } from './menu.js';
+import {
+	activateMenuFunctions
+} from './menu.js';
 
 import {
 	changeSection,
@@ -12,6 +14,10 @@ import {
 	addDatalistGrouping,
 	addDatalistGroupingsFromFilterMenu
 } from './helpers/interfaceChanges.js';
+
+import {
+	loadTable
+} from "./helpers/interfaceChanges.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 	activateMenuFunctions();
@@ -62,6 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
 				removeBadge(elementToDelete, badgeId);
 			}
 		}
+
+		//Botón item del paginador
+		if (e.target.matches('.page-item, .page-item *')) {
+			const currentPageElement = e.target.closest('.page-link');
+			const currentPage = currentPageElement.innerHTML;
+			// const container = e.target.closest("#pagerContainer");
+			// const amountOfPages = container.dataset.pages;
+			loadTable(currentPage);
+		}
+
+
 	});
 
 	// document.addEventListener("keydown", (e) => {
@@ -72,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('change', (e) => {
 		//Cambios en los selects de la seccion filtros
 		if (e.target.matches('.datalistGrouping select, input.filterInput,  select.filterInput')) {
-			let [ badgeOption, badgeId, elementToDelete ] = getElementsToDoAnOperationOnTheBadge(e);
+			let [badgeOption, badgeId, elementToDelete] = getElementsToDoAnOperationOnTheBadge(e);
 			modifyBadge(badgeId, badgeOption, elementToDelete);
 		}
 	});
@@ -134,7 +151,7 @@ function getElementsToDoAnOperationOnTheBadge(e) {
 		badgeOption = element.value;
 	}
 
-	return [ badgeOption, badgeId, elementToDelete ];
+	return [badgeOption, badgeId, elementToDelete];
 }
 
 async function formularyChanges() {
