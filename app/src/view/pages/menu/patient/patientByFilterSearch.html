@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="small">Se encontraron <span id="searchResult">2000</span> resultados</p>
+    <div class="overflow-auto mt-2 container-table-overflow">
+        <table class="table table-responsive table-hover m-auto caption-top text-center">
+            <thead class="table-primary-color thead-fixed">
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nacimiento</th>
+                </tr>
+            </thead>
+
+            <!-- PONER LA CLASE loadTable Y UN DATA FILE CON EL ARCHIVO CORRESPONDIENTE -->
+            <tbody class="table-light loadTable" data-file="Patients">
+
+            </tbody>
+
+        </table>
+    </div>
+    <template id="tableRowTemplate">
+        <tr class="tableRow" data-file="patient/patient.html" data-title="Paciente">
+            <td name="dni"></td>
+            <td name="name"></td>
+            <td name="surname"></td>
+            <td name="dateBirth"></td>
+        </tr>
+    </template>
+</body>
+
+</html>
