@@ -132,44 +132,99 @@ export async function searchTableInformation(e) {
 }
 
 export async function changeSaveButtonsAction() {
-	//Cambia la acción de todos los botones guardar a actualizar
-	let buttons = document.querySelectorAll('.postInformation');
-	buttons.forEach((btn) => {
-		changeSaveButtonAction(btn);
-	});
+	try {
+		//Cambia la acción de todos los botones guardar a actualizar
+		let buttons = document.querySelectorAll('.postInformation');
+		buttons.forEach((btn) => {
+			changeSaveButtonAction(btn);
+		});
+	} catch (error) {
+		console.log('error ' + error);
+	}
 }
 
 export async function changeSaveButtonAction(btn) {
-	//Cambia la acción del botón guardar a actualizar
-	if (btn.innerHTML === 'Guardar') {
-		btn.innerHTML = 'Actualizar';
-		btn.classList.replace('postInformation', 'putInformation');
-		// btn.dataset.method = "put";
+	try {
+		//Cambia la acción del botón guardar a actualizar
+		if (btn.innerHTML === 'Guardar') {
+			btn.innerHTML = 'Actualizar';
+			btn.classList.replace('postInformation', 'putInformation');
+			// btn.dataset.method = "put";
+		}
+	} catch (error) {
+		console.log('error ' + error);
 	}
 }
 
 export async function updateFormInformation(e) {
-	//Actualiza la información de un formulario
-	const btn = e.submitter;
-	const file = btn.dataset.file;
-	const form = e.target;
-	const formData = new FormData(form);
-	formData.append('id', form.dataset.id);
-	const data = await databaseOperation('put', file, formData);
-	addAlert(data['msg']);
+	try {
+		//Actualiza la información de un formulario
+		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
+		const data = await databaseOperation('put', file, formData);
+		addAlert(data['msg']);
+	} catch (error) {
+		console.log('error ' + error);
+	}
 }
 
-//TODO: MELI VER COMO REFACTORIZAR UPDATEFORMINFORMATION() Y SAVEFORMINFORMATION(), POR QUE HACEN LOS MISMO SALVO POR CAMBIAR LA ACCIÓN DEL BOTON Y EL METODO CON EL QUE SE HACE LA PETICIÓN.
 export async function saveFormInformation(e) {
-	//Guarda información de un formulario
-	const btn = e.submitter;
-	const file = btn.dataset.file;
-	const form = e.target;
-	const formData = new FormData(form);
-	const data = await databaseOperation('post', file, formData);
-	form.dataset.id = data['id'];
-	addAlert(data['msg']);
-	await changeSaveButtonAction(btn);
+	try {
+		//Guarda información de un formulario
+		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
+		const data = await databaseOperation('post', file, formData);
+		const forms = getForms(form);
+		putIdToForms(forms, data['id'])
+		addAlert(data['msg']);
+		if (data["msg"]['type'] !== "error") {
+			await changeSaveButtonAction(btn);
+		}
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+
+function getElementsToDoAnOperationOnTheForm(e) {
+	try {
+		const btn = e.submitter;
+		const file = btn.dataset.file;
+		const form = e.target;
+		const formData = new FormData(form);
+		if (form.dataset.id) {
+			formData.append('id', form.dataset.id);
+		}
+		return [btn, file, form, formData]
+	} catch (error) {
+		console.log('error ' + error);
+	}
+
+}
+
+export function putIdToForms(forms, id) {
+	try {
+		forms.forEach(form => {
+			form.dataset.id = id;
+		})
+	} catch (error) {
+		console.log('error ' + error);
+	}
+
+}
+
+export function getForms(form) {
+	try {
+		const forms = [form];
+		if (form.dataset.forms) {
+			const otherForms = form.dataset.forms.split(",");
+			otherForms.forEach(formToAdd => {
+				const newForm = document.querySelector(formToAdd);
+				forms.push(newForm);
+			})
+		}
+		return forms;
+	} catch (error) {
+		console.log('error ' + error);
+	}
 }
 
 //-------------------- CAMBIOS EN LA SECCIÓN FILTROS--------------------------

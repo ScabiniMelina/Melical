@@ -2,7 +2,10 @@ import {
 	databaseOperation
 } from './fetchRequest.js';
 import {
-	addAlert
+	addAlert,
+	getForms,
+	putIdToForms,
+	changeSaveButtonAction
 } from './interfaceChanges.js';
 
 //TODO:ALEX PONER EN CADA TABLA DE LAS DISTINTAS SECCIONES LO SIGUIENTE: en el html que contiene la tabla hay que poner como id del template tableRowTemplate, el tr tiene que tener la clase tableRow y cada td(celda) tiene que tener un name que indique cual es la columna del registro que se tiene que insertar en ella, EJEMPLO php.También hay qye hacer el sql para esto
@@ -135,11 +138,13 @@ export async function fillForm(searchId) {
 		dataForm.append('id', searchId);
 		formularies.forEach((form) => {
 			const file = form.dataset.file;
-			form.dataset.id = searchId;
-			if (typeof file === 'undefined') {
-				throw 'No hay archivo para buscar la data';
-			}
+			const btn = form.querySelector("button[type=submit]");
+			const forms = getForms(form);
+			putIdToForms(forms, searchId)
+			// form.dataset.id = searchId;
+			if (typeof file === 'undefined') throw 'No hay archivo para buscar la data';
 			databaseOperation('get', file, dataForm).then((data) => {
+				if (data['db'] === undefined) throw 'No hay data';
 				const inputs = form.querySelectorAll('input');
 				const selects = form.querySelectorAll('select');
 				inputs.forEach((input) => {
@@ -150,10 +155,15 @@ export async function fillForm(searchId) {
 					const columnTable = select.getAttribute('name');
 					const selectedOption = data['db'][0][columnTable];
 					if (selectedOption !== null) {
-						select.options[selectedOption].selected = true;
+						select.value = selectedOption
+						// select.options[selectedOption].selected = true;
 
 					}
 				});
+				if (data["msg"] === undefined || data["msg"]['type'] !== "error") {
+					changeSaveButtonAction(btn);
+				}
+				if (data['id'] !== undefined) putIdToForms(forms, data['id']);
 			});
 		});
 	} catch (error) {

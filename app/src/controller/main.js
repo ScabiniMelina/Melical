@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		//Filas de las tablas
 		if (e.target.matches('.tableRow , .tableRow *')) {
-			changeSection(e.target.closest('.tableRow')).then(() => changeSaveButtonsAction());
+			changeSection(e.target.closest('.tableRow'))
+			// .then(() => changeSaveButtonsAction());
 		}
 
 		//Botón cambiar de sección(btn más, btn filtros, btn reconocimiento facial y dactilar)

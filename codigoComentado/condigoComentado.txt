@@ -46,4 +46,3 @@ function searchFunction(functionName, functionList) {
 	// 		amountToAdd--;
 	// 	} while (initialItemToShow > 1 || amountToAdd > 0);
 	// }
-

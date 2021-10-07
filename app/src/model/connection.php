@@ -142,6 +142,7 @@ function getPutRequestParameters()
     }
 }
 
+
 // function getRequestParameters()
 // {
 //     $requestMethod = $_SERVER['REQUEST_METHOD'];
@@ -182,4 +183,10 @@ function getAmountOfPagesToCreatePager($table,$numberOfResultsPerPage){
    
 }
 
+function setSelectValue($value){
+    if ( strcmp($value, "default" ) == 0 ) {
+        return  null;
+    }
+    return $value;
+}
 

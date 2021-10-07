@@ -98,7 +98,8 @@
     <div class="tab-content pb-2" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="card">
-          <form class="row g-3 card-body fillForm" data-file="PatientInformation" data-id="">
+          <form class="row g-3 card-body fillForm" id="form1" data-file="PatientInformation" data-id=""
+            data-forms="#form2">
             <div class="col-6">
               <label class="form-label form-label-sm">Dni</label>
               <input type="text" name="dni" class="form-control form-control-sm">
@@ -154,7 +155,7 @@
               </select>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary sectionButton postInformation" data-method="post"
+              <button type="submit" class="btn btn-primary   postInformation"
                 data-file="PatientInformation">Guardar</button>
             </div>
           </form>
@@ -177,7 +178,7 @@
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
               aria-labelledby="panelsStayOpen-headingOne">
               <div class="accordion-body">
-                <form class="row fillForm">
+                <form class="row fillForm" id="form2" data-file="BloodReligionPatient">
                   <div class="col-6">
                     <label class="form-label">Sangre</label>
                     <select class="form-select form-select-sm getSelectOption" name="blood" data-file="BloodTypeList">
@@ -190,8 +191,8 @@
                     </select>
                   </div>
                   <div class="col-12 pt-3">
-                    <button type="button" class="btn btn-primary sectionButton" id="patientReligionBloodButton"
-                      data-file="updateBloodReligionPatient">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary postInformation"
+                      data-file="BloodReligionPatient">Guardar</button>
                   </div>
               </div>
               </form>

@@ -8,21 +8,12 @@
   $name = $_PUT['name'];
   $surname = $_PUT['surname'];
   $dateBirth = $_PUT['dateBirth'];
-  $gender =  $_PUT['gender'] ;
+  $gender = setSelectValue( $_PUT['gender'] );
   $phone = $_PUT['phone'];
   $email = $_PUT['email'];
   $address = $_PUT['address'];
   $addressNumber = $_PUT['addressNumber'];
-  $location = $_PUT['location'];
-
-  if ( strcmp($location, "default" ) == 0 ) {
-    $location = null;
-  }
-
-  if ( strcmp($gender, "default" ) == 0 ){
-    $gender = null;
-  }
-
+  $location =  setSelectValue( $_PUT['location'] );
   $sql = "UPDATE PERSONAL_INFORMATION SET dni = ?, tramit_nume= ? , name= ? , surname= ?, gender = ? , date_birth = ? , phone = ? , email = ? , address = ? , address_number = ? , PK_ID_LOCATION = ? WHERE ID_DNI = ? ";
   $typeOfParameters = "iissisissiis";
   $parameters = array($dni,$cuil,$name,$surname,$gender,$dateBirth,$phone,$email,$address,$addressNumber,$location,$id);

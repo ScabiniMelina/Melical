@@ -58,8 +58,7 @@
                 </div>
               </div>
               <div class="col-12 justify-self-center text-sm-start">
-                  <input type="button" class="btn btn-primary mt-3 text-align-center text-nowrap text-sm-center" id="id_click" name="buton"  placeholder="Iniciar sesión">
-              
+                <input type="button" class="btn btn-primary mt-3 text-align-center text-nowrap text-sm-center" id="id_click" name="buton"  value="Iniciar sesión">
               </div>
             </div>
           </form>
