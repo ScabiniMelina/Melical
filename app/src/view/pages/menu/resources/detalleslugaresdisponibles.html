@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detalles</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>    
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="container">
+	<!--- PACIENTE ---->
+	<div class="thead-fixed background-bg-color">
+		<div class="card mb-3 btn-primary">
+	        <div class="card-body ">
+	          <div class=" d-flex justify-content-between">
+	            <h5 class="card-title"><b>Melina Noelia Scabini</b></h5>
+	            <span><b>44756058</b></span>
+	          </div>
+	          <p class="card-text"><b>Sexo: </b><span>Femenino</span> <b>Edad: </b><span>18</span> <b>Obra Social:
+	            </b><span>No tiene </span><b>Sangre: </b><span>O+</span></p>
+	        </div>
+	    </div>
+	</div>
+	<!--- PACIENTE ---->
+
+	<div class="card">
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+		  <div class="accordion-item">
+		    <h2 class="accordion-header" id="flush-headingOne">
+		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+		        Personal
+		      </button>
+		    </h2>
+		    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+		      <div class="accordion-body">
+		      	<ul class="list-group list-group-horizontal">
+				  <li class="list-group-item d-flex  justify-content-between flex-fill">
+				  	<div class="ms-2 me-auto ">
+	                    <div class="fw-bold">Marley Boy</div>
+	                    Cardiólogia            
+	                </div>
+				  </li>
+				  <li class="list-group-item d-flex  justify-content-between flex-fill">
+				  		<div class="ms-2 me-auto ">
+	                    <div class="fw-bold">La rocca</div>
+	                    Enfermeria            
+	                </div>
+				  </li>
+				  <li class="list-group-item d-flex  justify-content-between flex-fill">
+				  		<div class="ms-2 me-auto ">
+	                    <div class="fw-bold">Leonel Messi</div>
+	                    Ortopedia            
+	                </div>
+				  </li>
+				</ul>
+				<div class="pt-2 text-start">
+				<!-- Button trigger modal -->
+					<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#agregarPersonal">
+					  Agregar personal
+					</button>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="agregarPersonal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Editar personal</h5>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <div class="modal-body py-2">
+				          <form class=" row mb-3" id="commentForm">
+				            <div class="col col-6 pt-3">
+				              <label for="inputFechaIngreso" class="form-label form-label-sm">Nombre</label>
+				              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+				              <datalist>
+
+				              </datalist>
+				            </div>
+				            <div class="col col-6 pt-3">
+				              <label for="inputFechaIngreso" class="form-label form-label-sm">Apellido</label>
+				              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+				              <datalist>
+
+				              </datalist>
+				            </div>
+				            <div class="col col-12  pt-3">
+				              <label for="inputFechaIngreso" class="form-label form-label-sm">Especialidad</label>
+				              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+				              <datalist>
+
+				              </datalist>
+				            </div>
+				          </form>
+				        </div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn  btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				        <button type="button" class="btn  btn-sm btn-primary">Guardar</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="flush-headingTwo">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+			        Recursos
+			      </button>
+			    </h2>
+			    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+			      <div class="accordion-body">
+			      		<div class="card mt-2">
+							<a href="#" class="list-group-item list-group-item-action">
+							    <div class="d-flex w-100 justify-content-between ">
+							      <h5 class="mb-1">Título de prueba o examen</h5>
+							      <small class="text-muted">Fecha y hora</small>
+							    </div>
+							      <small>Nombre del doctor</small>
+							    <p class="mb-1">Detalles breves acerca del diagnóstico o tipo de examen realizado.</p>
+							  </a>
+						</div>	
+			      		<div class="text-start pt-2">
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#agregarMedicamento">
+						  Agregar medicamento
+						</button>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="agregarMedicamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Editar medicamentos</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        <div class="modal-body py-2">
+					          <form class=" row mb-3" id="commentForm">
+					            <div class="col col-6 pt-3">
+					              <label for="inputFechaIngreso" class="form-label form-label-sm">Medicamento</label>
+					              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+					              <datalist>
+
+					              </datalist>
+					            </div>
+					            <div class="col col-6 pt-3">
+					              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+					              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso" value="2021-06-07">
+					            </div>
+					            <div class="col col-12  pt-3">
+					              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+					              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					            </div>
+					          </form>
+					        </div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					        <button type="button" class="btn btn-sm btn-primary">Guardar</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-item">
+		    <h2 class="accordion-header" id="flush-headingThree">
+		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+		       Comentarios
+		      </button>
+		    </h2>
+		    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+		      <div class="accordion-body">
+		      	    <div class="card mt-2">
+						<a href="#" class="list-group-item list-group-item-action">
+							<div class="d-flex w-100 justify-content-between ">
+							    <h5 class="mb-1">Título de prueba o examen</h5>
+							    	<small class="text-muted">Fecha y hora</small>
+							</div>
+							<small>Nombre del doctor</small>
+							<p class="mb-1">Detalles breves acerca del diagnóstico o tipo de examen realizado.</p>
+						</a>
+					</div>	
+			      		<div class="text-start pt-2">
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComentario">
+						  Agregar comentario
+						</button>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="agregarComentario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Editar comentarios</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        <div class="modal-body py-2">
+					          <form class="mb-3" id="commentForm">
+					            <div class="col col-12 pt-3 pb-3">
+					              <label class="col-form-label">Comentario:</label>
+					              <textarea class="form-control" rows="2" name="comment" id="message-text"></textarea>
+					            </div>
+					            <div class="col">
+					              <label for="permisoVista">Permiso de vista</label>
+					              <select id="permisoVista" class="form-control" name="">
+					              </select>
+					            </div>
+					          </form>
+					        </div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					        <button type="button" class="btn btn-sm btn-primary">Guardar</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+<script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>    
+</body>
+</html>
