@@ -6,7 +6,8 @@ import {
 	fillSelects,
 	fillForm,
 	fillTable,
-	fillSelect
+	fillSelect,
+	fillCards
 } from './fillTemplates.js';
 
 //-------------------- CAMBIOS UTILES GLOBALMENTE EN CUALQUIER SECCIÓN--------------------------
@@ -79,6 +80,7 @@ export async function changeSection(element) {
 	await loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
 		loadTable();
 		fillSelects();
+		fillCards();
 		if (searchId) {
 			fillForm(searchId);
 		}
@@ -159,9 +161,7 @@ export async function changeSaveButtonAction(btn) {
 export async function updateFormInformation(e) {
 	try {
 		//Actualiza la información de un formulario
-		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
-		const data = await databaseOperation('put', file, formData);
-		addAlert(data['msg']);
+		formOperation('put', e)
 	} catch (error) {
 		console.log('error ' + error);
 	}
@@ -169,20 +169,38 @@ export async function updateFormInformation(e) {
 
 export async function saveFormInformation(e) {
 	try {
-		//Guarda información de un formulario
+		formOperation("post", e);
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+export async function formOperation(method, e) {
+	try {
+		//Actualiza la información de un formulario
 		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
-		const data = await databaseOperation('post', file, formData);
-		const forms = getForms(form);
-		putIdToForms(forms, data['id'])
+		const data = await databaseOperation(method, file, formData);
 		addAlert(data['msg']);
-		if (data["msg"]['type'] !== "error") {
-			await changeSaveButtonAction(btn);
+		if (method === 'get') {
+			const forms = getForms(form);
+			putIdToForms(forms, data['id'])
+			if (data["msg"]['type'] !== "error") {
+				await changeSaveButtonAction(btn);
+			}
 		}
 	} catch (error) {
 		console.log('error ' + error);
 	}
 }
 
+//TODO: OPTIMIZAR POR QUE ES LA MISMA FUNCION QUE  UPDATE FORM INFORMATION
+export async function deleteFormInformation(e) {
+	try {
+		formOperation('delete', e)
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
 
 function getElementsToDoAnOperationOnTheForm(e) {
 	try {
@@ -289,5 +307,17 @@ export async function addDatalistGrouping(container) {
 		fillSelect(select);
 	} catch (error) {
 		console.log('error ' + error);
+	}
+}
+
+//-------------------- CAMBIOS EN LOS INPUTS--------------------------
+
+export function showOrHidePassword(passwordInput, icon) {
+	if (passwordInput.type == "password") {
+		passwordInput.type = "text";
+		icon.classList.replace('fa-eye-slash', 'fa-eye');
+	} else {
+		passwordInput.type = "password";
+		icon.classList.replace('fa-eye', 'fa-eye-slash');
 	}
 }

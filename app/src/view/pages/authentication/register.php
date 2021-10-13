@@ -191,11 +191,11 @@ echo `
           <input type="email" class="form-control" name="email" required>
         </div>
         <div class="col-12 col-sm-6">
-          <label class="form-label">Contraseña</label>
-          <div class="d-flex h-auto">
-            <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena" required>
-            <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
-          </div>
+              <label class="form-label">Contraseña</label>
+              <div class="d-flex h-auto passwordContainer">
+                <input id="passwordInput" type="password" class="form-control d-block passwordInput" name="contrasena" autocomplete="off">
+                <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
+              </div>
         </div>
 
         <div class="col-12 pt-3">
@@ -213,7 +213,7 @@ echo `
       320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
     </svg>
   </div>
-  <script src="../../../controller/passwordButton.js"></script>
+   <script src="../../../controller/main.js"  type="module"></script>
 </body>
 
 </html>

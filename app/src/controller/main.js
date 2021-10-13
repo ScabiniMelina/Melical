@@ -4,11 +4,10 @@ import {
 
 import {
 	changeSection,
-	changeSaveButtonsAction,
+	showOrHidePassword,
 	searchDatabaseInformation,
 	searchTableInformation,
-	saveFormInformation,
-	updateFormInformation,
+	formOperation,
 	removeBadge,
 	addBadge,
 	addDatalistGrouping,
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//Botón items del menu
 		if (e.target.matches('.link_nav , .link_nav *')) changeSection(e.target.closest('.link_nav'));
 
-		//Filas de las tablas
+		//Filas de las tablas y boton de retroceder de historias clinicas
 		if (e.target.matches('.tableRow , .tableRow *')) {
 			changeSection(e.target.closest('.tableRow'))
 			// .then(() => changeSaveButtonsAction());
@@ -79,37 +78,50 @@ document.addEventListener('DOMContentLoaded', () => {
 			loadTable(currentPage);
 		}
 
-
-	});
-
-	// document.addEventListener("keydown", (e) => {
-	//   //Cambios en los inputs
-	//   console.log("keydown" + e)
-	// })
-
-	document.addEventListener('change', (e) => {
-		//Cambios en los selects de la seccion filtros
-		if (e.target.matches('.datalistGrouping select, input.filterInput,  select.filterInput')) {
-			let [badgeOption, badgeId, elementToDelete] = getElementsToDoAnOperationOnTheBadge(e);
-			modifyBadge(badgeId, badgeOption, elementToDelete);
+		//Botón mostrar y censurar contraseña
+		if (e.target.matches('#show_password, #show_password *')) {
+			const btn = e.target.closest('#show_password');
+			const icon = btn.querySelector('.icon');
+			const container = btn.closest('.passwordContainer');
+			const passwordInput = container.querySelector('#passwordInput');
+			showOrHidePassword(passwordInput, icon);
 		}
-	});
+	})
 
-	document.addEventListener('submit', (e) => {
-		e.preventDefault();
 
-		//Botón buscar de la sección principal donde hay tablas
-		if (e.target.matches('.searchFormulary')) searchTableInformation(e);
+});
 
-		//Botón guardar información
-		if (e.submitter.matches('.postInformation')) saveFormInformation(e);
+// document.addEventListener("keydown", (e) => {
+//   //Cambios en los inputs
+//   console.log("keydown" + e)
+// })
 
-		//Botón actualizar información
-		if (e.submitter.matches('.putInformation')) updateFormInformation(e);
+document.addEventListener('change', (e) => {
+	//Cambios en los selects de la seccion filtros
+	if (e.target.matches('.datalistGrouping select, input.filterInput,  select.filterInput')) {
+		let [badgeOption, badgeId, elementToDelete] = getElementsToDoAnOperationOnTheBadge(e);
+		modifyBadge(badgeId, badgeOption, elementToDelete);
+	}
+});
 
-		//Botón buscar de la sección de filtros
-		if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
-	});
+document.addEventListener('submit', (e) => {
+	e.preventDefault();
+
+	//Botón buscar de la sección principal donde hay tablas
+	if (e.target.matches('.searchFormulary')) searchTableInformation(e);
+
+	//Botón guardar información
+	if (e.submitter.matches('.postInformation')) formOperation('post', e);
+
+	//Botón actualizar información
+	if (e.submitter.matches('.putInformation')) formOperation('put', e);
+
+	//Botón eliminar información
+	if (e.submitter.matches('.deleteInformation')) formOperation('delete', e);
+
+
+	//Botón buscar de la sección de filtros
+	if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
 });
 
 function modifyBadge(badgeId, badgeOption, elementToDelete) {

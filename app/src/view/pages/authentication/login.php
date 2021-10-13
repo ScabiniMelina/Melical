@@ -37,13 +37,13 @@
           <form class="row g-3 pb-3 pt-4" id="formularioRegistro" method="POST">
             <div class="col-12">
               <label for="inputDni4" class="form-label">CUIL</label>
-              <input type="number" name="número de trámite" required class="form-control">
+              <input type="number" name="número de trámite" required class="form-control"  autocomplete="on">
             </div>
 
             <div class="col-12">
               <label class="form-label">Contraseña</label>
-              <div class="d-flex h-auto">
-                <input id="txtPassword" type="Password" class="form-control d-block" name="contrasena">
+              <div class="d-flex h-auto passwordContainer">
+                <input id="passwordInput" type="password" class="form-control d-block passwordInput" name="contrasena"  autocomplete="on">
                 <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
               </div>
             </div>
@@ -86,7 +86,7 @@
 
     </div>
   </div>
-  <script src="../../../controller/passwordButton.js"></script>
+  <script src="../../../controller/main.js"  type="module"></script>
  <?php 
 	$username=$_POST['dni'];
 	$password=$_POST['password'];

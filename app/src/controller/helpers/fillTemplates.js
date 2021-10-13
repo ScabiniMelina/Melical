@@ -39,6 +39,39 @@ export async function fillTable(data, container) {
 	}
 }
 
+export function fillCards() {
+	//Llena una tarjeta con informacion de la base de datos 
+	try {
+		const cardContainers = document.querySelectorAll(".cardContainer");
+		// Recorro todos los cardContainers y obtengo el template del que tengo que rellenar y poner en ese contenedor
+		cardContainers.forEach(cardContainer => {
+			cardContainer.innerHTML = '';
+			const tpl = document.querySelectorAll(cardContainer.dataset.tpl).content;
+			//De ese template saco el archivo al que va a hacer la operacion a la base de datos junto con el id necesario para la consulta 
+			const fragment = document.createDocumentFragment();
+			const file = cardContainer.dataset.file;
+			const id = cardContainer.dataset.id;
+			const dataForm = new FormData();
+			if (id) dataForm.append('id', id);
+			if (typeof file === 'undefined') throw 'No hay archivo para buscar la data';
+			databaseOperation('get', file, dataForm).then((data) => {
+				if (data['db'] === undefined) throw 'No hay data';
+				const databaseInformation = Object.entries(data.db);
+				//Cuando obtiene la informacion de la bd busca un elemento con el cual coincida la clase de este con el alias de la columna de la informacion obtenida  y le coloca la informacion obtenida
+				for (const [key, data] of databaseInformation) {
+					const tplElement = tpl.querySelector(`.${data[key]}`);
+					if (tplElement) tplElement.textContent = data[key];
+					const clone = tpl.cloneNode(true);
+					fragment.appendChild(clone);
+				}
+			});
+			cardContainer.appendChild(fragment);
+		})
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
 //Crea el paginador de una tabla
 function fillPager(amountOfPages, currentPage) {
 	const container = document.getElementById('pagerContainer');
