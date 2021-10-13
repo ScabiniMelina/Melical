@@ -29,9 +29,9 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link nav-link-datalist btn-sm addDatalistGroupingFromFilterMenu" data-bs-toggle="pill" data-bs-target="#pills-estudio" type="button" role="tab" aria-controls="pills-estudio" aria-selected="false">Estudios</button>
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link nav-link-datalist btn-sm addDatalistGroupingFromFilterMenu" id="pills-antecedente-tab" data-bs-toggle="pill" data-bs-target="#pills-antecedente" type="button" role="tab" aria-controls="pills-antecedente" aria-selected="false">Antecedente</button>
-            </li>
+            </li> -->
             <li class="nav-item" role="presentation">
                 <button class="nav-link nav-link-datalist btn-sm addDatalistGroupingFromFilterMenu" id="pills-sintoma-tab" data-bs-toggle="pill" data-bs-target="#pills-sintoma" type="button" role="tab" aria-controls="pills-sintoma" aria-selected="false">Sintoma</button>
             </li>
@@ -61,29 +61,29 @@
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-enfermedad" role="tabpanel" aria-labelledby="pills-enfermedad-tab" data-condition="enfermedad" data-file="MedicalCareTypeDetailList" data-name="enfermedad[]">
+            <div class="tab-pane fade" id="pills-enfermedad" role="tabpanel" aria-labelledby="pills-enfermedad-tab" data-condition="enfermedad" data-file="MedicalCareTypeDetailList" data-name="disease[]">
 
             </div>
 
-            <div class="tab-pane fade" id="pills-complicacion" role="tabpanel" aria-labelledby="pills-complicacion-tab" data-condition="complicacion" data-file="MedicalCareTypeDetailList" data-name="conplicacion[]">
+            <div class="tab-pane fade" id="pills-complicacion" role="tabpanel" aria-labelledby="pills-complicacion-tab" data-condition="complicacion" data-file="MedicalCareTypeDetailList" data-name="complications[]">
 
 
             </div>
-            <div class="tab-pane fade" id="pills-tratamiento" role="tabpanel" aria-labelledby="pills-tratamiento-tab" data-condition="tratamiento" data-file="MedicalCareTypeDetailList" data-name="tratamiento[]">
+            <div class="tab-pane fade" id="pills-tratamiento" role="tabpanel" aria-labelledby="pills-tratamiento-tab" data-condition="tratamiento" data-file="MedicalCareTypeDetailList" data-name="treatment[]">
 
             </div>
-            <div class="tab-pane fade" id="pills-estudio" role="tabpanel" aria-labelledby="pills-estudio-tab" data-condition="estudio" data-file="MedicalCareTypeDetailList" data-name="estudio[]">
+            <div class="tab-pane fade" id="pills-estudio" role="tabpanel" aria-labelledby="pills-estudio-tab" data-condition="estudio" data-file="MedicalCareTypeDetailList" data-name="studies[]">
 
             </div>
-            <div class="tab-pane fade" id="pills-antecedente" role="tabpanel" aria-labelledby="pills-antecedente-tab" data-condition="antecedente" data-file="MedicalCareTypeDetailList" data-name="antecedente[]">
+            <!-- <div class="tab-pane fade" id="pills-antecedente" role="tabpanel" aria-labelledby="pills-antecedente-tab" data-condition="antecedente" data-file="MedicalCareTypeDetailList" data-name="antecedents[]">
+
+            </div> -->
+
+            <div class="tab-pane fade" id="pills-sintoma" role="tabpanel" aria-labelledby="pills-sintoma-tab" data-condition="sintoma" data-file="MedicalCareTypeDetailList" data-name="symptom[]">
 
             </div>
 
-            <div class="tab-pane fade" id="pills-sintoma" role="tabpanel" aria-labelledby="pills-sintoma-tab" data-condition="sintoma" data-file="MedicalCareTypeDetailList" data-name="sintoma[]">
-
-            </div>
-
-            <div class="tab-pane fade" id="pills-farmaco" role="tabpanel" aria-labelledby="pills-farmaco-tab" data-condition="farmaco" data-file="MedicalCareTypeDetailList" data-name="farmaco[]">
+            <div class="tab-pane fade" id="pills-farmaco" role="tabpanel" aria-labelledby="pills-farmaco-tab" data-condition="farmaco" data-file="MedicalCareTypeDetailList" data-name="drug[]">
 
             </div>
             <div class="tab-pane fade" id="pills-datoPersonal" role="tabpanel" aria-labelledby="pills-datoPersonal-tab">

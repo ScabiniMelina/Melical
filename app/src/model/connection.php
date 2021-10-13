@@ -75,6 +75,9 @@ function  getPreparedStatement($sql,$typeOfParameters, $parameters){
 //Devuelve un array asociativo de la operacion realizada en la bd con sentencias preparadas
 function getResultOfPreparedStatement($result){
     try {
+        if(!isset($result)){
+            return array();
+        }
         if($result->num_rows > 0){
             $DbResult = $result->fetch_all(MYSQLI_ASSOC);
             return $DbResult;
@@ -190,3 +193,14 @@ function setSelectValue($value){
     return $value;
 }
 
+//Agrega el parametro a la configuracion de la sentencia preparada, agregando un parametro mas junto con su tipo de dato y  modificando la sentencia sql
+function addParameterToPreparedStatementsConfig($value, $type, $condition){
+    global $typeOfParameters;
+    global $conditions;
+    global $parameters;
+    if(isset($value) && !empty($value) && strcmp($value,"default") !== 0){
+        $typeOfParameters .=$type;
+        $conditions .= " ". $condition ." AND ";
+        array_push( $parameters,$value);
+    }
+}
