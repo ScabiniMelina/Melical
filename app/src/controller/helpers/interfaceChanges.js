@@ -158,30 +158,13 @@ export async function changeSaveButtonAction(btn) {
 	}
 }
 
-export async function updateFormInformation(e) {
-	try {
-		//Actualiza la información de un formulario
-		formOperation('put', e)
-	} catch (error) {
-		console.log('error ' + error);
-	}
-}
-
-export async function saveFormInformation(e) {
-	try {
-		formOperation("post", e);
-	} catch (error) {
-		console.log('error ' + error);
-	}
-}
-
 export async function formOperation(method, e) {
 	try {
 		//Actualiza la información de un formulario
 		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
 		const data = await databaseOperation(method, file, formData);
 		addAlert(data['msg']);
-		if (method === 'get') {
+		if (method === 'post') {
 			const forms = getForms(form);
 			putIdToForms(forms, data['id'])
 			if (data["msg"]['type'] !== "error") {
@@ -193,14 +176,6 @@ export async function formOperation(method, e) {
 	}
 }
 
-//TODO: OPTIMIZAR POR QUE ES LA MISMA FUNCION QUE  UPDATE FORM INFORMATION
-export async function deleteFormInformation(e) {
-	try {
-		formOperation('delete', e)
-	} catch (error) {
-		console.log('error ' + error);
-	}
-}
 
 function getElementsToDoAnOperationOnTheForm(e) {
 	try {
