@@ -12,7 +12,14 @@
   $addressNumber = $_POST['addressNumber'];
   $location = setSelectValue($_POST['location']);
   $id = getMd5Id("PERSONAL_INFORMATION", "ID_DNI");
- $sql = "INSERT INTO `PERSONAL_INFORMATION`( `ID_DNI`,`dni`,`tramit_nume`,`name`,`surname`,`gender`,`date_Birth`,`phone`,`email`,`address`,`address_number`,`PK_ID_LOCATION`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+  //Revisa si ya hay un registro con los datos del paciente registrado;
+  $sql = "SELECT COUNT(*) AS numberOfMatches FROM `PERSONAL_INFORMATION` WHERE `tramit_nume` = ?";
+  $typeOfParameters = "i";
+  $parameters = array($cuil);
+  $result = getPreparedStatement($sql,$typeOfParameters, $parameters);
+  $data =  getResultOfPreparedStatement($result);
+  setMessageOfDuplicateRecord($data,'un paciente');
+  $sql = "INSERT INTO `PERSONAL_INFORMATION`( `ID_DNI`,`dni`,`tramit_nume`,`name`,`surname`,`gender`,`date_Birth`,`phone`,`email`,`address`,`address_number`,`PK_ID_LOCATION`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
   $typeOfParameters = "siissssissii";
   $parameters = array( $id,$dni,$cuil,$name,$surname,$gender,$dateBirth,$phone,$email,$address,$addressNumber,$location);  
   $result = getPreparedStatement($sql,$typeOfParameters, $parameters);

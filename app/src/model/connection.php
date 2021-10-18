@@ -96,6 +96,16 @@ function getMessageFromOperationResultToDatabase($connection){
     return $msg;
 }
 
+//Si hay una registro duplicado en la base de datos envia un mensaje de que ya se ha registrado previamente eso
+function setMessageOfDuplicateRecord($data,$duplicateThing){
+    if( $data[0]['numberOfMatches'] > 0){
+        $msg['type'] = 'error';
+        $msg['text'] = "Ya hay ".$duplicateThing." guardado con esos datos";
+        sendJson(null,$msg, null ,null,null);
+        exit;
+    }
+}
+
 //Retorna el resultado obtenido de una consulta sql y/o un mensaje y/o un id del nuevo elemento insertado en la base de datos y/o una cantidad de paginas para el paginador;
 function sendJson($databaseInformation, $msg, $newElementID, $amountOfPages,$currentPage)
 {

@@ -14,6 +14,13 @@
   $address = $_PUT['address'];
   $addressNumber = $_PUT['addressNumber'];
   $location =  setSelectValue( $_PUT['location'] );
+  //Revisa si ya hay un registro con los datos del paciente registrado;
+  $sql = "SELECT COUNT(*) AS numberOfMatches FROM `PERSONAL_INFORMATION` WHERE `tramit_nume` = ? AND ID_DNI != ?";
+  $typeOfParameters = "is";
+  $parameters = array($cuil,$id);
+  $result = getPreparedStatement($sql,$typeOfParameters, $parameters);
+  $data =  getResultOfPreparedStatement($result);
+  setMessageOfDuplicateRecord($data,'un paciente');
   $sql = "UPDATE PERSONAL_INFORMATION SET dni = ?, tramit_nume= ? , name= ? , surname= ?, gender = ? , date_birth = ? , phone = ? , email = ? , address = ? , address_number = ? , PK_ID_LOCATION = ? WHERE ID_DNI = ? ";
   $typeOfParameters = "iissisissiis";
   $parameters = array($dni,$cuil,$name,$surname,$gender,$dateBirth,$phone,$email,$address,$addressNumber,$location,$id);
