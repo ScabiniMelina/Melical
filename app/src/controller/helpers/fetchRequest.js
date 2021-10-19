@@ -9,7 +9,7 @@ export async function databaseOperation(method, file, dataForm) {
 			if (typeof dataForm !== 'undefined') {
 				if (method == 'get' || method == 'delete' || method == 'put') {
 					urlVariables = '?';
-					for (let [ key, value ] of dataForm.entries()) {
+					for (let [key, value] of dataForm.entries()) {
 						urlVariables += `${key}=${value}&`;
 					}
 					urlVariables = urlVariables.slice(0, -1);
@@ -24,7 +24,7 @@ export async function databaseOperation(method, file, dataForm) {
 		} else {
 			throw 'Método de envió de datos invalido';
 		}
-		const response = await fetch(`./model/${method}/${method}${file}.php${urlVariables}`, config);
+		const response = await fetch(`/public_html/meliScabiniDesarrollo/app/src/model/${method}/${method}${file}.php${urlVariables}`, config);
 		return await response.json();
 	} catch (error) {
 		console.log('error ' + error);

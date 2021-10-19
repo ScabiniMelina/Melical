@@ -12,6 +12,23 @@ import {
 
 //-------------------- CAMBIOS UTILES GLOBALMENTE EN CUALQUIER SECCIÓN--------------------------
 
+export function validateForms() {
+	// Fetch all the forms we want to apply custom Bootstrap validation styles to
+	var forms = document.querySelectorAll('.needs-validation')
+	// Loop over them and prevent submission
+	Array.prototype.slice.call(forms)
+		.forEach(function (form) {
+			form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+			}, false)
+		})
+}
+
 //TODO: MELI ARREGLAR EL CSS DEL ALERT EN TAMAÑO ESCRITORIO
 export async function addAlert(msg) {
 	//Agrega una alerta en la pantalla, necesita como parámetro un array que tenga com indice un tipo y un mensaje
@@ -81,6 +98,7 @@ export async function changeSection(element) {
 		loadTable();
 		fillSelects();
 		fillCards();
+		validateForms();
 		if (searchId) {
 			fillForm(searchId);
 		}
@@ -109,6 +127,7 @@ export async function loadTable(selectedPagerItem = null) {
 	}
 }
 
+//Fijarse si esta funcion esta de mas
 export async function searchDatabaseInformation(e) {
 	const searchFormulary = e.target;
 	const searchButton = e.submitter;
@@ -163,19 +182,23 @@ export async function formOperation(method, e) {
 		//Actualiza la información de un formulario
 		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
 		const data = await databaseOperation(method, file, formData);
-		addAlert(data['msg']);
 		if (method === 'post') {
-			const forms = getForms(form);
-			putIdToForms(forms, data['id'])
-			if (data["msg"]['type'] !== "error") {
-				await changeSaveButtonAction(btn);
+			if (btn.classList.contains("authentificationForm") && data["msg"]['type'] == "success") {
+				const redirectFile = btn.dataset.redirect;
+				window.location.href = redirectFile;
+			} else {
+				const forms = getForms(form);
+				putIdToForms(forms, data['id'])
+				if (data["msg"]['type'] == "success") {
+					await changeSaveButtonAction(btn);
+				}
 			}
 		}
+		addAlert(data['msg']);
 	} catch (error) {
 		console.log('error ' + error);
 	}
 }
-
 
 function getElementsToDoAnOperationOnTheForm(e) {
 	try {

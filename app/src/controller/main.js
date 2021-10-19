@@ -3,6 +3,7 @@ import {
 } from './menu.js';
 
 import {
+	validateForms,
 	changeSection,
 	showOrHidePassword,
 	searchDatabaseInformation,
@@ -20,7 +21,7 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
 	activateMenuFunctions();
-
+	validateForms();
 	document.addEventListener('click', (e) => {
 		//Botón items del menu
 		if (e.target.matches('.link_nav , .link_nav *')) changeSection(e.target.closest('.link_nav'));
@@ -119,10 +120,13 @@ document.addEventListener('submit', (e) => {
 	//Botón eliminar información
 	if (e.submitter.matches('.deleteInformation')) formOperation('delete', e);
 
+	// Botón buscar información 
+	if (e.submitter.matches('.searchInformation')) formOperation('get', e);
 
 	//Botón buscar de la sección de filtros
 	if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
 });
+
 
 function modifyBadge(badgeId, badgeOption, elementToDelete) {
 	//Si hay un badge ya existente modifica el valor, sino crea uno nuevo, también detecta si no hay una opción valida para poner como texto del badge y elimina ese badge si hay un o ya existente

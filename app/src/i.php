@@ -1,7 +1,8 @@
 <?php
-if (!isset($_SESSION['user'])) {
+session_start();
+if (!isset($_SESSION['cuil'])) {
   //TODO: MELI DES-COMENTAR CUANDO LA PAGINA FUNCIONE
-  // header("location: ./view/pages/authentication/login.html");
+  header("location: ./view/pages/authentication/login.php");
 }
 ?>
 
@@ -20,7 +21,7 @@ if (!isset($_SESSION['user'])) {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <?php include('./view/modules/header.php'); ?>
-  
+
   <!--ICONO DE LA APP -->
   <link rel="shortcut icon" sizes="48x48" type="image/png" href="./view/assets/img/">
   <link rel="shortcut icon" sizes="128x128" type="image/png" href="./view/assets/img">
@@ -36,7 +37,7 @@ if (!isset($_SESSION['user'])) {
 
   <link rel="manifest" href="manifest.json">
 
-  
+
   <title>Melical</title>
 
 </head>
@@ -134,7 +135,7 @@ if (!isset($_SESSION['user'])) {
         <div class="btn-group">
           <img src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg" class="profile_img dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           </button>
-          <ul class="dropdown-menu dropdown-menu-end">
+          <ul class="dropdown-menu dropdown-menu-end p-0">
             <li class="changeSectionButton" data-callback="loadProfileSection" data-file="setting/profile.html" data-title="Perfil">
               <button class="dropdown-item" type="button">Ver perfil</button>
             </li>
@@ -142,7 +143,8 @@ if (!isset($_SESSION['user'])) {
               <button class="dropdown-item d-block d-md-none" type="button">Ajustes</button>
             </li>
             <li>
-              <button class="dropdown-item" id="btnLogout" type="button">Cerrar sesión</button>
+              <a href="./model/logout.php" class="text-decoration-none">
+                <button class="dropdown-item" type="button">Cerrar sesión</button></a>
             </li>
           </ul>
         </div>
@@ -172,6 +174,8 @@ if (!isset($_SESSION['user'])) {
   </template>
 
   <?php include('./view/modules/footer.php'); ?>
+  <script src="./sw.js"></script>
+
 </body>
 
 </html>

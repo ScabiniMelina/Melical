@@ -261,16 +261,21 @@ body {
 .background-bg-color{
   background-color:var(--background-color);
 }
-
+/* 
 .accordion-button:not(.collapsed){
   background-color: var(--primary-color);
   color: var(--font-color);
-}
+} */
 
+/*
 .accordion-button:not(.collapsed)::after {
   background-image: none;
-}
+} */
 
+.accordion-button:focus {
+  border: none;
+  box-shadow: none;
+}
 /* Reset de estilos */
   
 
@@ -335,6 +340,7 @@ ul {
 #pedidoEstudios .container-table-overflow{
   height: calc(100vh - 232px);
 }
+
 .thead-fixed,.tabs-fixed{
   position: sticky;
   z-index: 900;
@@ -368,6 +374,7 @@ ul {
   top:0;
   margin:auto;
 }
+
 #logoSection{
   animation: fadeIn ease 4s;
   

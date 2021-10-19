@@ -46,3 +46,50 @@ function searchFunction(functionName, functionList) {
 	// 		amountToAdd--;
 	// 	} while (initialItemToShow > 1 || amountToAdd > 0);
 	// }
+
+export async function deleteFormInformation(e) {
+	try {
+		formOperation('delete', e)
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+
+export async function updateFormInformation(e) {
+	try {
+		//Actualiza la información de un formulario
+		formOperation('put', e)
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+export async function saveFormInformation(e) {
+	try {
+		formOperation("post", e);
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+
+// Reviso si ya existen cookies 
+if (isset($_COOKIE['cuil']) && isset($_COOKIE['password'])) {
+  $cuil =  $_COOKIE['cuil'];
+  $password =  $_COOKIE['password'];
+  $result = loginUser($cuil, $password);
+  if ($result->num_rows == 1) {
+    $_SESSION['cuil'] = $cuil;
+    header("location: ../../../i.php");
+    exit();
+  }
+}
+
+if (isset($_POST['rememberMe'])) {
+        setcookie("cuil", $cuil, time() + (+60 * 60 * 24 * 30 * 365));
+        setcookie("password", $password, time() + (+60 * 60 * 24 * 30 * 365));
+    } else {
+        setcookie("cuil", "");
+        setcookie("password", "");
+    }
