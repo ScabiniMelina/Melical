@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['cuil'])) {
-  //TODO: MELI DES-COMENTAR CUANDO LA PAGINA FUNCIONE
   header("location: ./view/pages/authentication/login.php");
+  die();
 }
 ?>
 

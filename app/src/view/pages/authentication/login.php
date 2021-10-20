@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['cuil'])) {
   var_dump($_SESSION);
-  header("location: ../../../i.php");
+  header("location: ../../../index.php");
   exit();
 }
 ?>
@@ -56,7 +56,7 @@ if (isset($_SESSION['cuil'])) {
 
             <div id="lower">
               <div class="col-12 justify-self-center text-sm-start  mt-1 mb-2">
-                <button class="btn btn-primary text-align-center postInformation authentificationForm" role="button" type="submit" data-file="Login" data-redirect="../../../i.php">Iniciar sesión</button>
+                <button class="btn btn-primary text-align-center postInformation authentificationForm" role="button" type="submit" data-file="Login" data-redirect="../../../index.php">Iniciar sesión</button>
               </div>
               <div class="row row-cols-1 row-cols-sm-auto ">
                 <!-- <div class="col text-sm-start">

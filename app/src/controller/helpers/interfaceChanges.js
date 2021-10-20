@@ -29,7 +29,7 @@ export function validateForms() {
 		})
 }
 
-//TODO: MELI ARREGLAR EL CSS DEL ALERT EN TAMAÑO ESCRITORIO
+//TODO: SOFI ARREGLAR EL CSS DEL ALERT EN TAMAÑO ESCRITORIO
 export async function addAlert(msg) {
 	//Agrega una alerta en la pantalla, necesita como parámetro un array que tenga com indice un tipo y un mensaje
 	try {
