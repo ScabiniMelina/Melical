@@ -105,8 +105,19 @@
               <input type="number" name="dni" class="form-control form-control-sm" required>
             </div>
             <div class="col-6">
-              <label class="form-label form-label-sm">Cuil</label>
-              <input type="number" name="tramitNumber" class="form-control form-control-sm" required>
+              <!--<label for="inputDni4" class="form-label">Cuil</label>
+          <input type="number" name="NumTramite" required class="form-control">-->
+              <label for="inputDni4" class="form-label">Cuil</label>
+
+              <div class="input-group">
+                <input type="number" class="form-control form-control-sm w-25" name="cuilFirstCharacters"
+                  aria-label="2 digitos" required>
+
+                <input type="number" class="form-control form-control-sm w-50" aria-label="Dni" name="tramitNumber"
+                  required>
+
+                <input type="number" class="form-control form-control-sm w-25" name='cuilLastCharacters' required>
+              </div>
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Nombre</label>

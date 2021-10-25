@@ -66,7 +66,7 @@ if (isset($_SESSION['cuil'])) {
                   <span><a class="text-decoration-none small" type="button" href="reestablecercontr.html"> ¿Olvidaste tu contraseña? </a></span>
                 </div> -->
 
-                <div class="row row-cols-2 row-cols-sm-auto pt-1 me-1">
+                <div class="row row-cols-1 row-cols-sm-auto pt-1 me-1">
                   <div class="col">
                     <span class="text-nowrap small text-muted"> ¿Olvidaste tu contraseña?</span>
                   </div>

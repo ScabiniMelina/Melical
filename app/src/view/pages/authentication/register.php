@@ -34,11 +34,11 @@
           <label for="inputDni4" class="form-label">Cuil</label>
 
           <div class="input-group">
-            <input type="number" class="form-control" name="cuilFirstCharacters" aria-label="2 digitos" required>
+            <input type="number" class="form-control w-25" name="cuilFirstCharacters" aria-label="2 digitos" required>
 
-            <input type="number" class="form-control" aria-label="Dni" name="tramitNumber" required>
+            <input type="number" class="form-control w-50" aria-label="Dni" name="tramitNumber" required>
 
-            <input type="number" class="form-control" name='cuilLastCharacters' required>
+            <input type="number" class="form-control w-25" name='cuilLastCharacters' required>
           </div>
         </div>
 

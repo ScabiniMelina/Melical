@@ -11,11 +11,11 @@ import {
 	formOperation,
 	removeBadge,
 	addBadge,
-	executeSectionChangeFunctions,
 	modifyBadge,
 	getElementsToDoAnOperationOnTheBadge,
 	addDatalistGrouping,
-	addDatalistGroupingsFromFilterMenu
+	addDatalistGroupingsFromFilterMenu,
+	executeSectionChangeFunctions,
 } from './helpers/interfaceChanges.js';
 
 import {
@@ -90,44 +90,77 @@ document.addEventListener('DOMContentLoaded', () => {
 			const passwordInput = container.querySelector('#passwordInput');
 			showOrHidePassword(passwordInput, icon);
 		}
+
+		// //Botón colapsable mostrar y ocultar 
+		// if (e.target.matches('.btn[data-bs-toggle= "collapse"]')) {
+		// 	changeCollapsibleButtonText(e.target);
+		// }
 	})
 
+	//Botón colapsable ocultar
+	document.addEventListener('hide.bs.collapse', function (e) {
+		const btn = document.querySelector('[data-bs-target="#' + e.target.id + '"]');
+		btn.innerHTML = btn.innerHTML.replace('Ocultar', 'Mostrar');
+		console.log(e);
+	})
 
-});
+	document.addEventListener('show.bs.collapse', function (e) {
+		const btn = document.querySelector('[data-bs-target="#' + e.target.id + '"]');
+		btn.innerHTML = btn.innerHTML.replace('Mostrar', 'Ocultar');
+		console.log(e);
+	})
 
-document.addEventListener('change', (e) => {
-	//Cambios en los selects de la seccion filtros
-	if (e.target.matches('.datalistGrouping select, input.filterInput,  select.filterInput')) {
-		let [badgeOption, badgeId, elementToDelete] = getElementsToDoAnOperationOnTheBadge(e);
-		modifyBadge(badgeId, badgeOption, elementToDelete);
-	}
+	document.addEventListener('change', (e) => {
+		//Cambios en los selects de la seccion filtros
+		if (e.target.matches('.datalistGrouping select, input.filterInput,  select.filterInput')) {
+			let [badgeOption, badgeId, elementToDelete] = getElementsToDoAnOperationOnTheBadge(e);
+			modifyBadge(badgeId, badgeOption, elementToDelete);
+		}
 
-	if (e.target.matches(' #pageContainer input, #pageContainer select, #pageContainer textarea')) {
-		addDirtyInputClass(e.target);
-	}
-});
+		if (e.target.matches(' #pageContainer input, #pageContainer select, #pageContainer textarea')) {
+			addDirtyInputClass(e.target);
+		}
+	});
 
-document.addEventListener('submit', (e) => {
-	e.preventDefault();
+	document.addEventListener('submit', (e) => {
+		e.preventDefault();
 
-	//Botón buscar de la sección principal donde hay tablas
-	if (e.target.matches('.searchFormulary')) searchTableInformation(e);
+		//Botón buscar de la sección principal donde hay tablas
+		if (e.target.matches('.searchFormulary')) searchTableInformation(e);
 
-	//Botón guardar información
-	if (e.submitter.matches('.postInformation')) formOperation('post', e);
+		//Botón guardar información
+		if (e.submitter.matches('.postInformation')) formOperation('post', e);
 
-	//Botón actualizar información
-	if (e.submitter.matches('.putInformation')) formOperation('put', e);
+		//Botón actualizar información
+		if (e.submitter.matches('.putInformation')) formOperation('put', e);
 
-	//Botón eliminar información
-	if (e.submitter.matches('.deleteInformation')) formOperation('delete', e);
+		//Botón eliminar información
+		if (e.submitter.matches('.deleteInformation')) formOperation('delete', e);
 
-	// Botón buscar información 
-	if (e.submitter.matches('.searchInformation')) formOperation('get', e);
+		// Botón buscar información 
+		if (e.submitter.matches('.searchInformation')) formOperation('get', e);
 
-	//Botón buscar de la sección de filtros
-	if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
-});
+		//Botón buscar de la sección de filtros
+		if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
+	});
+
+	document.addEventListener("keyup", (e) => {
+		//Cambios en los inputs del dni y el cuil
+		console.log(e)
+		if (e.target.matches("#form1 [name='dni']")) {
+			const cuilInput = document.querySelector("#form1 [name='tramitNumber']");
+			cuilInput.value = e.target.value;
+
+		}
+
+		if (e.target.matches("#form1 [name='tramitNumber']")) {
+			const dniInput = document.querySelector("#form1 [name='dni']");
+			dniInput.value = e.target.value;
+
+		}
+
+	});
+})
 
 window.addEventListener("beforeunload", function (e) {
 	if (isThereAnyUnsavedModificationOnThePage()) {
