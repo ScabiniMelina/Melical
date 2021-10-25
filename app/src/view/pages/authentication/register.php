@@ -25,56 +25,75 @@
     </svg>
     <div class="container">
       <h1 class="display-3 fuente-color-primary  mb-0">Bienvenido a Melical Atention! </h1>
-      <h4 class="text-muted fs-5 fw-lighter lead">Completa el registro para crear tu cuenta.</h4>
+      <h4 class="text-muted fs-5 lead">Completa el registro para crear tu cuenta.</h4>
 
-      <form class="row g-3 pb-3 pt-4" id="formularioRegistro" method="POST">
+      <form class="row g-3 pb-3 pt-4 needs-validation" novalidate id="formularioRegistro">
         <div class="col-12 col-sm-6">
-          <label for="inputDni4" class="form-label">Dni</label>
-          <input type="number" name="dni" required class="form-control">
-        </div>
-        <div class="col-12 col-sm-6">
+          <!--<label for="inputDni4" class="form-label">Cuil</label>
+          <input type="number" name="NumTramite" required class="form-control">-->
           <label for="inputDni4" class="form-label">Cuil</label>
-          <input type="number" name="NumTramite" required class="form-control">
+
+          <div class="input-group">
+            <input type="number" class="form-control" name="cuilFirstCharacters" aria-label="2 digitos" required>
+
+            <input type="number" class="form-control" aria-label="Dni" name="tramitNumber" required>
+
+            <input type="number" class="form-control" name='cuilLastCharacters' required>
+          </div>
         </div>
+
+
+
+        <div class="col-12 col-sm-6">
+          <label class="form-label" required>Sexo</label>
+          <select name="gender" class="form-select">
+            <option value="0">Femenino</option>
+            <option value="1">Masculino</option>
+            <option value="2">Otro</option>
+          </select>
+        </div>
+
+
         <div class="col-6">
           <label for="inputDni4" class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="nombre" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
+          <input type="text" class="form-control" name="name" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
         </div>
 
         <div class="col-6">
           <label for="inputDni4" class="form-label">Apellido</label>
-          <input type="text" class="form-control" name="apellido" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
+          <input type="text" class="form-control" name="surname" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
         </div>
 
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control" name="fechaNacimiento" required>
+          <input type="date" class="form-control" name="dateBirth" required>
         </div>
 
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Teléfono</label>
-          <input type="number" class="form-control" name="telefono" required>
+          <input type="number" class="form-control .is-invalid" name="phone" required>
         </div>
 
-
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label for="inputDireccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" name="direccion" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
+          <input type="text" class="form-control" name="address" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <label for="inputDireccionN" class="form-label">Nº</label>
-          <input type="number" class="form-control" name="direccionN" required>
+          <input type="number" class="form-control" name="addressNumber" required>
         </div>
 
         <div class="col-12 col-sm-6">
           <label for="inputDni4" class="form-label">Correo Eléctronico</label>
           <input type="email" class="form-control" name="email" required>
+
         </div>
+
         <div class="col-12 col-sm-6">
           <label class="form-label">Contraseña</label>
-          <div class="d-flex h-auto passwordContainer">
-            <input id="passwordInput" type="password" class="form-control d-block passwordInput" name="contrasena" autocomplete="off">
+          <div class="d-flex h-auto">
+            <input id="txtPassword" type="Password" class="form-control d-block" name="password" required>
             <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 include("./../connection.php");
-$dni = $_POST['dni'];
+$dni = $_POST['tramitNumber'];
 $cuil = $_POST['cuilFirstCharacters'] . $_POST['tramitNumber'] . $_POST['cuilLastCharacters'];
 $name = $_POST['name'];
 $surname = $_POST['surname'];

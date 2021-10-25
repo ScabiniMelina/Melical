@@ -70,7 +70,7 @@ if (isset($_SESSION['cuil'])) {
                   <div class="col">
                     <span class="text-nowrap small text-muted"> ¿Olvidaste tu contraseña?</span>
                   </div>
-                  <div class="col">
+                  <div class="col  p-sm-0">
                     <a class="text-decoration-none small" href="../../../model/resetPassword.php"> Entra aquí</a>
                   </div>
                 </div>
@@ -80,7 +80,7 @@ if (isset($_SESSION['cuil'])) {
                     <span class="text-nowrap small text-muted"> ¿Todavía no tienes cuenta?</span>
                   </div>
                   <div class="col p-sm-0">
-                    <a class="text-decoration-none small ps-0" href="./register.php"> Regístrate aquí</a>
+                    <a class="text-decoration-none small" href="./register.php"> Regístrate aquí</a>
                   </div>
                 </div>
 
