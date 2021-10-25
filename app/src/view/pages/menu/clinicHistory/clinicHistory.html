@@ -14,6 +14,8 @@
 </head>
 
 <body>
+  <!-- TODO:ALEX HACER QEU LOS TABS TENGAN EL MISMO ESTILO QUE EL PRIMER FORMULARIO, PONER A LOS BOTONES LA CLASE btn-tertiary y quitar la clase btn-primary ARREGLAR EL ID DE LOS ACORDIONES PARA QUE SE ABRAN CORRECTAMENTE, PONER EN LOS MODALES LOS BOTONES CORRESPONDIENTES -->
+
   <!-- Modal -->
   <div class="modal fade" id="noteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -341,18 +343,19 @@
       <div class="card">
         <ul class="nav nav-pills nav-tabs nav-fill card-header-pills m-0" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active btn-sm" id="pills-ingreso-tab" data-bs-toggle="pill"
+            <button class="secondary-tab nav-link active btn-sm" id="pills-ingreso-tab" data-bs-toggle="pill"
               data-bs-target="#pills-ingreso" type="button" role="tab" aria-controls="pills-ingreso"
               aria-selected="true">Ingreso</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link btn-sm" id="pills-internacion-tab" data-bs-toggle="pill"
+            <button class="secondary-tab nav-link btn-sm" id="pills-internacion-tab" data-bs-toggle="pill"
               data-bs-target="#pills-internacion" type="button" role="tab" aria-controls="pills-internacion"
               aria-selected="false">Internación</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link btn-sm" id="pills-alta-tab" data-bs-toggle="pill" data-bs-target="#pills-alta"
-              type="button" role="tab" aria-controls="pills-alta" aria-selected="false">Alta</button>
+            <button class="secondary-tab nav-link btn-sm " id="pills-alta-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-alta" type="button" role="tab" aria-controls="pills-alta"
+              aria-selected="false">Alta</button>
           </li>
         </ul>
       </div>
@@ -427,7 +430,7 @@
                           <input type="text" class="form-control form-control-sm">
                         </div>
                         <div class="row m-auto overflow-auto mt-3">
-                          <button class="btn btn-primary btn-sm w-auto" type="button"
+                          <button class="btn btn-sm w-auto btn-tertiary" type="button"
                             id="btnSaveGeneralInformation">Guardar</button>
                         </div>
                       </div>

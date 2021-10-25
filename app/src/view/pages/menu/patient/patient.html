@@ -98,32 +98,32 @@
     <div class="tab-content pb-2" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="card">
-          <form class="row g-3 card-body fillForm" id="form1" data-file="PatientInformation" data-id=""
-            data-forms="#form2">
+          <form class="row g-3 card-body fillForm needs-validation" novalidate id="form1" data-file="PatientInformation"
+            data-id="" data-forms="#form2">
             <div class="col-6">
               <label class="form-label form-label-sm">Dni</label>
-              <input type="text" name="dni" class="form-control form-control-sm">
+              <input type="number" name="dni" class="form-control form-control-sm" required>
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Cuil</label>
-              <input type="text" name="tramitNumber" class="form-control form-control-sm">
+              <input type="number" name="tramitNumber" class="form-control form-control-sm" required>
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Nombre</label>
-              <input type="text" name="name" class="form-control form-control-sm">
+              <input type="text" name="name" required class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Apellido</label>
-              <input type="text" name="surname" class="form-control form-control-sm">
+              <input type="text" name="surname" required class="form-control form-control-sm">
             </div>
             <div class="col-6">
               <label class="form-label form-label-sm">Nacimiento</label>
-              <input type="date" name="dateBirth" class="form-control form-control-sm">
+              <input type="date" name="dateBirth" class="form-control  form-control-sm" required>
             </div>
 
             <div class="col-6">
               <label class="form-label">Sexo</label>
-              <select name="gender" class="form-select form-select-sm">
+              <select name="gender" class="form-select form-select-sm" required>
                 <option value="default"></option>
                 <option value="0">Femenino</option>
                 <option value="1">Masculino</option>
@@ -132,12 +132,12 @@
             </div>
             <div class="col-6">
               <label class="form-label">Teléfono</label>
-              <input type="text" name="phone" class="form-control form-control-sm">
+              <input type="tel" name="phone" class="form-control form-control-sm">
             </div>
 
             <div class="col-6">
               <label class="form-label">Email</label>
-              <input type="text" name="email" class="form-control form-control-sm">
+              <input type="email" name="email" class="form-control form-control-sm">
             </div>
 
             <div class="col-6">
@@ -155,7 +155,7 @@
               </select>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary   postInformation"
+              <button type="submit" class="btn btn-primary postInformation"
                 data-file="PatientInformation">Guardar</button>
             </div>
           </form>

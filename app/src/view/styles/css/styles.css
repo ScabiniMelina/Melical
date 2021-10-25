@@ -2,11 +2,11 @@
 
 :root {
   --font-color: #fcfdfe;
-  --background-color:#f3f5f5;
-  --dark-color:#212529;
+  --background-color: #f3f5f5;
+  --dark-color: #212529;
   --primary-color: #063f5a;
   --secondary-color: #11222a;
- 
+  --tertiary-color: #063f5a70;
   /* --primary-color: #11101d;
   --secondary-color: #1d1b31; */
 }
@@ -25,8 +25,14 @@ body {
   background-color: var(--background-color);
 }
 
-.btn-primary{
+.btn-primary {
   background-color: var(--primary-color);
+}
+
+.btn-tertiary {
+  background-color: var(--tertiary-color);
+  border: 1px solid var(--tertiary-color);
+  color:var(--font-color);
 }
 
 /* ::selection {
@@ -250,42 +256,44 @@ body {
   background-color: var(--background-color);
 }
 
-.pagina{
+.pagina {
   height: inherit;
 }
 
-.background-primary{
+.background-primary {
   background: var(--primary-color);
 }
 
-.background-bg-color{
-  background-color:var(--background-color);
+.background-bg-color {
+  background-color: var(--background-color);
 }
-/* 
-.accordion-button:not(.collapsed){
+
+.accordion-button:not(.collapsed) {
   background-color: var(--primary-color);
   color: var(--font-color);
-} */
+}
 
-/*
+
 .accordion-button:not(.collapsed)::after {
   background-image: none;
-} */
+}
 
 .accordion-button:focus {
   border: none;
   box-shadow: none;
 }
-/* Reset de estilos */
-  
 
-.btn-primary , .btn-primary:focus {
+/* Reset de estilos */
+
+
+.btn-primary,
+.btn-primary:focus {
   color: var(--font-color);
   background-color: var(--primary-color);
   border-color: var(--secondary-color);
 }
 
-.btn-primary:hover  {
+.btn-primary:hover {
   background: var(--secondary-color);
 }
 
@@ -294,11 +302,12 @@ ul {
 }
 
 
-.btn-primary, .color-primary{
+.btn-primary,
+.color-primary {
   background-color: var(--primary-color);
-} 
+}
 
-.fuente-color-primary{
+.fuente-color-primary {
   color: var(--primary-color);
 }
 
@@ -306,49 +315,60 @@ ul {
   color: var(--font-color);
   background: var(--primary-color);
 } */
-.position-relative .btn{
+.position-relative .btn {
   margin-bottom: 1rem;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-  color:var(--font-color);
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  color: var(--font-color);
   background-color: var(--primary-color);
 
 }
-.nav-link{
-  color:var(--dark-color)
+
+.nav-link {
+  color: var(--dark-color)
 }
-.nav{
+
+.nav {
   flex-wrap: nowrap;
 }
 
+.nav-pills .secondary-tab.active,
+.background-tertiary {
+  background-color: var(--tertiary-color);
+}
+
+
+
 .form-check-input:checked {
-  background-color:var(--primary-color) ;
-  border-color:var(--primary-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .table-primary-color {
   background-color: var(--primary-color);
-  color:var(--font-color);
+  color: var(--font-color);
   border: none;
 }
 
-.container-table-overflow{
+.container-table-overflow {
   height: calc(100vh - 190px);
 }
 
-#pedidoEstudios .container-table-overflow{
+#pedidoEstudios .container-table-overflow {
   height: calc(100vh - 232px);
 }
 
-.thead-fixed,.tabs-fixed{
+.thead-fixed,
+.tabs-fixed {
   position: sticky;
   z-index: 900;
   top: 0px;
   padding: 1em 0;
 }
 
-.tabs-fixed{
+.tabs-fixed {
   top: 69px;
   background: var(--background-color);
 }
@@ -358,46 +378,53 @@ ul {
   border: 1px solid #00000074;
 }
 
-.img-opacity{
+.img-opacity {
   background: #00000081;
   padding: 59px 0;
 }
 
-#listaAdjuntos .row .card{
+#listaAdjuntos .row .card {
   min-width: 130px;
 }
 
-#alertContainer{
-  width:calc(100% - 1em);
-  z-index:1000 ;
+#alertContainer {
+  width: calc(100% - 1em);
+  z-index: 1000;
   position: fixed;
-  top:0;
-  margin:auto;
+  top: 0;
+  margin: auto;
 }
 
-#logoSection{
+#logoSection {
   animation: fadeIn ease 4s;
-  
-  
+
+
 }
 
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 767px) {
-  #logoSection .spinner-border{
+  #logoSection .spinner-border {
     width: 1.2em;
     height: 1.2em;
   }
 
-  .content, .sidebar.active~.content {
+  .content,
+  .sidebar.active~.content {
     width: 100%;
     left: 0;
   }
-  
-  .sidebar ,.sidebar.active{
+
+  .sidebar,
+  .sidebar.active {
     position: fixed;
     top: auto;
     bottom: 0;
@@ -410,6 +437,7 @@ ul {
   .sidebar ul li .tooltip {
     display: none;
   }
+
   .sidebar ul {
     width: 100%;
     margin: 0;
@@ -426,11 +454,12 @@ ul {
     height: auto;
     font-size: 1.6rem;
   }
-  .sidebar .links_name{
+
+  .sidebar .links_name {
     display: none;
   }
 
-  .position-relative .btn{
+  .position-relative .btn {
     margin-bottom: calc(60px + 1rem);
   }
 

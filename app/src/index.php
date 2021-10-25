@@ -43,8 +43,7 @@ if (!isset($_SESSION['cuil'])) {
 </head>
 
 <body>
-  <!-- Modal
-  <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="unsaveChagesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header py-3">
@@ -55,12 +54,12 @@ if (!isset($_SESSION['cuil'])) {
           <p class="modal-text m-0">Es posible que los cambios no se guarden.</p>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" id="btn-exit">Salir</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="exitModalButton">Salir</button>
           <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" id="btn-cancel">Cancelar</button>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <div class="sidebar py-md-3">
 
@@ -78,35 +77,35 @@ if (!isset($_SESSION['cuil'])) {
         <span class="tooltip">Buscar</span>
       </li>
       <li>
-        <a href="#/cronograma" class="link_nav" data-callback="loadScheduleSection" data-file="schedule/schedule.html" data-title="Cronograma">
+        <a class="link_nav" data-callback="loadScheduleSection" data-file="schedule/schedule.html" data-title="Cronograma">
           <i class='bx bx-calendar bx-flip-horizontal'></i>
           <span class="links_name">Cronograma</span>
         </a>
         <span class="tooltip">Cronograma</span>
       </li>
       <li>
-        <a href="#/pedidoEstudios" class="link_nav" data-callback="loadStudySection" data-file="study/studySearch.html" data-title="Estudios pedidos">
+        <a class="link_nav" data-callback="loadStudySection" data-file="study/studySearch.html" data-title="Estudios pedidos">
           <i class='bx bx-test-tube'></i>
           <span class="links_name">Estudios pedidos</span>
         </a>
         <span class="tooltip">Estudios pedidos</span>
       </li>
       <li>
-        <a href="#/lugaresDisponibles" class="link_nav" data-callBack="loadRoomsSection" data-file="room/roomSearch.html" data-title="Lugares disponibles">
+        <a class="link_nav" data-callBack="loadRoomsSection" data-file="room/roomSearch.html" data-title="Lugares disponibles">
           <i class='bx bx-clinic'></i>
           <span class="links_name ">Lugares disponibles</span>
         </a>
         <span class="tooltip">Lugares disponibles</span>
       </li>
       <li>
-        <a href="#/recursosDisponibles" class="link_nav" data-callBack="loadResourcesSection" data-file="resources\resourcesSearch.html" data-title="Recursos disponibles">
+        <a class="link_nav" data-callBack="loadResourcesSection" data-file="resources\resourcesSearch.html" data-title="Recursos disponibles">
           <i class='bx bx-band-aid'></i>
           <span class="links_name">Recursos disponibles</span>
         </a>
         <span class="tooltip">Recursos disponibles</span>
       </li>
       <li>
-        <a href="#/busquedaPacientes" class="link_nav" data-callback="loadPatientsSection" data-file="patient/patientSearch.html" data-title="Busqueda de pacientes">
+        <a class="link_nav" data-callback="loadPatientsSection" data-file="patient/patientSearch.html" data-title="Busqueda de pacientes">
           <i class='bx bx-user-pin'></i>
           <span class="links_name ">Búsqueda de pacientes</span>
         </a>
@@ -114,7 +113,7 @@ if (!isset($_SESSION['cuil'])) {
       </li>
 
       <li class="d-none d-md-block">
-        <a href="#/ajustes" class="link_nav" data-callback="loadSettingsSection" data-file="setting/settings.html" data-title="Ajustes">
+        <a class="link_nav" data-callback="loadSettingsSection" data-file="setting/settings.html" data-title="Ajustes">
           <i class='bx bx-cog'></i>
           <span class="links_name">Ajustes</span>
         </a>

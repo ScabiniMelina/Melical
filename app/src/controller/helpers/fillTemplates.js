@@ -1,6 +1,7 @@
 import {
 	databaseOperation
 } from './fetchRequest.js';
+
 import {
 	addAlert,
 	getForms,
@@ -72,8 +73,8 @@ export function fillCards() {
 	}
 }
 
-//Crea el paginador de una tabla
 function fillPager(amountOfPages, currentPage) {
+	//Crea el paginador de una tabla
 	const container = document.getElementById('pagerContainer');
 	const tpl = document.getElementById('pagerItemTemplate').content;
 	const fragment = document.createDocumentFragment();
@@ -132,6 +133,7 @@ export async function fillSelects() {
 		const selects = document.querySelectorAll('.getSelectOption');
 		selects.forEach((select) => {
 			fillSelect(select);
+			setInputDefaultValue(select)
 		});
 	} catch (error) {
 		console.log('error ' + error);
@@ -183,15 +185,16 @@ export async function fillForm(searchId) {
 				inputs.forEach((input) => {
 					const columnTable = input.getAttribute('name');
 					input.value = data['db'][0][columnTable];
+					setInputDefaultValue(input);
 				});
 				selects.forEach((select) => {
 					const columnTable = select.getAttribute('name');
 					const selectedOption = data['db'][0][columnTable];
 					if (selectedOption !== null) {
-						select.value = selectedOption
+						select.value = selectedOption;
 						// select.options[selectedOption].selected = true;
-
 					}
+					setInputDefaultValue(select);
 				});
 				if (data["msg"] === undefined || data["msg"]['type'] !== "error") {
 					changeSaveButtonAction(btn);
@@ -202,4 +205,9 @@ export async function fillForm(searchId) {
 	} catch (error) {
 		console.log('error ' + error);
 	}
+}
+
+export function setInputDefaultValue(element) {
+	//Setear el valor por defecto de un input/select/textarea, esto accion se realiza cuando se guarda o actualiza
+	element.defaultValue = element.value;
 }

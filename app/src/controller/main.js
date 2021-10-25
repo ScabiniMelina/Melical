@@ -11,6 +11,9 @@ import {
 	formOperation,
 	removeBadge,
 	addBadge,
+	executeSectionChangeFunctions,
+	modifyBadge,
+	getElementsToDoAnOperationOnTheBadge,
 	addDatalistGrouping,
 	addDatalistGroupingsFromFilterMenu
 } from './helpers/interfaceChanges.js';
@@ -92,16 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// document.addEventListener("keydown", (e) => {
-//   //Cambios en los inputs
-//   console.log("keydown" + e)
-// })
-
 document.addEventListener('change', (e) => {
 	//Cambios en los selects de la seccion filtros
 	if (e.target.matches('.datalistGrouping select, input.filterInput,  select.filterInput')) {
 		let [badgeOption, badgeId, elementToDelete] = getElementsToDoAnOperationOnTheBadge(e);
 		modifyBadge(badgeId, badgeOption, elementToDelete);
+	}
+
+	if (e.target.matches(' #pageContainer input, #pageContainer select, #pageContainer textarea')) {
+		addDirtyInputClass(e.target);
 	}
 });
 
@@ -127,80 +129,28 @@ document.addEventListener('submit', (e) => {
 	if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
 });
 
+window.addEventListener("beforeunload", function (e) {
+	if (isThereAnyUnsavedModificationOnThePage()) {
+		var confirmationMessage = "\o/";
+		e.returnValue = confirmationMessage;
+		return confirmationMessage;
+	}
+});
 
-function modifyBadge(badgeId, badgeOption, elementToDelete) {
-	//Si hay un badge ya existente modifica el valor, sino crea uno nuevo, también detecta si no hay una opción valida para poner como texto del badge y elimina ese badge si hay un o ya existente
-	const badge = document.querySelector('.badgeElement[data-id="' + badgeId + '"]');
-	if (badgeOption == '') {
-		if (badge) removeBadge(elementToDelete, badgeId, false);
+//Si tiene la clase dirtyInput se la saca, porque el elemento coincide con el valor por defecto, sino se la agrega, el parametro element se refiere al input/textarea/select
+export function addDirtyInputClass(element) {
+	const currentValue = element.value;
+	if (currentValue != element.defaultValue) {
+		element.classList.add('dirtyInput')
 	} else {
-		if (badge) {
-			badge.querySelector('span').textContent = badgeOption;
-		} else {
-			addBadge(badgeOption, badgeId);
-		}
+
+		element.classList.remove('dirtyInput')
 	}
 }
 
-function getElementsToDoAnOperationOnTheBadge(e) {
-	const elementToDelete = e.target.closest('[data-id]');
-	const badgeId = elementToDelete.dataset.id;
-	let badgeOption;
-	const element =
-		elementToDelete.querySelector('select') || elementToDelete.querySelector('input') || elementToDelete;
-	if (element.matches('select')) {
-		badgeOption = element.options[element.selectedIndex].text;
-		const containerDatalistGroupings = element.closest('.tab-pane');
-		if (containerDatalistGroupings) {
-			const selectsFromSection = containerDatalistGroupings.querySelectorAll('select');
-			let duplicateValue = 0;
-			selectsFromSection.forEach((select) => {
-				if (select.options[select.selectedIndex].text == badgeOption) duplicateValue += 1;
-			});
-			if (duplicateValue > 1) {
-				badgeOption = '';
-				element.options[0].selected = true;
-			}
-		}
-	}
-
-	if (element.matches('input')) {
-		badgeOption = element.value;
-	}
-
-	return [badgeOption, badgeId, elementToDelete];
-}
-
-async function formularyChanges() {
-	let modifiedSections = new Array();
-	let modified = false;
-	document.querySelectorAll('.sectionFormulary').forEach((sectionFormulary) => {
-		console.log(modified);
-		sectionFormulary.querySelectorAll('select, input').forEach((element) => {
-			element.addEventListener('change', () => {
-				modifiedSections[`${sectionFormulary.dataset.name}`] = true;
-				showModalSaveChanges(getModified());
-				console.log(modifiedSections);
-				console.log(modified);
-			});
-		});
-		console.log(sectionFormulary);
-		console.log(sectionFormulary.querySelector('.sectionButton'));
-
-		sectionFormulary.querySelector('.sectionButton').addEventListener('click', () => {
-			modifiedSections[`${sectionFormulary.dataset.name}`] = false;
-			getModified();
-		});
-	});
-
-	function getModified() {
-		modified = false;
-		for (const modifiedSection in modifiedSections) {
-			if (modifiedSections[modifiedSection] == true) {
-				modified = true;
-				console.log('modified ' + modified);
-			}
-		}
-		return modified;
-	}
+//Busca todos los inputs en los que hay cambios sin guardar para  devolver true o false dependiendo si hay cambios sin guardar en un input 
+export function isThereAnyUnsavedModificationOnThePage() {
+	const amountOfDirtyInputs = document.querySelectorAll(".dirtyInput").length;
+	if (amountOfDirtyInputs > 0) return true
+	return false;
 }

@@ -3,15 +3,22 @@ import {
 } from './fetchRequest.js';
 
 import {
+	isThereAnyUnsavedModificationOnThePage,
+	addDirtyInputClass
+} from "../main.js";
+
+import {
 	fillSelects,
 	fillForm,
 	fillTable,
 	fillSelect,
-	fillCards
+	fillCards,
+	setInputDefaultValue
 } from './fillTemplates.js';
 
 //-------------------- CAMBIOS UTILES GLOBALMENTE EN CUALQUIER SECCIÓN--------------------------
 
+//EVITA QUE SE ENVIE EL FORMULARIO CUANDO LOS DATOS REQUERIDOS  NO ESTAN COMPLETOS
 export function validateForms() {
 	// Fetch all the forms we want to apply custom Bootstrap validation styles to
 	var forms = document.querySelectorAll('.needs-validation')
@@ -70,6 +77,14 @@ export async function addAlert(msg) {
 	}
 }
 
+//LANZA EL MODAL QUE ESTA EN EL INDEX.PHP PARA CAMBIOS SIN GUARDAR
+async function showModalUnsavedChanges() {
+	var modal = new bootstrap.Modal(document.getElementById('unsaveChagesModal'), {
+		keyboard: false
+	})
+	await modal.show()
+}
+
 //-------------------- CAMBIOS POR CADA SECCIÓN--------------------------
 
 async function loadSection(file, title) {
@@ -85,25 +100,50 @@ async function loadSection(file, title) {
 	} catch (error) {
 		console.log('error ' + error);
 	}
-	//await formularyChanges();
 }
 
 export async function changeSection(element) {
-	//Se cambia la interfaz poniendo la sección que corresponde, cargando el html que va, se llenan todos los selects con opciones, se cargan las tablas y se activa la búsqueda dentro de la tabla
-	let path = './view/pages/menu/';
-	let sectionTitle = element.dataset.title;
-	let sectionFile = element.dataset.file;
-	let searchId = element.dataset.id;
-	await loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
-		loadTable();
-		fillSelects();
-		fillCards();
-		validateForms();
-		if (searchId) {
-			fillForm(searchId);
+	try {
+		const isDirtyFormulary = isThereAnyUnsavedModificationOnThePage();
+		if (isDirtyFormulary) {
+			console.log("Hay cambios sin guardar");
+			// await showModalUnsavedChanges();
+			executeSectionChangeFunctions(element);
+			//Botón salir del modal de cambios sin guardar
+			// document.getElementById('#exitModalButton').addEventListener("click", (e) => {
+			// 	executeSectionChangeFunctions(element);
+			// 	console.log(element)
+			// })
+		} else {
+			executeSectionChangeFunctions(element);
 		}
-	});
+	} catch (error) {
+		console.log('error ' + error);
+	}
+
 }
+
+export async function executeSectionChangeFunctions(element) {
+	try {
+		//Se cambia la interfaz poniendo la sección que corresponde, cargando el html que va, se llenan todos los selects con opciones, se cargan las tablas y se activa la búsqueda dentro de la tabla
+		let path = './view/pages/menu/';
+		let sectionTitle = element.dataset.title;
+		let sectionFile = element.dataset.file;
+		let searchId = element.dataset.id;
+		await loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
+			loadTable();
+			fillSelects();
+			fillCards();
+			validateForms();
+			if (searchId) {
+				fillForm(searchId);
+			}
+		});
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
 
 //-------------------- CAMBIOS EN LAS TABLAS--------------------------
 
@@ -152,6 +192,8 @@ export async function searchTableInformation(e) {
 	}
 }
 
+//-------------------- CAMBIOS EN EL FORMULARIO --------------------------
+
 export async function changeSaveButtonsAction() {
 	try {
 		//Cambia la acción de todos los botones guardar a actualizar
@@ -179,22 +221,40 @@ export async function changeSaveButtonAction(btn) {
 
 export async function formOperation(method, e) {
 	try {
-		//Actualiza la información de un formulario
 		const [btn, file, form, formData] = getElementsToDoAnOperationOnTheForm(e)
-		const data = await databaseOperation(method, file, formData);
-		if (method === 'post') {
+		const dirtyElements = form.querySelectorAll('.dirtyInput');
+		const container = document.getElementById('pageContainer');
+		//Si no hay elementos sucios y la opcion es guardar o actualizar y  Si es el contenedor de la pagina principal de la app y no un login o un register
+		if (dirtyElements.length == 0 && (method == 'put' || method == 'post') && container) {
+			const msg = {
+				'type': 'error',
+				'text': 'No hay cambios en el formulario'
+			};
+			addAlert(msg);
+		} else {
+			//Actualiza, guarda y elimina la información de un formulario
+			const data = await databaseOperation(method, file, formData);
+			addAlert(data['msg']);
+			//Si login
 			if (btn.classList.contains("authentificationForm") && data["msg"]['type'] == "success") {
 				const redirectFile = btn.dataset.redirect;
 				window.location.href = redirectFile;
-			} else {
-				const forms = getForms(form);
-				putIdToForms(forms, data['id'])
-				if (data["msg"]['type'] == "success") {
+			}
+
+			if (container && data["msg"]['type'] == "success" && (method === 'post' || method === 'put')) {
+				//Duplicar id a distintos formularios cuando se guardan
+				if (method === 'post') {
+					const forms = getForms(form);
+					putIdToForms(forms, data['id'])
 					await changeSaveButtonAction(btn);
 				}
+				//Elimina la clase dirtyInput y setea el valor por defecto al guardar o actualizar
+				dirtyElements.forEach(dirtyElement => {
+					setInputDefaultValue(dirtyElement);
+					addDirtyInputClass(dirtyElement);
+				})
 			}
 		}
-		addAlert(data['msg']);
 	} catch (error) {
 		console.log('error ' + error);
 	}
@@ -244,6 +304,49 @@ export function getForms(form) {
 }
 
 //-------------------- CAMBIOS EN LA SECCIÓN FILTROS--------------------------
+
+export function modifyBadge(badgeId, badgeOption, elementToDelete) {
+	//Si hay un badge ya existente modifica el valor, sino crea uno nuevo, tambiรฉn detecta si no hay una opciรณn valida para poner como texto del badge y elimina ese badge si hay un o ya existente
+	const badge = document.querySelector('.badgeElement[data-id="' + badgeId + '"]');
+	if (badgeOption == '') {
+		if (badge) removeBadge(elementToDelete, badgeId, false);
+	} else {
+		if (badge) {
+			badge.querySelector('span').textContent = badgeOption;
+		} else {
+			addBadge(badgeOption, badgeId);
+		}
+	}
+}
+
+export function getElementsToDoAnOperationOnTheBadge(e) {
+	const elementToDelete = e.target.closest('[data-id]');
+	const badgeId = elementToDelete.dataset.id;
+	let badgeOption;
+	const element =
+		elementToDelete.querySelector('select') || elementToDelete.querySelector('input') || elementToDelete;
+	if (element.matches('select')) {
+		badgeOption = element.options[element.selectedIndex].text;
+		const containerDatalistGroupings = element.closest('.tab-pane');
+		if (containerDatalistGroupings) {
+			const selectsFromSection = containerDatalistGroupings.querySelectorAll('select');
+			let duplicateValue = 0;
+			selectsFromSection.forEach((select) => {
+				if (select.options[select.selectedIndex].text == badgeOption) duplicateValue += 1;
+			});
+			if (duplicateValue > 1) {
+				badgeOption = '';
+				element.options[0].selected = true;
+			}
+		}
+	}
+
+	if (element.matches('input')) {
+		badgeOption = element.value;
+	}
+
+	return [badgeOption, badgeId, elementToDelete];
+}
 
 export function removeBadge(elementToDelete, idToDelete, orderToDeleteElement = true) {
 	const container = elementToDelete.parentNode;
