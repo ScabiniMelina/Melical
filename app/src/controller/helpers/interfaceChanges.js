@@ -115,7 +115,7 @@ export async function changeSection(element) {
 			// 	console.log(element)
 			// })
 		} else {
-			executeSectionChangeFunctions(element);
+			await executeSectionChangeFunctions(element);
 		}
 	} catch (error) {
 		console.log('error ' + error);
@@ -378,10 +378,14 @@ export function addBadge(text, id) {
 
 export async function addDatalistGroupingsFromFilterMenu() {
 	//Recorre todas las secciones del menu de la página de filtros, con el objetivo de llenar con un select con un botón de agregar y otro de quitar, en cada sección del menu que se necesite. El item del menu tiene que tener la clase .fillDatalistGrouping .fillSelectsFromFilterMenu
-	document.querySelectorAll('.addDatalistGroupingFromFilterMenu').forEach((navElement) => {
-		const container = document.querySelector(navElement.dataset.bsTarget);
-		addDatalistGrouping(container);
-	});
+	try {
+		document.querySelectorAll('.addDatalistGroupingFromFilterMenu').forEach((navElement) => {
+			const container = document.querySelector(navElement.dataset.bsTarget);
+			addDatalistGrouping(container);
+		});
+	} catch (error) {
+		console.log('error ' + error);
+	}
 }
 
 export async function addDatalistGrouping(container) {
