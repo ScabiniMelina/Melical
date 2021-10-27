@@ -42,7 +42,7 @@ if (isset($_SESSION['cuil'])) {
 
           <form class="row g-3 py-3 needs-validation" novalidate>
             <div class="col-12">
-              <label for="inputDni4" class="form-label fs-5">CUIL</label>
+              <label for="inputDni4" class="form-label fs-5"> CUIL</label>
               <input type="number" name="cuil" required class="form-control" autocomplete="on" required>
             </div>
 

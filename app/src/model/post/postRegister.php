@@ -1,7 +1,9 @@
 <?php
 include("./../connection.php");
-$dni = $_POST['tramitNumber'];
-$cuil = $_POST['cuilFirstCharacters'] . $_POST['tramitNumber'] . $_POST['cuilLastCharacters'];
+$dni = getInputValue($_POST['tramitNumber'], ' El dni', 8, 'integer', 8);
+$cuilFirstCharacters = getInputValue($_POST['cuilFirstCharacters'], 'La primera parte del  CUIL', 2, 'integer', 2);
+$cuilLastCharacters = getInputValue($_POST['cuilLastCharacters'], 'La ultima parte del  CUIL', 1, 'integer', 1);
+$cuil = $cuilFirstCharacters . $dni . $cuilLastCharacters;
 $name = $_POST['name'];
 $surname = $_POST['surname'];
 $dateBirth = $_POST['dateBirth'];

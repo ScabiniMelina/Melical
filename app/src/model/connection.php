@@ -210,21 +210,25 @@ function setSelectValue($value)
 }
 
 //De una variable coincide con el tipo de dato y el tamaño especificado caso contrario muestra una alerta
-function getInputValue($inputValue, $errorMsg, $length, $type = 'string')
+function getInputValue($inputValue, $errorMsg, $maxLength, $type = 'string', $minLength = 0)
 {
     if (isset($inputValue)) {
         // tipos de dato integer string
         if (is_numeric($inputValue) && strcmp("integer", $type) == 0 || !is_numeric($inputValue) && strcmp("string", $type) == 0) {
-            if (strlen($inputValue) <= $length && $length != null) {
-                return  $inputValue;
+            if (strlen($inputValue) <= $maxLength && $maxLength != null) {
+                if (strlen($inputValue) >= $minLength) {
+                    return  $inputValue;
+                } else {
+                    $msg = ['type' => 'error', 'text' => ' ' . $errorMsg . ' debe tener mas de ' .  $maxLength . ' digitos'];
+                }
             } else {
-                $msg = ['type' => 'error', 'text' => 'Su ' . $errorMsg . ' no debe superar los ' .  $length . 'digitos'];
+                $msg = ['type' => 'error', 'text' => ' ' . $errorMsg . ' no debe superar los ' .  $maxLength . ' digitos'];
             }
         } else {
-            $msg = ['type' => 'error', 'text' => 'Su ' . $errorMsg . ' tiene caracteres invalidos'];
+            $msg = ['type' => 'error', 'text' => ' ' . $errorMsg . ' tiene caracteres invalidos'];
         }
     } else {
-        $msg = ['type' => 'error', 'text' => 'Ingrese su ' . $errorMsg];
+        $msg = ['type' => 'error', 'text' => 'Ingrese  ' . $errorMsg];
     }
     sendJson(null, $msg, null, null, null);
     exit();

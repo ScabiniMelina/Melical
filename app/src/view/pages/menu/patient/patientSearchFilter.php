@@ -45,7 +45,7 @@
                 <button class="nav-link nav-link-datalist btn-sm addDatalistGroupingFromFilterMenu" id="pills-sectorHabitacion-tab" data-bs-toggle="pill" data-bs-target="#pills-sectorHabitacion" type="button" role="tab" aria-controls="pills-sectorHabitacion" aria-selected="false">Área</button>
             </li>
         </ul>
-        <form class="searchPatientsByFilter tab-content card p-2" id="containerFilterElements">
+        <form class="searchAndChangeSection tab-content card p-2" id="containerFilterElements">
 
             <div class="tab-pane fade show active" id="pills-fecha" role="tabpanel" aria-labelledby="pills-fecha-tab">
                 <div class="row">
@@ -100,7 +100,7 @@
                     <label class="form-label">Edad</label>
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control form-control-sm filterInput"  name="minimumAge"placeholder="Mayor a" data-id="3">
+                        <input type="text" class="form-control form-control-sm filterInput" name="minimumAge" placeholder="Mayor a" data-id="3">
 
                         <input type="text" class="form-control form-control-sm filterInput" name="maximumAge" placeholder="Menor a" data-id="4">
                     </div>
@@ -110,7 +110,7 @@
 
             </div>
             <div class="position-relative">
-                <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0" type="submit" data-file="PatientByFilter">
+                <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0" type="submit" data-file="patient/patientByFilterSearch.html" data-title="Resultado de la busqueda">
                     <i class='bx bx-search'></i>
                 </button>
             </div>

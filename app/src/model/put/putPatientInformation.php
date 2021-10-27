@@ -2,7 +2,10 @@
 include("./../connection.php");
 $_PUT = getPutRequestParameters();
 $id = $_PUT['id'];
-$dni = $_PUT['dni'];
+$dni = getInputValue($_PUT['tramitNumber'],  ' El dni', 8, 'integer', 8);
+$cuilFirstCharacters = getInputValue($_PUT['cuilFirstCharacters'], 'La primera parte del  CUIL', 2, 'integer');
+$cuilLastCharacters = getInputValue($_PUT['cuilLastCharacters'],  'La ultima parte del  CUIL', 1, 'integer');
+$cuil = $cuilFirstCharacters . $dni . $cuilLastCharacters;
 $cuil = $_PUT['tramitNumber'];
 $name = $_PUT['name'];
 $surname = $_PUT['surname'];
