@@ -98,6 +98,17 @@ body {
   transform: translateX(-50%);
 }
 
+.imgGalery .card img{
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+/* 
+.imgGalery.multiple img{
+  height: 200px;
+
+} */
+
 .sidebar.active #btn {
   left: 90%;
 }
@@ -353,14 +364,6 @@ ul {
   background-color: var(--primary-color);
   color: var(--font-color);
   border: none;
-}
-
-.container-table-overflow {
-  height: calc(100vh - 190px);
-}
-
-#pedidoEstudios .container-table-overflow {
-  height: calc(100vh - 232px);
 }
 
 .thead-fixed,
