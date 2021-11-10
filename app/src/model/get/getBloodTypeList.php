@@ -1,5 +1,5 @@
 <?php
 include("./../connection.php");
-$sql = "SELECT  ID_BLOOD_TYPE, type FROM  BLOOD_TYPE";
+$sql = "SELECT * FROM  Blood";
 $data = query($sql);
 echo json_encode($data);
