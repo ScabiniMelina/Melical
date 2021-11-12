@@ -24,21 +24,27 @@
       <div class="col col-6 ">
         <label>Tipo de suministro</label>
         <select class="form-select form-select-m getSelectOption" data-file="SuppliesList" data-default="Todos">
-          <option value="vacio"></option>
-          <option value="0">Todos los Suministros</option>
-          <option value="1">Agentes de Diagnóstico</option>
-
+       
         </select>
       </div>
       <div class="col-6 d-flex align-self-end ">
         <div class="w-100">
-          <input id="inputBuscar" type="text" class="form-control" placeholder="Buscar por Nombre o Código"
+          <input id="inputBuscar"  type="text" class="form-control" placeholder="Buscar por Nombre o Código"
             aria-label="Buscar paciente por DNI ..." aria-describedby="button-addon2">
         </div>
         <div class="col-auto ps-2">
-          <button class="btn btn-primary " id="btnBuscar" type="button"> <i class='bx bx-search'></i></button>
+          <button class="btn btn-primary " id="btnBuscar" type="button" data-file="ResourseBySearch"> <i class='bx bx-search'></i></button>
+        
         </div>
       </div>
+      <div class="col pe-0">
+        <input name="id" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido"  aria-label="Buscar paciente por DNI ..." aria-describedby="button-addon2">>
+    </div>
+
+    <div class=" col-auto ps-1">
+        <button class="btn btn-primary" type="submit" data-file="ResourseBySearch">
+            <i class='bx bx-search'></i>
+        </button>
     </div>
 
     <div class="overflow-auto mt-2 container-table-overflow">

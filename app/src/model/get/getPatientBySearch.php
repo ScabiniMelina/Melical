@@ -1,21 +1,25 @@
 <?php
 include("./../connection.php");
-$id = $_GET["id"];
-$sql = "SELECT ID_DNI AS ID, dni, name, surname, date_birth AS dateBirth FROM PERSONAL_INFORMATION WHERE";
-if(isset($id)){
-    $parameters =  array($id);
+$numberOfResultsPerPage = 9;
+$currentPage = getCurrentPage();
+$initialLimit = getPaginationConfig($numberOfResultsPerPage, $currentPage);
+$sql = "SELECT ID_DNI AS ID, dni, name, surname, date_birth AS dateBirth FROM Personal_Information ";
+$condition = " WHERE ";
+$id = $_GET['id'];
+if (isset($id)) {
     if (is_numeric($id)) {
-        $sql .= " dni LIKE ?";
+        $condition .= "  dni = ?";
         $typeOfParameters = "i";
         $parameters = array("%$id%");
     } else {
-        $sql .= " name LIKE ? OR surname LIKE ?";
+        $condition .= " name LIKE ? OR surname LIKE ?";
         $typeOfParameters = "ss";
-        $parameters = array("%$id%","%$id%");
-
+        $parameters = array("%$id%", "%$id%");
     }
 }
-$result = getPreparedStatement($sql,$typeOfParameters, $parameters);
+$amountOfPages = getAmountOfPagesToCreatePager("Personal_Information" . $condition, $numberOfResultsPerPage, $typeOfParameters, $parameters);
+$typeOfParameters .= "ii";
+array_push($parameters, $initialLimit, $numberOfResultsPerPage);
+$result = executePreparedStatement($sql . $condition . " LIMIT ?,? ", $typeOfParameters, $parameters);
 $data = getResultOfPreparedStatement($result);
-$msg = ['type' => 'error', 'text' => 'Mensaje de prueba'];
-sendJson($data, $msg, null,null,null);
+sendJson($data, $msg, null, $amountOfPages, $currentPage);

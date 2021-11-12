@@ -1,16 +1,23 @@
 <?php
 // use function PHPSTORM_META\type;
 header('Content-Type: application/json');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// include_once "logger.php";
 include "credentials.php";
+ini_set('display_errors', 0);
+ini_set("log_errors", 1);
+error_reporting(E_ALL);
+
+// ------------------------------ RUTAS
+$destinationPathToPatientFacialImages = $_SERVER['DOCUMENT_ROOT'] . "/view/assets/img/patientFaces/";
+
+
+// ------------------------------ OPERACIONES A LA BD
+
 //crea una nueva conexion a la base de datos
 function DbConnect()
 {
     try {
         $connection = new mysqli(HOST, USER, PASS, DB);
-
         if ($connection->connect_errno != 0) {
             echo $connection->connect_error;
             exit();
@@ -27,33 +34,36 @@ function query($ssql)
     try {
         global $msg;
         $connection = DbConnect();
+        $typeOfOperation = getTypeOfDatabaseOperation($ssql);
         $result = $connection->query($ssql);
         if ($connection->errno != 0) {
-            echo $connection->error;
-            echo "<br>" . $connection . "<br>" .  $ssql;
+            error_log(var_export($connection->error, true) . " " . var_export($connection, true));
+            return array();
             exit();
         }
 
+        // $DbResult = $result->fetch_all();
         if ($result->num_rows > 0) {
             $DbResult = $result->fetch_all();
         }
-
-        $msg = getMessageFromOperationResultToDatabase($connection);
-        $connection->close();
         return $DbResult;
+        $msg = getMessageFromOperationResultToDatabase($connection, $typeOfOperation);
+        $connection->close();
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
 
 //Realiza una operación a la base de datos con sentencias preparadas, retornando el resultado de dicha operacion 
-function  getPreparedStatement($sql, $typeOfParameters, $parameters)
+function  executePreparedStatement($sql, $typeOfParameters, $parameters)
 {
     try {
         global $msg;
         $connection = DbConnect();
+        $typeOfOperation = getTypeOfDatabaseOperation($sql);
+        $stmt = $connection->prepare($sql);
         //crear una sentencia preparada
-        if ($stmt = $connection->prepare($sql)) {
+        if ($stmt) {
             if ($typeOfParameters != null) {
                 $stmt->bind_param($typeOfParameters, ...$parameters);
             }
@@ -62,14 +72,34 @@ function  getPreparedStatement($sql, $typeOfParameters, $parameters)
                 echo "Error:" . $stmt->error . $stmt->errno;
             }
             $result = $stmt->get_result();
-            $msg = getMessageFromOperationResultToDatabase($connection);
+            $msg = getMessageFromOperationResultToDatabase($connection, $typeOfOperation);
             $stmt->close();
             $connection->close();
             return $result;
+        } else {
+            $msg = getMessageFromOperationResultToDatabase(null, null);
         }
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+}
+
+//Devuelve el tipo de operacion ( actulizo, guardo, elimino,selecciono) para tirar un mensaje de error mas personalizado
+function getTypeOfDatabaseOperation($sql)
+{
+    $typeOfOperation = "selecciono";
+    if (strpos($sql, "INSERT") !== false) {
+        $typeOfOperation = "guardo";
+    } else {
+        if (strpos($sql, "UPDATE") !== false) {
+            $typeOfOperation = "actualizo";
+        } else {
+            if (strpos($sql, "DELETE") !== false) {
+                $typeOfOperation = "elimino";
+            }
+        }
+    }
+    return $typeOfOperation;
 }
 
 //Devuelve un array asociativo de la operacion realizada en la bd con sentencias preparadas
@@ -88,12 +118,29 @@ function getResultOfPreparedStatement($result)
     }
 }
 
-function getMessageFromOperationResultToDatabase($connection)
+// ------------------------------ MANEJO DE MENSAJES
+
+
+function getMessageFromOperationResultToDatabase($connection, $typeOfOperation)
 {
-    if ($connection->affected_rows > 0) {
-        $msg = ['type' => 'success', 'text' => 'Se realizo la operación exitosamente'];
+    if (!isset($connection)) {
+        $msg['type'] = 'error';
+        $msg['text'] = 'Error al realizar la operación';
     } else {
-        $msg = ['type' => 'error', 'text' => 'No se realizo la operación exitosamente o no hay datos'];
+        if ($connection->affected_rows < 0) {
+            $msg['type'] = 'error';
+            if ($connection->affected_rows == 0) {
+                if ($typeOfOperation === "selecciono") {
+                    $msg['text'] = 'No se encontraron resultados';
+                } else {
+                    $msg['text'] = 'No se' . $typeOfOperation . 'la información exitosamente';
+                }
+            } else {
+                $msg['text'] = 'Error al realizar la operación';
+            }
+        } else {
+            $msg = ['type' => 'success', 'text' => 'Se realizo la operación exitosamente'];
+        }
     }
     return $msg;
 }
@@ -148,6 +195,9 @@ function getMd5Id($table, $primaryKeyName)
     return $md5Id;
 }
 
+// ------------------------------ OBTENER PARAMETROS POR PETICION
+
+
 //TODO: HACER QUE GET PUT REQUEST PARAMETER FUNCIONE PARA EL METODO DELETE;
 //Crea un array con los valores enviados a traves del metodo put
 function getPutRequestParameters()
@@ -167,6 +217,10 @@ function getPutRequestParameters()
 //         return $parameters;
 //     }
 // }
+
+// ------------------------------  PÁGINADOR
+
+
 function getCurrentPage()
 {
     $currentPage = 1;
@@ -184,13 +238,19 @@ function getPaginationConfig($numberOfResultsToShow, $currentPage)
     return $initialLimit;
 }
 
-function getAmountOfPagesToCreatePager($table, $numberOfResultsPerPage)
+function getAmountOfPagesToCreatePager($table, $numberOfResultsPerPage, $typeOfParameters = null, $parameters = null)
 {
+    global $msg;
     try {
         $amountOfPages = null;
         if (!isset($_GET['pageNumber'])) {
-            $sql = "SELECT COUNT(*) AS numberOfResults FROM $table ";
-            $result = getPreparedStatement($sql, null, null);
+            $sql = "SELECT COUNT(1) AS numberOfResults FROM $table ";
+            $result = executePreparedStatement($sql, $typeOfParameters, $parameters);
+            if ($msg['type'] === 'error') {
+                $msg['text'] = 'No se encontraron resultados';
+                sendJson(null, $msg, null, null, null);
+                exit;
+            }
             $numberOfResults = getResultOfPreparedStatement($result);
             $numberOfResults = $numberOfResults[0]['numberOfResults'];
             $amountOfPages = ceil($numberOfResults /  $numberOfResultsPerPage);
@@ -199,6 +259,17 @@ function getAmountOfPagesToCreatePager($table, $numberOfResultsPerPage)
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+}
+
+// ------------------------------ MANEJO DE VALORES DE UNA PETICION
+
+
+function setValue($defaultValue, $value)
+{
+    if (isset($value)) {
+        return $value;
+    }
+    return $defaultValue;
 }
 
 function setSelectValue($value)
@@ -234,6 +305,7 @@ function getInputValue($inputValue, $errorMsg, $maxLength, $type = 'string', $mi
     exit();
 }
 
+
 //Agrega el parametro a la configuracion de la sentencia preparada, agregando un parametro mas junto con su tipo de dato y  modificando la sentencia sql
 function addParameterToPreparedStatementsConfig($value, $type, $condition)
 {
@@ -245,4 +317,51 @@ function addParameterToPreparedStatementsConfig($value, $type, $condition)
         $conditions .= " " . $condition . " AND ";
         array_push($parameters, $value);
     }
+}
+
+// ------------------------------ MANEJO DE ARCHIVOS
+
+
+function uploadFiles($files, $destinationPath, $allowedExtensions)
+{
+    $saveFiles = 0;
+    $msg = array();
+    foreach ($files['tmp_name'] as $key => $tmp_name) {
+        $msg['type'] = 'info';
+        if ($files["name"][$key]) {
+            $filename = $files["name"][$key]; //Obtenemos el nombre original del archivo
+            $source = $files["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo   
+            $extension = end(explode(".", $filename));
+            //Validamos que el tipo de archivo sea una imagen
+            if (in_array($extension, $allowedExtensions)) {
+                //Validamos si la ruta de destino existe, en caso de no existir la creamos
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777) or $msg['text'] = "No se puede crear el directorio que contiene las fotos del paciente.";
+                    return $msg;
+                }
+                //Movemos y validamos que el archivo se haya cargado correctamente
+                //El primer campo es el origen y el segundo el destino
+                if (move_uploaded_file($source, $destinationPath . $filename)) {
+                    $saveFiles++;
+                } else {
+                    $msg['text'] .=  "Error, no se guardo el archivo " . $filename . ". ";
+                }
+            } else {
+                $msg['text'] .= "No se guardo el archivo " . $filename . " tipo de archivo no permitido . ";
+            }
+        } else {
+            $msg['text'] .= "El archivo no existe. ";
+        }
+        // array_push($msgs, $msg);
+    }
+    if ($saveFiles == count($files['name'])) {
+        $msg['text'] .= "Se subieron todos los archivos";
+        $msg['type'] = "success";
+    }
+    return $msg;
+}
+
+function deleteFile($urlSource)
+{
+    unlink($urlSource);
 }
