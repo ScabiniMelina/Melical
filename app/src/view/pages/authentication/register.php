@@ -93,7 +93,7 @@
         <div class="col-12 col-sm-6">
           <label class="form-label">Contraseña</label>
           <div class="d-flex h-auto">
-            <input id="txtPassword" type="Password" class="form-control d-block" name="password" required>
+            <input id="#passwordInput" type="password" class="form-control d-block" name="password" required>
             <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
           </div>
         </div>

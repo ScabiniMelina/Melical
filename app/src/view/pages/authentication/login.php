@@ -1,11 +1,11 @@
 <?php
 // Reviso si ya existe una variable de sesion 
-session_start();
-if (isset($_SESSION['cuil'])) {
-  var_dump($_SESSION);
-  header("location: ../../../index.php");
-  exit();
-}
+
+// if (isset($_SESSION['cuil'])) {
+//   var_dump($_SESSION);
+//   header("location: ../../../index.php");
+//   exit();
+// }
 ?>
 <!DOCTYPE html>
 <html>
