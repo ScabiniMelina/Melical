@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['cuil'])) {
-  header("location: ./view/pages/authentication/login.php");
-  die();
-}
+$_SESSION['ID_HOSPITAL'] = "1"
+// if (!isset($_SESSION['cuil'])) {
+//   header("location: ./view/pages/authentication/login.php");
+//   die();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -151,7 +152,6 @@ if (!isset($_SESSION['cuil'])) {
     </div>
 
     <div class="pageContent">
-
       <div id="pageContainer">
 
       </div>
@@ -172,8 +172,33 @@ if (!isset($_SESSION['cuil'])) {
     </div>
   </template>
 
+  <template id="imageGaleryTemplate">
+    <div class="img-container">
+      <div class=" card flex-row p-0">
+        <i class='bx bxs-x-circle position-absolute top-0 end-0 fs-5 p-1'></i>
+        <img class="img-fluid" src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg">
+      </div>
+
+
+    </div>
+  </template>
+
+  <template id="imageModal">
+    <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <img class="img-fluid rounded" src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  </div>
   <?php include('./view/modules/footer.php'); ?>
   <script src="./sw.js"></script>
+  <!-- <script src="../../../../controller/helpers/face-api.min.js"></script> -->
+  <!-- <script src="./controller/helpers/face-api.min.js"></script> -->
+  <!-- <script src="../../../../controller/helpers/facialRecognition.js" type="module" async="async"></script> -->
 
 </body>
 

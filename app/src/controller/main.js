@@ -6,7 +6,6 @@ import {
 	validateForms,
 	changeSection,
 	showOrHidePassword,
-	searchDatabaseInformation,
 	searchTableInformation,
 	formOperation,
 	removeBadge,
@@ -16,11 +15,18 @@ import {
 	addDatalistGrouping,
 	addDatalistGroupingsFromFilterMenu,
 	executeSectionChangeFunctions,
-} from './helpers/interfaceChanges.js';
+	loadTable,
+	showInputPreview,
+	getConfigToDeleteImage,
+	cleanFormulary,
+	cleanGalery
+} from "./helpers/interfaceChanges.js";
+
 
 import {
-	loadTable
-} from "./helpers/interfaceChanges.js";
+	fillCardContainers,
+	fillChartContainer
+} from "./helpers/fillTemplates.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 	activateMenuFunctions();
@@ -77,9 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (e.target.matches('.page-item, .page-item *')) {
 			const currentPageElement = e.target.closest('.page-link');
 			const currentPage = currentPageElement.innerHTML;
-			// const container = e.target.closest("#pagerContainer");
-			// const amountOfPages = container.dataset.pages;
-			loadTable(currentPage);
+			const pagerContainer = currentPageElement.closest('#pagerContainer');
+			if (pagerContainer.classList.contains('getInformationBySearch')) {
+				searchTableInformation(currentPage);
+			} else {
+				loadTable(currentPage);
+			}
 		}
 
 		//Botón mostrar y censurar contraseña
@@ -91,10 +100,32 @@ document.addEventListener('DOMContentLoaded', () => {
 			showOrHidePassword(passwordInput, icon);
 		}
 
-		// //Botón colapsable mostrar y ocultar 
-		// if (e.target.matches('.btn[data-bs-toggle= "collapse"]')) {
-		// 	changeCollapsibleButtonText(e.target);
-		// }
+		//Botón eliminar imagen 
+		if (e.target.matches('.bxs-x-circle')) {
+			getConfigToDeleteImage(e);
+		}
+
+		// //Botón guardar del modal de imágenes
+		// document.getElementById('exitModalButton').addEventListener("click", (e) => {
+		// 	executeSectionChangeFunctions(element);
+		// 	console.log(element)
+		// })
+
+		//Botón cerrar del modal
+		if (e.target.matches('.modal [data-bs-dismiss="modal"]')) {
+			const modal = e.target.closest('.modal');
+			const galery = modal.querySelector('.imgGalery');
+			const progressBarContainer = modal.querySelector('.progress')
+			const form = modal.querySelector('form');
+			cleanFormulary(form);
+			cleanGalery(galery, progressBarContainer);
+		}
+
+		// executeSectionChangeFunctions(element);
+		// console.log(element)
+
+
+
 	})
 
 	//Botón colapsable ocultar
@@ -120,13 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (e.target.matches(' #pageContainer input, #pageContainer select, #pageContainer textarea')) {
 			addDirtyInputClass(e.target);
 		}
+
+		if (e.target.type == "file" && e.target.matches(".changeProgressBar")) {
+			showInputPreview(e)
+		}
 	});
 
 	document.addEventListener('submit', (e) => {
 		e.preventDefault();
 
 		//Botón buscar de la sección principal donde hay tablas
-		if (e.target.matches('.searchFormulary')) searchTableInformation(e);
+		if (e.target.matches('.searchFormulary')) searchTableInformation();
 
 		//Botón guardar información
 		if (e.submitter.matches('.postInformation')) formOperation('post', e);
@@ -137,16 +172,24 @@ document.addEventListener('DOMContentLoaded', () => {
 		//Botón eliminar información
 		if (e.submitter.matches('.deleteInformation')) formOperation('delete', e);
 
-		// Botón buscar información 
+		//Botón buscar información 
 		if (e.submitter.matches('.searchInformation')) formOperation('get', e);
 
-		//Botón buscar de la sección de filtros
-		if (e.target.matches('.searchPatientsByFilter')) searchDatabaseInformation(e);
+		//Botón buscar de la sección filtros
+		if (e.target.matches('.searchAndChangeSection')) {
+			const dataForm = new FormData(e.target);
+			e.preventDefault();
+			changeSection(e.submitter).then(() => {
+				const cardContainers = document.querySelectorAll(".awaitDataformAndFillCards");
+				fillCardContainers(cardContainers, dataForm);
+				fillChartContainers(dataForm);
+			})
+
+		}
 	});
 
 	document.addEventListener("keyup", (e) => {
 		//Cambios en los inputs del dni y el cuil
-		console.log(e)
 		if (e.target.matches("#form1 [name='dni']")) {
 			const cuilInput = document.querySelector("#form1 [name='tramitNumber']");
 			cuilInput.value = e.target.value;
@@ -170,13 +213,12 @@ window.addEventListener("beforeunload", function (e) {
 	}
 });
 
-//Si tiene la clase dirtyInput se la saca, porque el elemento coincide con el valor por defecto, sino se la agrega, el parametro element se refiere al input/textarea/select
+//Si tiene la clase dirtyInput se la saca, porque el elemento coincide con el valor por defecto, sino se la agrega, el parametro element se refiere al input/textarea/select, si contiene la clase unsavableValue significa que ese input no se lo tendra en cuenta a la hora de guardarlo
 export function addDirtyInputClass(element) {
 	const currentValue = element.value;
-	if (currentValue != element.defaultValue) {
+	if (currentValue != element.defaultValue && !element.classList.contains('unsaveableValue')) {
 		element.classList.add('dirtyInput')
 	} else {
-
 		element.classList.remove('dirtyInput')
 	}
 }

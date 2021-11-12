@@ -24,9 +24,13 @@ export async function databaseOperation(method, file, dataForm) {
 		} else {
 			throw 'Método de envió de datos invalido';
 		}
-		const response = await fetch(`/public_html/meliScabiniDesarrollo/app/src/model/${method}/${method}${file}.php${urlVariables}`, config);
+		const response = await fetch(`/model/${method}/${method}${file}.php${urlVariables}`, config);
 		return await response.json();
 	} catch (error) {
 		console.log('error ' + error);
 	}
+}
+
+function putImageOnServer(params) {
+
 }

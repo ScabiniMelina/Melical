@@ -12,7 +12,8 @@ import {
 	fillForm,
 	fillTable,
 	fillSelect,
-	fillCards,
+	fillCardContainer,
+	fillCardContainers,
 	setInputDefaultValue
 } from './fillTemplates.js';
 
@@ -79,10 +80,21 @@ export async function addAlert(msg) {
 
 //LANZA EL MODAL QUE ESTA EN EL INDEX.PHP PARA CAMBIOS SIN GUARDAR
 async function showModalUnsavedChanges() {
-	var modal = new bootstrap.Modal(document.getElementById('unsaveChagesModal'), {
+	const modal = document.getElementById('unsaveChagesModal');
+	await showModal(modal);
+
+}
+
+async function showModal(modalElement) {
+	const modal = new bootstrap.Modal(modalElement, {
 		keyboard: false
 	})
-	await modal.show()
+	await modal.show();
+}
+
+
+async function hideModal(modalElement) {
+	bootstrap.Modal.getInstance(modalElement).hide();
 }
 
 //-------------------- CAMBIOS POR CADA SECCIÓN--------------------------
@@ -90,6 +102,7 @@ async function showModalUnsavedChanges() {
 async function loadSection(file, title) {
 	//Al cargar cualquier nueva sección, cambia el titulo y coloca el html correspondiente
 	try {
+
 		document.getElementById('alertContainer').innerHTML = ''; //Elimina todas las alertas previas de la sección
 		const sectionTitle = document.getElementById('sectionTitle');
 		const container = document.getElementById('pageContainer');
@@ -106,14 +119,11 @@ export async function changeSection(element) {
 	try {
 		const isDirtyFormulary = isThereAnyUnsavedModificationOnThePage();
 		if (isDirtyFormulary) {
-			console.log("Hay cambios sin guardar");
-			// await showModalUnsavedChanges();
-			executeSectionChangeFunctions(element);
+			await showModalUnsavedChanges();
 			//Botón salir del modal de cambios sin guardar
-			// document.getElementById('#exitModalButton').addEventListener("click", (e) => {
-			// 	executeSectionChangeFunctions(element);
-			// 	console.log(element)
-			// })
+			document.getElementById('exitModalButton').addEventListener("click", (e) => {
+				executeSectionChangeFunctions(element);
+			})
 		} else {
 			await executeSectionChangeFunctions(element);
 		}
@@ -126,14 +136,13 @@ export async function changeSection(element) {
 export async function executeSectionChangeFunctions(element) {
 	try {
 		//Se cambia la interfaz poniendo la sección que corresponde, cargando el html que va, se llenan todos los selects con opciones, se cargan las tablas y se activa la búsqueda dentro de la tabla
-		let path = './view/pages/menu/';
-		let sectionTitle = element.dataset.title;
-		let sectionFile = element.dataset.file;
-		let searchId = element.dataset.id;
-		await loadSection(`${path}${sectionFile}`, sectionTitle).then(() => {
+		const [file, sectionTitle, searchId] = await getConfigToLoadSection(element);
+		await loadSection(file, sectionTitle).then(() => {
+			const cardContainers = document.querySelectorAll(".cardContainer");
 			loadTable();
 			fillSelects();
-			fillCards();
+			fillCardContainers(cardContainers);
+			// fillCards();
 			validateForms();
 			if (searchId) {
 				fillForm(searchId);
@@ -144,12 +153,23 @@ export async function executeSectionChangeFunctions(element) {
 	}
 }
 
+async function getConfigToLoadSection(element) {
+	const path = './view/pages/menu/';
+	const sectionTitle = element.dataset.title;
+	const sectionFile = element.dataset.file;
+	const searchId = element.dataset.id;
+	return [
+		`${path}${sectionFile}`,
+		sectionTitle,
+		searchId
+	]
+}
 
 //-------------------- CAMBIOS EN LAS TABLAS--------------------------
 
-//TODO: ALEX PONER EN  EL TBODY DE TODAS LAS TABLAS DE TODAS LAS SECCIONES  LA CLASE loadTable junto con el data-file correspondiente, CREAR EL ARCHIVO PHP QUE TRAE LA DATA
 export async function loadTable(selectedPagerItem = null) {
 	//Carga los datos de una tabla que pertenece a una sección
+	// EL TBODY DE TODAS LAS TABLAS DE TODAS LAS SECCIONES TIENE LA CLASE loadTable junto con el data-file correspondiente, CREAR EL ARCHIVO PHP QUE TRAE LA DATA
 	try {
 		const tbody = document.querySelector('.loadTable');
 		const dataForm = new FormData();
@@ -167,30 +187,34 @@ export async function loadTable(selectedPagerItem = null) {
 	}
 }
 
-//Fijarse si esta funcion esta de mas
-export async function searchDatabaseInformation(e) {
-	const searchFormulary = e.target;
-	const searchButton = e.submitter;
-	const file = searchButton.dataset.file;
-	const dataForm = new FormData(searchFormulary);
-	databaseOperation('get', file, dataForm).then((data) => console.log(data));
-}
-
 //TODO: ALEX HACER QUE FUNCIONEN TODOS LOS BOTONES DE BUSQUEDA DE TODAS LAS SECCIONES QUE TENGAN UNA TABLA, HACIENDO LO SIGUIENTE: los datos a recolectar para la búsqueda tienen que estar en un formulario que tengan la clase .searchFormulary y el botón de búsqueda tiene que tener un data-file que busca la info correspondiente del .php, este botón también tiene que tener la clase .searchButton, EJEMPLO en getPatientSearch.php, patientSearch.html
-export async function searchTableInformation(e) {
+export async function searchTableInformation(selectedPagerItem = null) {
 	//busca información y la coloca en una tabla
 	try {
-		const searchFormulary = e.target;
-		const searchButton = e.submitter;
+		const searchFormulary = document.querySelector('.searchFormulary');
+		const searchButton = searchFormulary.querySelector('.btn[type="submit"]');
+		// const searchFormulary = e.target;
+		// const searchButton = e.submitter;
 		const file = searchButton.dataset.file;
 		const dataForm = new FormData(searchFormulary);
+		if (selectedPagerItem) {
+			dataForm.append("pageNumber", selectedPagerItem);
+		}
+		//si paginador agrego la clase data bs target
+		const pagerContainer = document.querySelector('#pagerContainer');
+		if (pagerContainer) {
+			pagerContainer.classList.add('getInformationBySearch');
+			// const dataFormTarget = currentPage.parentNode.dataset.dataFormTarget || null
+		}
 		const tbody = document.querySelector('.loadTable');
+		tbody.dataset.file = file;
 		console.log(dataForm.get('id'));
 		databaseOperation('get', file, dataForm).then((data) => fillTable(data, tbody));
 	} catch (error) {
 		console.log('error ' + error);
 	}
 }
+
 
 //-------------------- CAMBIOS EN EL FORMULARIO --------------------------
 
@@ -234,6 +258,16 @@ export async function formOperation(method, e) {
 		} else {
 			//Actualiza, guarda y elimina la información de un formulario
 			const data = await databaseOperation(method, file, formData);
+			if (form.classList.contains('modalForm')) {
+				const modal = form.closest('.modal');
+				if (modal) {
+					await hideModal(modal);
+					const galery = modal.querySelector('.imgGalery');
+					const progressBarContainer = modal.querySelector('.progress')
+					cleanFormulary(form);
+					cleanGalery(galery, progressBarContainer)
+				}
+			}
 			addAlert(data['msg']);
 			//Si login
 			if (btn.classList.contains("authentificationForm") && data["msg"]['type'] == "success") {
@@ -241,7 +275,7 @@ export async function formOperation(method, e) {
 				window.location.href = redirectFile;
 			}
 
-			if (container && data["msg"]['type'] == "success" && (method === 'post' || method === 'put')) {
+			if (container && data["msg"]['type'] == "success" && (method === 'post' || method === 'put') && !form.classList.contains('modalForm')) {
 				//Duplicar id a distintos formularios cuando se guardan
 				if (method === 'post') {
 					const forms = getForms(form);
@@ -418,11 +452,123 @@ export async function addDatalistGrouping(container) {
 //-------------------- CAMBIOS EN LOS INPUTS--------------------------
 
 export function showOrHidePassword(passwordInput, icon) {
+	//Muestra o censura una contraseña
 	if (passwordInput.type == "password") {
 		passwordInput.type = "text";
 		icon.classList.replace('fa-eye-slash', 'fa-eye');
 	} else {
 		passwordInput.type = "password";
 		icon.classList.replace('fa-eye', 'fa-eye-slash');
+	}
+}
+
+export function cleanFormulary(formulary) {
+	//Limpia los inputs y selects de un formulario
+	if (formulary) {
+		const inputs = formulary.querySelectorAll("input , select");
+		inputs.forEach(input => {
+			input.value = input.defaultValue;
+			addDirtyInputClass(input);
+		});
+	}
+}
+
+//-------------------- CAMBIOS EN LOS INPUTS QUE CARGAN IMAGENES--------------------------
+
+export function showInputPreview(e) {
+	const input = e.target;
+	const progressBar = document.querySelector(input.dataset.progressBar);
+	const progressBarContainer = progressBar.parentNode;
+	const files = input.files;
+	const fileContainer = document.querySelector(input.dataset.container);
+	let amountProgress = 0;
+	let totalSizeToLoad = 0;
+	for (let file of files) {
+		totalSizeToLoad += file["size"];
+	}
+	fileContainer.innerHTML = "";
+
+	progressBar.style.width = `0%`;
+	if (files.length < 1) {
+		progressBarContainer.classList.add('d-none');
+	} else {
+		progressBarContainer.classList.remove('d-none');
+	}
+
+	for (let file of files) {
+		let reader = new FileReader();
+		reader.readAsArrayBuffer(file);
+		reader.addEventListener("progress", (e) => {
+			let progress = Math.round(((amountProgress + e.loaded) * 100.0) / totalSizeToLoad);
+			console.log(progress);
+			progressBar.style.width = `${progress}%`
+		})
+		reader.addEventListener("load", (e) => {
+			amountProgress += file["size"];
+			console.log(e.currentTarget);
+			let url = "";
+			// let upLoadDocument = document.createElement("IMG");
+			if (!file.type.includes("image")) {
+				url = "../view/assets/img/doc.png";
+			} else {
+				url = URL.createObjectURL(file);
+			}
+			// upLoadDocument.setAttribute("src", url);
+			// fileContainer.appendChild(upLoadDocument)
+			putImageInGalery(fileContainer, url, false)
+		})
+	}
+
+}
+
+function putImageInGalery(galery, imgUrl, hasModal = true) {
+	//Pone una imagen en una galeria de imagenes, pide un contenedor del cual saca un id que se va incrementando con cada imagen que agrega, y permite el despliegue de un modal 
+	const fragment = document.createDocumentFragment();
+	const imageGaleryTpl = document.getElementById('imageGaleryTemplate').content.cloneNode(true);
+	galery.dataset.lastItem = parseInt(galery.dataset.lastItem) + 1;
+	const id = galery.dataset.lastItem;
+	if (hasModal) {
+		imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-target', `#imgModal${id}`);
+		imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-toggle', `modal`);
+		const modalImageTpl = document.getElementById('imageModal').content.cloneNode(true);
+		modalImageTpl.querySelector('.modal').id = `imgModal${id}`;
+		modalImageTpl.querySelector('.modal-content img').setAttribute("src", imgUrl);
+		imageGaleryTpl.querySelector('.img-container').append(modalImageTpl)
+	} else {
+		imageGaleryTpl.querySelector('i').classList.add('d-none');
+	}
+	imageGaleryTpl.querySelector('.card img').setAttribute("src", imgUrl);
+	fragment.appendChild(imageGaleryTpl);
+	galery.appendChild(fragment);
+}
+
+export async function getConfigToDeleteImage(e) {
+	const img = e.target.closest("img");
+	const pathToDelete = img.src;
+	const btn = e.target;
+	const file = btn.dataset.file;
+	const container = img.closest('.imgGalery');
+	const formData = new FormData();
+	if (container.dataset.id) {
+		formData.append('id', form.dataset.id);
+	}
+	const galery = e.dataset.galeryContainer;
+	formData.append('pathToDelete', pathToDelete);
+	const data = await databaseOperation('post', file, formData);
+	// if (data["msg"]['type'] == "success") {
+	galery.removeChild(img);
+	// }
+}
+
+
+
+//Limpia la barra de progreso y la galery 
+export function cleanGalery(galery, progressBarContainer) {
+
+	if (galery) {
+		galery.innerHTML = "";
+	}
+	if (progressBarContainer) {
+		progressBarContainer.classList.add('d-none');
 	}
 }

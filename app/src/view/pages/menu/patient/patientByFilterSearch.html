@@ -26,30 +26,49 @@
             </button>
         </div>
         </p>
-        <div class="collapse mb-3" id="collapseStatistics">
+        <div class="collapse mb-3 awaitDataformAndFillCards" id="collapseStatistics">
             <div class="card card-body ">
                 Some placeholder content for the collapse component. This panel is hidden by default but revealed when
                 the
                 user activates the relevant trigger.
+
+                <div>
+                    <canvas class="fillChart" width="400" height="400" id="chartByGender"></canvas>
+                </div>
+
+                <div>
+                    <canvas class="fillChart" width="400" height="400" id="chartOfCasesByDate"></canvas>
+                </div>
+
+                <div>
+                    <canvas class="fillChart" width="400" height="400" id="chartByAgeRangeAndGender"></canvas>
+                </div>
+
+                <div>
+                    <canvas class="fillChart" width="400" height="400"
+                        id="chartByNumberOfPatientsWhoHadASymptomByDate"></canvas>
+                </div>
+
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 cardContainer awaitDataform"
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 cardContainer awaitDataform"
             data-file="PatientByFilter">
             <div class="col">
                 <div class="card h-100">
-                    <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="card-body d-flex flex-column justify-content-between ">
                         <div class="row">
                             <h5 class="card-title">Scabini Melina</h5>
                             <p class="card-text mb-2">
                                 Dni: <span class="dni">44756058</span>, Edad:<span class="age">15</span>, Sexo:
                                 <span class="gender">Femenino</span>
                             </p>
+                            <div class="col-12">
+                                <a href="#" class="card-link">Paciente</a>
+                                <a href="#" class="card-link">Historia clínica</a>
 
+                            </div>
                         </div>
-                        <div class="d-flex g-1">
-                            <button class="btn btn-sm btn-primary me-1">Ver historia clínica</button>
-                            <button class="btn btn-sm btn-tertiary">Ver paciente</button>
-                        </div>
+
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Ingreso el 24/2/2021 a las 14:30</small>
@@ -58,19 +77,20 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="card-body d-flex flex-column justify-content-between ">
                         <div class="row">
                             <h5 class="card-title">Scabini Melina</h5>
                             <p class="card-text mb-2">
                                 Dni: <span class="dni">44756058</span>, Edad:<span class="age">15</span>, Sexo:
                                 <span class="gender">Femenino</span>
                             </p>
+                            <div class="col-12">
+                                <a href="#" class="card-link">Paciente</a>
+                                <a href="#" class="card-link">Historia clínica</a>
 
+                            </div>
                         </div>
-                        <div class="d-flex g-1">
-                            <button class="btn btn-sm btn-primary me-1">Ver historia clínica</button>
-                            <button class="btn btn-sm btn-tertiary">Ver paciente</button>
-                        </div>
+
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Ingreso el 24/2/2021 a las 14:30</small>
@@ -79,30 +99,26 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="card-body d-flex flex-column justify-content-between ">
                         <div class="row">
                             <h5 class="card-title">Scabini Melina</h5>
                             <p class="card-text mb-2">
                                 Dni: <span class="dni">44756058</span>, Edad:<span class="age">15</span>, Sexo:
                                 <span class="gender">Femenino</span>
                             </p>
+                            <div class="col-12">
+                                <a href="#" class="card-link">Paciente</a>
+                                <a href="#" class="card-link">Historia clínica</a>
 
+                            </div>
                         </div>
-                        <div class="d-flex g-1">
-                            <button class="btn btn-sm btn-primary me-1">Ver historia clínica</button>
-                            <button class="btn btn-sm btn-tertiary">Ver paciente</button>
-                        </div>
+
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Ingreso el 24/2/2021 a las 14:30</small>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center my-4">
-            <button class="btn btn-sm btn-primary me-1">
-                <i class='bx bx-plus'></i>
-            </button>
         </div>
 
         <template id="medicalHistoryCardTemplate">
@@ -117,10 +133,7 @@
                             </p>
 
                         </div>
-                        <div class="d-flex g-1">
-                            <button class="btn btn-sm btn-primary me-1">Ver historia clínica</button>
-                            <button class="btn btn-sm btn-tertiary">Ver paciente</button>
-                        </div>
+
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Ingreso el 24/2/2021 a las 14:30</small>
