@@ -8,6 +8,48 @@
 </head>
 
 <body>
+
+  <!-- TODO ALEX: LOS FORMULARIOS DEL MODAL TIENEN LA CLASS  .modalForm -->
+  <!-- Modal -->
+  <div class="modal fade" id="imgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <form class="modalForm" id="#imgFormModal">
+
+          <div class="modal-header">
+            <h5 class="modal-title">Agregar imágen del rostro del paciente</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body py-3">
+
+
+            <div class="col col-12">
+              <div class="input-group">
+                <input type="file" name="patientFaces[]" class="form-control changeProgressBar"
+                  data-container="#patientImageContainer" data-progress-bar="#progressBar1" multiple>
+              </div>
+              <div class="progress my-3 d-none">
+                <div class="progress-bar progress-bar-striped" role="progressbar" id="progressBar1" style="width: 0%"
+                  aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="imgGalery row row-cols-2 row-cols-md-4 g-0 position-relative" id="patientImageContainer"
+              data-last-item="0">
+            </div>
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-primary postInformation fillImages"
+              data-file="PatientImage">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
   <!-- Modal -->
   <div class="modal fade" id="commentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -23,45 +65,6 @@
           <form class="mb-3" id="commentForm">
             <label for="message-text" class="col-form-label">Nota:</label>
             <textarea class="form-control" name="comment" id="message-text"></textarea>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="antecedentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nueva antecedente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body py-2">
-
-          <form class="mb-3">
-            <div class="col col-6 ">
-              <label>Tipo de antecedente:</label>
-              <select class="form-select form-select-m getSelectOption" data-file="SuppliesList" data-default="Todos">
-
-              </select>
-            </div>
-            <div class="col col-6 ">
-              <label>Antecedente</label>
-              <select class="form-select form-select-m getSelectOption" data-file="SuppliesList" data-default="Todos">
-                <option value="vacio"></option>
-                <option value="0">Todos los Suministros</option>
-                <option value="1">Agentes de Diagnóstico</option>
-
-              </select>
-            </div>
           </form>
         </div>
         <div class="modal-footer py-1">
@@ -99,7 +102,7 @@
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="card">
           <form class="row g-3 card-body fillForm needs-validation" novalidate id="form1" data-file="PatientInformation"
-            data-id="" data-forms="#form2">
+            data-id="" data-forms="#form2,#imgFormModal">
             <div class="col-6">
               <label class="form-label form-label-sm">Dni</label>
               <input type="number" name="dni" class="form-control form-control-sm" required>
@@ -166,13 +169,25 @@
               </select>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary postInformation"
+              <button type="submit" class="btn btn-sm btn-primary postInformation"
                 data-file="PatientInformation">Guardar</button>
             </div>
           </form>
         </div>
+        <h5 class="mt-3">Rostro del paciente</h5>
+        <div class="card p-3">
+          <div class="col">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#imgModal">
+              Agregar imágen
+            </button>
+          </div>
+          <div class=" imgGalery row row-cols-2 row-cols-md-4 g-0 position-relative mt-3" data-last-item="0">
+
+          </div>
+        </div>
       </div>
-      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <div class=" tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <a href="#" class="list-group-item list-group-item-action card mb-2">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Título de prueba o examen</h5>
@@ -222,7 +237,7 @@
                     </select>
                   </div>
                   <div class="col-12 pt-3">
-                    <button type="submit" class="btn btn-primary postInformation"
+                    <button type="submit" class="btn btn-sm btn-primary postInformation"
                       data-file="BloodReligionPatient">Guardar</button>
                   </div>
               </div>
@@ -357,8 +372,10 @@
           <h6 class="mb-1 small">Pablo Suárez</h6>
           <small>14/4/2021 13:50</small>
         </div>
-        <p class="mb-1 small text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi
-          unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis
+        <p class="mb-1 small text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
+          commodi
+          unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe
+          corporis
           ipsam ducimus molestiae?</p>
       </a>
     </template>

@@ -1,6 +1,6 @@
 <?php
-
 include("./../connection.php");
+//TODO: LAZY LOAD
 // $conditionsToFilter = array_filter($_GET);
 echo "<pre>" . print_r($_GET, true) . "</pre>";
 
@@ -31,6 +31,6 @@ if (count($parameters) > 0) {
 var_dump($parameters);
 var_dump($conditions);
 var_dump($typeOfParameters);
-$result = getPreparedStatement($sql, $typeOfParameters, $parameters);
+$result = executePreparedStatement($sql, $typeOfParameters, $parameters);
 $data =  getResultOfPreparedStatement($result);
 sendJson($data, $msg, null, null, null);
