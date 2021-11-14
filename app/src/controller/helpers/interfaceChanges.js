@@ -144,6 +144,7 @@ export async function executeSectionChangeFunctions(element) {
 			fillCardContainers(cardContainers);
 			// fillCards();
 			validateForms();
+			fillGaleries();
 			if (searchId) {
 				fillForm(searchId);
 			}
@@ -263,7 +264,7 @@ export async function formOperation(method, e) {
 				if (modal) {
 					await hideModal(modal);
 					const galery = modal.querySelector('.imgGalery');
-					const progressBarContainer = modal.querySelector('.progress')
+					const progressBarContainer = modal.querySelector('.progress');
 					cleanFormulary(form);
 					cleanGalery(galery, progressBarContainer)
 				}
@@ -519,6 +520,28 @@ export function showInputPreview(e) {
 		})
 	}
 
+}
+
+function fillGaleries() {
+	const galeries = document.querySelectorAll('.fillGalery');
+	galeries.forEach(galery => {
+		const file = galery.dataset.file;
+		const formData = new FormData();
+		if (galery.dataset.id) {
+			formData.append('id', galery.dataset.id);
+		}
+		databaseOperation("get", file, formData).then(data => {
+			data['bd'][0].forEach(imgUrl => {
+				putImageInGalery(galery, imgUrl);
+
+			})
+			data.forEach((imgUrl) => {
+
+				putImageInGalery(galery, imgUrl)
+			})
+
+		})
+	})
 }
 
 function putImageInGalery(galery, imgUrl, hasModal = true) {

@@ -193,6 +193,10 @@ $_SESSION['ID_HOSPITAL'] = "1"
     </div>
   </template>
 
+
+  <template id="pagerItemTemplate">
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+  </template>
   </div>
   <?php include('./view/modules/footer.php'); ?>
   <script src="./sw.js"></script>

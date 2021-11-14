@@ -31,13 +31,13 @@ export async function fillTable(data, container) {
 				fragment.appendChild(clone);
 			}
 			container.appendChild(fragment);
-			const amountOfPages = data.amountOfPages || document.querySelector('#pagerContainer').dataset.pages;
+			const amountOfPages = getAmountOfPages(data);
 
 			if (amountOfPages > 1 && databaseInformation.length > 0) {
 				fillPager(data.amountOfPages, data.currentPage);
 			} else {
-				if (pageContainer) {
-					pageContainer.innerHTML = "";
+				if (container && amountOfPages != null) {
+					container.innerHTML = "";
 				}
 			}
 
@@ -59,28 +59,44 @@ export async function fillTable(data, container) {
 	}
 }
 
+function getAmountOfPages(data) {
+	if (data.amountOfPages) {
+		return data.amountOfPages
+	} else {
+		if (document.querySelector('#pagerContainer')) {
+			return document.querySelector('#pagerContainer').dataset.pages;
+		} else {
+			return null;
+		}
+	}
+}
+
 function fillPager(amountOfPages, currentPage) {
+
 	//Crea el paginador de una tabla
 	const container = document.getElementById('pagerContainer');
 	const tpl = document.getElementById('pagerItemTemplate').content;
 	const fragment = document.createDocumentFragment();
 	const amountOfPagesToShow = 5;
-	const [initialItemToShow, finalItemToShow] = getConfigToCreatePager(amountOfPagesToShow, currentPage, amountOfPages, container);
+	if (container) {
+		const [initialItemToShow, finalItemToShow] = getConfigToCreatePager(amountOfPagesToShow, currentPage, amountOfPages, container);
 
-	for (let i = initialItemToShow; i <= finalItemToShow; i++) {
-		tpl.querySelector("a").innerHTML = i;
-		tpl.querySelector(".page-item").dataset.id = i;
-		const clone = tpl.cloneNode(true);
-		fragment.appendChild(clone);
-	}
-	container.appendChild(fragment);
-	const previousItem = container.querySelector('.page-item .active');
-	if (previousItem) {
-		previousItem.classList.remove(".active")
-	}
-	const currentItem = container.querySelector('.page-item[data-id="' + currentPage + '"]');
-	if (currentItem) {
-		currentItem.classList.add("active");
+		for (let i = initialItemToShow; i <= finalItemToShow; i++) {
+			tpl.querySelector("a").innerHTML = i;
+			tpl.querySelector(".page-item").dataset.id = i;
+			const clone = tpl.cloneNode(true);
+			fragment.appendChild(clone);
+		}
+		container.appendChild(fragment);
+		const previousItem = container.querySelector('.page-item .active');
+		if (previousItem) {
+			previousItem.classList.remove(".active")
+		}
+		const currentItem = container.querySelector('.page-item[data-id="' + currentPage + '"]');
+		if (currentItem) {
+			currentItem.classList.add("active");
+		}
+
 	}
 }
 
