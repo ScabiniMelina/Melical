@@ -144,10 +144,10 @@ export async function executeSectionChangeFunctions(element) {
 			fillCardContainers(cardContainers);
 			// fillCards();
 			validateForms();
-			fillGaleries();
 			if (searchId) {
 				fillForm(searchId);
 			}
+			fillGaleries();
 		});
 	} catch (error) {
 		console.log('error ' + error);
@@ -527,19 +527,17 @@ function fillGaleries() {
 	galeries.forEach(galery => {
 		const file = galery.dataset.file;
 		const formData = new FormData();
+		console.log(galery.dataset.id)
 		if (galery.dataset.id) {
 			formData.append('id', galery.dataset.id);
 		}
 		databaseOperation("get", file, formData).then(data => {
-			data['bd'][0].forEach(imgUrl => {
-				putImageInGalery(galery, imgUrl);
-
-			})
-			data.forEach((imgUrl) => {
-
-				putImageInGalery(galery, imgUrl)
-			})
-
+			if (data['db'] !== undefined && data.db.images[0] !== undefined) {
+				const images = Object.values(data["db"]["images"]);
+				images.forEach(image => {
+					putImageInGalery(galery, image['path']);
+				})
+			}
 		})
 	})
 }
@@ -555,6 +553,7 @@ function putImageInGalery(galery, imgUrl, hasModal = true) {
 		imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-toggle', `modal`);
 		const modalImageTpl = document.getElementById('imageModal').content.cloneNode(true);
 		modalImageTpl.querySelector('.modal').id = `imgModal${id}`;
+		//TODO: VALIDAR IS LA IMAGEN ES REAL
 		modalImageTpl.querySelector('.modal-content img').setAttribute("src", imgUrl);
 		imageGaleryTpl.querySelector('.img-container').append(modalImageTpl)
 	} else {
@@ -566,11 +565,12 @@ function putImageInGalery(galery, imgUrl, hasModal = true) {
 }
 
 export async function getConfigToDeleteImage(e) {
-	const img = e.target.closest("img");
+
+	const container = e.target.parentNode;
+	const img = container.querySelector("img");
 	const pathToDelete = img.src;
 	const btn = e.target;
 	const file = btn.dataset.file;
-	const container = img.closest('.imgGalery');
 	const formData = new FormData();
 	if (container.dataset.id) {
 		formData.append('id', form.dataset.id);

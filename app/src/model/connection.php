@@ -8,7 +8,7 @@ ini_set("log_errors", 1);
 error_reporting(E_ALL);
 
 // ------------------------------ RUTAS
-$destinationPathToPatientFacialImages = $_SERVER['DOCUMENT_ROOT'] . "/view/assets/img/patientFaces/";
+$destinationPathToPatientFacialImages = "/view/assets/img/patientFaces/";
 
 
 // ------------------------------ OPERACIONES A LA BD
@@ -200,11 +200,14 @@ function getMd5Id($table, $primaryKeyName)
 
 //TODO: HACER QUE GET PUT REQUEST PARAMETER FUNCIONE PARA EL METODO DELETE;
 //Crea un array con los valores enviados a traves del metodo put
-function getPutRequestParameters()
+function getRequestParameters()
 {
-    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-        parse_str(file_get_contents("php://input"), $_PUT);
-        return $_PUT;
+    if (
+        $_SERVER['REQUEST_METHOD'] === 'PUT' ||
+        $_SERVER['REQUEST_METHOD'] === 'DELETE'
+    ) {
+        parse_str(file_get_contents("php://input"), $_PARAMETERS);
+        return $_PARAMETERS;
     }
 }
 
@@ -326,6 +329,8 @@ function uploadFiles($files, $destinationPath, $allowedExtensions)
 {
     $saveFiles = 0;
     $msg = array();
+    $msg['text'] = "No se guardaron los archivos";
+    $msg['type'] = "error";
     foreach ($files['tmp_name'] as $key => $tmp_name) {
         $msg['type'] = 'info';
         if ($files["name"][$key]) {
@@ -355,7 +360,7 @@ function uploadFiles($files, $destinationPath, $allowedExtensions)
         // array_push($msgs, $msg);
     }
     if ($saveFiles == count($files['name'])) {
-        $msg['text'] .= "Se subieron todos los archivos";
+        $msg['text'] = "Se subieron todos los archivos";
         $msg['type'] = "success";
     }
     return $msg;
@@ -364,4 +369,35 @@ function uploadFiles($files, $destinationPath, $allowedExtensions)
 function deleteFile($urlSource)
 {
     unlink($urlSource);
+}
+
+function getImagesFromPath($dirPath, $extensions_array)
+{
+    global $msg;
+    $images = array();
+    $path = $_SERVER['DOCUMENT_ROOT'] . $dirPath;
+    if (is_dir($path)) {
+        $files = scandir($path);
+        for ($i = 0; $i < count($files); $i++) {
+            if ($files[$i] != '.' && $files[$i] != '..') {
+                // get file extension
+                $file = pathinfo($files[$i]);
+                $extension = $file['extension'];
+                // check file extension
+                if (in_array($extension, $extensions_array)) {
+
+                    $img['path'] = $dirPath . $files[$i];
+                    array_push($images, $img);
+                }
+            }
+        }
+    } else {
+        $msg = ['type' => 'error', 'text' => 'No se encontraron imágenes '];
+    }
+    if (count($images) <= 0) {
+        $msg = ['type' => 'error', 'text' => 'No se encontraron imágenes '];
+    } else {
+        $msg = ['type' => 'success', 'text' => 'Se cargaron las imágenes exitosamente'];
+    }
+    return $images;
 }
