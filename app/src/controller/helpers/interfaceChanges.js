@@ -3,17 +3,14 @@ import {
 } from './fetchRequest.js';
 
 import {
-	isThereAnyUnsavedModificationOnThePage,
-	addDirtyInputClass
-} from "../main.js";
-
-import {
 	fillSelects,
 	fillForm,
 	fillTable,
 	fillSelect,
 	fillCardContainer,
 	fillCardContainers,
+	fillGalery,
+	fillGaleries,
 	setInputDefaultValue
 } from './fillTemplates.js';
 
@@ -259,14 +256,16 @@ export async function formOperation(method, e) {
 		} else {
 			//Actualiza, guarda y elimina la información de un formulario
 			const data = await databaseOperation(method, file, formData);
-			if (form.classList.contains('modalForm')) {
+			if (form.classList.contains('imageModalForm')) {
 				const modal = form.closest('.modal');
 				if (modal) {
 					await hideModal(modal);
-					const galery = modal.querySelector('.imgGalery');
+					const modalGalery = modal.querySelector('.imgGalery');
 					const progressBarContainer = modal.querySelector('.progress');
+					const galeryToUpdate = document.querySelector(form.dataset.galery);
 					cleanFormulary(form);
-					cleanGalery(galery, progressBarContainer)
+					cleanGalery(modalGalery, progressBarContainer)
+					fillGalery(galeryToUpdate);
 				}
 			}
 			addAlert(data['msg']);
@@ -474,117 +473,125 @@ export function cleanFormulary(formulary) {
 	}
 }
 
+//Si tiene la clase dirtyInput se la saca, porque el elemento coincide con el valor por defecto, sino se la agrega, el parametro element se refiere al input/textarea/select, si contiene la clase unsavableValue significa que ese input no se lo tendra en cuenta a la hora de guardarlo
+export function addDirtyInputClass(element) {
+	const currentValue = element.value;
+	if (currentValue != element.defaultValue && !element.classList.contains('unsaveableValue')) {
+		element.classList.add('dirtyInput')
+	} else {
+		element.classList.remove('dirtyInput')
+	}
+}
+
+//Busca todos los inputs en los que hay cambios sin guardar para  devolver true o false dependiendo si hay cambios sin guardar en un input 
+export function isThereAnyUnsavedModificationOnThePage() {
+	const amountOfDirtyInputs = document.querySelectorAll(".dirtyInput").length;
+	if (amountOfDirtyInputs > 0) return true
+	return false;
+}
+
 //-------------------- CAMBIOS EN LOS INPUTS QUE CARGAN IMAGENES--------------------------
 
 export function showInputPreview(e) {
-	const input = e.target;
-	const progressBar = document.querySelector(input.dataset.progressBar);
-	const progressBarContainer = progressBar.parentNode;
-	const files = input.files;
-	const fileContainer = document.querySelector(input.dataset.container);
-	let amountProgress = 0;
-	let totalSizeToLoad = 0;
-	for (let file of files) {
-		totalSizeToLoad += file["size"];
-	}
-	fileContainer.innerHTML = "";
+	try {
+		const input = e.target;
+		const progressBar = document.querySelector(input.dataset.progressBar);
+		const progressBarContainer = progressBar.parentNode;
+		const files = input.files;
+		const fileContainer = document.querySelector(input.dataset.container);
+		let amountProgress = 0;
+		let totalSizeToLoad = 0;
+		for (let file of files) {
+			totalSizeToLoad += file["size"];
+		}
+		fileContainer.innerHTML = "";
 
-	progressBar.style.width = `0%`;
-	if (files.length < 1) {
-		progressBarContainer.classList.add('d-none');
-	} else {
-		progressBarContainer.classList.remove('d-none');
-	}
+		progressBar.style.width = `0%`;
+		if (files.length < 1) {
+			progressBarContainer.classList.add('d-none');
+		} else {
+			progressBarContainer.classList.remove('d-none');
+		}
 
-	for (let file of files) {
-		let reader = new FileReader();
-		reader.readAsArrayBuffer(file);
-		reader.addEventListener("progress", (e) => {
-			let progress = Math.round(((amountProgress + e.loaded) * 100.0) / totalSizeToLoad);
-			console.log(progress);
-			progressBar.style.width = `${progress}%`
-		})
-		reader.addEventListener("load", (e) => {
-			amountProgress += file["size"];
-			console.log(e.currentTarget);
-			let url = "";
-			// let upLoadDocument = document.createElement("IMG");
-			if (!file.type.includes("image")) {
-				url = "../view/assets/img/doc.png";
-			} else {
-				url = URL.createObjectURL(file);
-			}
-			// upLoadDocument.setAttribute("src", url);
-			// fileContainer.appendChild(upLoadDocument)
-			putImageInGalery(fileContainer, url, false)
-		})
+		for (let file of files) {
+			let reader = new FileReader();
+			reader.readAsArrayBuffer(file);
+			reader.addEventListener("progress", (e) => {
+				let progress = Math.round(((amountProgress + e.loaded) * 100.0) / totalSizeToLoad);
+				console.log(progress);
+				progressBar.style.width = `${progress}%`
+			})
+			reader.addEventListener("load", (e) => {
+				amountProgress += file["size"];
+				console.log(e.currentTarget);
+				let url = "";
+				// let upLoadDocument = document.createElement("IMG");
+				if (!file.type.includes("image")) {
+					url = "../view/assets/img/doc.png";
+				} else {
+					url = URL.createObjectURL(file);
+				}
+				// upLoadDocument.setAttribute("src", url);
+				// fileContainer.appendChild(upLoadDocument)
+				putImageInGalery(fileContainer, url, false)
+			})
+		}
+	} catch (error) {
+		console.log('error ' + error);
 	}
-
 }
 
-function fillGaleries() {
-	const galeries = document.querySelectorAll('.fillGalery');
-	galeries.forEach(galery => {
+
+export function putImageInGalery(galery, imgUrl, hasModal = true) {
+	//Pone una imagen en una galeria de imagenes, pide un contenedor del cual saca un id que se va incrementando con cada imagen que agrega, y permite el despliegue de un modal 
+	try {
+		const fragment = document.createDocumentFragment();
+		const imageGaleryTpl = document.getElementById('imageGaleryTemplate').content.cloneNode(true);
+		galery.dataset.lastItem = parseInt(galery.dataset.lastItem) + 1;
+		const id = galery.dataset.lastItem;
+		if (hasModal) {
+			imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-target', `#imgModal${id}`);
+			imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-toggle', `modal`);
+			const modalImageTpl = document.getElementById('imageModal').content.cloneNode(true);
+			modalImageTpl.querySelector('.modal').id = `imgModal${id}`;
+			//TODO: VALIDAR IS LA IMAGEN ES REAL
+			modalImageTpl.querySelector('.modal-content img').setAttribute("src", imgUrl);
+			imageGaleryTpl.querySelector('.img-container').append(modalImageTpl)
+		} else {
+			imageGaleryTpl.querySelector('i').classList.add('d-none');
+		}
+		imageGaleryTpl.querySelector('.card img').setAttribute("src", imgUrl);
+		fragment.appendChild(imageGaleryTpl);
+		galery.appendChild(fragment);
+
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+export async function deleteImage(e) {
+	try {
+		const btn = e.target;
+		const imgContainer = btn.parentNode.parentNode;
+		const galery = imgContainer.parentNode;
+		const img = imgContainer.querySelector("img");
+		const pathToDelete = img.src.replace("https://melical.escuelarobertoarlt.com.ar", "");
 		const file = galery.dataset.file;
 		const formData = new FormData();
-		console.log(galery.dataset.id)
 		if (galery.dataset.id) {
 			formData.append('id', galery.dataset.id);
 		}
-		databaseOperation("get", file, formData).then(data => {
-			if (data['db'] !== undefined && data.db.images[0] !== undefined) {
-				const images = Object.values(data["db"]["images"]);
-				images.forEach(image => {
-					putImageInGalery(galery, image['path']);
-				})
-			}
-		})
-	})
-}
-
-function putImageInGalery(galery, imgUrl, hasModal = true) {
-	//Pone una imagen en una galeria de imagenes, pide un contenedor del cual saca un id que se va incrementando con cada imagen que agrega, y permite el despliegue de un modal 
-	const fragment = document.createDocumentFragment();
-	const imageGaleryTpl = document.getElementById('imageGaleryTemplate').content.cloneNode(true);
-	galery.dataset.lastItem = parseInt(galery.dataset.lastItem) + 1;
-	const id = galery.dataset.lastItem;
-	if (hasModal) {
-		imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-target', `#imgModal${id}`);
-		imageGaleryTpl.querySelector('.card img').setAttribute('data-bs-toggle', `modal`);
-		const modalImageTpl = document.getElementById('imageModal').content.cloneNode(true);
-		modalImageTpl.querySelector('.modal').id = `imgModal${id}`;
-		//TODO: VALIDAR IS LA IMAGEN ES REAL
-		modalImageTpl.querySelector('.modal-content img').setAttribute("src", imgUrl);
-		imageGaleryTpl.querySelector('.img-container').append(modalImageTpl)
-	} else {
-		imageGaleryTpl.querySelector('i').classList.add('d-none');
-	}
-	imageGaleryTpl.querySelector('.card img').setAttribute("src", imgUrl);
-	fragment.appendChild(imageGaleryTpl);
-	galery.appendChild(fragment);
-}
-
-export async function getConfigToDeleteImage(e) {
-	const btn = e.target;
-	const imgContainer = btn.parentNode.parentNode;
-	const galery = imgContainer.parentNode;
-	const img = imgContainer.querySelector("img");
-	const pathToDelete = img.src.replace("https://melical.escuelarobertoarlt.com.ar", "");
-	const file = galery.dataset.file;
-	const formData = new FormData();
-	if (galery.dataset.id) {
-		formData.append('id', galery.dataset.id);
-	}
-	formData.append('pathToDelete', pathToDelete);
-	const data = await databaseOperation('delete', file, formData);
-	if (data["msg"]['type'] == "success") {
-		galery.removeChild(imgContainer);
-	} else {
-		addAlert(data["msg"]);
+		formData.append('pathToDelete', pathToDelete);
+		const data = await databaseOperation('delete', file, formData);
+		if (data["msg"]['type'] == "success") {
+			galery.removeChild(imgContainer);
+		} else {
+			addAlert(data["msg"]);
+		}
+	} catch (error) {
+		console.log('error ' + error);
 	}
 }
-
-
 
 //Limpia la barra de progreso y la galery 
 export function cleanGalery(galery, progressBarContainer) {

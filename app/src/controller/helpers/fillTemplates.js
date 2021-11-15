@@ -6,7 +6,8 @@ import {
 	addAlert,
 	getForms,
 	putIdToForms,
-	changeSaveButtonAction
+	changeSaveButtonAction,
+	putImageInGalery
 } from './interfaceChanges.js';
 
 //-------------------- LLENAR TABLAS -------------------------
@@ -428,4 +429,34 @@ export async function fillForm(searchId) {
 export function setInputDefaultValue(element) {
 	//Setear el valor por defecto de un input/select/textarea, esto accion se realiza cuando se guarda o actualiza
 	element.defaultValue = element.value;
+}
+
+//-------------------- LLENAR GALERIAS--------------------------
+
+export function fillGalery(galery) {
+	try {
+		galery.innerHTML = "";
+		const file = galery.dataset.file;
+		const formData = new FormData();
+		if (galery.dataset.id) {
+			formData.append('id', galery.dataset.id);
+		}
+		databaseOperation("get", file, formData).then(data => {
+			if (data['db'] !== undefined && data.db.images[0] !== undefined) {
+				const images = Object.values(data["db"]["images"]);
+				images.forEach(image => {
+					putImageInGalery(galery, image['path']);
+				})
+			}
+		})
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+export function fillGaleries() {
+	const galeries = document.querySelectorAll('.fillGalery');
+	galeries.forEach(galery => {
+		fillGalery(galery);
+	})
 }

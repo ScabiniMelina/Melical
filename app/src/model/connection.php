@@ -387,7 +387,6 @@ function getImagesFromPath($dirPath, $extensions_array)
                 $extension = $file['extension'];
                 // check file extension
                 if (in_array($extension, $extensions_array)) {
-
                     $img['path'] = $dirPath . $files[$i];
                     array_push($images, $img);
                 }

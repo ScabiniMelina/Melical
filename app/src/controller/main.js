@@ -17,9 +17,11 @@ import {
 	executeSectionChangeFunctions,
 	loadTable,
 	showInputPreview,
-	getConfigToDeleteImage,
+	deleteImage,
 	cleanFormulary,
-	cleanGalery
+	cleanGalery,
+	addDirtyInputClass,
+	isThereAnyUnsavedModificationOnThePage
 } from "./helpers/interfaceChanges.js";
 
 
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		//Botón eliminar imagen 
 		if (e.target.matches('.bxs-x-circle')) {
-			getConfigToDeleteImage(e);
+			deleteImage(e);
 		}
 
 		// //Botón guardar del modal de imágenes
@@ -212,20 +214,3 @@ window.addEventListener("beforeunload", function (e) {
 		return confirmationMessage;
 	}
 });
-
-//Si tiene la clase dirtyInput se la saca, porque el elemento coincide con el valor por defecto, sino se la agrega, el parametro element se refiere al input/textarea/select, si contiene la clase unsavableValue significa que ese input no se lo tendra en cuenta a la hora de guardarlo
-export function addDirtyInputClass(element) {
-	const currentValue = element.value;
-	if (currentValue != element.defaultValue && !element.classList.contains('unsaveableValue')) {
-		element.classList.add('dirtyInput')
-	} else {
-		element.classList.remove('dirtyInput')
-	}
-}
-
-//Busca todos los inputs en los que hay cambios sin guardar para  devolver true o false dependiendo si hay cambios sin guardar en un input 
-export function isThereAnyUnsavedModificationOnThePage() {
-	const amountOfDirtyInputs = document.querySelectorAll(".dirtyInput").length;
-	if (amountOfDirtyInputs > 0) return true
-	return false;
-}

@@ -9,13 +9,13 @@
 
 <body>
 
-  <!-- TODO ALEX: LOS FORMULARIOS DEL MODAL TIENEN LA CLASS  .modalForm -->
+  <!-- TODO ALEX: LOS FORMULARIOS DEL MODAL QUE USAN IMAGENES TIENEN LA CLASS  .imageModalForm, un data-galery que seria el id en el que se muestra el listado de todas las imagenes no solo las cargadas en el input del formulario-->
   <!-- Modal -->
   <div class="modal fade" id="imgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <form class="modalForm" id="imgFormModal">
+        <form class="imageModalForm" id="imgFormModal" data-galery="#imgGalery">
 
           <div class="modal-header">
             <h5 class="modal-title">Agregar imágen del rostro del paciente</h5>
@@ -23,8 +23,6 @@
           </div>
 
           <div class="modal-body py-3">
-
-
             <div class="col col-12">
               <div class="input-group">
                 <input type="file" name="patientFaces[]" class="form-control changeProgressBar"
