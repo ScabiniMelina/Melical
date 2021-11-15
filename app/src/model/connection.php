@@ -200,19 +200,16 @@ function getMd5Id($table, $primaryKeyName)
 
 //TODO: HACER QUE GET PUT REQUEST PARAMETER FUNCIONE PARA EL METODO DELETE;
 //Crea un array con los valores enviados a traves del metodo put
-function getRequestParameters()
+function getPutRequestParameters()
 {
-    if (
-        $_SERVER['REQUEST_METHOD'] === 'PUT' ||
-        $_SERVER['REQUEST_METHOD'] === 'DELETE'
-    ) {
-        parse_str(file_get_contents("php://input"), $_PARAMETERS);
-        return $_PARAMETERS;
+    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+        parse_str(file_get_contents("php://input"), $_PUT);
+        return $_PUT;
     }
 }
 
 
-// function getRequestParameters()
+// function getPutRequestParameters()
 // {
 //     $requestMethod = $_SERVER['REQUEST_METHOD'];
 //     if ( $requestMethod === 'PUT' || $requestMethod === 'DELETE' ) {
@@ -368,7 +365,12 @@ function uploadFiles($files, $destinationPath, $allowedExtensions)
 
 function deleteFile($urlSource)
 {
-    unlink($urlSource);
+    global $msg;
+    if (unlink($_SERVER['DOCUMENT_ROOT'] . $urlSource)) {
+        $msg = ['type' => 'success', 'text' => 'Se elimino el archivo'];
+    } else {
+        $msg = ['type' => 'error', 'text' => 'No se pudo eliminar el archivo'];
+    }
 }
 
 function getImagesFromPath($dirPath, $extensions_array)

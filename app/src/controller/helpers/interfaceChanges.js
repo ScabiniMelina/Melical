@@ -565,22 +565,23 @@ function putImageInGalery(galery, imgUrl, hasModal = true) {
 }
 
 export async function getConfigToDeleteImage(e) {
-
-	const container = e.target.parentNode;
-	const img = container.querySelector("img");
-	const pathToDelete = img.src;
 	const btn = e.target;
-	const file = btn.dataset.file;
+	const imgContainer = btn.parentNode.parentNode;
+	const galery = imgContainer.parentNode;
+	const img = imgContainer.querySelector("img");
+	const pathToDelete = img.src.replace("https://melical.escuelarobertoarlt.com.ar", "");
+	const file = galery.dataset.file;
 	const formData = new FormData();
-	if (container.dataset.id) {
-		formData.append('id', form.dataset.id);
+	if (galery.dataset.id) {
+		formData.append('id', galery.dataset.id);
 	}
-	const galery = e.dataset.galeryContainer;
 	formData.append('pathToDelete', pathToDelete);
-	const data = await databaseOperation('post', file, formData);
-	// if (data["msg"]['type'] == "success") {
-	galery.removeChild(img);
-	// }
+	const data = await databaseOperation('delete', file, formData);
+	if (data["msg"]['type'] == "success") {
+		galery.removeChild(imgContainer);
+	} else {
+		addAlert(data["msg"]);
+	}
 }
 
 
