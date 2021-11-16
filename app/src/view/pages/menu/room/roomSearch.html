@@ -9,14 +9,11 @@
 
 <body>
   <!-- BARRA MENU -->
-
-
   <div class="container pagina" id="lugaresDisponibles">
-    <div class="row pb-2 g-2">
-
+    <div class="row g-2">
       <div class="col col-6">
         <label>Areás</label>
-        <select id="form-select" class="form-select form-select-m">
+        <select id="form-select" class="form-select form-select-m unsaveableValue">
           <option value="default"></option>
           <option value="0">Habitaciones</option>
           <option value="1">Consultorios</option>
@@ -26,7 +23,7 @@
 
       <div class="col col-6 ">
         <label>Sección</label>
-        <select class="form-select getSelectOption" data-file="SectionList">
+        <select class="form-select getSelectOption unsaveableValue" data-file="SectionList">
           <option value="vacio"></option>
           <option value="0">Área Neonatología</option>
           <option value="1">Área Infantil</option>
@@ -36,7 +33,7 @@
       </div>
       <div class="col col-6 ">
         <label>Piso</label>
-        <select class="form-select getSelectOption" data-file="FloorList">
+        <select class="form-select getSelectOption unsaveableValue" data-file="FloorList">
           <option value="vacio"></option>
           <option value="0">Planta Baja</option>
           <option value="1">Piso 1</option>
@@ -48,7 +45,7 @@
 
         <div class="col">
           <label>Estado</label>
-          <select id="selectAreaMedica" class="form-select form-select-m">
+          <select id="selectAreaMedica" class=" unsaveableValue form-select form-select-m">
             <option value="vacio"></option>
             <option value="0">Ocupado</option>
             <option value="1">Disponible</option>
@@ -82,7 +79,7 @@
           </ol>
           -->
 
-    <div class="overflow-auto mt-2 container-table-overflow">
+    <div class="overflow-auto my-3 container-table-overflow">
 
       <table class="table table-responsive table-hover m-auto caption-top text-center">
 
@@ -101,6 +98,11 @@
 
       </table>
     </div>
+    <nav class="m-0">
+      <ul class="pagination justify-content-center" id="pagerContainer">
+
+      </ul>
+    </nav>
     <div class="position-relative">
       <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
         data-title="Detalles de la habitación" data-file="room/roomSearch.html" type="button">

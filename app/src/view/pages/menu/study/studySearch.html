@@ -8,11 +8,10 @@
 
 <body>
   <div class="container pagina" id="pedidoEstudios">
-    <div class="row pb-2 g-2">
-
+    <div class="row g-2">
       <div class="col col-6 ">
         <label>Tipo</label>
-        <select class="form-select getSelectOption" data-file="StudiesList" data-default="Todos">
+        <select class="form-select getSelectOption unsaveableValue" data-file="StudiesList" data-default="Todos">
           <option class="">Estudio</option>
           <option value="1">Radiografía</option>
           <option value="2">Tomografía</option>
@@ -21,7 +20,7 @@
       </div>
       <div class="col col-6 ">
         <label>Estado</label>
-        <select class="form-select ">
+        <select class="form-select unsaveableValue">
           <option value="default"></option>
           <option value="1">En espera</option>
           <option value="2">Finalizado</option>
@@ -29,13 +28,13 @@
       </div>
       <div class="col col-6">
         <label>Fecha de pedido</label>
-        <input id="inputBuscar" type="date" class="form-control" placeholder="Fecha de pedido"
+        <input id="inputBuscar" type="date" class="form-control unsaveableValue" placeholder="Fecha de pedido"
           aria-describedby="button-addon2">
       </div>
       <div class=" col-6 d-flex align-self-end ">
 
         <div class="w-100">
-          <input id="inputBuscar" type="text" class="form-control" placeholder="Buscar por DNI, Nombre"
+          <input id="inputBuscar" type="text" class="form-control unsaveableValue" placeholder="Buscar por DNI, Nombre"
             aria-describedby="button-addon2">
         </div>
         <div class="col-auto ps-2">
@@ -45,10 +44,10 @@
     </div>
 
 
-    <div class="overflow-auto mt-2 container-table-overflow">
+    <div class="overflow-auto my-3 container-table-overflow">
 
       <table class="table table-responsive table-hover m-auto caption-top text-center">
-       <thead class="table-primary-color thead-fixed">
+        <thead class="table-primary-color thead-fixed">
           <tr>
             <th>DNI</th>
             <th>Nombre</th>
@@ -58,7 +57,7 @@
           </tr>
         </thead>
 
-        
+
 
         <tbody class="table-light loadTable" data-file="Studies">
 
@@ -66,6 +65,14 @@
 
       </table>
     </div>
+
+    <nav class="m-0">
+      <ul class="pagination justify-content-center" id="pagerContainer">
+
+      </ul>
+    </nav>
+
+
     <div class="position-relative">
       <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
         data-title="Detalles del estudio" data-file="study/study.html" type="button">
