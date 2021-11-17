@@ -16,7 +16,6 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <form class="imageModalForm" id="imgFormModal" data-galery="#imgGalery">
-
           <div class="modal-header">
             <h5 class="modal-title">Agregar imágen del rostro del paciente</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -100,8 +99,9 @@
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="card">
           <form class="row g-3 card-body fillForm needs-validation" novalidate id="form1" data-file="PatientInformation"
-            data-id="" data-forms="#form2,#imgFormModal,#imgGalery">
-            <div class="col-6">
+            data-id=""
+            data-forms="#form2,#imgFormModal,#imgGalery,#medicalRecordCardContainer,#antecedentCardContainer">
+            <div class=" col-6">
               <label class="form-label form-label-sm">Dni</label>
               <input type="number" name="dni" class="form-control form-control-sm" required>
             </div>
@@ -186,33 +186,38 @@
           </div>
         </div>
       </div>
-      <div class=" tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <a href="#" class="list-group-item list-group-item-action card mb-2">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Título de prueba o examen</h5>
-            <small class="text-muted">Fecha y hora</small>
+      <div class=" tab-pane fade " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="fillCardContainer" id="medicalRecordCardContainer" data-file="PatientMedicalHistory"
+          data-tpl="#medicalHistoryCardTemplate">
+
+          <template id="medicalHistoryCardTemplate">
+            <a href="#" class="list-group-item list-group-item-action card mb-2 id changeSectionButton" data-id=""
+              data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+                <small class="text-muted date">Fecha y hora</small>
+              </div>
+              <small class="hospital">Nombre del doctor</small>
+              <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen realizado.</p>
+            </a>
+          </template>
+
+          <div class="text-center my-3">
+            <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0" data-number-of-items-to-show="6">
+              Cargar más
+            </a>
           </div>
-          <small>Nombre del doctor</small>
-          <p class="mb-1">Detalles breves acerca del diagnóstico o tipo de examen realizado.</p>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action card mb-2">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Título de prueba o examen</h5>
-            <small class="text-muted">Fecha y hora</small>
-          </div>
-          <small>Nombre del doctor</small>
-          <p class="mb-1">Detalles breves acerca del diagnóstico o tipo de examen realizado.</p>
-        </a>
+        </div>
         <div class="position-relative">
           <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
-            data-title="Paciente" data-file="patient/patient.html" type="button" id="agregarPaciente"><i
+            data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html" type="button"><i
               class='bx bx-plus'></i></button>
         </div>
       </div>
       <div class="tab-pane fade " id="pills-contact" data-name="antecedents" role="tabpanel"
         aria-labelledby="pills-contact-tab">
         <div class="accordion" id="antecedentsAccordion">
-          <div class="accordion-item sectionFormulary">
+          <div class="accordion-item sectionFormulary pb-2">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
@@ -239,9 +244,8 @@
                     <button type="submit" class="btn btn-sm btn-primary postInformation"
                       data-file="BloodReligionPatient">Guardar</button>
                   </div>
+                </form>
               </div>
-              </form>
-
             </div>
           </div>
           <div class="accordion-item">
@@ -249,17 +253,42 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseTwo">
-                Patológicas
+                Listado de antecedentes
               </button>
             </h2>
             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-collapseTwo">
               <div class="accordion-body">
-                <!-- Button trigger modal -->
+
+                <div class="fillCardContainer" id="antecedentCardContainer" data-file="AntecedentsList"
+                  data-tpl="#antecedentCardTemplate">
+                  <!-- TODO REDIRECCIONA A LA HISTORIA CLINICA CON ESE ANTECEDENTE -->
+
+                  <template id="antecedentCardTemplate">
+                    <a href="#" class="list-group-item list-group-item-action card mb-2 id changeSectionButton"
+                      data-id="" data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+                        <small class="text-muted date">Fecha y hora</small>
+                      </div>
+                      <small class="hospital">Nombre del doctor</small>
+                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen
+                        realizado.</p>
+                    </a>
+                  </template>
+
+                  <div class="text-center my-3">
+                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                      data-number-of-items-to-show="6">
+                      Cargar más
+                    </a>
+                  </div>
+                </div>
+                <!-- Button trigger modal
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                   data-bs-target="#antecedentModal">
                   Agregar Antecedente
-                </button>
+                </button> -->
                 <!-- <div class="row pb-2">
                   <div class="col text-start">
                     <p class="h6 fw-bold">Tabaquismo</p>

@@ -132,8 +132,10 @@ function getConfigToCreatePager(amountOfPagesToShow, currentPage, amountOfPages,
 
 //-------------------- LLENAR CARDS --------------------------
 
-export async function fillCardContainers(cardContainers) {
+//TODO ALEX: para llenar un contenedor de tarjetas hay que ponerle al contendor la clase .fillCardContainer y n data-tpl="#templateCorrespondiente" con el id del templete que usara para rellenar, y un data-file con el archivo .php donde sacara la informacion y un data-id que se usara para traer la informacion relacionada con ese id.Adentro de este contenedor debe tener un boton con la clase .lazyLoadButton que tiene que tener data-number-of-cards-loads=0 y data-number-of-items-to-show="cantidad de elementos a mostrar cada vez que se toca este boton"
+export async function fillCardContainers() {
 	try {
+		const cardContainers = document.querySelectorAll(".fillCardContainer");
 		// Recorro todos los cardContainers
 		cardContainers.forEach(cardContainer => {
 			fillCardContainer(cardContainer)
@@ -159,29 +161,56 @@ export function fillCardContainer(cardContainer, dataForm = undefined) {
 			if (id) dataForm.append('id', id);
 		}
 		if (lazyLoadButton) {
-			dataForm.append('numberOfCardsLoads', lazyLoadButton.datasets.numberOfCardLoads);
-			dataForm.append('numberOfItemsToShow', lazyLoadButton.datasets.numberOfItemsToShow);
+			lazyLoadButton.classList.remove("d-none");
+			dataForm.append('numberOfCardsLoads', lazyLoadButton.dataset.numberOfCardLoads);
+			dataForm.append('numberOfItemsToShow', lazyLoadButton.dataset.numberOfItemsToShow);
 		}
+
 		//TODO:ENCAPSULAR LO DE ARRIBA EN UNA FUNCION getConfigToFillCardContainer, EVALUAR SI PUEDE SERVIR PARA GRAFICOS
-		if (typeof file === 'undefined') throw 'No hay archivo para buscar la data';
-		databaseOperation('get', file, dataForm).then((data) => {
-			if (data['db'] === undefined) throw 'No hay data';
-			const databaseInformation = Object.entries(data.db);
-			//Cuando obtiene la informacion de la bd busca un elemento con el cual coincida la clase de este con el alias de la columna de la informacion obtenida  y le coloca la informacion obtenida
-			for (const [key, data] of databaseInformation) {
-				const tplElement = tpl.querySelector(`.${data[key]}`);
-				if (tplElement) tplElement.textContent = data[key];
-				const clone = tpl.cloneNode(true);
-				fragment.appendChild(clone);
+		if (typeof file === 'undefined') {
+			const msg = {
+				'type': 'error',
+				'text': 'Error, no se encontró informacion para llenar las cards'
 			}
-			//Si es una seccion que carga tarjetas con lazy load, selecciono el boton con la clase lazyLoadButton
-			if (lazyLoadButton) {
-				const amountOfElements = databaseInformation.length;
-				const numberOfItemsToShowPerLoad = lazyLoadButton.dataset.numberOfItemsToShow;
-				configLazyLoadButton(lazyLoadButton, amountOfElements, numberOfItemsToShowPerLoad);
+			addAlert(msg);
+		}
+
+		databaseOperation('get', file, dataForm).then((data) => {
+			if (data['db'] !== undefined && Object.entries(data.db).length > 0) {
+				const databaseInformation = Object.entries(data.db);
+				//Cuando obtiene la informacion de la bd busca un elemento con el cual coincida la clase de este con el alias de la columna de la informacion obtenida  y le coloca la informacion obtenida
+
+				for (const [cardKey, cards] of databaseInformation) {
+					const clone = tpl.cloneNode(true);
+					for (const [key, data] of Object.entries(cards)) {
+						const tplElement = clone.querySelector(`.${key}`);
+						if (tplElement) {
+							if (key == "id") {
+								tplElement.dataset.id = data;
+							} else {
+								tplElement.textContent = data;
+							}
+						}
+					}
+					fragment.appendChild(clone);
+				}
+				// cardContainer.appendChild(fragment);
+				cardContainer.insertBefore(fragment, lazyLoadButton.parentNode.previousElementSibling);
+				//Si es una seccion que carga tarjetas con lazy load, selecciono el boton con la clase lazyLoadButton
+				if (lazyLoadButton) {
+					const amountOfElements = databaseInformation.length;
+					const numberOfItemsToShowPerLoad = lazyLoadButton.dataset.numberOfItemsToShow;
+					configLazyLoadButton(lazyLoadButton, amountOfElements, numberOfItemsToShowPerLoad);
+				}
+			} else {
+				if (lazyLoadButton) lazyLoadButton.classlist.add("d-none");
+				const msg = {
+					'type': 'error',
+					'text': 'Error, no se encontró informacion para llenar las cards'
+				}
+				addAlert(msg);
 			}
 		});
-		cardContainer.appendChild(fragment);
 	} catch (error) {
 		console.log('error ' + error);
 	}
@@ -190,7 +219,7 @@ export function fillCardContainer(cardContainer, dataForm = undefined) {
 function configLazyLoadButton(btn, amountOfElements, numberOfItemsToShowPerLoad) {
 
 	if (amountOfElements > 0) {
-		btn.dataset.numberOfCardLoads += 1;
+		btn.dataset.numberOfCardLoads = parseInt(btn.dataset.numberOfCardLoads) + 1;
 	}
 
 	if (amountOfElements < numberOfItemsToShowPerLoad) {

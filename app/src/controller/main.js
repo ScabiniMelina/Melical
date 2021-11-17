@@ -27,7 +27,8 @@ import {
 
 import {
 	fillCardContainers,
-	fillChartContainer
+	fillChartContainer,
+	fillCardContainer
 } from "./helpers/fillTemplates.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -121,6 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			const form = modal.querySelector('form');
 			cleanFormulary(form);
 			cleanGalery(galery, progressBarContainer);
+		}
+
+		if (e.target.matches('.lazyLoadButton')) {
+			const cardContainer = e.target.closest('.fillCardContainer');
+			fillCardContainer(cardContainer)
 		}
 
 		// executeSectionChangeFunctions(element);

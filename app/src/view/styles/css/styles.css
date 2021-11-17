@@ -331,6 +331,7 @@ ul {
 } */
 .position-relative .btn {
   margin-bottom: 1rem;
+  z-index:1200;
 }
 
 .nav-pills .nav-link.active,

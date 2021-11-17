@@ -135,16 +135,14 @@ export async function executeSectionChangeFunctions(element) {
 		//Se cambia la interfaz poniendo la sección que corresponde, cargando el html que va, se llenan todos los selects con opciones, se cargan las tablas y se activa la búsqueda dentro de la tabla
 		const [file, sectionTitle, searchId] = await getConfigToLoadSection(element);
 		await loadSection(file, sectionTitle).then(() => {
-			const cardContainers = document.querySelectorAll(".cardContainer");
 			loadTable();
 			fillSelects();
-			fillCardContainers(cardContainers);
-			// fillCards();
 			validateForms();
 			if (searchId) {
 				fillForm(searchId);
 			}
 			fillGaleries();
+			fillCardContainers();
 		});
 	} catch (error) {
 		console.log('error ' + error);
