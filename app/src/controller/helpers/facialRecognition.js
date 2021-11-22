@@ -2,15 +2,52 @@ import {
   databaseOperation
 } from "./fetchRequest.js";
 
+function showProgressBar(e) {
+  try {
+    const input = e.target;
+    const progressBar = document.querySelector(input.dataset.progressBar);
+    const progressBarContainer = progressBar.parentNode;
+    const files = input.files;
+    let amountProgress = 0;
+    let totalSizeToLoad = 0;
+    for (let file of files) {
+      totalSizeToLoad += file["size"];
+    }
+    progressBar.style.width = `0%`;
+    if (files.length < 1) {
+      progressBarContainer.classList.add('d-none');
+    } else {
+      progressBarContainer.classList.remove('d-none');
+    }
+
+    for (let file of files) {
+      let reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+      reader.addEventListener("progress", (e) => {
+        let progress = Math.round(((amountProgress + e.loaded) * 100.0) / totalSizeToLoad);
+        console.log(progress);
+        progressBar.style.width = `${progress}%`
+      })
+    }
+  } catch (error) {
+    console.log('error ' + error);
+  }
+}
+
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('/controller/helpers/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/controller/helpers/models'),
   faceapi.nets.ssdMobilenetv1.loadFromUri('/controller/helpers/models')
 ]).then(async () => {
   const labeledFaceDescriptors = await loadLabeledImages()
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
+  const faceMatcher = await new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
+  const input = document.querySelector('#imageUpload');
+  const spinerContainer = document.querySelector('#spinnerContainer');
+  spinerContainer.parentNode.removeChild(spinerContainer);
+  input.classList.remove('d-none');
   document.addEventListener('change', async (e) => {
     if (e.target.matches('#imageUpload')) {
+      showProgressBar(e)
       await startFacialRecognition(labeledFaceDescriptors, faceMatcher);
     }
   })
@@ -18,9 +55,8 @@ Promise.all([
 
 async function startFacialRecognition(labeledFaceDescriptors, faceMatcher) {
   const faceImageContainer = document.getElementById("faceImageContainer");
-  // const imageUpload = document.getElementById('imageUpload');
-  console.log("reconocimiento facial");
-
+  faceImageContainer.innerHTML = "";
+  console.log("Activando reconocimiento facial");
   let image
   let canvas
   if (image) image.remove()
@@ -47,23 +83,25 @@ async function startFacialRecognition(labeledFaceDescriptors, faceMatcher) {
 
 }
 
+async function getLabels() {
+  const imageFolder = await databaseOperation("get", "PatientWhitPhoto")
+  return imageFolder;
+}
 
-function loadLabeledImages() {
-  databaseOperation("get", "PatientWhitPhoto").then(labels => {
-    console.log(labels)
-  })
-
-  const labels = ['Black Widow', 'Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Tony Stark']
+async function loadLabeledImages() {
+  labels = await getLabels();
   return Promise.all(
-    labels.map(async label => {
+    Object.entries(labels).map(async label => {
       const descriptions = []
-      for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(`../../view/assets/img/patientFaces/${label}/${i}.jpg`)
+
+      for (let imageName of label[1]) {
+        console.log(imageName)
+        const img = await faceapi.fetchImage(`/view/assets/img/patientFaces/${label[0]}/${imageName}`)
         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
         descriptions.push(detections.descriptor)
-      }
 
-      return new faceapi.LabeledFaceDescriptors(label, descriptions)
+      }
+      return new faceapi.LabeledFaceDescriptors(label[0], descriptions)
     })
   )
 }

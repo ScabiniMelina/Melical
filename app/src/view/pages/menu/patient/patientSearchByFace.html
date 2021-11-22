@@ -5,33 +5,78 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Boxicons CDN Link
+  <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <!-- Bootstrap CSS -->
-  <!-- <link href="../../../styles/plugins/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../../styles/css/styles.css"> -->
+  <link href="../../../styles/plugins/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles/css/styles.css">
   <title>Melical</title>
 </head>
 
 <body>
+  <style>
+    /* body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column
+    } */
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
   <div class="container mt-3">
     <div class="row">
       <div class="col col-12">
         <div class="input-group mb-3">
-          <input type="file" class="form-control changeProgressBar" id="imageUpload"
+          <input type="file" class="form-control changeProgressBar d-none" id="imageUpload"
             data-container="#faceImageContainer" data-progress-bar="#progressBar1" accept="image/*">
         </div>
       </div>
     </div>
     <div class="progress mb-3 d-none">
-      <div class="progress-bar progress-bar-striped" role="progressbar" id="progressBar1" style="width: 0%"
+      <div class="progress-bar progress-bar-striped " role="progressbar" id="progressBar1" style="width: 0%"
         aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <div class=" imgGalery row row-cols-2 row-cols-md-4  position-relative" id="faceImageContainer" data-last-item="0">
-
+      <div class="text-center w-100 fixed-bottom pb-2" id="spinnerContainer">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     </div>
   </div>
+  <!-- <template id="imageGaleryTemplate">
+    <div class="img-container">
+      <div class=" card flex-row p-0">
+        <i class='bx bxs-x-circle position-absolute top-0 end-0 fs-5 p-1'></i>
+        <img class="img-fluid" src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg">
+      </div>
 
+
+    </div>
+  </template>
+
+  <template id="imageModal">
+    <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <img class="img-fluid rounded" src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg">
+        </div>
+      </div>
+    </div>
+  </template> -->
+  <!-- <script src="../../../../controller/main.js" type="module"></script> -->
+  <script src="../../../../controller/helpers/face-api.min.js"></script>
+  <!-- <script src="./controller/helpers/face-api.min.js"></script> -->
+  <script src="../../../../controller/helpers/facialRecognition.js" type="module"></script>
 </body>
 
 </html>
