@@ -24,8 +24,8 @@ $_SESSION['ID_HOSPITAL'] = "1"
   <?php include('./view/modules/header.php'); ?>
 
   <!--ICONO DE LA APP -->
-  <link rel="shortcut icon" sizes="48x48" type="image/png" href="./view/assets/img/">
-  <link rel="shortcut icon" sizes="128x128" type="image/png" href="./view/assets/img">
+  <link rel="shortcut icon" sizes="48x48" type="image/png" href="./view/assets/img/maskable_icon_x48.png">
+  <link rel="shortcut icon" sizes="128x128" type="image/png" href="./view/assets/img/maskable_icon_x128.png">
   <link rel="shortcut icon" sizes="512x512" type="image/png" href="./view/assets/img/maskable_icon_x512.png">
 
   <!-- IMAGEN DEL ICONO DE LA APP PARA IOS -->
@@ -178,8 +178,6 @@ $_SESSION['ID_HOSPITAL'] = "1"
         <i class='bx bxs-x-circle position-absolute top-0 end-0 fs-5 p-1'></i>
         <img class="img-fluid" src="https://media.biobiochile.cl/wp-content/uploads/2019/09/e.jpg">
       </div>
-
-
     </div>
   </template>
 
