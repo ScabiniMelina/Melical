@@ -7,10 +7,10 @@ if (!isset($_POST['id'])) {
   exit();
 }
 $personalInformationId = $_POST['id'];
-$id =  getMd5Id('PATIENT', 'ID_PATIENT');
+$id =  getMd5Id('Patient', 'ID_PATIENT');
 $religion = setSelectValue($_POST['religion']);
 $blood = setSelectValue($_POST['blood']);
-$sql = "INSERT INTO `PATIENT`( `ID_PATIENT`,`PK_ID_DNI`,`PK_ID_BLOOD_TYPE`,`PK_ID_RELIGION`) VALUES (?,?,?,?)";
+$sql = "INSERT INTO `Patient`( `ID_PATIENT`,`PK_Dni`,`PK_Blood`,`PK_Religion`) VALUES (?,?,?,?)";
 $typeOfParameters = "ssii";
 $parameters = array($id, $personalInformationId, $blood, $religion);
 $result = executePreparedStatement($sql, $typeOfParameters, $parameters);

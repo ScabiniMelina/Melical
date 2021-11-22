@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const icon = btn.querySelector('i');
 			changeSection(btn).then(() => {
 				//Botón filtros
-				if (icon.matches('.bx-slider-alt')) {
+				if (icon && icon.matches('.bx-slider-alt')) {
 					addDatalistGroupingsFromFilterMenu();
 				}
 			});
@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('hide.bs.collapse', function (e) {
 		const btn = document.querySelector('[data-bs-target="#' + e.target.id + '"]');
 		btn.innerHTML = btn.innerHTML.replace('Ocultar', 'Mostrar');
-		console.log(e);
 	})
 
 	document.addEventListener('show.bs.collapse', function (e) {

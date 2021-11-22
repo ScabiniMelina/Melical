@@ -11,4 +11,4 @@ $patientFaceImages = $_FILES['patientFaces'];
 $destinationPath = $_SERVER['DOCUMENT_ROOT'] . $destinationPathToPatientFacialImages . $personalInformationId . "/";
 $allowedExtensions = array("gif", "jpeg", "jpg", "png");
 $uploadMsg = uploadFiles($patientFaceImages,  $destinationPath, $allowedExtensions);
-sendJson(null, $uploadMsg, null, null, null);
+sendJson(null, $uploadMsg, $personalInformationId, null, null);

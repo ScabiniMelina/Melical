@@ -15,7 +15,7 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <form class="imageModalForm" id="imgFormModal" data-galery="#imgGalery">
+        <form class="imageModalForm formNotUpdated" id="imgFormModal" data-galery="#imgGalery">
           <div class="modal-header">
             <h5 class="modal-title">Agregar imágen del rostro del paciente</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -100,10 +100,10 @@
         <div class="card">
           <form class="row g-3 card-body fillForm needs-validation" novalidate id="form1" data-file="PatientInformation"
             data-id=""
-            data-forms="#form2,#imgFormModal,#imgGalery,#medicalRecordCardContainer,#antecedentCardContainer">
+            data-forms="#form2,#imgFormModal,#imgGalery,#medicalRecordCardContainer,#antecedentCardContainer,#addPatientMedicalCare">
             <div class=" col-6">
               <label class="form-label form-label-sm">Dni</label>
-              <input type="number" name="dni" class="form-control form-control-sm" required>
+              <input type="text" name="dni" class="form-control form-control-sm" required>
             </div>
             <div class="col-6">
               <!--<label for="inputDni4" class="form-label">Cuil</label>
@@ -114,7 +114,7 @@
                 <input type="number" class="form-control form-control-sm w-25" name="cuilFirstCharacters"
                   aria-label="2 digitos" required>
 
-                <input type="number" class="form-control form-control-sm w-50" aria-label="Dni" name="tramitNumber"
+                <input type="text" class="form-control form-control-sm w-50" aria-label="Dni" name="tramitNumber"
                   required>
 
                 <input type="number" class="form-control form-control-sm w-25" name='cuilLastCharacters' required>
@@ -139,7 +139,6 @@
                 <option value="default"></option>
                 <option value="0">Femenino</option>
                 <option value="1">Masculino</option>
-                <option value="2">Otro</option>
               </select>
             </div>
             <div class="col-6">
@@ -181,7 +180,7 @@
             </button>
           </div>
           <div class="fillGalery imgGalery row row-cols-2 row-cols-md-4 g-0 position-relative mt-3" data-last-item="0"
-            id="imgGalery" data-file="PatientImage" data-id="5">
+            id="imgGalery" data-file="PatientImage">
 
           </div>
         </div>
@@ -191,8 +190,8 @@
           data-tpl="#medicalHistoryCardTemplate">
 
           <template id="medicalHistoryCardTemplate">
-            <a href="#" class="list-group-item list-group-item-action card mb-2 id changeSectionButton" data-id=""
-              data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html">
+            <a href="#" class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton" data-id=""
+              data-old-id="" data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 provenance">Título de prueba o examen</h5>
                 <small class="text-muted date">Fecha y hora</small>
@@ -209,9 +208,9 @@
           </div>
         </div>
         <div class="position-relative">
-          <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
-            data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html" type="button"><i
-              class='bx bx-plus'></i></button>
+          <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton putOldDataId"
+            id="addPatientMedicalCare" data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html"
+            type="button"><i class='bx bx-plus'></i></button>
         </div>
       </div>
       <div class="tab-pane fade " id="pills-contact" data-name="antecedents" role="tabpanel"
@@ -260,20 +259,18 @@
               aria-labelledby="panelsStayOpen-collapseTwo">
               <div class="accordion-body">
 
-                <div class="fillCardContainer" id="antecedentCardContainer" data-file="AntecedentsList"
+                <div class="fillCardContainer" id="antecedentCardContainer" data-file="PatientAntecedentsList"
                   data-tpl="#antecedentCardTemplate">
                   <!-- TODO REDIRECCIONA A LA HISTORIA CLINICA CON ESE ANTECEDENTE -->
 
                   <template id="antecedentCardTemplate">
-                    <a href="#" class="list-group-item list-group-item-action card mb-2 id changeSectionButton"
-                      data-id="" data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html">
+                    <a href="#" class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                      data-id="" data-title="Historia clínica" data-file="clinicHistory/clinicHistory.html"
+                      data-old-id="">
                       <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+                        <p class="mb-1 antecedentName">Título de prueba o examen</p>
                         <small class="text-muted date">Fecha y hora</small>
                       </div>
-                      <small class="hospital">Nombre del doctor</small>
-                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen
-                        realizado.</p>
                     </a>
                   </template>
 
@@ -284,115 +281,13 @@
                     </a>
                   </div>
                 </div>
-                <!-- Button trigger modal
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                  data-bs-target="#antecedentModal">
-                  Agregar Antecedente
-                </button> -->
-                <!-- <div class="row pb-2">
-                  <div class="col text-start">
-                    <p class="h6 fw-bold">Tabaquismo</p>
-                  </div>
-                  <div class="col align-self-end justify-content-end text-end pe-0">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        <label class="form-check-label fw-bold" for="inlineRadio1">Sí</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-check-label fw-bold" for="inlineRadio2">No</label>
-                    </div>
-                  </div>
-                  <div class="list-group comentarios pb-0 pt-1 mx-0 px-0">
-                    <a href="#" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 small">Pablo Suárez</h6>
-                        <small>14/4/2021 13:50</small>
-                      </div>
-                      <p class="mb-1 small text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
-                    </a>
-                  </div>
-                  <div class="m-auto overflow-auto mt-3 mx-0 px-0">
-                    <button class="btn btn-primary btn-sm w-auto" type="button"  data-bs-toggle="modal"  data-bs-target="#commentModal">Agregar nota</button>
-                    <div class="collapse" id="collapseExample">
-                      <div class="list-group comentarios pb-0 pt-3">
-                        <a href="#" class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-1 small">Pablo Suárez</h6>
-                            <small>14/4/2021 13:50</small>
-                          </div>
-                          <p class="mb-1 small text-muted" contenteditable="true" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
-                        </a>
-                      </div>
-                      <div class="col-auto pt-3">
-                        <button  type="button" class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
-          <!-- <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                No patológicas
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-              <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div> -->
+
         </div>
       </div>
     </div>
-    <template id="accordionItem">
-      <div class="accordion-item"> /*poner una key*/
-        <h2 class="accordion-header" id="panelsStayOpen-heading"> /*Concatenar al id number*/
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#panelsStayOpen-collapse" aria-expanded="false" aria-controls="panelsStayOpen-collapse">
-            /*concatenar al data-bs-target, aria-controls un numero */
-            Patológicas /*querySelector(.accordion-button)*/
-          </button>
-        </h2>
-        <div id="panelsStayOpen-collapse" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading">
-          /*concatenar al ariaa-labelledbdy, id un numero*/
-          <div class="accordion-body">
-
-          </div>
-        </div>
-      </div>
-    </template>
-
-    <template id="antecedentItem">
-      <div class="row pb-2" key=""> /
-        <div class="col text-start">
-          <p class="h6 fw-bold">Tabaquismo</p>
-        </div>
-        <div class="col align-self-end justify-content-end text-end pe-0">
-          <div class="form-check form-check-inline">
-            <label class="form-check-label fw-bold">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" value="si">
-              Sí
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label fw-bold">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" value="no">
-              No
-            </label>
-          </div>
-        </div>
-        <div class="list-group comentarios pb-0 pt-1 mx-0 px-0">
-          <button class="btn btn-primary btn-sm w-auto" type="button" data-bs-toggle="modal"
-            data-bs-target="#commentModal">Agregar nota</button>
-        </div>
-
-      </div>
-    </template>
 
     <template id="coment">
       <a href="#" class="list-group-item list-group-item-action">

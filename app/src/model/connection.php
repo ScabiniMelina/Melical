@@ -112,6 +112,8 @@ function getResultOfPreparedStatement($result)
         if ($result->num_rows > 0) {
             $DbResult = $result->fetch_all(MYSQLI_ASSOC);
             return $DbResult;
+        } else {
+            return array();
         }
     } catch (Exception $e) {
         echo $e->getMessage();

@@ -132,7 +132,7 @@ function getConfigToCreatePager(amountOfPagesToShow, currentPage, amountOfPages,
 
 //-------------------- LLENAR CARDS --------------------------
 
-//TODO ALEX: para llenar un contenedor de tarjetas hay que ponerle al contendor la clase .fillCardContainer y n data-tpl="#templateCorrespondiente" con el id del templete que usara para rellenar, y un data-file con el archivo .php donde sacara la informacion y un data-id que se usara para traer la informacion relacionada con ese id.Adentro de este contenedor debe tener un boton con la clase .lazyLoadButton que tiene que tener data-number-of-cards-loads=0 y data-number-of-items-to-show="cantidad de elementos a mostrar cada vez que se toca este boton"
+//TODO ALEX: para llenar un contenedor de tarjetas hay que ponerle al contendor la clase .fillCardContainer y n data-tpl="#templateCorrespondiente" con el id del templete que usara para rellenar, y un data-file con el archivo .php donde sacara la informacion y un data-id que se usara para traer la informacion relacionada con ese id.Adentro de este contenedor debe tener un boton con la clase .lazyLoadButton que tiene que tener data-number-of-cards-loads=0 y data-number-of-items-to-show="cantidad de elementos a mostrar cada vez que se toca este boton, dentro del template poner la clase que coincida con el alias puesto en el sql, poner ademas la clase id junto con  data-id="" para que al redireccionar de pagina traiga informacion con ese id, poner a compañado de esto si es necesario la clase oldId junto con data-old-id="",esto sera util si la pagina a la que redirecciona tiene un boton de volver a la pestaña anterior, permitiendo que vaya a esa pestaña y traiga oda la información necesaria con ese id 
 export async function fillCardContainers() {
 	try {
 		const cardContainers = document.querySelectorAll(".fillCardContainer");
@@ -157,8 +157,11 @@ export function fillCardContainer(cardContainer, dataForm = undefined) {
 		if (dataForm == undefined) {
 			//Sino hay datos previos(que vengan de otra seccion/pantalla) traigo un id para traer los datos correspondientes a la lista de cards
 			const id = cardContainer.dataset.id;
+			const oldId = cardContainer.dataset.oldId;
 			dataForm = new FormData();
 			if (id) dataForm.append('id', id);
+			if (oldId) dataForm.append('id', oldId);
+
 		}
 		if (lazyLoadButton) {
 			lazyLoadButton.classList.remove("d-none");
@@ -176,17 +179,20 @@ export function fillCardContainer(cardContainer, dataForm = undefined) {
 		}
 
 		databaseOperation('get', file, dataForm).then((data) => {
-			if (data['db'] !== undefined && Object.entries(data.db).length > 0) {
+			if (data !== undefined && data['db']) {
 				const databaseInformation = Object.entries(data.db);
 				//Cuando obtiene la informacion de la bd busca un elemento con el cual coincida la clase de este con el alias de la columna de la informacion obtenida  y le coloca la informacion obtenida
-
 				for (const [cardKey, cards] of databaseInformation) {
 					const clone = tpl.cloneNode(true);
 					for (const [key, data] of Object.entries(cards)) {
 						const tplElement = clone.querySelector(`.${key}`);
 						if (tplElement) {
-							if (key == "id") {
-								tplElement.dataset.id = data;
+							if (key == "id" || key == "oldId") {
+								if (key == "id") {
+									tplElement.dataset.id = data;
+								} else {
+									tplElement.dataset.oldId = data;
+								}
 							} else {
 								tplElement.textContent = data;
 							}
@@ -194,21 +200,20 @@ export function fillCardContainer(cardContainer, dataForm = undefined) {
 					}
 					fragment.appendChild(clone);
 				}
-				// cardContainer.appendChild(fragment);
-				cardContainer.insertBefore(fragment, lazyLoadButton.parentNode.previousElementSibling);
+
+
 				//Si es una seccion que carga tarjetas con lazy load, selecciono el boton con la clase lazyLoadButton
 				if (lazyLoadButton) {
+					cardContainer.insertBefore(fragment, lazyLoadButton.parentNode.previousElementSibling);
 					const amountOfElements = databaseInformation.length;
 					const numberOfItemsToShowPerLoad = lazyLoadButton.dataset.numberOfItemsToShow;
 					configLazyLoadButton(lazyLoadButton, amountOfElements, numberOfItemsToShowPerLoad);
+				} else {
+					cardContainer.appendChild(fragment);
 				}
-			} else {
-				if (lazyLoadButton) lazyLoadButton.classlist.add("d-none");
-				const msg = {
-					'type': 'error',
-					'text': 'Error, no se encontró informacion para llenar las cards'
-				}
-				addAlert(msg);
+				// if (databaseInformation.length <= 0) {
+				// 	btn.classList.add("d-none");
+				// }
 			}
 		});
 	} catch (error) {
@@ -223,7 +228,7 @@ function configLazyLoadButton(btn, amountOfElements, numberOfItemsToShowPerLoad)
 	}
 
 	if (amountOfElements < numberOfItemsToShowPerLoad) {
-		btn.parentNode.removeChild(btn);
+		btn.classList.add("d-none");
 	}
 
 }
@@ -441,12 +446,6 @@ export async function fillForm(searchId) {
 						changeSaveButtonAction(btn);
 					}
 					if (data['id'] !== undefined) putIdToForms(forms, data['id']);
-				} else {
-					const msg = {
-						'type': 'error',
-						'text': 'Error, no se encontró informacion para llenar el formulario'
-					}
-					addAlert(msg);
 				}
 			});
 		});

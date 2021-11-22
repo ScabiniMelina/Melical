@@ -1,7 +1,7 @@
 <?php
 include("./../connection.php");
 $id = $_GET["id"];
-$sql = "SELECT  `ID_PATIENT`,`PK_ID_BLOOD_TYPE`AS blood ,`PK_ID_RELIGION` AS  religion FROM  `PATIENT` WHERE `PK_ID_DNI` = ? ";
+$sql = "SELECT `ID_PATIENT`,`PK_Blood`AS blood ,`PK_Religion` AS religion FROM `Patient` WHERE `PK_Dni` = ? ";
 $parameters =  array($id);
 $typeOfParameters = "s";
 $result = executePreparedStatement($sql, $typeOfParameters, $parameters);

@@ -75,11 +75,10 @@ export async function addAlert(msg) {
 	}
 }
 
-//LANZA EL MODAL QUE ESTA EN EL INDEX.PHP PARA CAMBIOS SIN GUARDAR
+//LANZA EL MODAL QUE ESTA EN EL APP.PHP PARA CAMBIOS SIN GUARDAR
 async function showModalUnsavedChanges() {
 	const modal = document.getElementById('unsaveChagesModal');
 	await showModal(modal);
-
 }
 
 async function showModal(modalElement) {
@@ -96,10 +95,31 @@ async function hideModal(modalElement) {
 
 //-------------------- CAMBIOS POR CADA SECCIÓN--------------------------
 
+function putDataId(id) {
+	try {
+		const elements = document.querySelectorAll('.putDataId');
+		elements.forEach(element => {
+			element.dataset.id = id;
+		})
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
+function putOldDataId(id) {
+	try {
+		const elements = document.querySelectorAll('.putOldDataId');
+		elements.forEach(element => {
+			element.dataset.id = id;
+		})
+	} catch (error) {
+		console.log('error ' + error);
+	}
+}
+
 async function loadSection(file, title) {
 	//Al cargar cualquier nueva sección, cambia el titulo y coloca el html correspondiente
 	try {
-
 		document.getElementById('alertContainer').innerHTML = ''; //Elimina todas las alertas previas de la sección
 		const sectionTitle = document.getElementById('sectionTitle');
 		const container = document.getElementById('pageContainer');
@@ -133,14 +153,17 @@ export async function changeSection(element) {
 export async function executeSectionChangeFunctions(element) {
 	try {
 		//Se cambia la interfaz poniendo la sección que corresponde, cargando el html que va, se llenan todos los selects con opciones, se cargan las tablas y se activa la búsqueda dentro de la tabla
-		const [file, sectionTitle, searchId] = await getConfigToLoadSection(element);
+		const [file, sectionTitle, searchId, oldId] = await getConfigToLoadSection(element);
 		await loadSection(file, sectionTitle).then(() => {
 			loadTable();
 			fillSelects();
 			validateForms();
-			if (searchId) {
-				fillForm(searchId);
-			}
+			if (searchId) fillForm(searchId);
+			// Id usado para retroceder de pestaña 
+			if (oldId) putOldDataId(oldId);
+			//Id usado para retroceder de pestaña (boton de mas)
+			if (typeof oldId == 'undefined' && searchId) putOldDataId(searchId)
+
 			fillGaleries();
 			fillCardContainers();
 		});
@@ -154,10 +177,12 @@ async function getConfigToLoadSection(element) {
 	const sectionTitle = element.dataset.title;
 	const sectionFile = element.dataset.file;
 	const searchId = element.dataset.id;
+	const oldId = element.dataset.oldId;
 	return [
 		`${path}${sectionFile}`,
 		sectionTitle,
-		searchId
+		searchId,
+		oldId
 	]
 }
 
@@ -273,7 +298,7 @@ export async function formOperation(method, e) {
 				window.location.href = redirectFile;
 			}
 
-			if (container && data["msg"]['type'] == "success" && (method === 'post' || method === 'put') && !form.classList.contains('modalForm')) {
+			if (container && data["msg"]['type'] == "success" && (method === 'post' || method === 'put') && !form.classList.contains('formNotUpdated')) {
 				//Duplicar id a distintos formularios cuando se guardan
 				if (method === 'post') {
 					const forms = getForms(form);
@@ -474,7 +499,7 @@ export function cleanFormulary(formulary) {
 //Si tiene la clase dirtyInput se la saca, porque el elemento coincide con el valor por defecto, sino se la agrega, el parametro element se refiere al input/textarea/select, si contiene la clase unsavableValue significa que ese input no se lo tendra en cuenta a la hora de guardarlo
 export function addDirtyInputClass(element) {
 	const currentValue = element.value;
-	if (currentValue != element.defaultValue && !element.classList.contains('unsaveableValue')) {
+	if (currentValue != element.defaultValue && !element.classList.contains('unsavableValue')) {
 		element.classList.add('dirtyInput')
 	} else {
 		element.classList.remove('dirtyInput')

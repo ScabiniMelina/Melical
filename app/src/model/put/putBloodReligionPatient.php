@@ -4,7 +4,7 @@ $_PUT = getPutRequestParameters();
 $patientId = $_PUT['id'];
 $religion = setSelectValue($_PUT['religion']);
 $blood = setSelectValue($_PUT['blood']);
-$sql = "UPDATE `PATIENT` SET `PK_ID_BLOOD_TYPE` = ?,`PK_ID_RELIGION` = ? WHERE `ID_PATIENT` = ? ";
+$sql = "UPDATE `Patient` SET `PK_Blood` = ?,`PK_Religion` = ? WHERE `ID_PATIENT` = ? ";
 $typeOfParameters = "iis";
 $parameters = array($blood, $religion, $patientId);
 $result = executePreparedStatement($sql, $typeOfParameters, $parameters);
