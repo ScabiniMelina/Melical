@@ -9,83 +9,83 @@
 
 <body>
   <div class="container">
-    <div class="row g-2">
+    <form enctype="multipart/form-data" method="get" class="row searchFormulary g-2">
       <div class="col col-6">
         <label>Sección</label>
-        <select class="form-select form-select-m getSelectOption unsaveableValue" data-file="SectionList"
+        <select class="form-select form-select-m getSelectOption" name="sector" id="sector" data-file="SectionList"
           data-default="Todos">
-
         </select>
       </div>
       <div class="col col-6 ">
         <label>Piso</label>
-        <select class="form-select form-select-m getSelectOption unsaveableValue" data-file="FloorList"
+        <select class="form-select form-select-m getSelectOption" name="tier" id="tier" data-file="FloorList"
           data-default="Todos">
         </select>
       </div>
       <div class="col col-6 ">
         <label>Tipo de suministro</label>
-        <select class="form-select form-select-m getSelectOption unsaveableValue" data-file="SuppliesList"
+        <select class="form-select form-select-m getSelectOption" name="typeResource" data-file="SuppliesList"
           data-default="Todos">
 
         </select>
       </div>
       <div class="col-6 d-flex align-self-end ">
-        <div class="w-100">
-          <input id="inputBuscar" type="text" class="form-control unsaveableValue"
-            placeholder="Buscar por Nombre o Código" aria-label="Buscar paciente por DNI ..."
-            aria-describedby="button-addon2">
+        <div class="col pe-0">
+          <input name="id" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido">
         </div>
-        <div class="col-auto ps-2">
-          <button class="btn btn-primary " id="btnBuscar" type="button" data-file="ResourseBySearch"> <i
-              class='bx bx-search'></i></button>
 
+        <div class=" col-auto ps-1">
+          <button class="btn btn-primary" type="submit" data-file="ResourseBySearch">
+            <i class='bx bx-search'></i>
+          </button>
         </div>
       </div>
+    </form>
 
-      <div class="overflow-auto my-3 container-table-overflow">
+    <div class="overflow-auto container-table-overflow my-3">
 
-        <table class="table table-responsive table-hover m-auto caption-top text-center">
+      <table class="table table-responsive table-hover m-auto caption-top text-center">
 
-          <thead class="table-primary-color thead-fixed">
-            <tr>
-              <th>Código</th>
-              <th>Recurso</th>
-              <th>Cantidad</th>
-              <th>Sección</th>
-              <th>Piso</th>
-            </tr>
-          </thead>
+        <thead class="table-primary-color thead-fixed">
+          <tr>
+            <th>Código</th>
+            <th>Recurso</th>
+            <th>Stock</th>
+            <th>Sección</th>
+            <th>Piso</th>
+          </tr>
+        </thead>
+        <tbody class="table-light loadTable" data-file="Resources">
 
-          <tbody class="table-light loadTable" data-file="Resources">
+        </tbody>
 
-          </tbody>
-
-        </table>
-      </div>
-      <nav class="m-0">
-        <ul class="pagination justify-content-center" id="pagerContainer">
-
-        </ul>
-      </nav>
-      <div class="position-relative">
-        <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
-          data-title="Detalles del recurso" data-file="resources/resourceDetails.html" type="button">
-          <i class='bx bx-plus'></i>
-        </button>
-      </div>
+      </table>
     </div>
-    <template id="tableRowTemplate">
-      <tr class="tableRow">
-        <td name="codigo"></td>
-        <td name="recurso"></td>
-        <td name="cantidad"></td>
-        <td name="seccion"></td>
-        <td name="piso"></td>
-      </tr>
-    </template>
+    <nav class="pb-2">
+      <ul class="pagination justify-content-center mt-2" id="pagerContainer">
 
-    <script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
+      </ul>
+    </nav>
+    <template id="pagerItemTemplate">
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+    </template>
+    <div class="position-relative">
+      <button class="btn btn-primary btn-sm me-3  position-fixed bottom-0 end-0 changeSectionButton"
+        data-title="Detalles del recurso" data-file="resources/resourceDetails.html" type="button">
+        <i class='bx bx-plus'></i>
+      </button>
+    </div>
+  </div>
+  <template id="tableRowTemplate">
+    <tr class="tableRow" data-file="resources/resourceDetails.html" data-title="Detalle del recurso">
+      <td name="codigo"></td>
+      <td name="recurso"></td>
+      <td name="cantidad"></td>
+      <td name="seccion"></td>
+      <td name="piso"></td>
+    </tr>
+  </template>
+
 </body>
 
 </html>

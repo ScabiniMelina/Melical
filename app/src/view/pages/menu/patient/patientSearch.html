@@ -10,7 +10,7 @@
     <div class="container pagina">
         <form enctype="multipart/form-data" method="get" class="row searchFormulary">
             <div class="col pe-0">
-                <input name="id" type="text" class="form-control unsaveableValue"
+                <input name="id" type="text" class="form-control unsavableValue"
                     placeholder="Buscar por DNI, Nombre o Apellido">
             </div>
 
@@ -22,14 +22,18 @@
                     class="btn btn-primary changeSectionButton">
                     <i class='bx bx-slider-alt'></i>
                 </button>
-                <button type="button" data-title="Buscar por huella" data-file="patient/patientSearchByFingerprint.html"
+                <!-- <button type="button" data-title="Buscar por huella" data-file="patient/patientSearchByFingerprint.html"
                     class="btn btn-primary changeSectionButton">
                     <i class='bx bx-scan'></i>
-                </button>
-                <button type="button" data-title="Buscar por rostro" data-file="patient/patientSearchByFace.html"
+                </button> -->
+                <!-- <button type="button" data-title="Buscar por rostro" data-file="patient/patientSearchByFace.html"
                     class="btn btn-primary changeSectionButton">
                     <i class='bx bxs-face'></i>
-                </button>
+                </button> -->
+                <a href="/view/pages/menu/patient/patientSearchByFace.html" type="button" data-title="Buscar por rostro"
+                    data-file="patient/patientSearchByFace.html" class="btn btn-primary">
+                    <i class='bx bxs-face'></i>
+                </a>
             </div>
 
         </form>
@@ -53,7 +57,7 @@
             </table>
         </div>
 
-        <nav>
+        <nav class="pb-2">
             <ul class="pagination justify-content-center" id="pagerContainer">
 
             </ul>
