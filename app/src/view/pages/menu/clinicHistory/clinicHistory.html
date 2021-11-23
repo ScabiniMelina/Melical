@@ -9,6 +9,7 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <!-- Bootstrap CSS -->
   <link href="../../../styles/plugins/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  .
   <link rel="stylesheet" href="../../../styles/css/styles.css">
   <title>Document</title>
 </head>
@@ -34,10 +35,9 @@
           </form>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
           <h5 class="modal-title">Nuevo comentario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body py-2">
+        <div class="modal-body">
           <form class="mb-3" id="commentForm">
             <div class="col col-12 pt-3 pb-3">
               <label class="col-form-label">Comentario:</label>
@@ -66,10 +66,9 @@
           </form>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
@@ -86,6 +85,7 @@
         </div>
         <div class="modal-body py-2">
           <form class=" row mb-3" id="commentForm">
+            <input type="hidden" name="stage" class="form-control form-control-sm stage unsavableValue">
             <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Sintoma</label>
               <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
@@ -95,8 +95,7 @@
             </div>
             <div class="col col-6 pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
@@ -105,10 +104,9 @@
           </form>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
@@ -145,17 +143,282 @@
           </form>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 1-->
+  <div class="modal fade" id="DiagnosticoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Diagnostico</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Diagnostico:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
   </div>
 
 
-  <!-- Modal -->
+  <!-- Modal 2-->
+  <div class="modal fade" id="TratamientoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Tratamiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Tratamiento:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3-->
+  <div class="modal fade" id="FarmacosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Farmacos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Farmacos:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4-->
+  <div class="modal fade" id="InterconsultasModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Interconsultas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Interconsultas:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5-->
+  <div class="modal fade" id="ProcedimientoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Procedimiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Procedimiento:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6-->
+  <div class="modal fade" id="EstudiosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Estudios</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Estudios:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7-->
+  <div class="modal fade" id="SignosVitalesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Signos Vitales</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <form class=" row mb-3" id="commentForm">
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Signos Vitales:</label>
+              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <datalist>
+
+              </datalist>
+            </div>
+            <div class="col col-6 pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
+                value="2021-06-07">
+            </div>
+            <div class="col col-12  pt-3">
+              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer py-1">
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+            id="btn-cancelComment">Cancelar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 8 -->
   <div class="modal fade" id="complicationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
@@ -185,17 +448,15 @@
           </form>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
   </div>
 
-
-  <!-- Modal -->
+  <!-- Modal 9-->
   <div class="modal fade" id="anomalyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
@@ -234,16 +495,15 @@
           </form>
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal 10 -->
   <div class="modal fade show" id="roomModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
@@ -280,65 +540,35 @@
 
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
             id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"
-            id="btn-saveCommet">Guardar</button>
+          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
         </div>
       </div>
     </div>
   </div>
 
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#noteModal">
-    Agregar nota médica
-  </button>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#commentModal">
-    Agregar comentario
-  </button>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#symptomModal">
-    Agregar Sintoma
-  </button>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#diseaseModal">
-    Agregar enfermedad
-  </button>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#complicationModal">
-    Agregar complicación
-  </button>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#anomalyModal">
-    Agregar anomalia
-  </button>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roomModal">
-    Agregar traslado
-  </button>
   <div class="container">
-
-    <i class='bx bx-left-arrow-alt h2 changeSectionButton' data-title="Paciente" data-file="patient/patient.html"
-      data-id=""></i>
+    <i class='bx bx-left-arrow-alt h2 changeSectionButton putOldDataId' data-title="Paciente"
+      data-file="patient/patient.html" data-old-id=""></i>
 
     <div class="thead-fixed background-bg-color">
-      <div class="card mb-3 btn-primary">
-        <div class="card-body ">
-          <div class=" d-flex justify-content-between">
-            <h5 class="card-title"><b>Melina Noelia Scabini</b></h5>
-            <span><b>44756058</b></span>
+      <div class="fillCardContainer putOldDataId" data-old-id="" data-file="BasicPatientInformation"
+        data-tpl="#basicPatientInformationTemplate">
+        <template id="basicPatientInformationTemplate">
+          <div class="card mb-3 btn-primary">
+            <div class="card-body">
+              <div class=" d-flex justify-content-between">
+                <h5 class="card-title fullName"><b>Melina Noelia Scabini</b></h5>
+                <span><b class="cuil">44756058</b></span>
+              </div>
+              <p class="card-text"><b>Sexo: </b><span class="gender">Femenino</span> <b>Edad: </b><span
+                  class="age">18</span><b> Sangre: </b><span class="blood">O+</span></p>
+            </div>
           </div>
-          <p class="card-text"><b>Sexo: </b><span>Femenino</span> <b>Edad: </b><span>18</span> <b>Obra Social:
-            </b><span>No tiene </span><b>Sangre: </b><span>O+</span></p>
-        </div>
+        </template>
       </div>
+
       <!-- Nav principal -->
       <div class="card">
         <ul class="nav nav-pills nav-tabs nav-fill card-header-pills m-0" id="pills-tab" role="tablist">
@@ -398,10 +628,11 @@
                   <div class="tab-content" id="pills-tabContent">
                     <div class="card-body tab-pane fade show active" role="tabpanel"
                       aria-labelledby="pills-infoGeneral-tab" id="pills-infoGeneral">
-                      <div class="row text-start">
+                      <form class="row text-start fillForm needs-validation" novalidate
+                        data-file="GeneralAdmissionDataInformation" data-id="" data-forms="">
                         <div class="col-6 pb-3">
                           <label class="form-label form-label-sm">Fecha de Ingreso</label>
-                          <input type="datetime-local" class="form-control form-control-sm" value="2021-06-07">
+                          <input type="datetime-local" class="form-control form-control-sm" value="2021-06-07" required>
                         </div>
                         <div class="col-6 pb-3">
                           <label class="form-label form-label-sm">Fecha de Egreso</label>
@@ -409,7 +640,7 @@
                         </div>
                         <div class="col-6 pb-3">
                           <label class="form-label">Procedencia</label>
-                          <select class="form-select form-select-sm">
+                          <select class="form-select form-select-sm" required>
                             <option value="vacio"></option>
                             <option value="0">Const. Ext.</option>
                             <option value="1">Guardia</option>
@@ -421,7 +652,7 @@
 
                         </div>
                         <div class="col-6">
-                          <label class="form-label form-label-sm">Obra Social</label>
+                          <label class="form-label form-label-sm" required>Obra Social</label>
                           <select class="form-select form-select-sm  getSelectOption" data-file="getPrepaidList">
                           </select>
                         </div>
@@ -430,10 +661,10 @@
                           <input type="text" class="form-control form-control-sm">
                         </div>
                         <div class="row m-auto overflow-auto mt-3">
-                          <button class="btn btn-sm w-auto btn-tertiary" type="button"
-                            id="btnSaveGeneralInformation">Guardar</button>
+                          <button class="btn btn-sm w-auto btn-tertiary postInformation"
+                            data-file="GeneralAdmissionDataInformation">Guardar</button>
                         </div>
-                      </div>
+                      </form>
                     </div>
 
                     <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-personal-tab"
@@ -445,7 +676,7 @@
                           </ol>
                         </div>
                         <div class="row m-auto overflow-auto">
-                          <button class="btn btn-primary btn-sm w-auto" type="button"
+                          <button class="btn btn-sm w-auto btn-tertiary" type="button"
                             id="btnDetailsPersonal">Detalles</button>
                         </div>
                       </div>
@@ -453,8 +684,9 @@
                     <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-salas-tab"
                       id="pills-salas">
                       <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-file="setPatientEntranceToRoom" data-bs-target="#roomModal">
+
+                      <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                        data-bs-target="#roomModal">
                         Agregar traslado
                       </button>
 
@@ -482,48 +714,35 @@
             <div id="panelsStayOpen-collapseTwoAdmission" class="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-headingTwoAdmission">
               <div class="accordion-body p-0">
-                <div class="card text-center border-0">
-                  <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills overflow-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active btn-sm" id="pills-motivoIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-motivoIngreso" role="tab" aria-controls="pills-motivoIngreso"
-                          aria-selected="false">Motivo</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link btn-sm" id="pills-sintomaIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-sintomaIngreso" role="tab" aria-controls="pills-sintomaIngreso"
-                          aria-selected="false">sintomas</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link btn-sm" id="pills-enfermedadIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-enfermedadIngreso" role="tab" aria-controls="pills-enfermedadIngreso"
-                          aria-selected="false">Enfermedades</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link btn-sm" id="pills-complicacionIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-complicacionIngreso" role="tab"
-                          aria-controls="pills-complicacionIngreso" aria-selected="false">Complicaciones</a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="card border-0">
+                  <!-- <div class="card-header"> -->
+                  <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active btn-sm" id="pills-motivoIngreso-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-motivoIngreso" role="tab" aria-controls="pills-motivoIngreso"
+                        aria-selected="false">Motivo</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn-sm" id="pills-sintomaIngreso-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-sintomaIngreso" role="tab" aria-controls="pills-sintomaIngreso"
+                        aria-selected="false">sintomas</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn-sm" id="pills-enfermedadIngreso-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-enfermedadIngreso" role="tab" aria-controls="pills-enfermedadIngreso"
+                        aria-selected="false">Enfermedades</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn-sm" id="pills-complicacionIngreso-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-complicacionIngreso" role="tab" aria-controls="pills-complicacionIngreso"
+                        aria-selected="false">Complicaciones</a>
+                    </li>
+                  </ul>
+                  <!-- </div> -->
                   <div class="tab-content" id="pills-tabContent2">
                     <div class="card-body tab-pane fade show active pt-0  border-0" role="tabpanel"
                       aria-labelledby="pills-motivoIngreso-tab" id="pills-motivoIngreso">
                       <div class="row text-start">
-                        <div class="col col-12 pt-3">
-                          <label for="inputFechaIngreso" class="form-label form-label-sm">Motivo</label>
-                          <input class="form-control form-control-sm inputDatalist" list="motivoIngreso"
-                            placeholder="Buscar..">
-                          <datalist id="motivoIngreso">
-                            <option value="Control"></option>
-                            <option value="Detección de anomalías"></option>
-                          </datalist>
-                        </div>
-                        <div class="row m-auto overflow-auto mt-3">
-                          <button class="btn btn-primary btn-sm w-auto" type="button"
-                            id="btnSaveReasonAdmision">Guardar</button>
-                        </div>
                         <div class="col col-12 pt-3">
                           <h5 class="">Anomalias presentadas</h5>
                           <div class="list-group" id="anomalyList">
@@ -534,9 +753,11 @@
                     </div>
                     <div class="card-body tab-pane fade border-0" role="tabpanel"
                       aria-labelledby="pills-sintomaIngreso-tab" id="pills-sintomaIngreso">
-                      <div class="col-auto text-start">
-                        <button data-bs-toggle="collapse" data-bs-target="#collapseAgregarSintomaMotivoIngreso"
-                          class="btn btn-primary btn-sm" type="button">Agregar sintoma</button>
+                      <div class="col-auto text-start ">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                          data-stage="0" data-bs-toggle="modal" data-bs-target="#symptomModal">
+                          Agregar Sintoma
+                        </button>
                       </div>
 
                       <div class="text-start py-3">
@@ -554,9 +775,18 @@
 
                       </div>
                     </div>
+
                     <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-enfermedadIngreso-tab"
                       id="pills-enfermedadIngreso">
-                      <div class="text-start">
+
+                      <div class=" col-auto text-start ">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                          data-bs-target="#diseaseModal">
+                          Agregar enfermedad
+                        </button>
+                      </div>
+
+                      <div class="text-start py-3">
                         <ol class="list-group list-group-numbered col">
 
                         </ol>
@@ -571,9 +801,18 @@
 
                       </div>
                     </div>
+
                     <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-complicacionIngreso-tab"
                       id="pills-complicacionIngreso">
-                      <div class="text-start">
+
+                      <div class="col-auto text-start">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                          data-bs-target="#complicationModal">
+                          Agregar complicación
+                        </button>
+                      </div>
+
+                      <div class="text-start py-3">
                         <ol class="list-group list-group-numbered col">
 
                         </ol>
@@ -607,30 +846,58 @@
             <div id="panelsStayOpen-collapseThreeAdmission" class="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-headingThreeAdmission">
               <div class="accordion-body p-0">
-                <div class="card text-center border-0">
-                  <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills overflow-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active btn-sm" id="pills-notasIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-notasIngreso" role="tab" aria-controls="pills-notasIngreso"
-                          aria-selected="false">Notas</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link btn-sm" id="pills-comentariosIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-comentariosIngreso" role="tab" aria-controls="pills-comentariosIngreso"
-                          aria-selected="false" href="#">Comentarios</a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="card border-0">
+                  <!-- <div class="card-header"> -->
+                  <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active btn-sm" id="pills-notasIngreso-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-notasIngreso" role="tab" aria-controls="pills-notasIngreso"
+                        aria-selected="false">Notas</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn-sm" id="pills-comentariosIngreso-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-comentariosIngreso" role="tab" aria-controls="pills-comentariosIngreso"
+                        aria-selected="false" href="#">Comentarios</a>
+                    </li>
+                  </ul>
+                  <!-- </div> -->
                   <div class="card-body">
                     <div class="tab-content">
                       <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
                         aria-labelledby="pills-notasIngreso-tab" id="pills-notasIngreso">
-                        <p>1</p>
+
+                        <div class="col-auto text-start">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                            data-bs-target="#noteModal">
+                            Agregar nota médica
+                          </button>
+                        </div>
+
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
+
+                          </ol>
+                        </div>
+
                       </div>
+
+
                       <div class="card-body p-0 tab-pane fade " role="tabpanel"
                         aria-labelledby="pills-comentariosIngreso-tab" id="pills-comentariosIngreso">
-                        <p>2</p>
+
+                        <div class="col-auto text-start">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                            data-bs-target="#commentModal">
+                            Agregar comentario
+                          </button>
+                        </div>
+
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
+
+                          </ol>
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -678,39 +945,104 @@
                   </h2>
                   <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingTwo">
-                    <div class="card text-center p-0 border-0">
-                      <div class="card-header">
-                        <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tabContent4">
-                          <li class="nav-item">
-                            <a class="nav-link active btn-sm" id="pills-complicacionObservacion-tab"
-                              data-bs-toggle="pill" data-bs-target="#pills-complicacionObservacion" role="tab"
-                              aria-controls="pills-complicacionObservacion" aria-selected="false">Complicaciones</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link btn-sm" id="pills-sintomaObservacion-tab" data-bs-toggle="pill"
-                              data-bs-target="#pills-sintomaObservacion" role="tab"
-                              aria-controls="pills-sintomaObservacion" aria-selected="false">Sintomas</a>
-                          </li>
+                    <div class="card border-0">
+                      <!-- <div class="card-header"> -->
+                      <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active btn-sm" id="pills-complicacionObservacion-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-complicacionObservacion" role="tab"
+                            aria-controls="pills-complicacionObservacion" aria-selected="false">Complicaciones</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link btn-sm" id="pills-sintomaObservacion-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-sintomaObservacion" role="tab"
+                            aria-controls="pills-sintomaObservacion" aria-selected="false">Sintomas</a>
+                        </li>
 
-                          <li class="nav-item">
-                            <a class="nav-link btn-sm" id="pills-enfermedadObservacion-tab" data-bs-toggle="pill"
-                              data-bs-target="#pills-enfermedadObservacion" role="tab"
-                              aria-controls="pills-enfermedadObservacion" aria-selected="false">Enfermedades</a>
-                          </li>
-                        </ul>
-                      </div>
+                        <li class="nav-item">
+                          <a class="nav-link btn-sm" id="pills-enfermedadObservacion-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-enfermedadObservacion" role="tab"
+                            aria-controls="pills-enfermedadObservacion" aria-selected="false">Enfermedades</a>
+                        </li>
+                      </ul>
+                      <!-- </div> -->
                       <div class="tab-content" id="pills-tabContent4">
-                        <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
+                        <div class="card-body tab-pane fade show active border-0" role="tabpanel"
                           aria-labelledby="pills-complicacionObservacion-tab" id="pills-complicacionObservacion">
-                          <p>1</p>
+
+                          <div class="col-auto text-start">
+                            <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                              data-bs-target="#complicationModal">
+                              Agregar complicación
+                            </button>
+                          </div>
+
+                          <div class="text-start py-3">
+                            <ol class="list-group list-group-numbered col">
+
+                            </ol>
+                          </div>
+
+                          <div class="pb-3 align-items-end  text-start">
+                            <div class="card-footer">
+                              <h5>Comentarios</h5>
+                            </div>
+                            <div class="list-group  mt-3">
+
+                            </div>
+
+                          </div>
+
                         </div>
-                        <div class="card-body p-0 tab-pane fade" role="tabpanel"
+
+                        <div class="card-body tab-pane fade border-0" role="tabpanel"
                           aria-labelledby="pills-sintomaObservacion-tab" id="pills-sintomaObservacion">
-                          <p>2</p>
+
+                          <div class="col-auto text-start ">
+                            <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                              data-bs-target="#symptomModal">
+                              Agregar Sintoma
+                            </button>
+                          </div>
+
+                          <div class="text-start py-3">
+                            <ol class="list-group list-group-numbered col" id="symptomList">
+
+                            </ol>
+                          </div>
+                          <div class="pb-3 align-items-end  text-start" id="commentSympton">
+                            <div class="card-footer">
+                              <h5>Comentarios</h5>
+                            </div>
+                            <div class="list-group  mt-3" id="symptonList">
+
+                            </div>
+                          </div>
                         </div>
-                        <div class="card-body p-0 tab-pane fade" role="tabpanel"
+
+                        <div class="card-body  tab-pane fade border-0" role="tabpanel"
                           aria-labelledby="pills-enfermedadObservacion-tab" id="pills-enfermedadObservacion">
-                          <p>3</p>
+
+                          <div class=" col-auto text-start ">
+                            <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                              data-bs-target="#diseaseModal">
+                              Agregar enfermedad
+                            </button>
+                          </div>
+                          <div class="text-start py-3">
+                            <ol class="list-group list-group-numbered col">
+
+                            </ol>
+                          </div>
+                          <div class="pb-3 align-items-end  text-start">
+                            <div class="card-footer">
+                              <h5>Comentarios</h5>
+                            </div>
+                            <div class="list-group  mt-3">
+
+                            </div>
+
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -728,59 +1060,86 @@
                   <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body p-0">
-                      <div class="card text-center border-0">
-                        <div class="card-header">
-                          <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tabContent5">
-                            <li class="nav-item">
-                              <a class="nav-link active btn-sm" id="pills-procedimientoMedidasTomadas-tab"
-                                data-bs-toggle="pill" data-bs-target="#pills-procedimientoMedidasTomadas" role="tab"
-                                aria-controls="pills-procedimientoMedidasTomadas" aria-selected="false">
-                                Procedimiento</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link btn-sm" id="pills-farmacoMedidasTomadas-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-farmacoMedidasTomadas" role="tab"
-                                aria-controls="pills-farmacoMedidasTomadas" aria-selected="false">
-                                Farmacos</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link btn-sm" id="pills-estudiosObservacion-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-estudiosMedidasTomadas" role="tab"
-                                aria-controls="pills-estudiosMedidasTomadas" aria-selected="false">
-                                Estudios
-                              </a>
-                            <li class="nav-item">
-                              <a class="nav-link btn-sm" id="pills-signosVitalesMedidasTomadas-tab"
-                                data-bs-toggle="pill" data-bs-target="#pills-signosVitalesMedidasTomadas" role="tab"
-                                aria-controls="pills-signosVitalesMedidasTomadas" aria-selected="false">
-                                Signos vitales</a>
-                            </li>
-                          </ul>
-                        </div>
+                      <div class="card border-0">
+                        <!-- <div class="card-header"> -->
+                        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active btn-sm" id="pills-procedimientoMedidasTomadas-tab"
+                              data-bs-toggle="pill" data-bs-target="#pills-procedimientoMedidasTomadas" role="tab"
+                              aria-controls="pills-procedimientoMedidasTomadas" aria-selected="false">
+                              Procedimiento</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link btn-sm" id="pills-farmacoMedidasTomadas-tab" data-bs-toggle="pill"
+                              data-bs-target="#pills-farmacoMedidasTomadas" role="tab"
+                              aria-controls="pills-farmacoMedidasTomadas" aria-selected="false">
+                              Farmacos</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link btn-sm" id="pills-estudiosObservacion-tab" data-bs-toggle="pill"
+                              data-bs-target="#pills-estudiosObservacion" role="tab"
+                              aria-controls="pills-estudiosObservacion" aria-selected="false">
+                              Estudios
+                            </a>
+                          <li class="nav-item">
+                            <a class="nav-link btn-sm" id="pills-signosVitalesMedidasTomadas-tab" data-bs-toggle="pill"
+                              data-bs-target="#pills-signosVitalesMedidasTomadas" role="tab"
+                              aria-controls="pills-signosVitalesMedidasTomadas" aria-selected="false">
+                              Signos vitales</a>
+                          </li>
+                        </ul>
+                        <!-- </div> -->
                         <div class="tab-content" id="pills-tabContent5">
                           <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
                             aria-labelledby="pills-procedimientoMedidasTomadas-tab"
                             id="pills-procedimientoMedidasTomadas">
-                            <p>1</p>
+                            <div class="col-auto text-start m-3">
+                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                                data-bs-target="#ProcedimientoModal">
+                                Agregar Procedimiento
+                              </button>
+                            </div>
+
                           </div>
                           <div class="card-body p-0 tab-pane fade" role="tabpanel"
                             aria-labelledby="pills-farmacoMedidasTomadas-tab" id="pills-farmacoMedidasTomadas">
-                            <p>2</p>
+                            <div class="col-auto text-start m-3">
+                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                                data-bs-target="#FarmacosModal">
+                                Agregar Farmacos
+                              </button>
+                            </div>
+
                           </div>
                           <div class="card-body p-0 tab-pane fade" role="tabpanel"
                             aria-labelledby="pills-estudiosObservacion-tab" id="pills-estudiosObservacion">
-                            <p>3</p>
+                            <div class="col-auto text-start  m-3">
+                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                                data-bs-target="#EstudiosModal">
+                                Agregar Estudios
+                              </button>
+                            </div>
+
+
+
                           </div>
                           <div class="card-body p-0 tab-pane fade" role="tabpanel"
                             aria-labelledby="pills-signosVitalesMedidasTomadas-tab"
                             id="pills-signosVitalesMedidasTomadas">
-                            <p>4</p>
+                            <div class="col-auto text-start m-3">
+                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                                data-bs-target="#SignosVitalesModal">
+                                Agregar Signos Vitales
+                              </button>
+                            </div>
+
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="accordion-item mb-2">
                   <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -792,30 +1151,58 @@
                   <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body p-0">
-                      <div class="card text-center">
-                        <div class="card-header">
-                          <ul class="nav nav-pills card-header-pills overflow-auto">
-                            <li class="nav-item">
-                              <a class="nav-link active btn-sm" id="pills-notasIngreso-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-notasIngreso" role="tab" aria-controls="pills-notasIngreso"
-                                aria-selected="false">Notas</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link btn-sm" id="pills-comentariosIngreso-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-comentariosIngreso" role="tab"
-                                aria-controls="pills-comentariosIngreso" aria-selected="false" href="#">Comentarios</a>
-                            </li>
-                          </ul>
-                        </div>
+                      <div class="card border-0">
+                        <!-- <div class="card-header"> -->
+                        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active btn-sm" id="pills-notasIngreso1-tab" data-bs-toggle="pill"
+                              data-bs-target="#pills-notasIngreso1" role="tab" aria-controls="pills-notasIngreso1"
+                              aria-selected="false">Notas</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link btn-sm" id="pills-comentariosIngreso1-tab" data-bs-toggle="pill"
+                              data-bs-target="#pills-comentariosIngreso1" role="tab"
+                              aria-controls="pills-comentariosIngreso1" aria-selected="false" href="#">Comentarios</a>
+                          </li>
+                        </ul>
+                        <!-- </div> -->
                         <div class="card-body">
                           <div class="tab-content">
                             <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
-                              aria-labelledby="pills-notasIngreso-tab" id="pills-notasIngreso">
-                              <p>1</p>
+                              aria-labelledby="pills-notasIngreso1-tab" id="pills-notasIngreso1">
+
+                              <div class="col-auto text-start">
+                                <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                                  data-bs-target="#noteModal">
+                                  Agregar nota médica
+                                </button>
+                              </div>
+
+                              <div class="text-start py-3">
+                                <ol class="list-group list-group-numbered col">
+
+                                </ol>
+                              </div>
+
                             </div>
+
+
                             <div class="card-body p-0 tab-pane fade " role="tabpanel"
-                              aria-labelledby="pills-comentariosIngreso-tab" id="pills-comentariosIngreso">
-                              <p>2</p>
+                              aria-labelledby="pills-comentariosIngreso1-tab" id="pills-comentariosIngreso1">
+
+                              <div class="col-auto text-start">
+                                <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                                  data-bs-target="#commentModal">
+                                  Agregar comentario
+                                </button>
+                              </div>
+
+                              <div class="text-start py-3">
+                                <ol class="list-group list-group-numbered col">
+
+                                </ol>
+                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -833,9 +1220,10 @@
                 <div class="card-body">
                   <div class="">
                     <div class="col-auto pb-3">
-                      <button data-bs-toggle="collapse" data-bs-target="#collapseAgregar" aria-expanded="false"
-                        aria-controls="collapseAgregar" class="btn btn-primary btn-sm" type="button">Agregar
-                        Anomalia</button>
+                      <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                        data-bs-target="#anomalyModal">
+                        Agregar anomalia
+                      </button>
                     </div>
 
 
@@ -876,36 +1264,75 @@
       <div class="tab-pane fade" id="pills-alta" role="tabpanel" aria-labelledby="pills-alta-tab">
         <div class="accordion" id="accordionPanelsStayOpenExample">
           <div class="accordion-item mb-2">
-            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne1">
               <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseOne">
+                data-bs-target="#panelsStayOpen-collapseOne1" aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne1">
                 Diágnostico
               </button>
             </h2>
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
-              aria-labelledby="panelsStayOpen-headingOne">
+            <div id="panelsStayOpen-collapseOne1" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingOne1">
               <div class="accordion-body p-0">
                 <div class="card border-0">
-                  <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills  ms-1 overflow-auto" id="pills-tabContent3"
-                      role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active btn-sm" id="pills-ordenPorCategoria-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-ordenPorCategoria" role="tab" aria-controls="pills-ordenPorCategoria"
-                          aria-selected="false">Diagnostico</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link btn-sm" id="pills-ordenCronologico-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-ordenCronologico" role="tab"
-                          aria-controls="pills-ordenCronologico">Diagnosticos diferenciales</a>
-                      </li>
-                    </ul>
-                  </div>
+                  <!-- <div class="card-header"> -->
+                  <ul class="nav nav-tabs" id="pills-tab" role="tablist" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active btn-sm" id="pills-ordenPorCategoria1-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-ordenPorCategoria1" role="tab" aria-controls="pills-ordenPorCategoria1"
+                        aria-selected="false">Diagnostico</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn-sm" id="pills-ordenCronologico1-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-ordenCronologico1" role="tab"
+                        aria-controls="pills-ordenCronologico1">Diagnosticos diferenciales</a>
+                    </li>
+                  </ul>
+                  <!-- </div> -->
+
                   <div class="card-body">
-                    <h5 class="card-title">Title</h5>
-                    <p class="card-text">Content</p>
+                    <div class="tab-content">
+
+                      <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
+                        aria-labelledby="pills-ordenPorCategoria1-tab" id="pills-ordenPorCategoria1">
+                        <div class="col-auto text-start">
+
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                            data-bs-target="#DiagnosticoModal">
+                            Agregar Diagnostico
+                          </button>
+
+                          <div class="text-start">
+                            <ol class="list-group list-group-numbered col" id="listRooms">
+
+                            </ol>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+                      <div class="card-body p-0 tab-pane fade " role="tabpanel"
+                        aria-labelledby="pills-ordenCronologico1-tab" id="pills-ordenCronologico1">
+                        <div class="col-auto text-start">
+
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                            data-bs-target="#DiagnosticoModal">
+                            Agregar Diagnostico Diferencial
+                          </button>
+
+                          <div class="text-start">
+                            <ol class="list-group list-group-numbered col" id="listRooms">
+
+                            </ol>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -913,73 +1340,154 @@
           <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseTwo">
+                data-bs-target="#panelsStayOpen-collapseTwo5" aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo5">
                 Indicaciones al alta
               </button>
             </h2>
-            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+            <div id="panelsStayOpen-collapseTwo5" class="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-headingTwo">
-              <div class="accordion-body p-0">
-                <div class="card text-center border-0 ">
-                  <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills overflow-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#">Tratamientos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Farmacos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link " href="#">Interconsultas</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="card border-0">
+                <!-- <div class="card-header"> -->
+                <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active btn-sm" id="pills-Tratamientos1-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-Tratamientos1" role="tab" aria-controls="pills-Tratamientos1"
+                      aria-selected="false">Tratamientos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn-sm" id="pills-Farmacos1-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-Farmacos1" role="tab" aria-controls="pills-Farmacos1"
+                      aria-selected="false">Farmacos</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link btn-sm" id="pills-Interconsultas1-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-Interconsultas1" role="tab" aria-controls="pills-Interconsultas1"
+                      aria-selected="false">Interconsultas</a>
+                  </li>
+                </ul>
+                <!-- </div> -->
+                <div class="card-body">
+                  <div class="tab-content">
+
+                    <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
+                      aria-labelledby="pills-Tratamientos1-tab" id="pills-Tratamientos1">
+                      <div class="col-auto text-start">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                          data-bs-target="#TratamientoModal">
+                          Agregar Tratamiento
+                        </button>
+
+                        <div class="text-start">
+                          <ol class="list-group list-group-numbered col" id="listRooms">
+
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-0 tab-pane fade " role="tabpanel" aria-labelledby="pills-Farmacos1-tab"
+                      id="pills-Farmacos1">
+                      <div class="col-auto text-start">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                          data-bs-target="#FarmacosModal">
+                          Agregar Farmacos
+                        </button>
+
+                        <div class="text-start">
+                          <ol class="list-group list-group-numbered col" id="listRooms">
+
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-0 tab-pane fade " role="tabpanel"
+                      aria-labelledby="pills-Interconsultas1-tab" id="pills-Interconsultas1">
+                      <div class="col-auto text-start">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                          data-bs-target="#InterconsultasModal">
+                          Agregar Interconsulta
+                        </button>
+
+                        <div class="text-start">
+                          <ol class="list-group list-group-numbered col" id="listRooms">
+
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>
           <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="panelsStayOpen-headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseThree">
+                data-bs-target="#panelsStayOpen-collapseThree1" aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseThree1">
                 Notas y comentarios
               </button>
             </h2>
-            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+            <div id="panelsStayOpen-collapseThree1" class="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-headingThree">
 
               <div class="accordion-body p-0">
-                <div class="card text-center border-0">
-                  <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills overflow-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active btn-sm" id="pills-notasIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-notasIngreso" role="tab" aria-controls="pills-notasIngreso"
-                          aria-selected="false">Notas</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link btn-sm" id="pills-comentariosIngreso-tab" data-bs-toggle="pill"
-                          data-bs-target="#pills-comentariosIngreso" role="tab" aria-controls="pills-comentariosIngreso"
-                          aria-selected="false" href="#">Comentarios</a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="card border-0">
+                  <!-- <div class="card-header"> -->
+                  <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active btn-sm" id="pills-notasIngreso2-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-notasIngreso2" role="tab" aria-controls="pills-notasIngreso2"
+                        aria-selected="false">Notas</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn-sm" id="pills-comentariosIngreso2-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-comentariosIngreso2" role="tab" aria-controls="pills-comentariosIngreso2"
+                        aria-selected="false" href="#">Comentarios</a>
+                    </li>
+                  </ul>
+                  <!-- </div> -->
                   <div class="card-body">
                     <div class="tab-content">
                       <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
-                        aria-labelledby="pills-notasIngreso-tab" id="pills-notasIngreso">
-                        <p>1</p>
+                        aria-labelledby="pills-notasIngreso2-tab" id="pills-notasIngreso2">
+
+                        <div class="col-auto text-start">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                            data-bs-target="#noteModal">
+                            Agregar nota médica
+                          </button>
+                        </div>
+
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
+
+                          </ol>
+                        </div>
+
                       </div>
                       <div class="card-body p-0 tab-pane fade " role="tabpanel"
-                        aria-labelledby="pills-comentariosIngreso-tab" id="pills-comentariosIngreso">
-                        <p>2</p>
+                        aria-labelledby="pills-comentariosIngreso2-tab" id="pills-comentariosIngreso2">
+
+                        <div class="col-auto text-start">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
+                            data-bs-target="#commentModal">
+                            Agregar comentario
+                          </button>
+                        </div>
+
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
+
+                          </ol>
+                        </div>
+
                       </div>
                     </div>
                   </div>
