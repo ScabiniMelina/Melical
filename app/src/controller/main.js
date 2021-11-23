@@ -129,6 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			fillCardContainer(cardContainer)
 		}
 
+		//Rellena el input oculto de etapa del formulario modal de la seccion de historia clinicas cuando se presiona el disparador del modal
+		if (e.target.matches('.putStageToTheInputOfTheModalForm')) {
+			const btn = e.target;
+			const modalId = btn.dataset.bsTarget;
+			const stage = btn.dataset.stage;
+			const stageInput = document.querySelector(`${modalId} form  input.stage`)
+			stageInput.value = stage;
+		}
+
 		// executeSectionChangeFunctions(element);
 		// console.log(element)
 
