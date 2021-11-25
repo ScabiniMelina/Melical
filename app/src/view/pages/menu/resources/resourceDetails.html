@@ -9,34 +9,133 @@
 	<!-- Boxicons CDN Link -->
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<!-- Bootstrap CSS -->
-	<link href="../../../styles/plugins/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../../styles/css/styles.css">
+	<link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/estilos.css">
 </head>
 
 <body>
-	<div class="container pt-3">
-		<div class="card ">
+	<div class="container">
+		<div class="card">
 			<div class="card-body">
 				<div class="d-flex w-100 justify-content-between pt-1">
-					<h5 class="mb-1">Título de recurso</h5>
-					<small class="text-muted">Hora de última actualización</small>
+					<h5 class="mb-1"><b>Título de recurso</b></h5>
+					<small class="text-muted">Fecha y hora de última actualización</small>
 				</div>
 				<div class="pt-2">
 					<small>Cantidad disponible</small>
-					<input type="text" class="form-control mt-2" id="" aria-describedby="" placeholder="5">
+					<h5>10</h5>
 					<div>
-						<div class="pt-2 col">
-							<small>Editar stock</small>
-							<input type="number" class="form-control" name="" required="" placeholder="">
-						</div>
 						<div class="pt-2 text-end col">
+							<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+								data-bs-target="#agregarModal">Agregar <i class='bx bx-plus'></i></button>
 							<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir"><i
-									class='bx bx-plus'></i></button>
-							<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="Restar"><i
-									class='bx bx-minus'></i></button>
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Restar" data-bs-toggle="modal"
+								data-bs-target="#quitarModal">Quitar <i class='bx bx-minus'></i></button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="agregarModal" data-bs-backdrop="static" data-bs-keyboard="false"
+								tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+								<div class="modal-dialog  modal-dialog-centered">
+									<div class="modal-content">
+										<form class="m-1" id="commentForm2">
+											<div class="modal-header">
+												<h5 class="modal-title">Nuevo Sintoma</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal"
+													aria-label="Close"></button>
+											</div>
+											<div class="modal-body row">
+
+												<input type="hidden" name="stage"
+													class="form-control stage unsavableValue">
+												<div class="col col-6">
+													<label for="inputFechaIngreso"
+														class="form-label form-label-sm">Sintoma</label>
+
+													<select
+														class="form-select form-select-sm getSelectOption unsavableValue"
+														data-file="MedicalCareTypeDetailList" data-condition="7"
+														id="list10" name="symptom[]"></select>
+													<datalist>
+
+													</datalist>
+												</div>
+												<div class="col col-6">
+													<label for="inputFechaIngreso"
+														class="form-label form-label-sm">Fecha</label>
+													<input type="datetime-local" class="form-control"
+														id="inputFechaIngreso">
+												</div>
+												<div class="col col-12  pt-3">
+													<label for="inputFechaIngreso"
+														class="form-label form-label-sm">Detalles</label>
+													<textarea class="form-control" id="exampleFormControlTextarea1"
+														rows="3"></textarea>
+												</div>
+
+											</div>
+											<div class="modal-footer py-1">
+												<button type="button" class="btn btn-sm btn-tertiary"
+													data-bs-dismiss="modal" id="btn-cancelComment">Cancelar</button>
+												<button type="submit" class="btn btn-sm btn-dark postInformation"
+													data-bs-dismiss="modal" id="btn-saveCommet"
+													data-file="SymptomSave">Guardar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- Modal 1 -->
+							<div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="agregarModalLabel">Editar</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="" method="">
+												<label for="Cantidad" class="form-label">Cantidad a editar</label>
+												<input type="number" name="Cantidad" required class="form-control">
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-sm btn-primary">Guardar
+												cambios</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal 2 -->
+							<div class="modal fade" id="quitarModal" tabindex="-1" aria-labelledby="quitarModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="quitarModalLabel">Editar</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="" method="">
+												<label for="Cantidad" class="form-label">Cantidad a editar</label>
+												<input type="number" name="Cantidad" required class="form-control">
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-sm btn-primary">Guardar
+												cambios</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
+					</div>
+					<div class="pt-3 text-end">
+						<button class="btn btn-primary">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
