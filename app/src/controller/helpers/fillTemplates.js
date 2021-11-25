@@ -243,10 +243,14 @@ export async function fillChartContainers(dataForm) {
 		chartContainers.forEach(chartContainer => {
 			const file = chartContainer.dataset.file;
 			const chartType = chartContainer.dataset.chartType;
-			const chartTitle = chartContainer.dataset.title;
+			const chartTitle = chartContainer.dataset.chartTitle;
 			const ctx = chartContainer.getContext("2d");
 			databaseOperation('get', file, dataForm).then((data) => {
-				fillChartContainer(ctx, chartTitle, chartType, data);
+				if (data !== undefined && data['db']) {
+					fillChartContainer(ctx, chartTitle, chartType, data['db']);
+				} else {
+
+				}
 			})
 		})
 	} catch (error) {
@@ -254,32 +258,32 @@ export async function fillChartContainers(dataForm) {
 	}
 }
 
-export function fillChartContainer(ctx, chartTitle, chartType, data) {
-
+export function fillChartContainer(ctx, chartTitle, chartType, chartInformation) {
 	//Llena un contenedor de gráficos
 	try {
-		//Datos del eje y
-		const datasets = [];
-		//Agrego toda la lista de arrays que haya que poner en el eje y
-		data.bd.y.forEach(element => {
+		let data = Object.entries(chartInformation['datasets'])
+		let datasets = [];
+		//Recorro todos los  dataset del eje y 
+		data.forEach(([key, value]) => {
 			const newData = {
-				data: element.data,
-				label: element.data.label
+				data: Object.values(value),
+				label: key,
 			}
-			if (element.data.type) {
-				newData.type = element.data.type;
-			}
-			datasets.push(newData)
-		});
+
+			if (chartInformation['chartTypes'][key]) newData.type = chartInformation['chartTypes'][key];
+			console.log(newData);
+			datasets.push(newData);
+		})
+		console.log(datasets);
 		datasets = addBorderAndBackgroundColorToChartDataset(datasets, chartType);
 		//Datos del eje x
-		const labels = data.bd.x;
-		const data = {
+		const labels = Object.values(chartInformation["labels"]);
+		data = {
 			labels: labels,
 			datasets: datasets
 		};
 
-		const options = {
+		let options = {
 			layout: {
 				padding: 20
 			},
@@ -289,15 +293,24 @@ export function fillChartContainer(ctx, chartTitle, chartType, data) {
 					text: chartTitle,
 					padding: {
 						top: 10,
-						bottom: 30
+						bottom: 10
+					},
+					font: {
+						size: 20 // Tamaño del título
 					}
-				}
-			},
-			animation: {
-				duration: 0
+				},
+				legend: {
+					labels: {
+						padding: 50
+					},
+					padding: 50
+				},
+				animation: {
+					duration: 0
+				},
 			},
 			responsive: true,
-			responsiveAnimationDuration: 0,
+			maintainAspectRatio: false,
 		}
 
 		if (chartType == 'line' || chartType == 'bar') {
@@ -328,39 +341,45 @@ export function fillChartContainer(ctx, chartTitle, chartType, data) {
 }
 
 function addBorderAndBackgroundColorToChartDataset(datasets, chartType) {
-	const hues = [];
-	if (datasets.length == 1 && chartType == 'doughtnut' || chartType == 'pie') {
+	let hues = [];
+	if (datasets.length == 1 && chartType == 'doughnut' || chartType == 'pie') {
 		const backgroundColor = [];
 		const borderColor = [];
 		//Obtengo un array de matices
 		hues = getHues(datasets[0].data.length);
 		//LLeno el array de  colores de fondo y colores de borde
 		hues.forEach(hue => {
-			backgroundColor.push('hsl(' + hue + ',88%, 19%)');
-			borderColor.push('hsl(' + hue + ',88%, 30%)');
+			backgroundColor.push(`hsl(${hue},100%, 63%)`);
+			// backgroundColor.push(`hsl(${hue},68%, 65%)`);
+			// borderColor.push(`hsl(${hue},68%, 50%)`);
+			borderColor.push(`hsl(${hue},100%, 53%)`);
 		});
 		//Agrego todos esos colores a sus respectivas posiciones en el dataset
-		dataset[0].backgroundColor = backgroundColor;
-		dataset[0].borderColor = borderColor;
+		datasets[0].backgroundColor = backgroundColor;
+		datasets[0].borderColor = borderColor;
 	} else {
 		//Obtengo un array de matices
-		hues = getHues(datasets.lenght);
+		hues = getHues(datasets.length);
 		//Recorro todos los datasets agregandole a cada dato la propiedad color de fondo y color de borde
 		datasets.forEach((dataset, index) => {
-			dataset.backgroundColor = `hsl(${hue[index]},88%, 19%)`;
-			dataset.borderColor = `hsl(${hue[index]},88%, 30%)`;
+			dataset.backgroundColor = `hsl(${hues[index]},100%, 63%)`;
+			dataset.borderColor = `hsl(${hues[index]},100%, 53%)`;
 		});
 	}
 	return datasets;
 }
 
 
-function getHues(amountOfElements) {
+function getHues(amountOfElements, hueIncrement = 40) {
 	//OBTIENE MATICES DE FORMA DISTRIBUIDA PARA CREAR UNA PALETA DE COLORES EN BASE A ESTOS
-	const hueIncrement = Math.floor(360 / amountOfPages);
+	//Para sacar una paleta de colores triadicos
+	// const hueIncrement = Math.floor(360 / amountOfElements);
 	const hues = [];
-	for (let i = 0; i <= amoutOfElements; i++) {
-		hues.push(hueIncrement * (i + 1));
+	let hue = 0 - hueIncrement;
+	for (let i = 0; i < amountOfElements; i++) {
+		if (hue + hueIncrement > 360) hue = 0
+		hue += hueIncrement;
+		hues.push(hue);
 	}
 	return hues;
 }
@@ -389,7 +408,7 @@ export async function fillSelect(select) {
 		const defaultOption = select.dataset.default === undefined ? ' ' : select.dataset.default;
 		const dataForm = new FormData();
 		let options = '';
-		options += "<option value='default'>" + defaultOption + '</option>';
+		options += "<option>" + defaultOption + '</option>';
 		//Obtiene una condición necesaria para hacer en el select de la sentencia sql
 		if (select.dataset.condition !== undefined) {
 			dataForm.append('condition', select.dataset.condition);

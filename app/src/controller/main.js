@@ -27,7 +27,7 @@ import {
 
 import {
 	fillCardContainers,
-	fillChartContainer,
+	fillChartContainers,
 	fillCardContainer
 } from "./helpers/fillTemplates.js";
 
@@ -108,12 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			deleteImage(e);
 		}
 
-		// //Botón guardar del modal de imágenes
-		// document.getElementById('exitModalButton').addEventListener("click", (e) => {
-		// 	executeSectionChangeFunctions(element);
-		// 	console.log(element)
-		// })
-
 		//Botón cerrar del modal
 		if (e.target.matches('.modal [data-bs-dismiss="modal"]')) {
 			const modal = e.target.closest('.modal');
@@ -138,11 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			stageInput.value = stage;
 		}
 
-		// executeSectionChangeFunctions(element);
-		// console.log(element)
-
-
-
 	})
 
 	//Botón colapsable ocultar
@@ -154,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('show.bs.collapse', function (e) {
 		const btn = document.querySelector('[data-bs-target="#' + e.target.id + '"]');
 		btn.innerHTML = btn.innerHTML.replace('Mostrar', 'Ocultar');
-		console.log(e);
 	})
 
 	document.addEventListener('change', (e) => {
@@ -196,8 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			const dataForm = new FormData(e.target);
 			e.preventDefault();
 			changeSection(e.submitter).then(() => {
-				const cardContainers = document.querySelectorAll(".awaitDataformAndFillCards");
-				fillCardContainers(cardContainers, dataForm);
+				const cardContainers = document.querySelectorAll(".awaitDataformAndFillCardContainer");
+				cardContainers.forEach(cardContainer => {
+					fillCardContainer(cardContainer, dataForm);
+				})
 				fillChartContainers(dataForm);
 			})
 

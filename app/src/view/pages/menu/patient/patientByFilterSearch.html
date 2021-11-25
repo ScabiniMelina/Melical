@@ -26,32 +26,40 @@
             </button>
         </div>
         </p>
-        <div class="collapse mb-3 awaitDataformAndFillCards" id="collapseStatistics">
-            <div class="card card-body ">
-                Some placeholder content for the collapse component. This panel is hidden by default but revealed when
-                the
-                user activates the relevant trigger.
+        <div class="collapse mb-3" id="collapseStatistics">
+            <div class="card card-body flex-wrap justify-content-around ">
 
-                <div>
-                    <canvas class="fillChart" width="400" height="400" id="chartByGender"></canvas>
+
+                <div class="chartContainer">
+                    <canvas class="fillChart" width="400" height="400" id="chartByGender"
+                        data-file="AmountOfCasesByGender" data-chart-type="doughnut"
+                        data-chart-title="Casos totales por género"></canvas>
                 </div>
 
-                <div>
-                    <canvas class="fillChart" width="400" height="400" id="chartOfCasesByDate"></canvas>
+                <div class="chartContainer">
+                    <canvas class="fillChart" width="400" height="400" id="chartOfCasesByDate"
+                        data-file="AmountOfCasesByDate" data-chart-type="bar"
+                        data-chart-title="Casos por fecha"></canvas>
                 </div>
 
-                <div>
-                    <canvas class="fillChart" width="400" height="400" id="chartByAgeRangeAndGender"></canvas>
+                <div class="chartContainer">
+                    <canvas class="fillChart" width="400" height="400" id="chartByAgeRangeAndGender"
+                        data-file="AmountOfCasesByAgeRangeAndGender" data-chart-type="bar"
+                        data-chart-title="Casos por rango de edad y género"></canvas>
                 </div>
 
-                <div>
-                    <canvas class="fillChart" width="400" height="400"
-                        id="chartByNumberOfPatientsWhoHadASymptomByDate"></canvas>
+                <div class="chartContainer">
+                    <canvas class="fillChart" width="400" height="400" id="chartByNumberOfPatientsWhoHadASymptomByDate"
+                        data-file="AmountOfCasesByNumberOfPatientsWhoHadASymptomByDate" data-chart-type="bar"
+                        data-chart-title="Cantidad de pacientes que presentaron cierto sintoma"></canvas>
                 </div>
 
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 cardContainer awaitDataform"
+
+
+
+        <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 cardContainer awaitDataformAndFillCardContainer"
             data-file="PatientByFilter" data-tpl="#medicalHistoryCardTemplate">
             <div class="col">
                 <div class="card h-100">
@@ -103,32 +111,60 @@
                     <i class='bx bx-plus'></i>
                 </button>
             </div>
-        </div>
+        </div> -->
 
-        <template id="medicalHistoryCardTemplate">
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div class="row">
-                            <h5 class="card-title">Scabini Melina</h5>
-                            <p class="card-text mb-2">
-                                Dni: <span class="dni">44756058</span>, Edad:<span class="age">15</span>, Sexo:
-                                <span class="gender">Femenino</span>
-                            </p>
+        <div class="card card-body">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 cardContainer awaitDataformAndFillCardContainer "
+                data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
 
+                <template id="medicalHistoryCardTemplate">
+                    <a href="#" class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                        data-id="" data-old-id="" data-title="Historia clínica"
+                        data-file="clinicHistory/clinicHistory.html">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+                            <small class="text-muted date">Fecha y hora</small>
                         </div>
-
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Ingreso el 24/2/2021 a las 14:30</small>
-                    </div>
+                        <small class="hospital">Nombre del doctor</small>
+                        <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen
+                            realizado.
+                        </p>
+                    </a>
+                </template>
+                <div class="text-center my-4">
+                    <button class="btn btn-sm btn-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                        data-number-of-items-to-show="6">
+                        <i class='bx bx-plus'></i>
+                    </button>
                 </div>
             </div>
-        </template>
+        </div>
+    </div>
 
-        <!-- JavaScript Bundle with Popper -->
-        <script src="../../../styles/plugins/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../../../controller/main.js" type="module"></script>
+    <template id="medicalHistoryCardTemplate">
+        <div class="col col-auto">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="row">
+                        <h5 class="card-title">Scabini Melina</h5>
+                        <p class="card-text mb-2">
+                            Dni: <span class="dni">44756058</span>, Edad:<span class="age">15</span>, Sexo:
+                            <span class="gender">Femenino</span>
+                        </p>
+
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Ingreso el 24/2/2021 a las 14:30</small>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="../../../styles/plugins/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../../controller/main.js" type="module"></script>
 </body>
 
 </html>
