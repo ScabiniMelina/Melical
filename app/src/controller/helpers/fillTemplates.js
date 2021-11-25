@@ -37,7 +37,7 @@ export async function fillTable(data, container) {
 			if (amountOfPages > 1 && databaseInformation.length > 0) {
 				fillPager(data.amountOfPages, data.currentPage);
 			} else {
-				if (container && amountOfPages != null) {
+				if (amountOfPages < 1 && container && amountOfPages != null) {
 					container.innerHTML = "";
 				}
 			}

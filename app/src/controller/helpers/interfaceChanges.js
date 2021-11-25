@@ -223,8 +223,12 @@ export async function searchTableInformation(selectedPagerItem = null) {
 		}
 		//si paginador agrego la clase data bs target
 		const pagerContainer = document.querySelector('#pagerContainer');
+
 		if (pagerContainer) {
 			pagerContainer.classList.add('getInformationBySearch');
+			if (!selectedPagerItem) {
+				pagerContainer.innerHTML = ""
+			}
 			// const dataFormTarget = currentPage.parentNode.dataset.dataFormTarget || null
 		}
 		const tbody = document.querySelector('.loadTable');
