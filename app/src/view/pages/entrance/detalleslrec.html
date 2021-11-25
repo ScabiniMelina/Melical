@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>    
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="container">
+	<div class="card">
+  		<div class="card-body">
+  			<div class="d-flex w-100 justify-content-between pt-1">
+				<h5 class="mb-1"><b>Título de recurso</b></h5>
+				<small class="text-muted">Fecha y hora de última actualización</small>
+			</div>
+			<div class="pt-2">
+				<small>Cantidad disponible</small>
+					<h5>10</h5> 
+				<div>
+				<div class="pt-2 text-end col">
+					<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#agregarModal">Agregar <i class='bx bx-plus'></i></button>
+					<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Restar" data-bs-toggle="modal" data-bs-target="#quitarModal">Quitar <i class='bx bx-minus'></i></button>
+
+					<!-- Modal 1 -->
+					<div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="agregarModalLabel">Editar</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        <form id="" method="">
+					        	<label for="Cantidad" class="form-label">Cantidad a editar</label>
+					        	<input type="number" name="Cantidad" required  class="form-control">
+					        </form>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-sm btn-primary">Guardar cambios</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+					<!-- Modal 2 -->
+					<div class="modal fade" id="quitarModal" tabindex="-1" aria-labelledby="quitarModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="quitarModalLabel">Editar</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        <form id="" method="">
+					        	<label for="Cantidad" class="form-label">Cantidad a editar</label>
+					        	<input type="number" name="Cantidad" required  class="form-control">
+					        </form>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-sm btn-primary">Guardar cambios</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+				</div>
+				</div>
+				<div class="pt-3 text-end">
+					<button class="btn btn-primary">Guardar cambios</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
