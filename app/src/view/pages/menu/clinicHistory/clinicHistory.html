@@ -15,30 +15,31 @@
 </head>
 
 <body>
-  <!-- TODO:ALEX HACER QEU LOS TABS TENGAN EL MISMO ESTILO QUE EL PRIMER FORMULARIO, PONER A LOS BOTONES LA CLASE btn-tertiary y quitar la clase btn-primary ARREGLAR EL ID DE LOS ACORDIONES PARA QUE SE ABRAN CORRECTAMENTE, PONER EN LOS MODALES LOS BOTONES CORRESPONDIENTES Y AGREGAR LOS BOTONES A SU LUGAR -->
-
   <!-- Modal -->
   <div class="modal fade" id="noteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nueva nota médica</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        <form class="m-1" id="noteForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Nueva nota médica</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
 
-        <div class="modal-body py-2">
+          <div class="modal-body row">
 
-          <form class="mb-3" id="noteForm">
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
             <label for="message-text" class="col-form-label">Nota:</label>
             <textarea class="form-control" name="comment" id="message-text"></textarea>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="NoteSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -48,28 +49,32 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo comentario</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="mb-3" id="commentForm">
-            <div class="col col-12 pt-3 pb-3">
-              <label class="col-form-label">Comentario:</label>
-              <textarea class="form-control" rows="2" name="comment" id="message-text"></textarea>
-            </div>
-            <div class="col">
+        <form class="m-1" id="commentForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo comentario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col pb-3">
               <label for="permisoVista">Permiso de vista</label>
               <select id="permisoVista" class="form-control" name="">
               </select>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+            <div class="col col-12">
+              <label class="col-form-label">Comentario:</label>
+              <textarea class="form-control" rows="2" name="comment" id="message-text"></textarea>
+            </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="CommentSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -79,35 +84,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Sintoma</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <input type="hidden" name="stage" class="form-control form-control-sm stage unsavableValue">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm2">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Sintoma</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Sintoma</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+
+              <select class="form-select form-select-sm getSelectOption unsavableValue"
+                data-file="MedicalCareTypeDetailList" data-condition="7" id="list10" name="symptom[]"></select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="SymptomSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -118,35 +128,45 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nueva enfermedad</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm3">
+          <div class="modal-header">
+            <h5 class="modal-title">Nueva enfermedad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Enfermedad:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+
+              <div class="row pb-3 datalistGrouping" data-id="6">
+                <div class="col pe-0 ">
+                  <select class="form-select form-select-sm getSelectOption unsavableValue"
+                    data-file="MedicalCareTypeDetailList" data-condition="2" id="list6" name="disease[]"></select>
+                </div>
+
+              </div>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="DiseaseSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -156,35 +176,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Diagnostico</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm4">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Diagnostico</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Diagnostico:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <select class="form-select form-select-m getSelectOption" name="Diagnostico" id="Diagnostico2"
+                data-file="DiagnosticList">
+              </select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="DiagnosticSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -195,35 +220,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Tratamiento</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
-              <label for="inputFechaIngreso" class="form-label form-label-sm">Tratamiento:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
-              <datalist>
+        <form class="m-1" id="commentForm5">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Tratamiento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+            <form class=" row" id="commentForm5">
+              <input type="hidden" name="stage" class="form-control stage unsavableValue">
+              <div class="col col-6">
+                <label for="inputFechaIngreso" class="form-label form-label-sm">Tratamiento:</label>
 
-              </datalist>
-            </div>
-            <div class="col col-6 pt-3">
-              <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
-            </div>
-            <div class="col col-12  pt-3">
-              <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+                <select class="form-select form-select-sm getSelectOption unsavableValue"
+                  data-file="MedicalCareTypeDetailList" data-condition="6" id="list8" name="treatment[]"></select>
+                <datalist>
+
+                </datalist>
+              </div>
+              <div class="col col-6">
+                <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
+                <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
+              </div>
+              <div class="col col-12  pt-3">
+                <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="TreatMentSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -233,35 +263,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Farmacos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm6">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Farmacos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6 ">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Farmacos:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+
+              <select class="form-select form-select-sm getSelectOption unsavableValue" data-file="Drugs"
+                data-condition="farmaco" id="list11" name="drug[]"></select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="DrugsSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -271,35 +306,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Interconsultas</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm7">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Interconsultas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Interconsultas:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <select class="form-select form-select-m getSelectOption" name="interconsulta" id="intenconsulta2"
+                data-file="InterconsultationList">
+              </select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="InterconsultationSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -309,35 +349,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Procedimiento</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm8">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Procedimiento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control  stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Procedimiento:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <select class="form-select form-select-m getSelectOption" name="procedimiento" id="procedimiento2"
+                data-file="ProcessList">
+              </select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control " id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="ProcessSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -347,35 +392,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Estudios</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm9">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Estudios</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Estudios:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+
+              <select class="form-select form-select-sm getSelectOption unsavableValue"
+                data-file="MedicalCareTypeDetailList" data-condition="5" id="list9" name="studies[]"></select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="StudySave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -385,35 +435,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nuevo Signos Vitales</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm10">
+          <div class="modal-header">
+            <h5 class="modal-title">Nuevo Signos Vitales</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Signos Vitales:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <select class="form-select form-select-m getSelectOption" name="signosVitales" id="signosVitales2"
+                data-file="VitalSignsList">
+              </select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="VitalSignsSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -423,35 +478,40 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nueva complicación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
-            <div class="col col-6 pt-3">
+        <form class="m-1" id="commentForm11">
+          <div class="modal-header">
+            <h5 class="modal-title">Nueva complicación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Complicación:</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+
+              <select class="form-select form-select-sm getSelectOption unsavableValue"
+                data-file="MedicalCareTypeDetailList" data-condition="4" id="list7" name="complications[]"></select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
+            <div class="col col-6">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Fecha</label>
-              <input type="datetime-local" class="form-control form-control-sm" id="inputFechaIngreso"
-                value="2021-06-07">
+              <input type="datetime-local" class="form-control" id="inputFechaIngreso" value="2021-06-07">
             </div>
             <div class="col col-12  pt-3">
               <label for="inputFechaIngreso" class="form-label form-label-sm">Detalles</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="ComplicationSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -461,44 +521,51 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Nueva anomalia</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
+        <form class="m-1" id="commentForm12">
+          <div class="modal-header">
+            <h5 class="modal-title">Nueva anomalia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
             <div class="col col-6 ">
               <label class="form-label form-label-sm">Categoría
-                <select class="form-select form-select-sm">
+                <select class="form-select form-select-m getSelectOption" name="categoria" id="categoria2"
+                  data-file="CategoryList">
                 </select>
               </label>
             </div>
-            <div class="col col-12 ">
+            <div class="col col-6 ">
               <label class="form-label form-label-sm">Anomalía
-                <input class="form-control form-control-sm inputDatalist" placeholder="Buscar..">
+                <select class="form-select form-select-m getSelectOption" name="anomalia" id="anomalia2"
+                  data-file="AnomalyList">
+                </select>
                 <datalist>
 
                 </datalist>
               </label>
             </div>
-            <div class="col col-12 pt-3">
+            <div class="col col-6 pt-3">
               <label class="form-label form-label-sm">Fecha
-                <input type="datetime-local" class="form-control form-control-sm" value="2021-06-07">
+                <input type="datetime-local" class="form-control" value="2021-06-07">
               </label>
             </div>
-            <div class="col col-12  pt-3">
+            <div class="col col-6  pt-3">
               <label class="form-label form-label-sm">
                 <textarea class="form-control" rows="3"></textarea>
               </label>
             </div>
 
-          </form>
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="AnomalySave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -508,42 +575,60 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Agregar traslado</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body py-2">
-          <form class=" row mb-3" id="commentForm">
+        <form class="m-1" id="commentForm13">
+          <div class="modal-header">
+            <h5 class="modal-title">Agregar traslado</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body row">
+
+            <input type="hidden" name="stage" class="form-control stage unsavableValue">
+
+            <div class="col col-6">
+              <label class="form-label form-label-sm">Sección</label>
+              <select class="form-select form-select-sm getSelectOption unsavableValue" data-file="HospitalSectorsList"
+                data-condition="undefined" id="list12" name="habitacion[]"></select>
+              <datalist>
+
+              </datalist>
+            </div>
+
+            <div class="col col-6">
+              <label class="form-label form-label-sm">Piso</label>
+              <select class="form-select form-select-m getSelectOption" name="piso" id="piso2" data-file="FloorList">
+              </select>
+              <datalist>
+
+              </datalist>
+            </div>
+
             <div class="col col-6 pt-3">
               <label class="form-label form-label-sm">Sala</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
+              <select class="form-select form-select-m getSelectOption" name="sala" id="sala2" data-file="RoomList">
+              </select>
               <datalist>
 
               </datalist>
             </div>
-            <div class="col col-6 pt-3">
-              <label class="form-label form-label-sm">Sección</label>
-              <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar..">
-              <datalist>
 
-              </datalist>
-            </div>
             <div class="col col-6 pt-3">
               <label class="form-label form-label-sm">Fecha ingreso</label>
-              <input type="datetime-local" class="form-control form-control-sm" value="2021-06-07">
+              <input type="datetime-local" class="form-control" value="2021-06-07">
             </div>
             <div class="col col-6 pt-3">
               <label class="form-label form-label-sm">Fecha de Egreso</label>
-              <input type="datetime-local" class="form-control form-control-sm">
+              <input type="datetime-local" class="form-control">
             </div>
-          </form>
 
-        </div>
-        <div class="modal-footer py-1">
-          <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
-            id="btn-cancelComment">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" id="btn-saveCommet">Guardar</button>
-        </div>
+
+          </div>
+          <div class="modal-footer py-1">
+            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal"
+              id="btn-cancelComment">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-dark postInformation" data-bs-dismiss="modal"
+              id="btn-saveCommet" data-file="SectionSave">Guardar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -629,23 +714,24 @@
                     <div class="card-body tab-pane fade show active" role="tabpanel"
                       aria-labelledby="pills-infoGeneral-tab" id="pills-infoGeneral">
                       <form class="row text-start fillForm needs-validation" novalidate
-                        data-file="GeneralAdmissionDataInformation" data-id="" data-forms="">
+                        data-file="GeneralAdmissionDataInformation" data-id=""
+                        data-forms="#noteForm,#commentForm,#commentForm2,#commentForm3,#commentForm4,#commentForm5,#commentForm6,#commentForm7,#commentForm8,#commentForm9,#commentForm10,#commentForm11,#commentForm12,#commentForm13">
                         <div class="col-6 pb-3">
                           <label class="form-label form-label-sm">Fecha de Ingreso</label>
-                          <input type="datetime-local" class="form-control form-control-sm" value="2021-06-07" required>
+                          <input type="datetime-local" class="form-control" value="2021-06-07" required>
                         </div>
                         <div class="col-6 pb-3">
                           <label class="form-label form-label-sm">Fecha de Egreso</label>
-                          <input type="datetime-local" class="form-control form-control-sm">
+                          <input type="datetime-local" class="form-control">
                         </div>
                         <div class="col-6 pb-3">
                           <label class="form-label">Procedencia</label>
                           <select class="form-select form-select-sm" required>
-                            <option value="vacio"></option>
+                            <option></option>
                             <option value="0">Const. Ext.</option>
                             <option value="1">Guardia</option>
-                            <option value="1">Pase Serv.</option>
-                            <option value="1">Derivación</option>
+                            <option value="2">Pase Serv.</option>
+                            <option value="3">Derivación</option>
                           </select>
                         </div>
                         <div class="col-6">
@@ -653,12 +739,12 @@
                         </div>
                         <div class="col-6">
                           <label class="form-label form-label-sm" required>Obra Social</label>
-                          <select class="form-select form-select-sm  getSelectOption" data-file="getPrepaidList">
+                          <select class="form-select form-select-sm  getSelectOption" data-file="PrepaidList">
                           </select>
                         </div>
                         <div class="col-6">
                           <label class="form-label form-label-sm">Nº Afiliado</label>
-                          <input type="text" class="form-control form-control-sm">
+                          <input type="text" class="form-control">
                         </div>
                         <div class="row m-auto overflow-auto mt-3">
                           <button class="btn btn-sm w-auto btn-tertiary postInformation"
@@ -685,8 +771,8 @@
                       id="pills-salas">
                       <!-- Button trigger modal -->
 
-                      <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                        data-bs-target="#roomModal">
+                      <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                        data-stage="0" data-bs-toggle="modal" data-bs-target="#roomModal">
                         Agregar traslado
                       </button>
 
@@ -780,8 +866,8 @@
                       id="pills-enfermedadIngreso">
 
                       <div class=" col-auto text-start ">
-                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                          data-bs-target="#diseaseModal">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                          data-stage="0" data-bs-toggle="modal" data-bs-target="#diseaseModal">
                           Agregar enfermedad
                         </button>
                       </div>
@@ -806,8 +892,8 @@
                       id="pills-complicacionIngreso">
 
                       <div class="col-auto text-start">
-                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                          data-bs-target="#complicationModal">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                          data-stage="0" data-bs-toggle="modal" data-bs-target="#complicationModal">
                           Agregar complicación
                         </button>
                       </div>
@@ -867,8 +953,8 @@
                         aria-labelledby="pills-notasIngreso-tab" id="pills-notasIngreso">
 
                         <div class="col-auto text-start">
-                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                            data-bs-target="#noteModal">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                            data-stage="0" data-bs-toggle="modal" data-bs-target="#noteModal">
                             Agregar nota médica
                           </button>
                         </div>
@@ -886,8 +972,8 @@
                         aria-labelledby="pills-comentariosIngreso-tab" id="pills-comentariosIngreso">
 
                         <div class="col-auto text-start">
-                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                            data-bs-target="#commentModal">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                            data-stage="0" data-bs-toggle="modal" data-bs-target="#commentModal">
                             Agregar comentario
                           </button>
                         </div>
@@ -971,8 +1057,9 @@
                           aria-labelledby="pills-complicacionObservacion-tab" id="pills-complicacionObservacion">
 
                           <div class="col-auto text-start">
-                            <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                              data-bs-target="#complicationModal">
+                            <button type="button"
+                              class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                              data-bs-toggle="modal" data-bs-target="#complicationModal">
                               Agregar complicación
                             </button>
                           </div>
@@ -999,8 +1086,9 @@
                           aria-labelledby="pills-sintomaObservacion-tab" id="pills-sintomaObservacion">
 
                           <div class="col-auto text-start ">
-                            <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                              data-bs-target="#symptomModal">
+                            <button type="button"
+                              class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                              data-bs-toggle="modal" data-bs-target="#symptomModal">
                               Agregar Sintoma
                             </button>
                           </div>
@@ -1024,8 +1112,9 @@
                           aria-labelledby="pills-enfermedadObservacion-tab" id="pills-enfermedadObservacion">
 
                           <div class=" col-auto text-start ">
-                            <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                              data-bs-target="#diseaseModal">
+                            <button type="button"
+                              class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                              data-bs-toggle="modal" data-bs-target="#diseaseModal">
                               Agregar enfermedad
                             </button>
                           </div>
@@ -1094,8 +1183,9 @@
                             aria-labelledby="pills-procedimientoMedidasTomadas-tab"
                             id="pills-procedimientoMedidasTomadas">
                             <div class="col-auto text-start m-3">
-                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                                data-bs-target="#ProcedimientoModal">
+                              <button type="button"
+                                class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                                data-bs-toggle="modal" data-bs-target="#ProcedimientoModal">
                                 Agregar Procedimiento
                               </button>
                             </div>
@@ -1104,8 +1194,9 @@
                           <div class="card-body p-0 tab-pane fade" role="tabpanel"
                             aria-labelledby="pills-farmacoMedidasTomadas-tab" id="pills-farmacoMedidasTomadas">
                             <div class="col-auto text-start m-3">
-                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                                data-bs-target="#FarmacosModal">
+                              <button type="button"
+                                class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                                data-bs-toggle="modal" data-bs-target="#FarmacosModal">
                                 Agregar Farmacos
                               </button>
                             </div>
@@ -1114,8 +1205,9 @@
                           <div class="card-body p-0 tab-pane fade" role="tabpanel"
                             aria-labelledby="pills-estudiosObservacion-tab" id="pills-estudiosObservacion">
                             <div class="col-auto text-start  m-3">
-                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                                data-bs-target="#EstudiosModal">
+                              <button type="button"
+                                class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                                data-bs-toggle="modal" data-bs-target="#EstudiosModal">
                                 Agregar Estudios
                               </button>
                             </div>
@@ -1127,8 +1219,9 @@
                             aria-labelledby="pills-signosVitalesMedidasTomadas-tab"
                             id="pills-signosVitalesMedidasTomadas">
                             <div class="col-auto text-start m-3">
-                              <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                                data-bs-target="#SignosVitalesModal">
+                              <button type="button"
+                                class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                                data-bs-toggle="modal" data-bs-target="#SignosVitalesModal">
                                 Agregar Signos Vitales
                               </button>
                             </div>
@@ -1172,8 +1265,9 @@
                               aria-labelledby="pills-notasIngreso1-tab" id="pills-notasIngreso1">
 
                               <div class="col-auto text-start">
-                                <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                                  data-bs-target="#noteModal">
+                                <button type="button"
+                                  class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                                  data-bs-toggle="modal" data-bs-target="#noteModal">
                                   Agregar nota médica
                                 </button>
                               </div>
@@ -1191,8 +1285,9 @@
                               aria-labelledby="pills-comentariosIngreso1-tab" id="pills-comentariosIngreso1">
 
                               <div class="col-auto text-start">
-                                <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                                  data-bs-target="#commentModal">
+                                <button type="button"
+                                  class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+                                  data-bs-toggle="modal" data-bs-target="#commentModal">
                                   Agregar comentario
                                 </button>
                               </div>
@@ -1220,8 +1315,8 @@
                 <div class="card-body">
                   <div class="">
                     <div class="col-auto pb-3">
-                      <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                        data-bs-target="#anomalyModal">
+                      <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                        data-stage="1" data-bs-toggle="modal" data-bs-target="#anomalyModal">
                         Agregar anomalia
                       </button>
                     </div>
@@ -1297,8 +1392,8 @@
                         aria-labelledby="pills-ordenPorCategoria1-tab" id="pills-ordenPorCategoria1">
                         <div class="col-auto text-start">
 
-                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                            data-bs-target="#DiagnosticoModal">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                            data-stage="2" data-bs-toggle="modal" data-bs-target="#DiagnosticoModal">
                             Agregar Diagnostico
                           </button>
 
@@ -1316,8 +1411,8 @@
                         aria-labelledby="pills-ordenCronologico1-tab" id="pills-ordenCronologico1">
                         <div class="col-auto text-start">
 
-                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                            data-bs-target="#DiagnosticoModal">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                            data-stage="2" data-bs-toggle="modal" data-bs-target="#DiagnosticoModal">
                             Agregar Diagnostico Diferencial
                           </button>
 
@@ -1374,8 +1469,8 @@
                     <div class="card-body p-0 tab-pane fade show active" role="tabpanel"
                       aria-labelledby="pills-Tratamientos1-tab" id="pills-Tratamientos1">
                       <div class="col-auto text-start">
-                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                          data-bs-target="#TratamientoModal">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                          data-stage="2" data-bs-toggle="modal" data-bs-target="#TratamientoModal">
                           Agregar Tratamiento
                         </button>
 
@@ -1390,8 +1485,8 @@
                     <div class="card-body p-0 tab-pane fade " role="tabpanel" aria-labelledby="pills-Farmacos1-tab"
                       id="pills-Farmacos1">
                       <div class="col-auto text-start">
-                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                          data-bs-target="#FarmacosModal">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                          data-stage="2" data-bs-toggle="modal" data-bs-target="#FarmacosModal">
                           Agregar Farmacos
                         </button>
 
@@ -1406,8 +1501,8 @@
                     <div class="card-body p-0 tab-pane fade " role="tabpanel"
                       aria-labelledby="pills-Interconsultas1-tab" id="pills-Interconsultas1">
                       <div class="col-auto text-start">
-                        <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                          data-bs-target="#InterconsultasModal">
+                        <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                          data-stage="2" data-bs-toggle="modal" data-bs-target="#InterconsultasModal">
                           Agregar Interconsulta
                         </button>
 
@@ -1459,8 +1554,8 @@
                         aria-labelledby="pills-notasIngreso2-tab" id="pills-notasIngreso2">
 
                         <div class="col-auto text-start">
-                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                            data-bs-target="#noteModal">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                            data-stage="2" data-bs-toggle="modal" data-bs-target="#noteModal">
                             Agregar nota médica
                           </button>
                         </div>
@@ -1476,8 +1571,8 @@
                         aria-labelledby="pills-comentariosIngreso2-tab" id="pills-comentariosIngreso2">
 
                         <div class="col-auto text-start">
-                          <button type="button" class="btn btn-sm w-auto btn-tertiary" data-bs-toggle="modal"
-                            data-bs-target="#commentModal">
+                          <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm"
+                            data-stage="2" data-bs-toggle="modal" data-bs-target="#commentModal">
                             Agregar comentario
                           </button>
                         </div>

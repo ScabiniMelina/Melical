@@ -51,12 +51,12 @@
                 <div class="row">
                     <div class="col-12 col-lg-6 pb-3">
                         <label class="form-label form-label-sm">Inicio de internación</label>
-                        <input type="datetime-local" class="form-control form-control-sm filterInput" data-id="0" name="startOfHospitalization">
+                        <input type="datetime-local" class="form-control form-control-sm filterInput unsavableValue" data-id="0" name="startOfHospitalization">
                     </div>
                     <!-- TODO: MELI COMPROBAR EN EL PHP QUE ESTA FECHA SEA MAYOR A LA DE INICO Y TIRAR UNA ALERTA -->
                     <div class="col-12 col-lg-6 pb-3 ">
                         <label class="form-label form-label-sm">Fin de internación</label>
-                        <input type="datetime-local" class="form-control form-control-sm filterInput" data-id="1" name="endOfHospitalization">
+                        <input type="datetime-local unsavableValue" class="form-control form-control-sm filterInput" data-id="1" name="endOfHospitalization">
                     </div>
                 </div>
             </div>
@@ -89,20 +89,19 @@
             <div class="tab-pane fade" id="pills-datoPersonal" role="tabpanel" aria-labelledby="pills-datoPersonal-tab">
                 <div class="col-12 mb-3">
                     <label class="form-label">Sexo</label>
-                    <select name="gender" class="form-select form-select-sm filterInput" data-id="2">
+                    <select name="gender" class="form-select form-select-sm filterInput  unsavableValue" data-id="2">
                         <option value="default"></option>
                         <option value="0">Femenino</option>
                         <option value="1">Masculino</option>
-                        <option value="2">Otro</option>
                     </select>
                 </div>
                 <div class="col-12">
                     <label class="form-label">Edad</label>
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control form-control-sm filterInput" name="minimumAge" placeholder="Mayor a" data-id="3">
+                        <input type="text" class="form-control form-control-sm filterInput unsavableValue" name="minimumAge" placeholder="Mayor a" data-id="3">
 
-                        <input type="text" class="form-control form-control-sm filterInput" name="maximumAge" placeholder="Menor a" data-id="4">
+                        <input type="text" class="form-control form-control-sm filterInput unsavableValue" name="maximumAge" placeholder="Menor a" data-id="4">
                     </div>
                 </div>
             </div>
@@ -110,7 +109,7 @@
 
             </div>
             <div class="position-relative">
-                <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0" type="submit" data-file="patient/patientByFilterSearch.html" data-title="Resultado de la busqueda">
+                <button class="btn btn-primary btn-sm me-3 position-fixed bottom-0 end-0 searchAndChangeSection" type="submit" data-file="patient/patientByFilterSearch.html" data-title="Resultado de la busqueda">
                     <i class='bx bx-search'></i>
                 </button>
             </div>
@@ -121,7 +120,7 @@
         <div class="row pb-3 datalistGrouping" data-id="5">
             <div class="col pe-0 ">
                 <!-- <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar.."> -->
-                <select class="form-select form-select-sm getSelectOption" data-file="" data-condition="">
+                <select class="form-select form-select-sm getSelectOption unsavableValue" data-file="" data-condition="">
 
                 </select>
             </div>
