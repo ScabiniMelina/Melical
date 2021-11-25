@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Perfil</title>
+  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>    
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row gutters-sm pt-3">
+    <div class="d-flex align-items-start">
+      <div class="col-md-3 d-none d-md-block m-0">
+        <div class="card">
+          <div class="card-body">
+            <div class="nav flex-column nav-pills me-3 align-items-start" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                <i class='bx bx-cog'></i>  <span>Configuración de la cuenta</span>
+              </button>
+              <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                <i class='bx bx-shield'></i>  <span>Seguridad</span>
+              </button>
+              <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                <i class='bx bx-bell'></i>  <span>Notificaciones  </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 m-0">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="card">
+              <div class="card-body">
+                <h6><b>CONFIGURACIÓN DE LA CUENTA</b></h6> 
+                <hr>
+                <form>
+                  <b><label>DATOS PERSONALES</label></b> 
+                  <div class="form-group mt-2">
+                    <label for="username">Nombre/s</label> 
+                    <input type="text" class="form-control mt-2" id="username" aria-describedby="usernameHelp" placeholder="Chayanne Cristina"> 
+                  </div>
+                  <div class="form-group mt-2">
+                    <label for="username">Apellido</label>
+                    <input type="text" class="form-control mt-2" id="surname" aria-describedby="usernameHelp" placeholder="Lazarte" >
+                  </div>
+                  <div class="form-group mt-2">
+                    <label for="username">Teléfono</label>
+                    <input type="text" class="form-control mt-2" id="number" aria-describedby="usernameHelp" placeholder="11-25987632" >
+                  </div>
+                  <div class="pt-2 text-end">
+                    <button type="button" class="btn btn-primary btn-sm">Guardar cambios</button>
+                  </div>
+                  <b> <label>DATOS PROFESIONALES</label></b>
+                  <div class="form-group mt-2">
+                    <input type="text" class="form-control mt-2" id="hospital1" aria-describedby="usernameHelp" placeholder="Hospital 1"> 
+                  </div>
+                  <div class="form-group mt-2">
+                    <input type="text" class="form-control mt-2" id="hospital2" aria-describedby="usernameHelp" placeholder="Hospital 2"> 
+                  </div>
+                  <div class="pt-2 text-end">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class='bx bxs-pencil'></i>
+                    </button>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <label><b>EDITAR</b></label>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Accordion -->
+                          <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                  <label class="pb-2"><b>LUGAR DE TRABAJO</b></label> 
+                                </button>
+                              </h2>
+                              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                   <a class="list-group-item list-group-item-action">
+                                      <div class="d-flex w-100 justify-content-between pt-1">
+                                       <h6 class="mb-1">Hospital 1</h6>
+                                        <button type="button" class="btn badge rounded-pill bg-primary"><i class='bx bx-minus'></i></i></button>
+                                      </div>
+                                    </a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                  <label class="pb-2"><b>ESPECIALIDADES</b></label> 
+                                </button>
+                              </h2>
+                              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                  <a class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between pt-1">
+                                      <h6 class="mb-1">Nutricionista</h6>
+                                      <button type="button" class="btn badge rounded-pill bg-primary"><i class='bx bx-minus'></i></i></button>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                  <label class="pb-2"><b>MATRÍCULAS</b></label> 
+                                </button>
+                              </h2>
+                              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                  <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="addon-wrapping"><i class='bx bx-link-alt'></i></span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Link matricula" aria-describedby="addon-wrapping">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <!-- End accordion -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm">Guardar cambios</button>
+                        <button type="button" class="btn btn-sm btn-primary"><i class='bx bx-plus'></i></button>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                   <!-- End modal -->
+                  <hr>
+                  <div class="form-group">
+                    <label class="d-block text-danger">Borra tu cuenta</label>
+                      <p class="text-muted font-size-sm">Una vez que hayas eliminado tu cuenta, el resultado será permanente.</p>
+                  </div>
+                  <button class="btn btn-danger btn-sm" type="button ">Eliminar cuenta</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="card">
+              <div class="card-body">
+                <h6><b>CONFIGURACIÓN DE LA CUENTA</b></h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block"><b>CAMBIO DE CONTRASEÑA</b> </label>
+                      <input type="text" class="form-control mt-2" placeholder="Contraseña anterior">
+                      <button id="show_password" class="btn btn-primary text-end" type="button"> <span class="fa fa-eye-slash icon"></span></button>
+                      <input type="text" class="form-control mt-2" placeholder="Nueva contraseña">
+                      <button id="show_password" class="btn btn-primary text-end" type="button"> <span class="fa fa-eye-slash icon"></span></button>
+                  </div>
+                  <div class=" row">
+                    <div class="col pt-3">
+                      <button type="button" class="btn btn-primary btn-sm">Confirmar cambios</button>
+                    </div>
+                  </div>
+                </form>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block"><b>CAMBIAR CORREO ELECTRÓNICO</b></label>
+                    <input type="text" class="form-control mt-2" placeholder="Correo electrónico anterior">
+                    <input type="text" class="form-control mt-2" placeholder="Nuevo correo electrónico">
+                    <div class=" row">
+                      <div class="col pt-3">
+                        <button type="button" class="btn btn-primary btn-sm">Confirmar cambios</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <hr>
+                <form>
+                  <div class="form-group mb-0">
+                    <label class="d-block"><b>INICIOS DE SESIÓN</b></label>
+                    <p class="font-size-sm text-secondary">Esta es la lista de dispositivos que han iniciado sesión con tu cuenta. Elimina cualquier sesión que no reconozcas.</p>
+                    <ul class="list-group list-group-sm">
+                      <li class="list-group-item has-icon">
+                      	<a href="#" class="list-group-item list-group-item-action">
+	                        <div>
+		                          <h6 class="mb-0">Manuel Alberti 190.24.335.55</h6>
+		                          <small class="text-muted">Sesión actual iniciada en Argentina</small>
+	                        </div>
+	                    </a>
+                      </li>
+                    </ul>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <div class="card">
+              <div class="card-body">
+                <h6><b>CONFIGURACIÓN DE NOTIFICACIONES</b></h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block mb-0"><b>ALERTAS DE SEGURIDAD</b></label>
+                    <div class="small text-muted mb-3">Personaliza tus notificaciones y recibe alertas de seguridad por correo electrónico.</div>
+                    <div class="form-group mb-0 pt-2">  
+                      <ul class="list-group list-group-sm">
+                        <li class="list-group-item has-icon">
+                          Alerta de vulnerabilidad de la cuenta
+                          <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                          <label class="custom-control-label" for="customSwitch1"></label>
+                        </li>
+                        <li class="list-group-item has-icon">
+                          Inicio de sesión desde ubicación desconocida
+                          <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                          <label class="custom-control-label" for="customSwitch1"></label>
+                        </li>
+                        <li class="list-group-item has-icon">
+                          Comentarios
+                          <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                          <label class="custom-control-label" for="customSwitch1"></label>
+                        </li>
+                        <li class="list-group-item has-icon">
+                          Actualizaciones              
+                          <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                          <label class="custom-control-label" for="customSwitch2"></label>
+                        </li>
+                        <li class="list-group-item has-icon">
+                          Recordatorios
+                          <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                          <label class="custom-control-label" for="customSwitch3"></label>             
+                        </li>
+                        <li class="list-group-item has-icon">
+                          Cronograma
+                          <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                          <label class="custom-control-label" for="customSwitch4"></label>
+                        </li>
+                      </ul>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>    
+</body>
+</html>
