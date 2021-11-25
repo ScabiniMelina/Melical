@@ -16,11 +16,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!--ICONO DE LA APP -->
-  <link rel="shortcut icon" sizes="48x48" type="image/png" href="../../assets/img/maskable_icon_x48.png">
-  <link rel="shortcut icon" sizes="128x128" type="image/png" href="../../assets/img/maskable_icon_x128.png">
-  <link rel="shortcut icon" sizes="512x512" type="image/png" href="../../assets/img/maskable_icon_x512.png">
-
   <?php include('../../modules/header.php'); ?>
 
   <!-- ICON -->
@@ -61,7 +56,7 @@
 
             <div id="lower">
               <div class="col-12 justify-self-center text-sm-start  mt-2 mb-2">
-                <button class="btn btn-primary text-align-center postInformation authentificationForm" role="button" type="submit" data-file="Login" data-redirect="../../../app.php">Iniciar sesión</button>
+                <button class="btn btn-primary text-align-center postInformation authentificationForm" role="button" type="submit" data-file="Login" data-redirect="../../../index.php">Iniciar sesión</button>
               </div>
               <div class="row row-cols-1 row-cols-sm-auto ">
                 <!-- <div class="col text-sm-start">

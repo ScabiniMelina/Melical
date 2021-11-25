@@ -9,11 +9,6 @@
 
   <?php include('../../modules/header.php'); ?>
 
-  <!--ICONO DE LA APP -->
-  <link rel="shortcut icon" sizes="48x48" type="image/png" href="../../assets/img/maskable_icon_x48.png">
-  <link rel="shortcut icon" sizes="128x128" type="image/png" href="../../assets/img/maskable_icon_x128.png">
-  <link rel="shortcut icon" sizes="512x512" type="image/png" href="../../assets/img/maskable_icon_x512.png">
-
   <!-- ICON -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -47,20 +42,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-sm-6">
-          <label for="inputTelefono" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control" name="dateBirth" autocomplete="on" required>
-        </div>
 
-        <div class="col-6">
-          <label for="inputDni4" class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="name" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" autocomplete="on" required>
-        </div>
-
-        <div class="col-6">
-          <label for="inputDni4" class="form-label">Apellido</label>
-          <input type="text" class="form-control" name="surname" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" autocomplete="on" required>
-        </div>
 
         <div class="col-12 col-sm-6">
           <label class="form-label" required>Sexo</label>
@@ -72,37 +54,52 @@
         </div>
 
 
+        <div class="col-6">
+          <label for="inputDni4" class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="name" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
+        </div>
+
+        <div class="col-6">
+          <label for="inputDni4" class="form-label">Apellido</label>
+          <input type="text" class="form-control" name="surname" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <label for="inputTelefono" class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control" name="dateBirth" required>
+        </div>
+
         <div class="col-12 col-sm-6">
           <label for="inputTelefono" class="form-label">Teléfono</label>
-          <input type="number" class="form-control .is-invalid" name="phone" required autocomplete="on" required>
+          <input type="number" class="form-control .is-invalid" name="phone" required>
         </div>
 
         <div class="col-12 col-sm-6">
           <label for="inputDireccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" name="address" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas" autocomplete="on" required>
+          <input type="text" class="form-control" name="address" required pattern="[a-z]{1,30}" title="Debe ingresar letras minusculas">
         </div>
 
         <div class="col-12 col-sm-6">
           <label for="inputDireccionN" class="form-label">Nº</label>
-          <input type="number" class="form-control" name="addressNumber" autocomplete="on" required>
+          <input type="number" class="form-control" name="addressNumber" required>
         </div>
 
         <div class="col-12 col-sm-6">
           <label for="inputDni4" class="form-label">Correo Eléctronico</label>
-          <input type="email" class="form-control" name="email" autocomplete="on" required>
+          <input type="email" class="form-control" name="email" required>
 
         </div>
 
         <div class="col-12 col-sm-6">
           <label class="form-label">Contraseña</label>
-          <div class="d-flex h-auto passwordContainer col-12">
-            <input id="passwordInput" type="password" class="form-control d-block passwordInput" name="password" autocomplete="on" required>
+          <div class="d-flex h-auto">
+            <input id="#passwordInput" type="password" class="form-control d-block" name="password" required>
             <button id="show_password" class="btn btn-primary" type="button"> <span class="fa fa-eye-slash icon"></span></button>
           </div>
         </div>
 
         <div class="col-12 pt-3">
-          <button class="btn btn-primary text-align-center postInformation authentificationForm" role="button" type="submit" data-file="Register">Registrarse</button>
+          <button class="btn btn-primary text-align-center postInformation authentificationForm" role="button" type="submit" data-file="Register" data-redirect="./login.php">Registrarse</button>
           <div class="row mt-2">
             <span> ¿Ya tienes cuenta?<a class="ps-2" type="button" href="./login.php" style="text-decoration:none;"> Inicia sesión aquí</a></span>
           </div>
