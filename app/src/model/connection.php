@@ -248,22 +248,18 @@ function getAmountOfPagesToCreatePager($table, $numberOfResultsPerPage, $typeOfP
         if (!isset($_GET['pageNumber'])) {
             $sql = "SELECT COUNT(1) AS numberOfResults FROM $table ";
             $result = executePreparedStatement($sql, $typeOfParameters, $parameters);
-            // var_dump($parameters);
-            // var_dump($typeOfParameters);
-            // var_dump($result);
             if ($msg['type'] === 'error') {
                 $msg['text'] = 'No se encontraron resultados';
                 sendJson(null, $msg, null, null, null);
                 exit;
             }
             $numberOfResults = getResultOfPreparedStatement($result);
-            // var_dump($numberOfResults);
-            $numberOfResults = $numberOfResults[0]['numberOfResults'];
-            // echo $numberOfResults . " ";
-            // echo $numberOfResultsPerPage . " ";
-
+            if (strpos($sql, "GROUP BY")) {
+                $numberOfResults = $result->num_rows;
+            } else {
+                $numberOfResults = $numberOfResults[0]['numberOfResults'];
+            }
             $amountOfPages = ceil($numberOfResults /  $numberOfResultsPerPage);
-            // echo $amountOfPages . "cantidad de paginas ";
         }
         return $amountOfPages;
     } catch (Exception $e) {

@@ -198,10 +198,6 @@ $_SESSION['ID_HOSPITAL'] = "1"
   </div>
   <?php include('./view/modules/footer.php'); ?>
   <script src="./sw.js"></script>
-  <!-- <script src="../../../../controller/helpers/face-api.min.js"></script> -->
-  <!-- <script src="./controller/helpers/face-api.min.js"></script> -->
-  <!-- <script src="../../../../controller/helpers/facialRecognition.js" type="module" async="async"></script> -->
-
 </body>
 
 </html>
