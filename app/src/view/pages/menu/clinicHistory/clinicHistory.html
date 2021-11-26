@@ -9,7 +9,6 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <!-- Bootstrap CSS -->
   <link href="../../../styles/plugins/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
-  .
   <link rel="stylesheet" href="../../../styles/css/styles.css">
   <title>Document</title>
 </head>
@@ -638,7 +637,7 @@
       data-file="patient/patient.html" data-old-id=""></i>
 
     <div class="thead-fixed background-bg-color">
-      <div class="fillCardContainer putOldDataId" data-old-id="" data-file="BasicPatientInformation"
+      <div class="fillCardContainer putOldDataId" data-file="BasicPatientInformation"
         data-tpl="#basicPatientInformationTemplate">
         <template id="basicPatientInformationTemplate">
           <div class="card mb-3 btn-primary">
@@ -765,6 +764,48 @@
                           <button class="btn btn-sm w-auto btn-tertiary" type="button"
                             id="btnDetailsPersonal">Detalles</button>
                         </div>
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
+
+                          </ol>
+                        </div>
+
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-salas-tab"
@@ -776,10 +817,47 @@
                         Agregar traslado
                       </button>
 
-                      <div class="text-start">
-                        <ol class="list-group list-group-numbered col" id="listRooms">
+                      <div class="text-start py-3">
+                        <ol class="list-group list-group-numbered col">
 
                         </ol>
+                      </div>
+
+                      <div class="pb-3 align-items-end  text-start">
+
+
+                        <!-- Tarjetitas con datos  -->
+                        <div class="fillCardContainer" id="medicalRecordCardContainer" data-file="PatientMedicalHistory"
+                          data-tpl="#medicalHistoryCardTemplate">
+
+                          <template id="medicalHistoryCardTemplate">
+                            <a href="#"
+                              class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                              data-id="" data-old-id="" data-title="Historia clínica"
+                              data-file="clinicHistory/clinicHistory.html">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                <small class="text-muted date">Fecha y hora</small>
+                              </div>
+                              <small class="hospital">Nombre del doctor</small>
+                              <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen
+                                realizado.</p>
+                            </a>
+                          </template>
+                          <div class="text-center my-3">
+                            <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                              data-number-of-items-to-show="6">
+                              Cargar más
+                            </a>
+                          </div>
+                        </div>
+                        <!-- -->
+
+
+                        <div class="list-group  mt-3">
+
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -830,9 +908,48 @@
                       aria-labelledby="pills-motivoIngreso-tab" id="pills-motivoIngreso">
                       <div class="row text-start">
                         <div class="col col-12 pt-3">
-                          <h5 class="">Anomalias presentadas</h5>
-                          <div class="list-group" id="anomalyList">
 
+                          <div class="text-start py-3">
+                            <ol class="list-group list-group-numbered col">
+
+                            </ol>
+                          </div>
+
+                          <div class="pb-3 align-items-end  text-start">
+
+
+                            <!-- Tarjetitas con datos  -->
+                            <div class="fillCardContainer" id="medicalRecordCardContainer"
+                              data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                              <template id="medicalHistoryCardTemplate">
+                                <a href="#"
+                                  class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                  data-id="" data-old-id="" data-title="Historia clínica"
+                                  data-file="clinicHistory/clinicHistory.html">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                    <small class="text-muted date">Fecha y hora</small>
+                                  </div>
+                                  <small class="hospital">Nombre del doctor</small>
+                                  <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                    examen realizado.</p>
+                                </a>
+                              </template>
+                              <div class="text-center my-3">
+                                <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                  data-number-of-items-to-show="6">
+                                  Cargar más
+                                </a>
+                              </div>
+                            </div>
+                            <!-- -->
+
+
+                            <div class="list-group  mt-3">
+
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -849,16 +966,35 @@
                       <div class="text-start py-3">
                         <ol class="list-group list-group-numbered col" id="symptomList">
 
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
                         </ol>
-                      </div>
-                      <div class="pb-3 align-items-end  text-start" id="commentSympton">
-                        <div class="card-footer">
-                          <h5>Comentarios</h5>
-                        </div>
-                        <div class="list-group  mt-3" id="symptonList">
-
-                        </div>
-
                       </div>
                     </div>
 
@@ -878,14 +1014,42 @@
                         </ol>
                       </div>
                       <div class="pb-3 align-items-end  text-start">
-                        <div class="card-footer">
-                          <h5>Comentarios</h5>
-                        </div>
-                        <div class="list-group  mt-3">
 
+
+                        <!-- Tarjetitas con datos  -->
+                        <div class="fillCardContainer" id="medicalRecordCardContainer" data-file="PatientMedicalHistory"
+                          data-tpl="#medicalHistoryCardTemplate">
+
+                          <template id="medicalHistoryCardTemplate">
+                            <a href="#"
+                              class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                              data-id="" data-old-id="" data-title="Historia clínica"
+                              data-file="clinicHistory/clinicHistory.html">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                <small class="text-muted date">Fecha y hora</small>
+                              </div>
+                              <small class="hospital">Nombre del doctor</small>
+                              <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen
+                                realizado.</p>
+                            </a>
+                          </template>
+                          <div class="text-center my-3">
+                            <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                              data-number-of-items-to-show="6">
+                              Cargar más
+                            </a>
+                          </div>
                         </div>
+                        <!-- -->
 
                       </div>
+                      <div class="list-group  mt-3">
+
+                      </div>
+
+
                     </div>
 
                     <div class="card-body tab-pane fade" role="tabpanel" aria-labelledby="pills-complicacionIngreso-tab"
@@ -905,9 +1069,37 @@
                       </div>
 
                       <div class="pb-3 align-items-end  text-start">
-                        <div class="card-footer">
-                          <h5>Comentarios</h5>
+
+
+                        <!-- Tarjetitas con datos  -->
+                        <div class="fillCardContainer" id="medicalRecordCardContainer" data-file="PatientMedicalHistory"
+                          data-tpl="#medicalHistoryCardTemplate">
+
+                          <template id="medicalHistoryCardTemplate">
+                            <a href="#"
+                              class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                              data-id="" data-old-id="" data-title="Historia clínica"
+                              data-file="clinicHistory/clinicHistory.html">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                <small class="text-muted date">Fecha y hora</small>
+                              </div>
+                              <small class="hospital">Nombre del doctor</small>
+                              <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de examen
+                                realizado.</p>
+                            </a>
+                          </template>
+                          <div class="text-center my-3">
+                            <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                              data-number-of-items-to-show="6">
+                              Cargar más
+                            </a>
+                          </div>
                         </div>
+                        <!-- -->
+
+
                         <div class="list-group  mt-3">
 
                         </div>
@@ -965,6 +1157,43 @@
                           </ol>
                         </div>
 
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
+                        </div>
+
                       </div>
 
 
@@ -984,6 +1213,43 @@
                           </ol>
                         </div>
 
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -992,8 +1258,6 @@
             </div>
           </div>
         </div>
-
-
       </div>
       <!--Nav Internacion -->
       <div class="tab-pane fade" id="pills-internacion" role="tabpanel" aria-labelledby="pills-internacion-tab">
@@ -1071,13 +1335,40 @@
                           </div>
 
                           <div class="pb-3 align-items-end  text-start">
-                            <div class="card-footer">
-                              <h5>Comentarios</h5>
+
+
+                            <!-- Tarjetitas con datos  -->
+                            <div class="fillCardContainer" id="medicalRecordCardContainer"
+                              data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                              <template id="medicalHistoryCardTemplate">
+                                <a href="#"
+                                  class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                  data-id="" data-old-id="" data-title="Historia clínica"
+                                  data-file="clinicHistory/clinicHistory.html">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                    <small class="text-muted date">Fecha y hora</small>
+                                  </div>
+                                  <small class="hospital">Nombre del doctor</small>
+                                  <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                    examen realizado.</p>
+                                </a>
+                              </template>
+                              <div class="text-center my-3">
+                                <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                  data-number-of-items-to-show="6">
+                                  Cargar más
+                                </a>
+                              </div>
                             </div>
+                            <!-- -->
+
+
                             <div class="list-group  mt-3">
 
                             </div>
-
                           </div>
 
                         </div>
@@ -1098,14 +1389,44 @@
 
                             </ol>
                           </div>
-                          <div class="pb-3 align-items-end  text-start" id="commentSympton">
-                            <div class="card-footer">
-                              <h5>Comentarios</h5>
+
+                          <div class="pb-3 align-items-end  text-start">
+
+
+                            <!-- Tarjetitas con datos  -->
+                            <div class="fillCardContainer" id="medicalRecordCardContainer"
+                              data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                              <template id="medicalHistoryCardTemplate">
+                                <a href="#"
+                                  class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                  data-id="" data-old-id="" data-title="Historia clínica"
+                                  data-file="clinicHistory/clinicHistory.html">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                    <small class="text-muted date">Fecha y hora</small>
+                                  </div>
+                                  <small class="hospital">Nombre del doctor</small>
+                                  <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                    examen realizado.</p>
+                                </a>
+                              </template>
+                              <div class="text-center my-3">
+                                <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                  data-number-of-items-to-show="6">
+                                  Cargar más
+                                </a>
+                              </div>
                             </div>
-                            <div class="list-group  mt-3" id="symptonList">
+                            <!-- -->
+
+
+                            <div class="list-group  mt-3">
 
                             </div>
                           </div>
+
                         </div>
 
                         <div class="card-body  tab-pane fade border-0" role="tabpanel"
@@ -1123,15 +1444,44 @@
 
                             </ol>
                           </div>
+
                           <div class="pb-3 align-items-end  text-start">
-                            <div class="card-footer">
-                              <h5>Comentarios</h5>
+
+
+                            <!-- Tarjetitas con datos  -->
+                            <div class="fillCardContainer" id="medicalRecordCardContainer"
+                              data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                              <template id="medicalHistoryCardTemplate">
+                                <a href="#"
+                                  class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                  data-id="" data-old-id="" data-title="Historia clínica"
+                                  data-file="clinicHistory/clinicHistory.html">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                    <small class="text-muted date">Fecha y hora</small>
+                                  </div>
+                                  <small class="hospital">Nombre del doctor</small>
+                                  <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                    examen realizado.</p>
+                                </a>
+                              </template>
+                              <div class="text-center my-3">
+                                <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                  data-number-of-items-to-show="6">
+                                  Cargar más
+                                </a>
+                              </div>
                             </div>
+                            <!-- -->
+
+
                             <div class="list-group  mt-3">
 
                             </div>
-
                           </div>
+
                         </div>
                       </div>
                     </div>
@@ -1188,6 +1538,50 @@
                                 data-bs-toggle="modal" data-bs-target="#ProcedimientoModal">
                                 Agregar Procedimiento
                               </button>
+
+                              <div class="text-start py-3">
+                                <ol class="list-group list-group-numbered col">
+
+                                </ol>
+                              </div>
+
+                              <div class="pb-3 align-items-end  text-start">
+
+
+                                <!-- Tarjetitas con datos  -->
+                                <div class="fillCardContainer" id="medicalRecordCardContainer"
+                                  data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                                  <template id="medicalHistoryCardTemplate">
+                                    <a href="#"
+                                      class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                      data-id="" data-old-id="" data-title="Historia clínica"
+                                      data-file="clinicHistory/clinicHistory.html">
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                        <small class="text-muted date">Fecha y hora</small>
+                                      </div>
+                                      <small class="hospital">Nombre del doctor</small>
+                                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo
+                                        de examen realizado.</p>
+                                    </a>
+                                  </template>
+                                  <div class="text-center my-3">
+                                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                      data-number-of-items-to-show="6">
+                                      Cargar más
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- -->
+
+
+                                <div class="list-group  mt-3">
+
+                                </div>
+                              </div>
+
                             </div>
 
                           </div>
@@ -1199,6 +1593,50 @@
                                 data-bs-toggle="modal" data-bs-target="#FarmacosModal">
                                 Agregar Farmacos
                               </button>
+
+                              <div class="text-start py-3">
+                                <ol class="list-group list-group-numbered col">
+
+                                </ol>
+                              </div>
+
+                              <div class="pb-3 align-items-end  text-start">
+
+
+                                <!-- Tarjetitas con datos  -->
+                                <div class="fillCardContainer" id="medicalRecordCardContainer"
+                                  data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                                  <template id="medicalHistoryCardTemplate">
+                                    <a href="#"
+                                      class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                      data-id="" data-old-id="" data-title="Historia clínica"
+                                      data-file="clinicHistory/clinicHistory.html">
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                        <small class="text-muted date">Fecha y hora</small>
+                                      </div>
+                                      <small class="hospital">Nombre del doctor</small>
+                                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo
+                                        de examen realizado.</p>
+                                    </a>
+                                  </template>
+                                  <div class="text-center my-3">
+                                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                      data-number-of-items-to-show="6">
+                                      Cargar más
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- -->
+
+
+                                <div class="list-group  mt-3">
+
+                                </div>
+                              </div>
+
                             </div>
 
                           </div>
@@ -1210,6 +1648,50 @@
                                 data-bs-toggle="modal" data-bs-target="#EstudiosModal">
                                 Agregar Estudios
                               </button>
+
+                              <div class="text-start py-3">
+                                <ol class="list-group list-group-numbered col">
+
+                                </ol>
+                              </div>
+
+                              <div class="pb-3 align-items-end  text-start">
+
+
+                                <!-- Tarjetitas con datos  -->
+                                <div class="fillCardContainer" id="medicalRecordCardContainer"
+                                  data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                                  <template id="medicalHistoryCardTemplate">
+                                    <a href="#"
+                                      class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                      data-id="" data-old-id="" data-title="Historia clínica"
+                                      data-file="clinicHistory/clinicHistory.html">
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                        <small class="text-muted date">Fecha y hora</small>
+                                      </div>
+                                      <small class="hospital">Nombre del doctor</small>
+                                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo
+                                        de examen realizado.</p>
+                                    </a>
+                                  </template>
+                                  <div class="text-center my-3">
+                                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                      data-number-of-items-to-show="6">
+                                      Cargar más
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- -->
+
+
+                                <div class="list-group  mt-3">
+
+                                </div>
+                              </div>
+
                             </div>
 
 
@@ -1224,6 +1706,50 @@
                                 data-bs-toggle="modal" data-bs-target="#SignosVitalesModal">
                                 Agregar Signos Vitales
                               </button>
+
+                              <div class="text-start py-3">
+                                <ol class="list-group list-group-numbered col">
+
+                                </ol>
+                              </div>
+
+                              <div class="pb-3 align-items-end  text-start">
+
+
+                                <!-- Tarjetitas con datos  -->
+                                <div class="fillCardContainer" id="medicalRecordCardContainer"
+                                  data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                                  <template id="medicalHistoryCardTemplate">
+                                    <a href="#"
+                                      class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                      data-id="" data-old-id="" data-title="Historia clínica"
+                                      data-file="clinicHistory/clinicHistory.html">
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                        <small class="text-muted date">Fecha y hora</small>
+                                      </div>
+                                      <small class="hospital">Nombre del doctor</small>
+                                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo
+                                        de examen realizado.</p>
+                                    </a>
+                                  </template>
+                                  <div class="text-center my-3">
+                                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                      data-number-of-items-to-show="6">
+                                      Cargar más
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- -->
+
+
+                                <div class="list-group  mt-3">
+
+                                </div>
+                              </div>
+
                             </div>
 
                           </div>
@@ -1278,6 +1804,43 @@
                                 </ol>
                               </div>
 
+                              <div class="pb-3 align-items-end  text-start">
+
+
+                                <!-- Tarjetitas con datos  -->
+                                <div class="fillCardContainer" id="medicalRecordCardContainer"
+                                  data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                                  <template id="medicalHistoryCardTemplate">
+                                    <a href="#"
+                                      class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                      data-id="" data-old-id="" data-title="Historia clínica"
+                                      data-file="clinicHistory/clinicHistory.html">
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                        <small class="text-muted date">Fecha y hora</small>
+                                      </div>
+                                      <small class="hospital">Nombre del doctor</small>
+                                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo
+                                        de examen realizado.</p>
+                                    </a>
+                                  </template>
+                                  <div class="text-center my-3">
+                                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                      data-number-of-items-to-show="6">
+                                      Cargar más
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- -->
+
+
+                                <div class="list-group  mt-3">
+
+                                </div>
+                              </div>
+
                             </div>
 
 
@@ -1296,6 +1859,43 @@
                                 <ol class="list-group list-group-numbered col">
 
                                 </ol>
+                              </div>
+
+                              <div class="pb-3 align-items-end  text-start">
+
+
+                                <!-- Tarjetitas con datos  -->
+                                <div class="fillCardContainer" id="medicalRecordCardContainer"
+                                  data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                                  <template id="medicalHistoryCardTemplate">
+                                    <a href="#"
+                                      class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                      data-id="" data-old-id="" data-title="Historia clínica"
+                                      data-file="clinicHistory/clinicHistory.html">
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                        <small class="text-muted date">Fecha y hora</small>
+                                      </div>
+                                      <small class="hospital">Nombre del doctor</small>
+                                      <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo
+                                        de examen realizado.</p>
+                                    </a>
+                                  </template>
+                                  <div class="text-center my-3">
+                                    <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                      data-number-of-items-to-show="6">
+                                      Cargar más
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- -->
+
+
+                                <div class="list-group  mt-3">
+
+                                </div>
                               </div>
 
                             </div>
@@ -1324,7 +1924,7 @@
 
                   </div>
                   <div class="col col-12">
-                    <h5 class="">Anomalias presentadas</h5>
+
                     <div class="list-group">
                       <a href="#" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
@@ -1397,10 +1997,47 @@
                             Agregar Diagnostico
                           </button>
 
-                          <div class="text-start">
-                            <ol class="list-group list-group-numbered col" id="listRooms">
+                          <div class="text-start py-3">
+                            <ol class="list-group list-group-numbered col">
 
                             </ol>
+                          </div>
+
+                          <div class="pb-3 align-items-end  text-start">
+
+
+                            <!-- Tarjetitas con datos  -->
+                            <div class="fillCardContainer" id="medicalRecordCardContainer"
+                              data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                              <template id="medicalHistoryCardTemplate">
+                                <a href="#"
+                                  class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                  data-id="" data-old-id="" data-title="Historia clínica"
+                                  data-file="clinicHistory/clinicHistory.html">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                    <small class="text-muted date">Fecha y hora</small>
+                                  </div>
+                                  <small class="hospital">Nombre del doctor</small>
+                                  <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                    examen realizado.</p>
+                                </a>
+                              </template>
+                              <div class="text-center my-3">
+                                <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                  data-number-of-items-to-show="6">
+                                  Cargar más
+                                </a>
+                              </div>
+                            </div>
+                            <!-- -->
+
+
+                            <div class="list-group  mt-3">
+
+                            </div>
                           </div>
 
 
@@ -1416,10 +2053,47 @@
                             Agregar Diagnostico Diferencial
                           </button>
 
-                          <div class="text-start">
-                            <ol class="list-group list-group-numbered col" id="listRooms">
+                          <div class="text-start py-3">
+                            <ol class="list-group list-group-numbered col">
 
                             </ol>
+                          </div>
+
+                          <div class="pb-3 align-items-end  text-start">
+
+
+                            <!-- Tarjetitas con datos  -->
+                            <div class="fillCardContainer" id="medicalRecordCardContainer"
+                              data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                              <template id="medicalHistoryCardTemplate">
+                                <a href="#"
+                                  class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                  data-id="" data-old-id="" data-title="Historia clínica"
+                                  data-file="clinicHistory/clinicHistory.html">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                    <small class="text-muted date">Fecha y hora</small>
+                                  </div>
+                                  <small class="hospital">Nombre del doctor</small>
+                                  <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                    examen realizado.</p>
+                                </a>
+                              </template>
+                              <div class="text-center my-3">
+                                <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                  data-number-of-items-to-show="6">
+                                  Cargar más
+                                </a>
+                              </div>
+                            </div>
+                            <!-- -->
+
+
+                            <div class="list-group  mt-3">
+
+                            </div>
                           </div>
 
                         </div>
@@ -1474,10 +2148,47 @@
                           Agregar Tratamiento
                         </button>
 
-                        <div class="text-start">
-                          <ol class="list-group list-group-numbered col" id="listRooms">
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
 
                           </ol>
+                        </div>
+
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1490,10 +2201,47 @@
                           Agregar Farmacos
                         </button>
 
-                        <div class="text-start">
-                          <ol class="list-group list-group-numbered col" id="listRooms">
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
 
                           </ol>
+                        </div>
+
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1506,10 +2254,47 @@
                           Agregar Interconsulta
                         </button>
 
-                        <div class="text-start">
-                          <ol class="list-group list-group-numbered col" id="listRooms">
+                        <div class="text-start py-3">
+                          <ol class="list-group list-group-numbered col">
 
                           </ol>
+                        </div>
+
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1566,6 +2351,43 @@
                           </ol>
                         </div>
 
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
+                        </div>
+
                       </div>
                       <div class="card-body p-0 tab-pane fade " role="tabpanel"
                         aria-labelledby="pills-comentariosIngreso2-tab" id="pills-comentariosIngreso2">
@@ -1583,12 +2405,59 @@
                           </ol>
                         </div>
 
+                        <div class="pb-3 align-items-end  text-start">
+
+
+                          <!-- Tarjetitas con datos  -->
+                          <div class="fillCardContainer" id="medicalRecordCardContainer"
+                            data-file="PatientMedicalHistory" data-tpl="#medicalHistoryCardTemplate">
+
+                            <template id="medicalHistoryCardTemplate">
+                              <a href="#"
+                                class="list-group-item list-group-item-action card mb-2 id oldId changeSectionButton"
+                                data-id="" data-old-id="" data-title="Historia clínica"
+                                data-file="clinicHistory/clinicHistory.html">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1 provenance">Título de prueba o examen</h5>
+
+                                  <small class="text-muted date">Fecha y hora</small>
+                                </div>
+                                <small class="hospital">Nombre del doctor</small>
+                                <p class="mb-1 reasonForAdmission">Detalles breves acerca del diagnóstico o tipo de
+                                  examen realizado.</p>
+                              </a>
+                            </template>
+                            <div class="text-center my-3">
+                              <a class=" link-primary me-1 lazyLoadButton" data-number-of-card-Loads="0"
+                                data-number-of-items-to-show="6">
+                                Cargar más
+                              </a>
+                            </div>
+                          </div>
+                          <!-- -->
+
+
+                          <div class="list-group  mt-3">
+
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col-auto text-start mb-3">
+            <a href="/view/pages/menu/clinicHistory/medicalReport.html" type="button" target="_blank"
+              class="btn btn-sm w-auto btn-tertiary">
+              Imprimir informe médico
+            </a>
+            <button type="button" class="btn btn-sm w-auto btn-tertiary putStageToTheInputOfTheModalForm" data-stage="1"
+              data-bs-toggle="modal" data-bs-target="#symptomModal">
+              Declarar fallecido
+            </button>
           </div>
         </div>
       </div>
@@ -1625,9 +2494,7 @@
         eos saepe corporis ipsam ducimus molestiae?</p>
     </a>
   </template>
-
-  <!-- JavaScript Bundle with Popper -->
-  <script src="../../../styles/plugins/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../../controller/helpers/printPage.js"></script>
 </body>
 
 </html>
