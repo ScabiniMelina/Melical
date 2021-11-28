@@ -262,6 +262,9 @@ export async function changeSaveButtonAction(btn) {
 			btn.innerHTML = 'Actualizar';
 			btn.classList.replace('postInformation', 'putInformation');
 			// btn.dataset.method = "put";
+		} else {
+			btn.innerHTML = 'Guardar';
+			btn.classList.replace('putInformation', 'postInformation');
 		}
 	} catch (error) {
 		console.log('error ' + error);
@@ -283,20 +286,32 @@ export async function formOperation(method, e) {
 		} else {
 			//Actualiza, guarda y elimina la información de un formulario
 			const data = await databaseOperation(method, file, formData);
-			if (form.classList.contains('imageModalForm')) {
+
+			//si el formulario del modal tiene que actualizar una galeria o un contenedor de tarjetas
+			if (form.classList.contains('updateGallery') || form.classList.contains('updateCardContainer')) {
 				const modal = form.closest('.modal');
 				if (modal) {
 					await hideModal(modal);
-					const modalGalery = modal.querySelector('.imgGalery');
-					const progressBarContainer = modal.querySelector('.progress');
-					const galeryToUpdate = document.querySelector(form.dataset.galery);
 					cleanFormulary(form);
-					cleanGalery(modalGalery, progressBarContainer)
-					fillGalery(galeryToUpdate);
+					if (form.classList.contains('updateGallery')) {
+						const modalGalery = modal.querySelector('.imgGalery');
+						const progressBarContainer = modal.querySelector('.progress');
+						const galeryToUpdate = document.querySelector(form.dataset.galery);
+						cleanGalery(modalGalery, progressBarContainer)
+						fillGalery(galeryToUpdate);
+
+					}
+					if (form.classList.contains('updateCardContainer') && data["msg"]['type'] == "success") {
+						const cardContainerToUpdateName = btn.dataset.containerToUpdate;
+						const cardContainerToUpdate = document.querySelector(cardContainerToUpdateName);
+						fillCardContainer(cardContainerToUpdate);
+					}
 				}
 			}
+
 			addAlert(data['msg']);
-			//Si login
+
+			//Si login o registro
 			if (btn.classList.contains("authentificationForm") && data["msg"]['type'] == "success") {
 				const redirectFile = btn.dataset.redirect;
 				window.location.href = redirectFile;

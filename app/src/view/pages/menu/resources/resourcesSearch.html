@@ -12,29 +12,29 @@
     <form enctype="multipart/form-data" method="get" class="row searchFormulary g-2">
       <div class="col col-6">
         <label>Sección</label>
-        <select class="form-select form-select-m getSelectOption" name="sector" id="sector" data-file="SectionList"
-          data-default="Todos">
+        <select class="form-select form-select-m getSelectOption selectWithDependency unsavableValue" name="sector"
+          id="sector" data-file="SectionList" data-default="Todos" data-select-dependency="#typeResource,#resource">
         </select>
       </div>
-      <div class="col col-6 ">
-        <label>Piso</label>
-        <select class="form-select form-select-m getSelectOption" name="tier" id="tier" data-file="FloorList"
-          data-default="Todos">
-        </select>
-      </div>
+
       <div class="col col-6 ">
         <label>Tipo de suministro</label>
-        <select class="form-select form-select-m getSelectOption" name="typeResource" data-file="SuppliesList"
-          data-default="Todos">
-
+        <select class="form-select form-select-m getSelectOption unsavableValue selectWithDependency"
+          name="typeResource" id="typeResource" data-file="TypeSuppliesList" data-default="Todos"
+          data-select-dependency="#resource">
         </select>
       </div>
-      <div class="col-6 d-flex align-self-end ">
-        <div class="col pe-0">
-          <input name="id" type="text" class="form-control" placeholder="Buscar por DNI, Nombre o Apellido">
+      <!-- <label>Código o nombre del recurso</label> -->
+      <div class="col-12 d-flex">
+        <div class="col ">
+          <label>Suministro</label>
+          <select class="form-select form-select-m getSelectOption unsavableValue" name="resource" id="resource"
+            data-file="SuppliesList" data-default="Todos">
+
+          </select>
         </div>
 
-        <div class=" col-auto ps-1">
+        <div class=" col-auto ps-1 align-self-end ">
           <button class="btn btn-primary" type="submit" data-file="ResourseBySearch">
             <i class='bx bx-search'></i>
           </button>
@@ -52,7 +52,6 @@
             <th>Recurso</th>
             <th>Stock</th>
             <th>Sección</th>
-            <th>Piso</th>
           </tr>
         </thead>
         <tbody class="table-light loadTable" data-file="Resources">
@@ -82,7 +81,6 @@
       <td name="recurso"></td>
       <td name="cantidad"></td>
       <td name="seccion"></td>
-      <td name="piso"></td>
     </tr>
   </template>
 

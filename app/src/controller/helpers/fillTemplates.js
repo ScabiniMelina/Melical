@@ -401,28 +401,29 @@ export async function fillSelects() {
 	}
 }
 
-export async function fillSelect(select) {
+export async function fillSelect(select, dataForm = null) {
 	//Rellena todas las opciones de un select, el select tiene que tener una data-file, en el que va la ruta del php que trae las opciones de la bd, un data-condition opcional para especificar si en la selección de la bd el where necesita una condicion, un data-default opcional que es el texto que aparece como opción por defecto.
 	try {
 		const file = select.dataset.file;
 		const defaultOption = select.dataset.default === undefined ? ' ' : select.dataset.default;
-		const dataForm = new FormData();
+		if (dataForm == null) {
+			dataForm = new FormData();
+		}
 		let options = '';
 		options += "<option>" + defaultOption + '</option>';
 		//Obtiene una condición necesaria para hacer en el select de la sentencia sql
 		if (select.dataset.condition !== undefined) {
 			dataForm.append('condition', select.dataset.condition);
 		}
+
 		databaseOperation('get', file, dataForm).then((data) => {
-			if (data) {
+			if (data && Object.entries(data).length > 0) {
 				data.forEach((option) => {
 					options += '<option value="' + option[0] + '">' + option[1] + '</option>';
 				});
-				select.innerHTML = options;
-				select.options[0].selected = true;
-			} else {
-				console.log()
 			}
+			select.innerHTML = options;
+			select.options[0].selected = true;
 		});
 	} catch (error) {
 		console.log('error ' + error);

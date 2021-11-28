@@ -21,14 +21,17 @@ import {
 	cleanFormulary,
 	cleanGalery,
 	addDirtyInputClass,
-	isThereAnyUnsavedModificationOnThePage
+	isThereAnyUnsavedModificationOnThePage,
+	changeSaveButtonAction
 } from "./helpers/interfaceChanges.js";
 
 
 import {
 	fillCardContainers,
 	fillChartContainers,
-	fillCardContainer
+	fillCardContainer,
+	fillSelects,
+	fillSelect
 } from "./helpers/fillTemplates.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -114,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			const galery = modal.querySelector('.imgGalery');
 			const progressBarContainer = modal.querySelector('.progress')
 			const form = modal.querySelector('form');
-			cleanFormulary(form);
-			cleanGalery(galery, progressBarContainer);
+			if (form) cleanFormulary(form);
+			if (galery) cleanGalery(galery, progressBarContainer);
 		}
 
 		if (e.target.matches('.lazyLoadButton')) {
@@ -128,9 +131,31 @@ document.addEventListener('DOMContentLoaded', () => {
 			const btn = e.target;
 			const modalId = btn.dataset.bsTarget;
 			const stage = btn.dataset.stage;
-			const stageInput = document.querySelector(`${modalId} form  input.stage`)
+			const modal = document.querySelector(modalId)
+			const stageInput = modal.querySelector(`form  input.stage`)
 			stageInput.value = stage;
 		}
+
+		//Botón disparador de un modal, cooloca al modal el contenedor que se tiene que actualizar
+		if (e.target.matches('[data-bs-toggle="modal"]')) {
+			const btn = e.target;
+			const containerToUpdateName = btn.dataset.containerToUpdate;
+			const modalId = btn.dataset.bsTarget;
+			const modal = document.querySelector(modalId);
+			const submitButton = modal.querySelector("[type=submit]");
+			if (containerToUpdateName) {
+				submitButton.dataset.containerToUpdate = containerToUpdateName;
+			}
+			//Card que abre un modal para actualizarse
+			if (e.target.matches('.editableCard')) {
+				if (submitButton.classList.contains(".postInformation")) {
+					changeSaveButtonAction(submitButton)
+				}
+
+			}
+
+		}
+
 
 	})
 
@@ -158,6 +183,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if (e.target.type == "file" && e.target.matches(".changeProgressBar")) {
 			showInputPreview(e)
+		}
+		//actualizar la informacion de otros selects apartir de la dependencia de uno
+		if (e.target.matches('.selectWithDependency')) {
+			const currentSelect = e.target;
+			const currentOption = currentSelect.options[currentSelect.selectedIndex].value;
+			const selectsId = e.target.dataset.selectDependency.split(",");
+			const form = e.target.closest('form');
+			const dataForm = new FormData(form);
+			selectsId.forEach(selectId => {
+				const select = document.querySelector(selectId);
+				fillSelect(select, dataForm);
+			})
 		}
 	});
 

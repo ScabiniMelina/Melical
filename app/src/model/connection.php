@@ -280,7 +280,7 @@ function setValue($defaultValue, $value)
 
 function setSelectValue($value)
 {
-    if (strcmp($value, "default") == 0 || isset($value)) {
+    if (strcmp($value, "default") == 0 || !isset($value) || strcmp($value, "Todos") == 0 || strcmp($value, "") == 0) {
         return  null;
     }
     return $value;

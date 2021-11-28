@@ -6,7 +6,7 @@ export async function databaseOperation(method, file, dataForm) {
 		let urlVariables = '';
 		if (method == 'post' || method == 'delete' || method == 'put' || method == 'get') {
 			config.method = method;
-			if (typeof dataForm !== 'undefined') {
+			if (typeof dataForm !== 'undefined' && dataForm != null) {
 				if (method == 'get' || method == 'delete' || method == 'put') {
 					urlVariables = '?';
 					for (let [key, value] of dataForm.entries()) {

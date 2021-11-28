@@ -119,10 +119,10 @@
     <template id="datalistTemplate">
         <div class="row pb-3 datalistGrouping" data-id="5">
             <div class="col pe-0 ">
-                <!-- <input class="form-control form-control-sm inputDatalist" list="" placeholder="Buscar.."> -->
-                <select class="form-select form-select-sm getSelectOption unsavableValue" data-file="" data-condition="">
+                <input class="form-control form-control-sm inputDatalist unsavableValue" list="" placeholder="Buscar..">
+                <datalist class="getSelectOption unsavableValue" data-file="" data-condition="">
 
-                </select>
+                </datalist>
             </div>
             <div class="col-auto">
                 <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-plus'></i>
