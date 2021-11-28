@@ -78,13 +78,6 @@ $_SESSION['ID_HOSPITAL'] = "1"
         <span class="tooltip">Buscar</span>
       </li>
       <li>
-        <a class="link_nav" data-callback="loadScheduleSection" data-file="schedule/schedule.html" data-title="Cronograma">
-          <i class='bx bx-calendar bx-flip-horizontal'></i>
-          <span class="links_name">Cronograma</span>
-        </a>
-        <span class="tooltip">Cronograma</span>
-      </li>
-      <li>
         <a class="link_nav" data-callback="loadStudySection" data-file="study/studySearch.html" data-title="Estudios pedidos">
           <i class='bx bx-test-tube'></i>
           <span class="links_name">Estudios pedidos</span>

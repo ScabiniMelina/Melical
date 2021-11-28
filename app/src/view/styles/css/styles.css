@@ -371,7 +371,7 @@ ul {
 .tabs-fixed {
   position: sticky;
   z-index: 900;
-  top: 0px;
+  top: -40px;
   padding: 1em 0;
 }
 
