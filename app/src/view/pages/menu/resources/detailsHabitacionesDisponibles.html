@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detalles</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>    
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="thead-fixed background-bg-color">
+	    <div class="card mb-3 btn-primary">
+	        <div class="card-body ">
+	          <div class=" d-flex justify-content-between">
+	            <h5 class="card-title"><b>Melina Noelia Scabini</b></h5>
+	            <span><b>44756058</b></span>
+	          </div>
+	          <p class="card-text"><b>Sexo: </b><span>Femenino</span> <b>Edad: </b><span>18</span> <b>Obra Social:
+	            </b><span>No tiene </span><b>Sangre: </b><span>O+</span></p>
+	        </div>
+	      </div>
+
+		<div class="card">
+			<div class="accordion accordion-flush" id="accordionFlushExample">
+				<div class="accordion-item">
+				    <h2 class="accordion-header" id="flush-headingThree">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+				        Pacientes
+				      </button>
+				    </h2>
+				    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+				      <div class="accordion-body">
+				      	<form class="row g-2 searchFormulary">
+						 <div class="col col-6">
+					        <label>Fecha de ingreso</label>
+					        <input id="inputBuscar" type="date" class="form-control unsavableValue" placeholder="Fecha de pedido" name="dateMade" aria-describedby="button-addon2">
+					      </div>
+					      <div class=" col-6 d-flex align-self-end ">
+					        <div class="w-100">
+					           <label>Fecha de salida</label>
+					        <input id="inputBuscar" type="date" class="form-control unsavableValue" placeholder="Fecha de pedido" name="dateMade" aria-describedby="button-addon2">
+					        </div>
+					        <div class="col-auto ps-2 pt-4">
+					          <button class="btn btn-primary" type="submit" data-file="StudyBySearch">
+					            <i class="bx bx-search"></i>
+					          </button>
+					        </div>
+					      </div>
+					    </form>
+					    <div class="pt-3">
+	                    <a href="#" class="list-group-item list-group-item-action">
+					        <div class="d-flex w-100 justify-content-between">
+					            <h5 class="fw-bold fs-6">Nombre de paciente</h5>
+					            <small class="text-muted">DNI 558899631</small>
+					        </div>
+					       <p class="card-text"><b>Sexo: </b><span>Femenino</span> <b>Edad: </b><span>18</span> <b>Obra Social:
+	            			</b><span>No tiene </span><b>Sangre: </b><span>O+</span></p>
+					        <div class="row">
+						        <div class="col">
+						        	<small class="mb-1">Fecha de ingreso: 16/08/21</small>
+						        </div>
+						        <div class="col">
+						        	<small class="mb-1 text-end">Fecha de salida: 21/08/21</small>
+						        </div>
+					   		</div>
+					    </a>
+						</div>
+				      </div>
+				    </div>
+				</div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="flush-headingOne">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+			        Habitación
+			      </button>
+			    </h2>
+			    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+			      <div class="accordion-body">
+			            <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tab" role="tablist">
+			                <li class="nav-item">
+			                    <a class="nav-link active btn-sm" id="pills-Igreso-tab" data-bs-toggle="pill" data-bs-target="#pills-Igreso" role="tab" aria-controls="pills-Igreso" aria-selected="false">Ingreso</a>
+			                </li>
+			                <li class="nav-item">
+			                    <a class="nav-link btn-sm" id="pills-Traslados-tab" data-bs-toggle="pill" data-bs-target="#pills-Traslados" role="tab" aria-controls="pills-Traslados">Traslados</a>
+			                </li>
+			                <li class="nav-item">
+			                    <a class="nav-link  btn-sm" id="pills-Comentarios-tab" data-bs-toggle="pill" data-bs-target="#pills-Comentarios" role="tab" aria-controls="pills-Comentarios">Comentarios</a>            
+			                </li>
+			            </ul>
+			    <div class="tab-content pb-2" id="pills-tabContent">
+            		<div class="tab-pane fade show active" id="pills-Igreso" role="tabpanel" aria-labelledby="pills-Igreso-tab">
+            			<div class="accordion-body">
+                        <div class="row pt-2">
+                          <h5>Motivo de ingreso</h5>
+                          <small>El siguiente apartado contiene información resumida de la historia clínica.</small>
+                        </div>
+                        <hr>
+                          <ol class="list-group col pt-1">
+                            <li class="list-group-item align-items-start d-flex ">
+                              <div class="col align-self">
+                                <div class="d-flex w-100 justify-content-between pt-1">
+                                  <h5 class="mb-1">Título</h5>
+                                </div>
+                                  <small class="text-muted">Fecha y hora</small>
+                                  <p>Detalles o breve resúmen del ingreso detallado en la historia clínica.</p>
+                                  <span class="badge btn-primary rounded-pill">Área del hospital</span>
+                              </div>
+                              <div class="col-auto ms-2 me-auto align-self-center ">
+                                <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-info-circle' ></i></button>
+                              </div> 
+                            </li>
+                          </ol>
+		            		</div>
+		            	</div>
+            		<div class="tab-pane fade show" id="pills-Traslados" role="tabpanel" aria-labelledby="pills-Traslados-tab">
+            			<div class="card-body tab-pane fade active show" role="tabpanel" aria-labelledby="pills-salas-tab" id="pills-salas">
+		                      <div class="text-start pt-3">
+		                        <ol class="list-group col">
+		                          <li class="list-group-item align-items-start d-flex ">
+		                            <div class="col align-self">
+		                              <div class="fw-bold"><span class=" pe-2">Sala 2</span><span>Guardia</span></div>
+		                              <p>Detalles del traslado.</p>
+		                              <small>
+			                              <span>Fecha de traslado: <span>
+			                              <span class="badge btn-primary rounded-pill">14-5-2021 15:30</span>
+		                              </small>
+		                              </div>
+		                            <div class="col-auto ms-2 me-auto align-self-center ">
+		                              <button class="btn btn-primary btn-sm btn-datalist" type="button"><i class='bx bx-info-circle' ></i></button>
+		                            </div> 
+		                          </li> 
+		                        </ol>
+		                      </div>
+		                    </div>
+            		</div>
+            		<div class="tab-pane fade show" id="pills-Comentarios" role="tabpanel" aria-labelledby="pills-Comentarios-tab">
+            			<div class="pb-3 align-items-end  text-start">
+	                        <div class="list-group  mt-3">
+	                          <a href="#" class="list-group-item list-group-item-action">
+	                            <div class="d-flex w-100 justify-content-between">
+	                              <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+	                              <small class="text-muted">14/4/2021 13:50</small>
+	                            </div>
+	                            <p class="mb-1">Some placeholder content in a paragraph.</p>
+	                          </a>
+	                          <a href="#" class="list-group-item list-group-item-action">
+	                            <div class="d-flex w-100 justify-content-between">
+	                              <h5 class="mb-1 fw-normal">Pablo Suárez</h5>
+	                              <small class="text-muted">14/4/2021 13:50</small>
+	                            </div>
+	                            <p class="mb-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur commodi unde sed cupiditate amet minus quo iure voluptatum dolorem eius qui maiores tenetur, iste eos saepe corporis ipsam ducimus molestiae?</p>
+	                          </a>
+	                        </div>
+	                        <hr>
+	                        <!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comentModal">
+							  Agregar comentario
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="comentModal" tabindex="-1" aria-labelledby="comentModal" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							        <form class="m-1" id="noteForm" data-id="12447560544">
+							          <div class="modal-header">
+							            <h5 class="modal-title">Nueva nota médica</h5>
+							            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							          </div>
+
+							          <div class="modal-body row">
+
+							            <input type="hidden" name="stage" class="form-control stage unsavableValue" value="0">
+							            <label for="message-text" class="col-form-label">Nota:</label>
+							            <textarea class="form-control" name="comment" id="message-text"></textarea>
+
+							          </div>
+							          <div class="modal-footer py-1">
+							            <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal" id="btn-cancelComment">Cancelar</button>
+							            <button type="submit" class="btn btn-sm btn-dark postInformation" id="btn-saveCommet" data-file="NoteSave">Guardar</button>
+							          </div>
+							        </form>
+							    </div>
+							  </div>
+							</div>
+
+	                      </div>
+            		</div>
+            	</div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="flush-headingTwo">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+			        Personal
+			      </button>
+			    </h2>
+			    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+			      <div class="accordion-body">
+			      	<div class="card-body tab-pane fade active show" role="tabpanel" aria-labelledby="pills-personal-tab" id="pills-personal">
+                      <div class="row text-start">
+                        <div class="row m-auto overflow-auto">
+                            <ol class="list-group list-group-numbered list-group-horizontal-md px-0">
+                              <li class="list-group-item d-flex  justify-content-between flex-fill">
+                                <div class="ms-2 me-auto ">
+                                  <div class="fw-bold">Marley Boy</div>
+                                  Cardiólogia
+                                  
+                                </div>
+                                </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-start flex-fill">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">La rocca</div>
+                                  Enfermeria
+                                </div>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-start flex-fill">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">Leonel Messi</div>
+                                  Ortopedia
+                                </div>
+                              </li>
+                            </ol>
+                          </div>
+                        </div>
+                    </div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="flush-headingThree">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+			        Recursos
+			      </button>
+			    </h2>
+			    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+			      <div class="accordion-body">
+			      	 <ul class="nav nav-pills card-header-pills overflow-auto" id="pills-tab" role="tablist">
+			                <li class="nav-item">
+			                    <a class="nav-link active btn-sm" id="pills-Medicamentos-tab" data-bs-toggle="pill" data-bs-target="#pills-Medicamentos" role="tab" aria-controls="pills-Medicamentos" aria-selected="false">Medicamentos</a>
+			                </li>
+			                <li class="nav-item">
+			                    <a class="nav-link btn-sm" id="pills-Equipo-tab" data-bs-toggle="pill" data-bs-target="#pills-Equipo" role="tab" aria-controls="pills-Equipo">Equipo médico</a>
+			                </li>
+			          </ul>
+			          <div class="row pt-2">
+			          	  <div class="tab-content pb-2" id="pills-tabContent">
+            				<div class="tab-pane fade show active" id="pills-Medicamentos" role="tabpanel" aria-labelledby="pills-Medicamentos-tab">
+            					<div class="card-body tab-pane fade pt-0 active show" role="tabpanel" aria-labelledby="pills-motivoIngreso-tab" id="pills-motivoIngreso">
+				                     <div class="row text-start">
+				                       <div class="col col-12 pt-3">
+				                         <h5 class="">Medicamentos en uso</h5>
+				                         <div class="list-group">
+				                            <a href="#" class="list-group-item list-group-item-action">
+				                              <div class="d-flex w-100 justify-content-between">
+				                                <span class="fw-bold fs-6">Nombre de medicamento</span>
+				                                <small class="text-muted">Fecha</small>
+				                              </div>
+				                              <p class="mb-1">Some placeholder content in a paragraph.</p>
+				                              <span class="badge btn-primary rounded-pill">Categoría</span>
+				                            </a>
+				                          </div>
+				                       </div>
+				                     </div>
+				                    </div>
+            				</div>
+            				<div class="tab-pane fade show active" id="pills-Equipo" role="tabpanel" aria-labelledby="pills-Equipo-tab">
+									<div class="row text-start">
+				                       <div class="col col-12 pt-3">
+				                         <h5 class="">Equipo en uso</h5>
+				                         <div class="list-group">
+				                            <a href="#" class="list-group-item list-group-item-action">
+				                              <div class="d-flex w-100 justify-content-between">
+				                                <span class="fw-bold fs-6">Nombre de equipo</span>
+				                                <small class="text-muted">Fecha</small>
+				                              </div>
+				                              <p class="mb-1">Some placeholder content in a paragraph.</p>
+				                              <span class="badge btn-primary rounded-pill">Categoría</span>
+				                            </a>
+				                          </div>
+				                       </div>
+				                     </div>
+            				</div>
+            			  </div>
+			          </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>    
+</body>
+</html>

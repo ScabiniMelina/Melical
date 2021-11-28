@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>    
+  <!-- Bootstrap CSS -->
+  <link href="../bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="card">
+  		<div class="card-body">
+  			<div class="d-flex w-100 justify-content-between pt-1">
+				<h5 class="mb-1"><b>Título de recurso</b></h5>
+				<small class="text-muted">Fecha y hora de última actualización</small>
+			</div>
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		  <i class='bx bx-plus'></i>
+		</button>
+		<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+		  <i class='bx bx-minus'></i>
+		</button>
+		<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+		  <i class='bx bxs-right-arrow-alt'></i>
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Agregar recurso</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		        <div class="modal-body row">
+		            <input type="hidden" name="stage" class="form-control stage unsavableValue" value="1">
+		            <input type="hidden" name="classification" value="7" class="form-control stage unsavableValue">
+		            <div class="col col-6">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Sección</label>
+
+		              <select class="form-select getSelectOption unsavableValue" data-file="MedicalCareTypeDetailList" required="" data-condition="7" id="list10" name="symptom[]"><option> </option><option value="10">vomitos</option></select>
+		              <datalist>
+
+		              </datalist>
+		            </div>
+		            <div class="col col-6">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Piso</label>
+		              <input type="number" name="piso" required="" class="form-control" autocomplete="on">
+		            </div>
+		            <div class="col col-12  pt-3">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Cantidad</label>
+		             <input type="number" name="cantidad" required="" class="form-control" autocomplete="on">
+		            </div>
+	          	</div>
+		      <div class="modal-footer">
+			        <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal" id="btn-cancelComment">Cancelar</button>
+	            	<button type="submit" class="btn btn-sm btn-dark postInformation" id="btn-saveCommet" data-file="MedicalDetail">Guardar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+				<!-- Modal 2-->
+		<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel2">Quitar recurso</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		        <div class="modal-body row">
+		            <input type="hidden" name="stage" class="form-control stage unsavableValue" value="1">
+		            <input type="hidden" name="classification" value="7" class="form-control stage unsavableValue">
+		            <div class="col col-6">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Sección</label>
+
+		              <select class="form-select getSelectOption unsavableValue" data-file="MedicalCareTypeDetailList" required="" data-condition="7" id="list10" name="symptom[]"><option> </option><option value="10">vomitos</option></select>
+		              <datalist>
+
+		              </datalist>
+		            </div>
+		            <div class="col col-6">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Piso</label>
+		              <input type="number" name="piso" required="" class="form-control" autocomplete="on">
+		            </div>
+		            <div class="col col-12  pt-3">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Cantidad</label>
+		             <input type="number" name="cantidad" required="" class="form-control" autocomplete="on">
+		            </div>
+	          	</div>
+		      <div class="modal-footer">
+			        <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal" id="btn-cancelComment">Cancelar</button>
+	            	<button type="submit" class="btn btn-sm btn-dark postInformation" id="btn-saveCommet" data-file="MedicalDetail">Guardar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+					<!-- Modal 3-->
+		<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel3">Asignar a otra área</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		        <div class="modal-body row">
+		            <input type="hidden" name="stage" class="form-control stage unsavableValue" value="1">
+		            <input type="hidden" name="classification" value="7" class="form-control stage unsavableValue">
+		            <div class="col col-6">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Sección</label>
+
+		              <select class="form-select getSelectOption unsavableValue" data-file="MedicalCareTypeDetailList" required="" data-condition="7" id="list10" name="symptom[]"><option> </option><option value="10">vomitos</option></select>
+		              <datalist>
+
+		              </datalist>
+		            </div>
+		            <div class="col col-6">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Piso</label>
+		              <input type="number" name="piso" required="" class="form-control" autocomplete="on">
+		            </div>
+		            <div class="col col-12  pt-3">
+		              <label for="inputFechaIngreso" class="form-label form-label-sm">Cantidad</label>
+		             <input type="number" name="cantidad" required="" class="form-control" autocomplete="on">
+		            </div>
+	          	</div>
+		      <div class="modal-footer">
+			        <button type="button" class="btn btn-sm btn-tertiary" data-bs-dismiss="modal" id="btn-cancelComment">Cancelar</button>
+	            	<button type="submit" class="btn btn-sm btn-dark postInformation" id="btn-saveCommet" data-file="MedicalDetail">Guardar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
